@@ -9,4 +9,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    function DashboardA(){
+        return view("DashboardA");
+    }
+    function DashboardB(){
+        return view("DashboardB");
+    }
 }

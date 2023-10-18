@@ -18,18 +18,17 @@ class Role
     {
         if(Auth::check()){
 
-            if (Auth::user()->role == '0'){
+            if (Auth::user()->role == 1){
                 return $next($request);
-            }elseif(Auth::user()->role == '1'){
-                return redirect('/login');
+            }elseif(Auth::user()->role == 0){
+                return response()->view("DashboardA");
             }else{
-
+                return response()->view('/DashboardB');
             }
         }
 
         else {
-
+            return redirect('/login');
         }
-        return $next($request);
     }
 }
