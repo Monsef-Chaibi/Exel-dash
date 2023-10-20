@@ -90,7 +90,7 @@ form .gender__details .gender__title {
 
 form .gender__details .category {
   display: flex;
-  width: 80%;
+  width: 42%;
   margin: 15px 0;
   justify-content: space-between;
 }
@@ -169,29 +169,21 @@ form .button input:hover {
 }
 
     </style>
-    <div class="py-12">
+    <div class="py-12 flex justify-center items-center h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container">
-                        <div class="title">Registration</div>
+                        <div class="title">Add User</div>
                         <form action="#">
                           <div class="user__details">
                             <div class="input__box">
-                              <span class="details">Full Name</span>
+                              <span class="details">Name</span>
                               <input type="text" placeholder="E.g: John Smith" required>
                             </div>
                             <div class="input__box">
-                              <span class="details">Username</span>
-                              <input type="text" placeholder="johnWC98" required>
-                            </div>
-                            <div class="input__box">
-                              <span class="details">Email</span>
-                              <input type="email" placeholder="johnsmith@hotmail.com" required>
-                            </div>
-                            <div class="input__box">
-                              <span class="details">Phone Number</span>
-                              <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="012-345-6789" required>
+                               <span class="details">Email</span>
+                               <input type="email" placeholder="****@gmail.com" required>
                             </div>
                             <div class="input__box">
                               <span class="details">Password</span>
@@ -207,19 +199,15 @@ form .button input:hover {
                             <input type="radio" name="gender" id="dot-1">
                             <input type="radio" name="gender" id="dot-2">
                             <input type="radio" name="gender" id="dot-3">
-                            <span class="gender__title">Gender</span>
+                            <span class="gender__title">Type</span>
                             <div class="category">
                               <label for="dot-1">
                                 <span class="dot one"></span>
-                                <span>Male</span>
+                                <span>Type 1</span>
                               </label>
                               <label for="dot-2">
                                 <span class="dot two"></span>
-                                <span>Female</span>
-                              </label>
-                              <label for="dot-3">
-                                <span class="dot three"></span>
-                                <span>Prefer not to say</span>
+                                <span>type 2</span>
                               </label>
                             </div>
                           </div>
