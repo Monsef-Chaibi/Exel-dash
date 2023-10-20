@@ -29,6 +29,7 @@ class Controller extends BaseController
         return view('ViewData');
     }
     function StoreUser(Request $request){
+        dd($request);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
