@@ -176,23 +176,23 @@ form .button input:hover {
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container">
                         <div class="title">Add User</div>
-                        <form action="#">
+                        <form action="/StoreUser">
                           <div class="user__details">
                             <div class="input__box">
                               <span class="details">Name</span>
-                              <input type="text" placeholder="E.g: John Smith" required>
+                              <input type="text" name="name" placeholder="E.g: John Smith" required>
                             </div>
                             <div class="input__box">
                                <span class="details">Email</span>
-                               <input type="email" placeholder="****@gmail.com" required>
+                               <input type="email" name="email" placeholder="****@gmail.com" required>
                             </div>
                             <div class="input__box">
                               <span class="details">Password</span>
-                              <input type="password" name="" placeholder="********" required>
+                              <input type="password" name="pass" placeholder="********" required>
                             </div>
                             <div class="input__box">
                               <span class="details">Confirm Password</span>
-                              <input type="password_ver" placeholder="********" required>
+                              <input type="password_ver" name="pass_ver" placeholder="********" required>
                             </div>
 
                           </div>
