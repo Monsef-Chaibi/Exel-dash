@@ -33,4 +33,10 @@ require __DIR__.'/auth.php';
 
 Route::post('/import', [Controller::class, 'import']);
 
-Route::get('/adduser', [Controller::class, 'adduser'])->name('adduser');
+Route::get('/adduser', [Controller::class, 'adduser'])->middleware(['auth', 'Role'])->name('adduser');
+
+Route::get('/Alluser', [Controller::class, 'alluser'])->middleware(['auth', 'Role'])->name('Alluser');
+
+Route::get('/AddData', [Controller::class, 'AddData'])->middleware(['auth', 'Role'])->name('AddData');
+
+Route::get('/ViewData', [Controller::class, 'ViewData'])->middleware(['auth', 'Role'])->name('ViewData');

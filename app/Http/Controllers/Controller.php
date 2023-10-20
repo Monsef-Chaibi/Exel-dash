@@ -18,4 +18,13 @@ class Controller extends BaseController
     function adduser(){
         return view('adduser');
     }
+    function alluser(){
+        return view('alluser');
+    }
+    function AddData(){
+        return view('AddData');
+    }
+    function ViewData(){
+        return view('ViewData');
+    }
 }

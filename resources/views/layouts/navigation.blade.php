@@ -22,17 +22,17 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('alluser')" :active="request()->routeIs('alluser')">
+                    <x-nav-link :href="route('Alluser')" :active="request()->routeIs('Alluser')">
                         {{ __('ALL USER') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
+                    <x-nav-link :href="route('AddData')" :active="request()->routeIs('AddData')">
                         {{ __('ADD DATA') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
+                    <x-nav-link :href="route('ViewData')" :active="request()->routeIs('ViewData')">
                         {{ __('VIEW DATA') }}
                     </x-nav-link>
                 </div>
