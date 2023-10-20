@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\UsersImport;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -20,7 +21,8 @@ class Controller extends BaseController
         return view('adduser');
     }
     function alluser(){
-        return view('alluser');
+        $users = User::where('role', '!=', 1)->get();
+        return view('alluser')->with('users', $users);
     }
     function AddData(){
         return view('AddData');
@@ -28,23 +30,26 @@ class Controller extends BaseController
     function ViewData(){
         return view('ViewData');
     }
-    function StoreUser(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'pass' => 'required|min:6',
-            'pass_ver' => 'required|same:pass', // This checks if pass_ver is the same as pass
-            'role' => 'required', // Add any other validation rules as needed
-        ]);
-          // If the validation passes, continue with storing the data
+        function StoreUser(Request $request){
+            try {
+                $request->validate([
+                    'name' => 'required|string|max:255',
+                    'pass' => 'required|min:6',
+                    'pass_ver' => 'required|same:pass',
+                    'role' => 'required',
+                ]);
 
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('pass')),
-            'role' => $request->input('role'),
-            // Other fields...
-        ]);
-
-        return redirect()->back()->with('success','Donne');
-    }
+                User::create([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => bcrypt($request->input('pass')),
+                    'role' => $request->input('role'),
+                    // Other fields...
+                ]);
+                return redirect()->back()->with('success', 'Data inserted successfully.');
+            }
+            catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Name already exists Or Password not match');
+            }
+        }
 }

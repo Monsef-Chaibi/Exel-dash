@@ -172,15 +172,26 @@ form .button input:hover {
     </style>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-    @if (session()->has('success'))
-    <script>
-       Swal.fire(
-           'gererwfs',
-           '5jyrtf',
-           'success'
-                 )
-        </script>
-        @endif
+     @if (session()->has('error'))
+     <script>
+        Swal.fire(
+            'Error',
+            '{{ session('error') }}',
+            'error'
+        )
+     </script>
+ @endif
+
+ @if (session()->has('success'))
+     <script>
+        Swal.fire(
+            'Success',
+            '{{ session('success') }}',
+            'success'
+        )
+     </script>
+ @endif
+
     <div class="py-12 flex justify-center items-center h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
