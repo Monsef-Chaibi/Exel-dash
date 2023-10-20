@@ -179,8 +179,8 @@ form .button input:hover {
            '5jyrtf',
            'success'
                  )
-   </script>
-   @endif
+        </script>
+        @endif
     <div class="py-12 flex justify-center items-center h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -196,7 +196,7 @@ form .button input:hover {
                             </div>
                             <div class="input__box">
                                <span class="details">Email</span>
-                               <input type="email" name="email" placeholder="****@gmail.com" required>
+                               <input type="email" name="email" placeholder="****@gmail.com" >
                             </div>
                             <div class="input__box">
                               <span class="details">Password</span>
@@ -209,8 +209,8 @@ form .button input:hover {
 
                           </div>
                           <div class="gender__details">
-                            <input type="radio" name="gender" id="dot-1">
-                            <input type="radio" name="gender" id="dot-2">
+                            <input type="radio" value="0" name="role" id="dot-1">
+                            <input type="radio" value="2" name="role" id="dot-2">
                             <span class="gender__title">Type</span>
                             <div class="category">
                               <label for="dot-1">
