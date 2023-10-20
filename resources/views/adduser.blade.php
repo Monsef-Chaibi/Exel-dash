@@ -170,13 +170,25 @@ form .button input:hover {
 }
 
     </style>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    @if (session()->has('success'))
+    <script>
+       Swal.fire(
+           'gererwfs',
+           '5jyrtf',
+           'success'
+                 )
+   </script>
+   @endif
     <div class="py-12 flex justify-center items-center h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container">
                         <div class="title">Add User</div>
-                        <form action="/StoreUser">
+                        <form action="/StoreUser" method="POST">
+                            @csrf
                           <div class="user__details">
                             <div class="input__box">
                               <span class="details">Name</span>
@@ -192,7 +204,7 @@ form .button input:hover {
                             </div>
                             <div class="input__box">
                               <span class="details">Confirm Password</span>
-                              <input type="password_ver" name="pass_ver" placeholder="********" required>
+                              <input type="password" name="pass_ver" placeholder="********" required>
                             </div>
 
                           </div>
