@@ -68,12 +68,13 @@ form .user__details .input__box {
   height: 45px;
   width: 100%;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid var(--main-grey);
   padding-left: 15px;
   font-size: 16px;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
+  color: black;
 }
 
 .user__details .input__box input:focus,
@@ -191,7 +192,7 @@ form .button input:hover {
                             </div>
                             <div class="input__box">
                               <span class="details">Confirm Password</span>
-                              <input type="password" placeholder="********" required>
+                              <input type="password_ver" placeholder="********" required>
                             </div>
 
                           </div>
