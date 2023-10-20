@@ -188,7 +188,7 @@ form .button input:hover {
                             </div>
                             <div class="input__box">
                               <span class="details">Password</span>
-                              <input type="password" placeholder="********" required>
+                              <input type="password" name="" placeholder="********" required>
                             </div>
                             <div class="input__box">
                               <span class="details">Confirm Password</span>
@@ -199,7 +199,6 @@ form .button input:hover {
                           <div class="gender__details">
                             <input type="radio" name="gender" id="dot-1">
                             <input type="radio" name="gender" id="dot-2">
-                            <input type="radio" name="gender" id="dot-3">
                             <span class="gender__title">Type</span>
                             <div class="category">
                               <label for="dot-1">
@@ -213,7 +212,7 @@ form .button input:hover {
                             </div>
                           </div>
                           <div class="button">
-                            <input type="submit" value="Register">
+                            <input  id="submitBtn" type="submit" value="Register">
                           </div>
                         </form>
                       </div>
