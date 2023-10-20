@@ -22,6 +22,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('alluser')" :active="request()->routeIs('alluser')">
+                        {{ __('ALL USER') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
                         {{ __('ADD DATA') }}
                     </x-nav-link>
