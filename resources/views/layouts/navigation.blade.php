@@ -16,6 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @if(Auth::user()->role == '1')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
                         {{ __('ADD USER') }}
@@ -36,6 +37,7 @@
                         {{ __('VIEW DATA') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

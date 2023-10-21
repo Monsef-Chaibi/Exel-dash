@@ -116,6 +116,7 @@ h1 {
   text-align: center;
   font-size: 2.4em;
   color: #f2f2f2;
+  margin-bottom: 20px;
 }
 .container {
   display: block;
@@ -160,12 +161,11 @@ h3:after {
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                         <h1>All Users</h1>
-                          <table style="width: 800px" class="rwd-table">
+                          <table style="width: 1000px" class="rwd-table">
                             <tbody>
                               <tr>
                                 <th>Name</th>
-                                <th>Eamil</th>
-                                <th>Password</th>
+                                <th>Email</th>
                                 <th>Create_at</th>
                               </tr>
                               @foreach($users as $user)
@@ -175,9 +175,6 @@ h3:after {
                                 </td>
                                 <td data-th="Supplier Name">
                                     {{ $user->email }}
-                                </td>
-                                <td data-th="Invoice Number">
-                                    {{ bcrypt($user->password) }}
                                 </td>
                                 <td data-th="Invoice Date">
                                     {{ $user->created_at }}

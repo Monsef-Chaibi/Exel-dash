@@ -116,7 +116,7 @@
 	height: 5px;
 	border-radius: 25px;
 	background-color: #4BB543;
-}
+} 
 .upload-button {
 	font-family: 'Montserrat';
     background: linear-gradient(135deg,#71b7e6, #9b59b6);
