@@ -10,8 +10,11 @@ class Data extends Model
     use HasFactory;
     protected $fillable = [
         'product',
-        'desc',
+        'soldp',
         'gtnum',
         'plantkey',
+        'shipp',
+        'bildoc',
+        'bildt',
     ];
 }
