@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\UsersImport;
+use App\Imports\DataImport;
+use App\Models\Data;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -14,8 +15,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     function import(){
-        Excel::Import(new UsersImport, request()->file('file'));
-        return redirect()->back();
+        Excel::Import(new DataImport, request()->file('file'));
+        return redirect()->back()->with('success', 'Data inserted successfully.');
     }
     function adduser(){
         return view('adduser');
@@ -28,7 +29,8 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
-        return view('ViewData');
+        $data=Data::paginate(10);
+        return view('ViewData')->with('data', $data);
     }
         function StoreUser(Request $request){
             try {

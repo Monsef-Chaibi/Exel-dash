@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('data', function (Blueprint $table) {
             $table->id();
-            $table->string('product');
-            $table->string('desc');
-            $table->string('gtnum');
-            $table->string('plantkey');
+            $table->string('product')->nullable();
+            $table->string('desc')->nullable();
+            $table->string('gtnum')->nullable();
+            $table->string('plantkey')->nullable();
             $table->timestamps();
         });
     }
