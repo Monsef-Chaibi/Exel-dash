@@ -175,9 +175,7 @@ h3:after {
                                 <td data-th="Supplier Code">
                                     {{ $item->product }}
                                 </td>
-                                <td data-th="Supplier Name">
-                                    {{ $item->desc }}
-                                </td>
+
                                 <td data-th="Supplier Code">
                                     {{ $item->gtnum }}
                                 </td>
@@ -186,6 +184,11 @@ h3:after {
                                 </td>
                                 <td data-th="Invoice Date">
                                     {{ $item->created_at }}
+                                </td>
+                                <td data-th="Supplier Name">
+                                    {{ $item->soldp}}
+                                </td> <td data-th="Supplier Name">
+                                    {{ $item->desc }}
                                 </td>
                               </tr>
                               @endforeach

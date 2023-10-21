@@ -25,7 +25,7 @@ class DataImport implements ToModel
             "soldp"=> $row[13],
             "shipp"=> $row[14],
             "bildoc"=> $row[19],
-            "bildt"=> $row[21],
+            "bildt"=> $row[20],
         ]);
     }
     return null;
