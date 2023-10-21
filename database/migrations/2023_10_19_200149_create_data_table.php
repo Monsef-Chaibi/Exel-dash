@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('product');
             $table->string('desc');
             $table->string('gtnum');
-            $table->string('all');
-            $table->string('sem');
-            $table->string('userall');
-            $table->string('usersem');
+            $table->string('plantkey');
             $table->timestamps();
         });
     }

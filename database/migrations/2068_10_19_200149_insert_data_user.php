@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Middleware\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +17,7 @@ return new class extends Migration
             'name' => 'admin',
             'email' => '',
             'password' => bcrypt('admin123'),
+            'role' => '1',
         ]);
 
         // Add more insert statements as needed
