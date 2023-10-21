@@ -29,7 +29,7 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
-        $data=Data::paginate(10);
+        $data=Data::paginate(5);
         return view('ViewData')->with('data', $data);
     }
         function StoreUser(Request $request){
