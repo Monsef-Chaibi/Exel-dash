@@ -18,9 +18,9 @@ return new class extends Migration
             'email' => '',
             'password' => bcrypt('admin123'),
             'role' => '1',
-        ]);
+        ]); 
 
-        // Add more insert statements as needed
+        //  Add more insert statements as needed
     }
 
     /**
