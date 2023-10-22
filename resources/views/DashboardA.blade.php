@@ -151,7 +151,107 @@ body {
     font-size: 16px;
   }
 }
+
+.rwd-table {
+  margin: auto;
+  width: 500px;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.fr {
+  border-top: none;
+  background: linear-gradient(135deg,#71b7e6, #9b59b6);
+  color: #fff;
+}
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  margin-top: .5em;
+}
+
+.rwd-table td:last-child {
+  margin-bottom: .5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
+}
+
+.rwd-table {
+  color: #333;
+  border-radius: .4em;
+  overflow: hidden;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: .5em 1em;
+}
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #d8e7f3;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -201,15 +301,56 @@ body {
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                 <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Parcel Delivery System</h1>
                 <div style="position: relative; display: inline-block;">
-                    <input type="text" name="" id="b" style="width:400px;border-radius: 10px; padding-right: 30px;">
+                    <input type="text" name="search" id="search" style="width:400px;border-radius: 10px; padding-right: 30px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); fill: #999;">
                         <path d="M21.7 20.3l-3-3a9 9 0 1 0-1.4 1.4l3 3a1 1 0 0 0 1.4 0 1 1 0 0 0 0-1.4zM5.2 16.8a7.5 7.5 0 1 1 11.3 0 7.5 7.5 0 0 1-11.3 0z"/>
                     </svg>
                 </div>
             </div>
+            <div>
+                <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                    <thead>
+                      <tr class="fr">
+                        <th>Plant-key</th>
+                        <th>Sold-To-Party</th>
+                        <th>Ship-To-Party</th>
+                        <th>Billing Document</th>
+                        <th>Create_at</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
 
+        fetch_customer_data();
+
+        function fetch_customer_data(query = '')
+        {
+            $.ajax({
+                url:"{{ route('action') }}",
+                method:'GET',
+                data:{query:query},
+                dataType:'json',
+                success:function(data)
+                {
+                    $('tbody').html(data.table_data);
+                    $('#total_records').text(data.total_data);
+                }
+            })
+        }
+
+        $(document).on('keyup', '#search', function(){
+            var query = $(this).val();
+            fetch_customer_data(query);
+        });
+    });
+    </script>
 
 </x-app-layout>

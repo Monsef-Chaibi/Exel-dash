@@ -11,6 +11,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -29,8 +31,8 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
-        $data=Data::paginate(5);
-        return view('ViewData')->with('data', $data);
+        $data = DB::table('data')->where('plantkey',1884)->groupBy('bildoc')->get();
+       return view('ViewData')->with('data', $data);
     }
         function StoreUser(Request $request){
             try {
@@ -52,6 +54,53 @@ class Controller extends BaseController
             }
             catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Name already exists Or Password not match');
+            }
+        }
+        function action(Request $request)
+        {
+
+            if($request->ajax())
+            {
+                $output = '';
+                $query = $request->get('query');
+                if($query != '') {
+                    $data = DB::table('data')
+                    ->where('plantkey', 'like', '%' . $query . '%')
+                    ->get();
+
+
+                } else {
+                    $data = DB::table('data')
+                        ->orderBy('id', 'desc')
+                        ->get();
+                }
+
+                $total_row = $data->count();
+                if($total_row > 0){
+                    foreach($data as $row)
+                    {
+                        $output .= '
+                        <tr>
+                            <td>'.$row->plantkey.'</td>
+                            <td>'.$row->soldp.'</td>
+                            <td>'.$row->shipp.'</td>
+                            <td>'.$row->bildoc.'</td>
+                            <td>'.$row->created_at.'</td>
+                        </tr>
+                        ';
+                    }
+                } else {
+                    $output = '
+                    <tr>
+                        <td  colspan="8">No Data Found</td>
+                    </tr>
+                    ';
+                }
+                $data = array(
+                    'table_data'  => $output,
+                    'total_data'  => $total_row
+                );
+                echo json_encode($data);
             }
         }
 }
