@@ -164,31 +164,41 @@ h3:after {
                           <table style="width: 100%; margin-bottom:5%" class="rwd-table">
                             <tbody>
                               <tr>
-                                <th>Product</th>
-                                <th>Description</th>
-                                <th>GT Number</th>
                                 <th>Plant-key</th>
+                                <th>Product</th>
+                                <th>GT Number</th>
+                                <th>Sold-To-Party</th>
+                                <th>Ship-To-Party</th>
+                                <th>Billing Document</th>
+                                <th>Billing Date</th>
                                 <th>Create_at</th>
                               </tr>
                               @foreach($data as $item)
                               <tr>
-                                <td data-th="Supplier Code">
-                                    {{ $item->product }}
-                                </td>
-
-                                <td data-th="Supplier Code">
-                                    {{ $item->gtnum }}
-                                </td>
                                 <td data-th="Supplier Name">
                                     {{ $item->plantkey }}
                                 </td>
-                                <td data-th="Invoice Date">
-                                    {{ $item->created_at }}
+                                <td data-th="Supplier Code">
+                                    {{ $item->product }}
                                 </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->gtnum }}
+                                </td>
+
                                 <td data-th="Supplier Name">
                                     {{ $item->soldp}}
-                                </td> <td data-th="Supplier Name">
-                                    {{ $item->desc }}
+                                </td>
+                                <td data-th="Supplier Name">
+                                    {{ $item->shipp}}
+                                </td>
+                                <td data-th="Supplier Name">
+                                    {{ $item->bildoc}}
+                                </td>
+                                <td data-th="Supplier Name">
+                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($item->bildt - 2)->format('Y-m-d') }}
+                                </td>
+                                <td data-th="Invoice Date">
+                                    {{ $item->created_at }}
                                 </td>
                               </tr>
                               @endforeach
