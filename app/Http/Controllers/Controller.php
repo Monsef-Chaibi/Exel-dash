@@ -31,8 +31,8 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
-        $data = DB::table('data')->where('plantkey',1884)->groupBy('bildoc')->get();
-       return view('ViewData')->with('data', $data);
+        $data=Data::paginate(5);
+        return view('ViewData')->with('data', $data);
     }
         function StoreUser(Request $request){
             try {
@@ -66,6 +66,7 @@ class Controller extends BaseController
                 if($query != '') {
                     $data = DB::table('data')
                     ->where('plantkey', 'like', '%' . $query . '%')
+                   ->groupBy('bildoc')
                     ->get();
 
 
