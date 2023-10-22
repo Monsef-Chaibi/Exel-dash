@@ -44,3 +44,5 @@ Route::get('/ViewData', [Controller::class, 'ViewData'])->middleware(['auth', 'R
 Route::post('/StoreUser', [Controller::class, 'StoreUser'])->middleware(['auth', 'Role'])->name('StoreUser');
 
 Route::get('/action', [Controller::class, 'action'])->name('action');
+
+Route::get('/test', [Controller::class, 'test'])->name('test');

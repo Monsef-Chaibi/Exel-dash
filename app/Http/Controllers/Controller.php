@@ -23,6 +23,11 @@ class Controller extends BaseController
     function adduser(){
         return view('adduser');
     }
+    function test(){
+        $cnd=auth()->user()->cond;
+        $cnd1 = explode(',', $cnd);
+        dd($cnd1);
+    }
     function alluser(){
         $users = User::where('role', '!=', 1)->get();
         return view('alluser')->with('users', $users);
@@ -59,26 +64,24 @@ class Controller extends BaseController
         }
         function action(Request $request)
         {
-
-
+            if(auth()->user()->cond == 0)
+            {
                 if($request->ajax())
-                {   $cnd=auth()->user()->cond;
-                    $cnd1 = explode(',', $cnd);
+                {
 
                     $output = '';
                     $query = $request->get('query');
                     if($query != '') {
                         $data = DB::table('data')
-                        ->whereIn('cond', $cnd1)
-                        ->where('plantkey', 'like', '%' . $query . '%')
-                       ->groupBy('bildoc')
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->groupBy('bildoc')
                         ->get();
 
 
                     }
                     else {
                         $data = DB::table('data')
-                            ->orderBy('id', 'desc')
+                            ->groupBy('bildoc')
                             ->get();
                     }
 
@@ -110,4 +113,60 @@ class Controller extends BaseController
                     echo json_encode($data);
                 }
             }
+            else
+            {
+                if($request->ajax())
+                {   $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->whereIn('plantkey', $cnd1)
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->groupBy('bildoc')
+                        ->get();
+
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->whereIn('plantkey', $cnd1)
+                            ->groupBy('bildoc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->plantkey.'</td>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td>'.$row->created_at.'</td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
+                        <tr>
+                            <td  colspan="8">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
+                }
+            }
+
+
+        }
+
 }
