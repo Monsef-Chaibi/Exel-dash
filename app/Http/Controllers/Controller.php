@@ -143,11 +143,11 @@ class Controller extends BaseController
                         {
                             $output .= '
                             <tr>
-                                <td>'.$row->plantkey.'</td>
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
+                                <td><a href="/Show/'.$row->bildoc.'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -168,5 +168,8 @@ class Controller extends BaseController
 
 
         }
-
+    function Show($id){
+        $data = Data::where('bildoc',$id)->get();
+        return view('Show')->with('data',$data);
+        }
 }

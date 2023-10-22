@@ -46,3 +46,5 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->middleware(['auth',
 Route::get('/action', [Controller::class, 'action'])->name('action');
 
 Route::get('/test', [Controller::class, 'test'])->name('test');
+
+Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');

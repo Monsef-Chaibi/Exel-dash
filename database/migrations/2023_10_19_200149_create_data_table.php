@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product')->nullable();
             $table->string('gtnum')->nullable();
+            $table->string('desc')->nullable();
             $table->string('plantkey')->nullable();
             $table->string('soldp')->nullable();
             $table->string('shipp')->nullable();

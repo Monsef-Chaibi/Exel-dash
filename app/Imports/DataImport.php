@@ -20,6 +20,7 @@ class DataImport implements ToModel
     if ($this->rowCount >= 22 && $row[9] !== 'GT DISPATCHED') {
         return new Data([
             "product"=> $row[4],
+            "desc"=> $row[5],
             "gtnum"=>$row[8],
             "plantkey"=>$row[1],
             "soldp"=> $row[13],
