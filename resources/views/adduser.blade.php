@@ -218,13 +218,13 @@ form .button input:hover {
                               <input type="password" name="pass_ver" placeholder="********" required>
                             </div>
 
-                          </div>
-                          <div class="gender__details">
+                        </div>
+                        <div class="gender__details">
                             <input type="radio" value="0" name="role" id="dot-1">
                             <input type="radio" value="2" name="role" id="dot-2">
                             <span class="gender__title">Type</span>
                             <div class="category">
-                              <label for="dot-1">
+                                <label for="dot-1">
                                 <span class="dot one"></span>
                                 <span>Accountant</span>
                               </label>
@@ -234,11 +234,16 @@ form .button input:hover {
                               </label>
                             </div>
                           </div>
+                          <div class="input__box">
+                            <span class="details">Plant-Key :</span>
+                            <input style="color:black;width: 500px;border-radius:10px"  placeholder="Ex 1885,1884,1886" type="text" name="cond" required>
+                            <p style="color: red; margin-top:7px;font-size:15px">* If you want to set all parent keys to it, set it to 0.</p>
+                        </div>
                           <div class="button">
-                            <input  id="submitBtn" type="submit" value="Register">
-                          </div>
+                              <input  id="submitBtn" type="submit" value="Register">
+                            </div>
                         </form>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>

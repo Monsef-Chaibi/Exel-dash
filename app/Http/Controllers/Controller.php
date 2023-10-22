@@ -48,6 +48,7 @@ class Controller extends BaseController
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('pass')),
                     'role' => $request->input('role'),
+                    'cond' => $request->input('cond'),
                     // Other fields...
                 ]);
                 return redirect()->back()->with('success', 'Data inserted successfully.');
