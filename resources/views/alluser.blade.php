@@ -166,6 +166,7 @@ h3:after {
                               <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Plant-key</th>
                                 <th>Create_at</th>
                               </tr>
                               @foreach($users as $user)
@@ -175,6 +176,9 @@ h3:after {
                                 </td>
                                 <td data-th="Supplier Name">
                                     {{ $user->email }}
+                                </td>
+                                <td data-th="Supplier Name">
+                                    {{ $user->cond }}
                                 </td>
                                 <td data-th="Invoice Date">
                                     {{ $user->created_at }}
