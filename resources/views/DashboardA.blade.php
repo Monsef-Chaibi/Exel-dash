@@ -199,7 +199,7 @@ body {
                 </div>
             </div>
             <div class=" d-flex justify-content-center align-items-center">
-                <h1 style="text-align: center;color:white;">Parcel Delivery System</h1>
+                <h1 style="text-align: center;color:white; font-size:30px">Parcel Delivery System</h1>
             </div>
         </div>
     </div>
