@@ -311,11 +311,11 @@ body {
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
-                        <th>Plant-key</th>
                         <th>Sold-To-Party</th>
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
                         <th>Create_at</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
