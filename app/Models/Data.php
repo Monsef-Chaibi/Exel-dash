@@ -12,6 +12,7 @@ class Data extends Model
         'product',
         'soldp',
         'gtnum',
+        'desc',
         'plantkey',
         'shipp',
         'bildoc',
