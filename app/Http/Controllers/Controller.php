@@ -60,49 +60,54 @@ class Controller extends BaseController
         function action(Request $request)
         {
 
-            if($request->ajax())
-            {
-                $output = '';
-                $query = $request->get('query');
-                if($query != '') {
-                    $data = DB::table('data')
-                    ->where('plantkey', 'like', '%' . $query . '%')
-                   ->groupBy('bildoc')
-                    ->get();
 
+                if($request->ajax())
+                {   $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
 
-                } else {
-                    $data = DB::table('data')
-                        ->orderBy('id', 'desc')
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->whereIn('cond', $cnd1)
+                        ->where('plantkey', 'like', '%' . $query . '%')
+                       ->groupBy('bildoc')
                         ->get();
-                }
 
-                $total_row = $data->count();
-                if($total_row > 0){
-                    foreach($data as $row)
-                    {
-                        $output .= '
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->orderBy('id', 'desc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->plantkey.'</td>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td>'.$row->created_at.'</td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
                         <tr>
-                            <td>'.$row->plantkey.'</td>
-                            <td>'.$row->soldp.'</td>
-                            <td>'.$row->shipp.'</td>
-                            <td>'.$row->bildoc.'</td>
-                            <td>'.$row->created_at.'</td>
+                            <td  colspan="8">No Data Found</td>
                         </tr>
                         ';
                     }
-                } else {
-                    $output = '
-                    <tr>
-                        <td  colspan="8">No Data Found</td>
-                    </tr>
-                    ';
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
                 }
-                $data = array(
-                    'table_data'  => $output,
-                    'total_data'  => $total_row
-                );
-                echo json_encode($data);
             }
-        }
 }
