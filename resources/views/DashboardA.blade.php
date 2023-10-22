@@ -198,8 +198,14 @@ body {
                     </div>
                 </div>
             </div>
-            <div class=" d-flex justify-content-center align-items-center">
-                <h1 style="text-align: center;color:white; font-size:30px">Parcel Delivery System</h1>
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Parcel Delivery System</h1>
+                <div style="position: relative; display: inline-block;">
+                    <input type="text" name="" id="b" style="width:400px;border-radius: 10px; padding-right: 30px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); fill: #999;">
+                        <path d="M21.7 20.3l-3-3a9 9 0 1 0-1.4 1.4l3 3a1 1 0 0 0 1.4 0 1 1 0 0 0 0-1.4zM5.2 16.8a7.5 7.5 0 1 1 11.3 0 7.5 7.5 0 0 1-11.3 0z"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
