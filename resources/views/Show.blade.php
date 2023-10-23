@@ -261,7 +261,7 @@
                     </tbody>
                 </table>
                 <div class="btnstatus">
-                    <div> <a href="/Status"><button type="button" class="success">Total Delivery</button></a> </div>
+                    <div> <a href="/Status">Total Delivery</a> </div>
                     <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
                 </div>
             </div>
