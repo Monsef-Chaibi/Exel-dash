@@ -112,10 +112,21 @@
   .rwd-table tr:nth-child(2) {
     border-top: none;
   }
+  .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        font-size: 30px;
+        text-align: center;
+        padding: 2%;
+        width:300px;
+        height: 80px;
+        text-align: start
+        }
 }
 @media screen and (min-width: 600px) {
   .rwd-table tr:hover:not(:first-child) {
     background-color: #d8e7f3;
+
   }
   .rwd-table td:before {
     display: none;
@@ -137,12 +148,53 @@
   .rwd-table td {
     padding: 1em !important;
   }
+
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Changed this line */
+  padding: 20px;
+  gap: 10px;
+  justify-content: center;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 30px;
+  text-align: center;
+  padding: 2%;
+  width: 500px;
+  height: 80px;
+  text-align: start;
+  border-radius: 10px
+}
+.tt {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  padding: 2%;
+
+}
+.in{
+    background: linear-gradient(135deg,#71b7e6, #9b59b6);
+    border-radius: 20px
 }
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="in">
+                <div class="tt">Status : </div>
+                <div class="grid-container">
+                <div class="grid-item">Facture Number : </div>
+                <div class="grid-item">Date :</div>
+                <div class="grid-item">Owner :</div>
+                <div class="grid-item">User :</div>
+                <div class="grid-item">Commercial register :</div>
+                <div class="grid-item">Number :</div>
+                </div>
+            </div>
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
