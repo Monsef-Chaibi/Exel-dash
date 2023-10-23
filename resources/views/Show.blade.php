@@ -241,7 +241,13 @@
                     </span>
                 </div>
             </div>
-            <div class="tt">Status</div>
+            @if ($status===1)
+              <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
+            <div class="grid-container">
+                <div style="font-size: 100%" class="grid-item">The procedure was carried out by : {{ $title->nameuser }}</div>
+                <div class="grid-item">In  : {{$title->dateset}}</div>
+            </div>
+            @endif
             </div>
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
@@ -272,7 +278,7 @@
                 <div class="btnstatus">
                     <div>
                         <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
-                            <button class="success" type="button">Total Delivery</button>
+                            <button  class="success" type="button">Total Delivery</button>
                         </a>
                     </div>
                     <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>

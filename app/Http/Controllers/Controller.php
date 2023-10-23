@@ -170,9 +170,24 @@ class Controller extends BaseController
 
         }
     function Show($id){
+        $typeid = $id;
+        $results = DB::table('data')
+            ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
+            ->where('bildoc', $typeid)
+            ->first();
+
+        $totalRows = $results->total_rows;
+        $totalFf = $results->total_status;
+
+        if ($totalRows > 0 && $totalRows == $totalFf) {
+            $status=1;
+        } else {
+            $status=2;
+        }
+
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
-        return view('Show')->with('data',$data)->with('title',$title);
+        return view('Show')->with('data',$data)->with('title',$title)->with('status',$status);
         }
 
         function Status($id){
