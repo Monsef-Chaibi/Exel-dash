@@ -245,7 +245,7 @@
             <div style="margin-top:3%" class="in">
                 @if ($status===1)
                 <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
-                <div class="tt">Status </div>
+                <div class="tt">Approvals </div>
                 <div class="grid-container">
                   <div  class="grid-item">By : {{ $title->nameuser }}</div>
                   <div class="grid-item">In  : {{$title->dateset}}</div>
@@ -278,14 +278,16 @@
 
                     </tbody>
                 </table>
-                <div class="btnstatus">
-                    <div>
-                        <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
-                            <button  class="success" type="button">Total Delivery</button>
-                        </a>
+                @if ($status!=1)
+                    <div class="btnstatus">
+                        <div>
+                            <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
+                                <button  class="success" type="button">Total Delivery</button>
+                            </a>
+                        </div>
+                        <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
                     </div>
-                    <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
