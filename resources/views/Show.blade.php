@@ -227,7 +227,6 @@
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="in">
-                <div class="tt">Status : </div>
                 <div class="grid-container">
                 <div class="grid-item">Billing Document :  {{ $title->bildoc }}</div>
                 <div class="grid-item">Owner :
@@ -242,7 +241,7 @@
                     </span>
                 </div>
             </div>
-            <div class="tt">Status : </div>
+            <div class="tt">Status</div>
             </div>
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
@@ -271,11 +270,35 @@
                     </tbody>
                 </table>
                 <div class="btnstatus">
-                    <div> <a href="/Status/{{ $title->bildoc }}"><button type="button" class="success">Total Delivery</button></a> </div>
+                    <div>
+                        <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
+                            <button class="success" type="button">Total Delivery</button>
+                        </a>
+                    </div>
                     <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function showConfirm() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once confirmed, the action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User clicked the confirm button, proceed with the action
+                window.location.href = "/Status/{{ $title->bildoc }}";
+            }
+        });
+
+        return false; // Prevent the default link behavior
+    }
+</script>
 </x-app-layout>
