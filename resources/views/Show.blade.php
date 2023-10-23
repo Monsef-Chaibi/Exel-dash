@@ -241,13 +241,16 @@
                     </span>
                 </div>
             </div>
-            @if ($status===1)
-              <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
-            <div class="grid-container">
-                <div style="font-size: 100%" class="grid-item">The procedure was carried out by : {{ $title->nameuser }}</div>
-                <div class="grid-item">In  : {{$title->dateset}}</div>
             </div>
-            @endif
+            <div style="margin-top:3%" class="in">
+                @if ($status===1)
+                <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
+                <div class="tt">Status </div>
+                <div class="grid-container">
+                  <div  class="grid-item">By : {{ $title->nameuser }}</div>
+                  <div class="grid-item">In  : {{$title->dateset}}</div>
+              </div>
+              @endif
             </div>
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
