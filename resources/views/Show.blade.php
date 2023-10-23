@@ -253,21 +253,21 @@
               @endif
             </div>
             <div>
-            <form method="GET" action="/SemiCheck">
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
-                      <tr class="fr">
-                        <th><button onclick="selectAll()">Select All</button></th>
-                        <th>Product</th>
-                        <th>Long Description</th>
-                        <th>GT Number</th>
-                      </tr>
+                        <tr class="fr">
+                            <th><button onclick="selectAll()">Select All</button></th>
+                            <th>Product</th>
+                            <th>Long Description</th>
+                            <th>GT Number</th>
+                        </tr>
                     </thead>
+                    <form method="GET" action="/SemiCheck">
                     <tbody>
                         @foreach($data as $item)
                         <tr>
                           <td data-th="Supplier Name">
-                            <input  id="checkbox1" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
+                            <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                           </td>
                           <td data-th="Supplier Name">
                               {{ $item->product }}
@@ -318,9 +318,18 @@
         return false; // Prevent the default link behavior
     }
     function selectAll() {
-            var checkboxes = document.getElementsByClassName('custom-checkbox');
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+            var allChecked = true;
+
             for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = true;
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
             }
         }
 </script>
