@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('shipp')->nullable();
             $table->string('bildoc')->nullable();
             $table->string('bildt')->nullable();
+            $table->string('nameuser')->nullable();
+            $table->date('dateset')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
