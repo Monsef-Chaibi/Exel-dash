@@ -253,6 +253,7 @@
               @endif
             </div>
             <div>
+                <form method="post" action="{{ route('updateSelections') }}">
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
