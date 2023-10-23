@@ -236,7 +236,7 @@ form .button input:hover {
                           </div>
                           <div class="input__box">
                             <span class="details">Plant-Key :</span>
-                            <input style="color:black;width: 500px;border-radius:10px"  placeholder="Ex 1885,1884,1886" type="text" name="cond" required>
+                            <input style="color:black;width: 500px;border-radius:10px"  placeholder="Ex 1885,1884,1886" type="text" name="cond" >
                             <p style="color: red; margin-top:7px;font-size:15px">* If you want to set all parent keys to it, set it to 0.</p>
                         </div>
                           <div class="button">

@@ -166,6 +166,7 @@ h3:after {
                               <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Type</th>
                                 <th>Plant-key</th>
                                 <th>Create_at</th>
                               </tr>
