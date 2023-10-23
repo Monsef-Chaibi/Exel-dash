@@ -179,8 +179,40 @@
     background: linear-gradient(135deg,#71b7e6, #9b59b6);
     border-radius: 20px
 }
+.btnstatus {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+.success {
+  border: 2px #FC766AFF  solid;
+  padding: 5%;
+  border-radius: 10px;
+  color: #FC766AFF ;
+  width: 300px
+}
 
+.success:hover {
+  background-color: #FC766AFF ;
+  color: white;
+  border: 2px white solid;
+}
+.warning {
+  border: 2px #5B84B1FF solid;
+  padding: 5%;
+  border-radius: 10px;
+  color: #5B84B1FF;
+  width: 300px
+
+}
+
+.warning:hover {
+  background: #5B84B1FF;
+  color: black;
+  border: 2px white solid;
+}
     </style>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -228,6 +260,10 @@
 
                     </tbody>
                 </table>
+                <div class="btnstatus">
+                    <div> <a href=""><button type="button" class="success">Total Delivery</button></a> </div>
+                    <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
+                </div>
             </div>
         </div>
     </div>
