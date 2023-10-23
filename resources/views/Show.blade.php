@@ -253,7 +253,7 @@
               @endif
             </div>
             <div>
-                <form method="post" action="{{ route('updateSelections') }}">
+            <form method="post" action="/SemiCheck">
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
@@ -267,7 +267,7 @@
                         @foreach($data as $item)
                         <tr>
                           <td data-th="Supplier Name">
-                             <input style="border-radius:5px" type="checkbox">
+                            <input style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                           </td>
                           <td data-th="Supplier Name">
                               {{ $item->product }}
@@ -285,12 +285,13 @@
                 </table>
                 @if ($status!=1)
                     <div class="btnstatus">
+                        <div><a href=""><button type="submit" class="warning">Partial Delivery</button></a> </div>
+                    </form>
                         <div>
                             <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
                                 <button  class="success" type="button">Total Delivery</button>
                             </a>
                         </div>
-                        <div> <a href=""><button type="button" class="warning">Partial Delivery</button></a> </div>
                     </div>
                 @endif
             </div>
