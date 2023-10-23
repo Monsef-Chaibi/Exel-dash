@@ -51,4 +51,6 @@ Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
 
 Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
 
+Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
+
 
