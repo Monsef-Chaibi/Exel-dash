@@ -17,7 +17,7 @@ class DataImport implements ToModel
 {
     $this->rowCount++;
 
-    if ($this->rowCount >= 22 && $row[9] !== 'GT DISPATCHED') {
+    if ($this->rowCount >= 22 && $row[9] !== 'GT TO ISTIMARAH') {
         return new Data([
             "product"=> $row[4],
             "desc"=> $row[5],
