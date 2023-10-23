@@ -184,6 +184,7 @@ class Controller extends BaseController
         if ($totalRows > 0 && $totalRows == $totalFf) {
             $status = 1;
         } elseif ($totalRows != $totalFf) {
+            
             $status = 2;
         }
         else{

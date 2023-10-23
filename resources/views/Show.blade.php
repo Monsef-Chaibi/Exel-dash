@@ -280,7 +280,7 @@
                         </tbody>
                     </table>
             @else
-            @if ($status == 2 )
+            @if ($status === 2 )
             <div style="margin-top:3%" class="in">
                 <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
