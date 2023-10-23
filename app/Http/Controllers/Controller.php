@@ -183,6 +183,6 @@ class Controller extends BaseController
                 'dateset' => Carbon::now(),
                 'status' => 1,
             ]);
-            return redirect('/')->with('success', 'Successfully.');
+            return redirect()->back()->with('success', 'Successfully.');
         }
 }
