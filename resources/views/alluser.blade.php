@@ -179,7 +179,19 @@ h3:after {
                                     {{ $user->email }}
                                 </td>
                                 <td data-th="Supplier Name">
+                                @if ( $user->role == 0)
+                                    Accountant
+                                @endif
+                                @if ( $user->role == 2)
+                                    Traffic
+                                @endif
+                                </td>
+                                <td data-th="Supplier Name">
+                                    @if ( $user->cond == 0)
+                                    All
+                                    @else
                                     {{ $user->cond }}
+                                    @endif
                                 </td>
                                 <td data-th="Invoice Date">
                                     {{ $user->created_at }}
