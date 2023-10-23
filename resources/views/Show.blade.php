@@ -326,7 +326,7 @@
             @endif
             @if ($status!=1)
             <div class="btnstatus">
-                <div><a href=""><button type="submit" class="warning">Partial Delivery</button></a> </div>
+                <div><a href=""><button type="submit" class="warning" onclick="confirmPartialDelivery()">Partial Delivery</button></a> </div>
             </form>
             <div>
                 <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
@@ -373,5 +373,20 @@
                 checkboxes[i].checked = !allChecked;
             }
         }
+        function confirmPartialDelivery() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once confirmed, the action cannot be undone!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('partialDeliveryForm').submit();
+        }
+    });
+}
 </script>
 </x-app-layout>
