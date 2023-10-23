@@ -169,7 +169,8 @@ class Controller extends BaseController
 
         }
     function Show($id){
+        $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
-        return view('Show')->with('data',$data);
+        return view('Show')->with('data',$data)->with('title',$title);
         }
 }
