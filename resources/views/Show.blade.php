@@ -256,6 +256,7 @@
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
+                        <th>Select</th>
                         <th>Product</th>
                         <th>Long Description</th>
                         <th>GT Number</th>
@@ -264,6 +265,9 @@
                     <tbody>
                         @foreach($data as $item)
                         <tr>
+                          <td data-th="Supplier Name">
+                             <input style="border-radius:5px" type="checkbox">
+                          </td>
                           <td data-th="Supplier Name">
                               {{ $item->product }}
                           </td>
