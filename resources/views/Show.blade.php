@@ -253,11 +253,11 @@
               @endif
             </div>
             <div>
-            <form method="post" action="/SemiCheck">
+            <form method="GET" action="/SemiCheck">
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
-                        <th>Select</th>
+                        <th><button onclick="selectAll()">Select All</button></th>
                         <th>Product</th>
                         <th>Long Description</th>
                         <th>GT Number</th>
@@ -267,7 +267,7 @@
                         @foreach($data as $item)
                         <tr>
                           <td data-th="Supplier Name">
-                            <input style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
+                            <input  id="checkbox1" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                           </td>
                           <td data-th="Supplier Name">
                               {{ $item->product }}
@@ -317,5 +317,11 @@
 
         return false; // Prevent the default link behavior
     }
+    function selectAll() {
+            var checkboxes = document.getElementsByClassName('custom-checkbox');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+        }
 </script>
 </x-app-layout>

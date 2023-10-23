@@ -200,4 +200,17 @@ class Controller extends BaseController
             ]);
             return redirect()->back()->with('success', 'Successfully.');
         }
+        function SemiCheck(Request $request){
+                $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
+                // Loop through selected items and update the database
+                foreach($selectedItems as $itemId) {
+                    Data::where('id', $itemId)->update([
+                        'nameuser' => Auth::user()->name,
+                        'dateset' => Carbon::now(),
+                        'status' => 1,
+                    ]);
+                }
+
+                return redirect()->back()->with('success', 'Selections updated successfully');
+            }
 }
