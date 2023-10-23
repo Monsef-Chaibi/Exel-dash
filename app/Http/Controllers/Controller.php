@@ -183,13 +183,14 @@ class Controller extends BaseController
 
         if ($totalRows > 0 && $totalRows == $totalFf) {
             $status = 1;
-        } elseif ($totalRows != $totalFf) {
+        } elseif ($totalFf != '' && $totalRows != $totalFf) {
 
             $status = 2;
         }
         else{
             $status = 3;
         }
+
         $userinfo = Data::where('bildoc', $id)
         ->whereNotNull('status')
         ->orderBy('dateset', 'DESC') // Order by date in ascending order

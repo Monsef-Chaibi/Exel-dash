@@ -285,8 +285,8 @@
                 <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
                 <div class="grid-container">
-                <div  class="grid-item">By : {{ $user->nameuser }}</div>
-                <div class="grid-item">In  : {{$user->dateset}}</div>
+                <div  class="grid-item">By : {{ $userinfo->nameuser }}</div>
+                <div class="grid-item">In  : {{$userinfo->dateset}}</div>
                 </div>
             </div>
             @endif
