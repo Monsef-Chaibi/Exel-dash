@@ -187,13 +187,20 @@
             <div class="in">
                 <div class="tt">Status : </div>
                 <div class="grid-container">
-                <div class="grid-item">Facture Number : </div>
-                <div class="grid-item">Date :</div>
-                <div class="grid-item">Owner :</div>
-                <div class="grid-item">User :</div>
-                <div class="grid-item">Commercial register :</div>
-                <div class="grid-item">Number :</div>
+                <div class="grid-item">Billing Document :  {{ $title->bildoc }}</div>
+                <div class="grid-item">Owner :
+                    <span style="font-size: 20px">
+                        {{ $title->soldp }}
+                    </span>
                 </div>
+                <div class="grid-item">Billing Date : {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($title->bildt - 2)->format('Y-m-d') }}</div>
+                <div class="grid-item">User :
+                    <span style="font-size: 20px">
+                        {{ $title->shipp }}
+                    </span>
+                </div>
+            </div>
+            <div class="tt">Status : </div>
             </div>
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
