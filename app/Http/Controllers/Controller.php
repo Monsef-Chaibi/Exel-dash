@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -178,7 +178,11 @@ class Controller extends BaseController
         function Status($id){
             DB::table('data')
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
-            ->update(['nameuser' => Auth::user()->name]);
+            ->update([
+                'nameuser' => Auth::user()->name,
+                'dateset' => Carbon::now(),
+                'status' => 1,
+            ]);
             return redirect('/')->with('success', 'Successfully.');
         }
 }
