@@ -300,7 +300,7 @@
                                 <th>GT Number</th>
                             </tr>
                         </thead>
-                        <form method="GET" action="/SemiCheck">
+                        <form method="GET" action="/SemiCheck" id="partialDeliveryForm">
                         <tbody>
                             @foreach($data as $item)
                             <tr>
@@ -326,7 +326,7 @@
             @endif
             @if ($status!=1)
             <div class="btnstatus">
-                <div><a href=""><button type="submit" class="warning" onclick="confirmPartialDelivery()">Partial Delivery</button></a> </div>
+                <div><a href=""><button  class="warning" onclick="confirmPartialDelivery()">Partial Delivery</button></a> </div>
             </form>
             <div>
                 <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
