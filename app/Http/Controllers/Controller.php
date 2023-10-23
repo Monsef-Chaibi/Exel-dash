@@ -95,7 +95,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a href="/Show/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32"  href="/Show/'.$row->bildoc.'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -147,7 +147,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="show" href="/Show/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32" href="/Show/'.$row->bildoc.'">Show</a></td>
                             </tr>
                             ';
                         }
