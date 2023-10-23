@@ -184,19 +184,19 @@ class Controller extends BaseController
         if ($totalRows > 0 && $totalRows == $totalFf) {
             $status = 1;
         } elseif ($totalRows != $totalFf) {
-            
+
             $status = 2;
         }
         else{
             $status = 3;
         }
-        $user = Data::where('bildoc', $id)
+        $userinfo = Data::where('bildoc', $id)
         ->whereNotNull('status')
         ->orderBy('dateset', 'DESC') // Order by date in ascending order
         ->first();
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
-        return view('Show')->with('data',$data)->with('title',$title)->with('status',$status)->with('user',$user);
+        return view('Show')->with('data',$data)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
 
         function Status($id){
