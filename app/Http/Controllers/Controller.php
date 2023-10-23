@@ -21,9 +21,6 @@ class Controller extends BaseController
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
     }
-    function Status($id){
-       dd($id);
-    }
     function adduser(){
         return view('adduser');
     }
@@ -106,7 +103,7 @@ class Controller extends BaseController
                     } else {
                         $output = '
                         <tr>
-                            <td  colspan="8">No Data Found</td>
+                        <td  colspan="8">No Data Found</td>
                         </tr>
                         ';
                     }
@@ -178,4 +175,10 @@ class Controller extends BaseController
         return view('Show')->with('data',$data)->with('title',$title);
         }
 
+        function Status($id){
+            DB::table('data')
+            ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
+            ->update(['nameuser' => Auth::user()->name]);
+            return redirect()->back();
+        }
 }
