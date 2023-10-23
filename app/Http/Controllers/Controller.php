@@ -173,21 +173,29 @@ class Controller extends BaseController
         $typeid = $id;
         $results = DB::table('data')
             ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
-            ->where('bildoc', $typeid)
+            ->where('bildoc', $typeid) // Add this line to filter out null statuses
             ->first();
+
+
 
         $totalRows = $results->total_rows;
         $totalFf = $results->total_status;
 
         if ($totalRows > 0 && $totalRows == $totalFf) {
-            $status=1;
-        } else {
-            $status=2;
+            $status = 1;
+        } elseif ($totalRows != $totalFf) {
+            $status = 2;
         }
-
+        else{
+            $status = 3;
+        }
+        $user = Data::where('bildoc', $id)
+        ->whereNotNull('status')
+        ->orderBy('dateset', 'DESC') // Order by date in ascending order
+        ->first();
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
-        return view('Show')->with('data',$data)->with('title',$title)->with('status',$status);
+        return view('Show')->with('data',$data)->with('title',$title)->with('status',$status)->with('user',$user);
         }
 
         function Status($id){

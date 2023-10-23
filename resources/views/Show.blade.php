@@ -242,53 +242,94 @@
                 </div>
             </div>
             </div>
-            <div style="margin-top:3%" class="in">
+
                 @if ($status===1)
-                <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
+                    <div style="margin-top:3%" class="in">
+                        <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
+                        <div class="tt">Approvals </div>
+                        <div class="grid-container">
+                        <div  class="grid-item">By : {{ $title->nameuser }}</div>
+                        <div class="grid-item">In  : {{$title->dateset}}</div>
+                    </div>
+                    </div>
+                    <div>
+                        <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                            <thead>
+                                <tr class="fr">
+                                    <th>Product</th>
+                                    <th>Long Description</th>
+                                    <th>GT Number</th>
+                                </tr>
+                            </thead>
+                            <form method="GET" action="/SemiCheck">
+                            <tbody>
+                            @foreach($data as $item)
+                            <tr>
+                                <td data-th="Supplier Name">
+                                    {{ $item->product }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->desc }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->gtnum }}
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+            @else
+            @if ($status == 2 )
+            <div style="margin-top:3%" class="in">
+                <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
                 <div class="grid-container">
-                  <div  class="grid-item">By : {{ $title->nameuser }}</div>
-                  <div class="grid-item">In  : {{$title->dateset}}</div>
-              </div>
-              @endif
+                <div  class="grid-item">By : {{ $user->nameuser }}</div>
+                <div class="grid-item">In  : {{$user->dateset}}</div>
+                </div>
             </div>
-            <div>
-                <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
-                    <thead>
-                        <tr class="fr">
-                            <th><button onclick="selectAll()">Select All</button></th>
-                            <th>Product</th>
-                            <th>Long Description</th>
-                            <th>GT Number</th>
-                        </tr>
-                    </thead>
-                    <form method="GET" action="/SemiCheck">
-                    <tbody>
-                        @foreach($data as $item)
-                        <tr>
-                          <td data-th="Supplier Name">
-                            <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
-                          </td>
-                          <td data-th="Supplier Name">
-                              {{ $item->product }}
-                          </td>
-                          <td data-th="Supplier Code">
-                              {{ $item->desc }}
-                          </td>
-                          <td data-th="Supplier Code">
-                              {{ $item->gtnum }}
-                          </td>
+            @endif
+                <div>
+                    <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                        <thead>
+                            <tr class="fr">
+                                <th><button onclick="selectAll()">Select All</button></th>
+                                <th>Product</th>
+                                <th>Long Description</th>
+                                <th>GT Number</th>
+                            </tr>
+                        </thead>
+                        <form method="GET" action="/SemiCheck">
+                        <tbody>
+                            @foreach($data as $item)
+                            <tr>
+                            @if ($item->status!=1)
+                            <td data-th="Supplier Name">
+                                <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
+                            </td>
+                            <td data-th="Supplier Name">
+                                {{ $item->product }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item->desc }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item->gtnum }}
+                            </td>
+                            @endif
                         </tr>
                         @endforeach
 
                     </tbody>
                 </table>
-                @if ($status!=1)
-                    <div class="btnstatus">
-                        <div><a href=""><button type="submit" class="warning">Partial Delivery</button></a> </div>
-                    </form>
-                        <div>
-                            <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
+            @endif
+            @if ($status!=1)
+            <div class="btnstatus">
+                <div><a href=""><button type="submit" class="warning">Partial Delivery</button></a> </div>
+            </form>
+            <div>
+                <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
                                 <button  class="success" type="button">Total Delivery</button>
                             </a>
                         </div>
