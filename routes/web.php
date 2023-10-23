@@ -48,3 +48,7 @@ Route::get('/action', [Controller::class, 'action'])->name('action');
 Route::get('/test', [Controller::class, 'test'])->name('test');
 
 Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
+
+Route::get('/Status', [Controller::class, 'Status'])->name('Status');
+
+

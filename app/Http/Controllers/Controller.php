@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -19,6 +20,9 @@ class Controller extends BaseController
     function import(){
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
+    }
+    function Status($id){
+       dd($id);
     }
     function adduser(){
         return view('adduser');
@@ -173,4 +177,5 @@ class Controller extends BaseController
         $data = Data::where('bildoc',$id)->get();
         return view('Show')->with('data',$data)->with('title',$title);
         }
+
 }
