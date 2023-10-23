@@ -179,6 +179,6 @@ class Controller extends BaseController
             DB::table('data')
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
             ->update(['nameuser' => Auth::user()->name]);
-            return redirect()->back();
+            return redirect('/')->with('success', 'Successfully.');
         }
 }
