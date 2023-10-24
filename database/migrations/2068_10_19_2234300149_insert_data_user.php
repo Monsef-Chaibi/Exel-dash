@@ -18,6 +18,11 @@ return new class extends Migration
             'password' => bcrypt('test123'),
             'role' => '0',
         ]);
+        DB::table('users')->insert([
+            'name' => 'monsef',
+            'password' => bcrypt('monsef123'),
+            'role' => '0',
+        ]);
 
         //  Add more insert statements as needed
     }

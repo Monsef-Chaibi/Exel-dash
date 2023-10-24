@@ -288,7 +288,7 @@
                         {{$item->gtnum}}
                     </td>
                     <td>
-                        {{$title->dateset}}
+                        {{$item->dateset}}
                     </td>
                   </tr>
                   @endforeach
