@@ -318,7 +318,7 @@
                                        In :  {{$item->dateset}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('showuserset', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ]) }}">
+                                        <a href="{{ route('Showsetuser', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ]) }}">
                                             <button class="button-28">
                                                 <i class="fa fa-eye"></i> View
                                             </button>

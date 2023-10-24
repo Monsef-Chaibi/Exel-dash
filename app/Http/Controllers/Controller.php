@@ -226,8 +226,9 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
-            function Showuserset($nameuser, $boldoc) {
-                $data = Data::where('name', $nameuser)->where('boldoc',$boldoc)->get();
-                return view('Showsetuser')->with('data',$data);
+            function Showsetuser($nameuser, $boldoc){
+                $title = Data::where('bildoc',$boldoc)->first();
+                $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->get();
+                return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
 }

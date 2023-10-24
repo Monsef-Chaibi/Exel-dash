@@ -266,24 +266,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
 
-    @if (session()->has('success'))
-    <script>
-       Swal.fire(
-           'Success',
-           '{{ session('success') }}',
-           'success'
-       )
-    </script>
-    @endif
-    @if(session('error'))
-    <script>
-        Swal.fire(
-            'Error',
-            '{{ session('error') }}',
-            'error'
-        )
-     </script>
-    @endif
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="in">
@@ -300,131 +282,12 @@
                         {{ $title->shipp }}
                     </span>
                 </div>
-            </div>
-            </div>
-
-                @if ($status===1)
-                    <div style="margin-top:3%" class="in">
-                        <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
-                        <div class="tt">Approvals </div>
-                        <div class="grid-container">
-                            @foreach($userinfo as $item)
-                            <table class="tableuser">
-                                <tr>
-                                    <td>
-                                       By :  {{ $item->nameuser }}
-                                    </td>
-                                    <td>
-                                       In :  {{$item->dateset}}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('showuserset', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ]) }}">
-                                            <button class="button-28">
-                                                <i class="fa fa-eye"></i> View
-                                            </button>
-                                        </a>
-
-                                    </td>
-                                </tr>
-                            </table>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div>
-                        <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
-                            <thead>
-                                <tr class="fr">
-                                    <th>Product</th>
-                                    <th>Long Description</th>
-                                    <th>GT Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($data as $item)
-                            <tr>
-                                <td data-th="Supplier Name">
-                                    {{ $item->product }}
-                                </td>
-                                <td data-th="Supplier Code">
-                                    {{ $item->desc }}
-                                </td>
-                                <td data-th="Supplier Code">
-                                    {{ $item->gtnum }}
-                                </td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-        @else
-            @if ($status === 2 )
-            <div style="margin-top:3%" class="in">
-                <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
-                <div class="tt">Approvals </div>
-                <div class="grid-container">
-                    @foreach($userinfo as $item)
-                    <div  class="grid-item">By : {{ $item->nameuser }}</div>
-                    <div class="grid-item">In  : {{$item->dateset}}</div>
-                    @endforeach
                 </div>
             </div>
-            @endif
-                <div>
-                    <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
-                        <thead>
-                            <tr class="fr">
-                                <th><button onclick="selectAll()">Select All</button></th>
-                                <th>Product</th>
-                                <th>Long Description</th>
-                                <th>GT Number</th>
-                            </tr>
-                        </thead>
-                        <form method="GET" action="/SemiCheck" id="partialDeliveryForm">
-                        <tbody>
-                            @foreach($data as $item)
-                            <tr>
-                            @if ($item->status!=1)
-                            <td data-th="Supplier Name">
-                                <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
-                            </td>
-                            <td data-th="Supplier Name">
-                                {{ $item->product }}
-                            </td>
-                            <td data-th="Supplier Code">
-                                {{ $item->desc }}
-                            </td>
-                            <td data-th="Supplier Code">
-                                {{ $item->gtnum }}
-                            </td>
-                            @endif
-                        </tr>
-                        @endforeach
 
-                    </tbody>
-                </table>
-            @endif
-            @if ($status!=2 && $status!=1)
-            <div class="btnstatus">
-                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
-            </form>
-            <div>
-                <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
-                                <button  class="success" type="button">Total Delivery</button>
-                            </a>
-            </div>
-            </div>
-            @elseif ($status==2)
-            <div class="btnstatus">
-                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
-            </form>
-            <div>
 
-            </div>
-            </div>
-            @endif
 
-            </div>
-        </div>
+
     </div>
 </div>
 </x-app-layout>

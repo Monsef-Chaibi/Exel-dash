@@ -55,5 +55,5 @@ Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
 
 Route::get('/getdata/{id}', [Controller::class, 'getdata'])->name('getdata');
 
-Route::get('/Showuserset/{nameuser}/{boldoc}', [Controller::class, 'Showuserset'])->name('Showuserset');
+Route::get('/Showsetuser/{nameuser}/{boldoc}', [Controller::class, 'Showsetuser'])->name('Showsetuser');
 
