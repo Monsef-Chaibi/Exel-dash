@@ -40,7 +40,6 @@
     font-size: 16px;
   }
 }
-
 .rwd-table {
   margin: auto;
   width: 500px;
@@ -49,7 +48,7 @@
   border-collapse: collapse;
 }
 
-.fr {
+.rwd-table tr:first-child {
   border-top: none;
   background: linear-gradient(135deg,#71b7e6, #9b59b6);
   color: #fff;
@@ -112,21 +111,10 @@
   .rwd-table tr:nth-child(2) {
     border-top: none;
   }
-  .grid-item {
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.8);
-        font-size: 30px;
-        text-align: center;
-        padding: 2%;
-        width:300px;
-        height: 80px;
-        text-align: start
-        }
 }
 @media screen and (min-width: 600px) {
   .rwd-table tr:hover:not(:first-child) {
     background-color: #d8e7f3;
-
   }
   .rwd-table td:before {
     display: none;
@@ -148,8 +136,8 @@
   .rwd-table td {
     padding: 1em !important;
   }
-
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr auto; /* Changed this line */
@@ -284,6 +272,28 @@
                 </div>
                 </div>
             </div>
+            <table style="width: 1500px;margin-top:20px" class="rwd-table">
+                <tbody>
+                  <tr>
+                    <th>Name</th>
+                    <th>Check</th>
+                    <th>In</th>
+                  </tr>
+                  @foreach($data as $item)
+                  <tr>
+                    <td>
+                        {{$item->nameuser}}
+                    </td>
+                    <td>
+                        {{$item->gtnum}}
+                    </td>
+                    <td>
+                        {{$title->dateset}}
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
 
 
 

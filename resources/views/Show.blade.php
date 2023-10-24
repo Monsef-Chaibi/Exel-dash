@@ -308,8 +308,8 @@
                         <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
                         <div class="tt">Approvals </div>
                         <div class="grid-container">
-                            @foreach($userinfo as $item)
                             <table class="tableuser">
+                                @foreach($userinfo as $item)
                                 <tr>
                                     <td>
                                        By :  {{ $item->nameuser }}
@@ -323,11 +323,10 @@
                                                 <i class="fa fa-eye"></i> View
                                             </button>
                                         </a>
-
                                     </td>
                                 </tr>
+                                @endforeach
                             </table>
-                            @endforeach
                         </div>
                     </div>
                     <div>
@@ -362,10 +361,25 @@
                 <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
                 <div class="grid-container">
-                    @foreach($userinfo as $item)
-                    <div  class="grid-item">By : {{ $item->nameuser }}</div>
-                    <div class="grid-item">In  : {{$item->dateset}}</div>
-                    @endforeach
+                    <table class="tableuser">
+                        @foreach($userinfo as $item)
+                        <tr>
+                            <td>
+                               By :  {{ $item->nameuser }}
+                            </td>
+                            <td>
+                               In :  {{$item->dateset}}
+                            </td>
+                            <td>
+                                <a href="{{ route('Showsetuser', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ]) }}">
+                                    <button class="button-28">
+                                        <i class="fa fa-eye"></i> View
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
             @endif
