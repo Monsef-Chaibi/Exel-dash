@@ -224,6 +224,15 @@
        )
     </script>
     @endif
+    @if(session('error'))
+    <script>
+        Swal.fire(
+            'Error',
+            '{{ session('error') }}',
+            'error'
+        )
+     </script>
+    @endif
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="in">
