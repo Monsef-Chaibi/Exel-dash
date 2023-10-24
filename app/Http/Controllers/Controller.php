@@ -226,4 +226,10 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
+            public function showmodal($id)
+                {
+                    $user = Data::Where('nameuser', $id);
+
+                    return response()->json($user);
+                }
 }

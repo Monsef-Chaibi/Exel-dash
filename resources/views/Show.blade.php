@@ -211,10 +211,61 @@
   color: black;
   border: 2px white solid;
 }
+.tableuser
+{
+    font-size: 30px;
+}
+
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     @if (session()->has('success'))
     <script>
        Swal.fire(
@@ -258,8 +309,27 @@
                         <div class="tt">Approvals </div>
                         <div class="grid-container">
                             @foreach($userinfo as $item)
-                            <div  class="grid-item">By : {{ $item->nameuser }}</div>
-                            <div class="grid-item">In  : {{$item->dateset}}</div>
+                            <table class="tableuser">
+                                <tr>
+                                    <td>
+                                       By :  {{ $item->nameuser }}
+                                    </td>
+                                    <td>
+                                       In :  {{$item->dateset}}
+                                    </td>
+                                    <td>
+                                        <button class="button-28" ">
+                                            <a href="javascript:void(0)"
+                                            id="showuser"
+                                            data-url="{{ route('getdata', $item->nameuser) }}"
+                                            class="btn btn-info">
+
+                                                <i class="fa fa-eye"></i> View
+                                            </a>
+                                        </button>
+                                      </td>
+                                </tr>
+                            </table>
                             @endforeach
                         </div>
                     </div>
@@ -360,6 +430,25 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="userShowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Show User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>ID:</strong> <span id="user-id"></span></p>
+          <p><strong>Name:</strong> <span id="user-name"></span></p>
+          <p><strong>Email:</strong> <span id="user-email"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
     function showConfirm() {
         Swal.fire({
@@ -397,23 +486,7 @@
 
         return false; // Prevent the default link behavior
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function selectAll() {
+   function selectAll() {
         var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
 
@@ -429,6 +502,18 @@
             }
         }
 
+        $(document).ready(function () {
 
+        $('body').on('click', '#showuser', function () {
+          var userURL = $(this).data('url');
+          $.get(userURL, function (data) {
+              $('#userShowModal').modal('show');
+              $('#user-id').text(data.id);
+              $('#user-name').text(data.name);
+              $('#user-email').text(data.email);
+          })
+       });
+
+    });
 </script>
 </x-app-layout>
