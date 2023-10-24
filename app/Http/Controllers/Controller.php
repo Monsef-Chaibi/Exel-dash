@@ -226,10 +226,8 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
-            public function showmodal($id)
-                {
-                    $user = Data::Where('nameuser', $id);
-
-                    return response()->json($user);
-                }
+            function Showuserset($nameuser, $boldoc) {
+                $data = Data::where('name', $nameuser)->where('boldoc',$boldoc)->get();
+                return view('Showsetuser')->with('data',$data);
+            }
 }
