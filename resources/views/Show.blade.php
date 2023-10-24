@@ -248,9 +248,11 @@
                         <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
                         <div class="tt">Approvals </div>
                         <div class="grid-container">
-                        <div  class="grid-item">By : {{ $title->nameuser }}</div>
-                        <div class="grid-item">In  : {{$title->dateset}}</div>
-                    </div>
+                            @foreach($userinfo as $item)
+                            <div  class="grid-item">By : {{ $item->nameuser }}</div>
+                            <div class="grid-item">In  : {{$item->dateset}}</div>
+                            @endforeach
+                        </div>
                     </div>
                     <div>
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
@@ -261,7 +263,6 @@
                                     <th>GT Number</th>
                                 </tr>
                             </thead>
-                            <form method="GET" action="/SemiCheck">
                             <tbody>
                             @foreach($data as $item)
                             <tr>
@@ -279,14 +280,16 @@
 
                         </tbody>
                     </table>
-            @else
+        @else
             @if ($status === 2 )
             <div style="margin-top:3%" class="in">
                 <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
                 <div class="grid-container">
-                <div  class="grid-item">By : {{ $userinfo->nameuser }}</div>
-                <div class="grid-item">In  : {{$userinfo->dateset}}</div>
+                    @foreach($userinfo as $item)
+                    <div  class="grid-item">By : {{ $item->nameuser }}</div>
+                    <div class="grid-item">In  : {{$item->dateset}}</div>
+                    @endforeach
                 </div>
             </div>
             @endif
@@ -324,17 +327,26 @@
                     </tbody>
                 </table>
             @endif
-            @if ($status!=1)
+            @if ($status!=2 && $status!=1)
             <div class="btnstatus">
-                <div><a href=""><button  class="warning" onclick="confirmPartialDelivery()">Partial Delivery</button></a> </div>
+                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
             </form>
             <div>
                 <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
                                 <button  class="success" type="button">Total Delivery</button>
                             </a>
-                        </div>
-                    </div>
-                @endif
+            </div>
+            </div>
+            @elseif ($status==2)
+            <div class="btnstatus">
+                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
+            </form>
+            <div>
+
+            </div>
+            </div>
+            @endif
+
             </div>
         </div>
     </div>
@@ -358,6 +370,40 @@
 
         return false; // Prevent the default link behavior
     }
+    function showConfirmSemi() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once confirmed, the action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User clicked the confirm button, proceed with the action
+                document.getElementById('partialDeliveryForm').submit();
+            }
+        });
+
+        return false; // Prevent the default link behavior
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function selectAll() {
         var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
@@ -373,20 +419,7 @@
                 checkboxes[i].checked = !allChecked;
             }
         }
-        function confirmPartialDelivery() {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'Once confirmed, the action cannot be undone!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, proceed!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById('partialDeliveryForm').submit();
-        }
-    });
-}
+
+
 </script>
 </x-app-layout>
