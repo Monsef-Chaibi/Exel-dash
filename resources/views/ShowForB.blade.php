@@ -198,16 +198,16 @@
   border: 2px white solid;
 }
 .warning2 {
-  border: 2px #5B84B1FF solid;
+  border: 2px rgb(224, 255, 50) solid;
   padding: 5%;
   border-radius: 10px;
-  color: #5B84B1FF;
+  color: rgb(224, 255, 50);
   width: 300px
 
 }
 
 .warning2:hover {
-  background: #5B84B1FF;
+  background: rgb(224, 255, 50);
   color: black;
   border: 2px white solid;
 }
