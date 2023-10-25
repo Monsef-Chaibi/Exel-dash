@@ -390,8 +390,13 @@
                                     {{ $item->desc }}
                                 </td>
                                 @if ($item->status==1)
-                                <td data-th="Supplier Code">
+
+                                <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
                                     {{ $item->gtnum }}
+                                    <svg id="copyIcon_{{ $index }}" style="margin-left: 20px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="6" y="6" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M9 1H4a2 2 0 0 0-2 2v5"/>
+                                    </svg>
                                 </td>
                                 @else
                                 <td data-th="Supplier Code">
@@ -466,12 +471,21 @@
                                 {{ $item->desc }}
                             </td>
                             @if ($item->status==1)
-                            <td data-th="Supplier Code">
+                            <td id="gtnum" style="display: flex" data-th="Supplier Code">
                                 {{ $item->gtnum }}
+                                <svg id="copyIcon" style="margin-left: 20px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="6" y="6" width="13" height="13" rx="2" ry="2"/>
+                                    <path d="M9 1H4a2 2 0 0 0-2 2v5"/>
+                                </svg>
                             </td>
+
+
                             @else
                             <td data-th="Supplier Code">
                                 **********
+
+
+
                             </td>
 
                             @endif
@@ -500,6 +514,13 @@
     </div>
 </div>
 <script>
+    document.getElementById('copyIcon').addEventListener('click', function() {
+        var gtnumText = document.getElementById('gtnum').textContent.trim();
+        navigator.clipboard.writeText(gtnumText);
+        alert('Text copied to clipboard!');
+    });
+
+
     function showConfirm() {
         Swal.fire({
             title: 'Are you sure?',
