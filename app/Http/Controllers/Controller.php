@@ -19,9 +19,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     function import(){
+        try {
         Data::whereNull('status')->delete();
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
+        } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+    }
     }
     function adduser(){
         return view('adduser');
