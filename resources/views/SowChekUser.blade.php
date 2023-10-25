@@ -282,13 +282,12 @@
                   @foreach($data as $item)
                   <tr>
                     <td>
-                        {{$item->nameuser}}
+                        {{$item->usercheck}}
                     </td>
                     <td>
                         {{$item->gtnum}}
                     </td>
                     <td>
-                        {{$item->dateset}}
                     </td>
                   </tr>
                   @endforeach
