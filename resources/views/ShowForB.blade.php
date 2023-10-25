@@ -465,7 +465,7 @@
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button></div>
                 </form>
                     <div><button type="submit" class="warning" >Export Exel </button></div>
-                    <div><a href="SowChekUser/{{$title->bildoc}}"><button type="submit" class="warning2" >View all Check</button></a></div>
+                    <div><a href="/SowChekUser/{{$title->bildoc}}"><button type="submit" class="warning2" >View all Check</button></a></div>
                 </div>
             @endif
 

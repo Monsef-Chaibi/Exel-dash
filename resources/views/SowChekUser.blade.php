@@ -256,22 +256,6 @@
 
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="in">
-                <div class="grid-container">
-                <div class="grid-item">Billing Document :  {{ $title->bildoc }}</div>
-                <div class="grid-item">Owner :
-                    <span style="font-size: 20px">
-                        {{ $title->soldp }}
-                    </span>
-                </div>
-                <div class="grid-item">Billing Date : {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($title->bildt - 2)->format('Y-m-d') }}</div>
-                <div class="grid-item">User :
-                    <span style="font-size: 20px">
-                        {{ $title->shipp }}
-                    </span>
-                </div>
-                </div>
-            </div>
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                   <tr>
