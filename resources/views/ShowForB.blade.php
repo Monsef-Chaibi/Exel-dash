@@ -450,7 +450,8 @@
                         </thead>
                         <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                         <tbody>
-                            @foreach($data as $item)
+                            @foreach($data as $index => $item)
+
                             <tr>
                             @if ($item->check!=1)
                             @if ($item->status==1)
@@ -471,14 +472,13 @@
                                 {{ $item->desc }}
                             </td>
                             @if ($item->status==1)
-                            <td id="gtnum" style="display: flex" data-th="Supplier Code">
+                            <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
                                 {{ $item->gtnum }}
-                                <svg id="copyIcon" style="margin-left: 20px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg id="copyIcon_{{ $index }}" style="margin-left: 20px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="6" y="6" width="13" height="13" rx="2" ry="2"/>
                                     <path d="M9 1H4a2 2 0 0 0-2 2v5"/>
                                 </svg>
                             </td>
-
 
                             @else
                             <td data-th="Supplier Code">
