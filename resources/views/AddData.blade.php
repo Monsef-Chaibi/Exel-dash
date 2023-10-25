@@ -155,9 +155,9 @@
   @if (session()->has('error'))
       <script>
          Swal.fire(
-             'Success',
-             '{{ session('success') }}',
-             'success'
+             'Error',
+             '{{ session('error') }}',
+             'error'
          )
       </script>
   @endif

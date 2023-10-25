@@ -24,7 +24,7 @@ class Controller extends BaseController
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
         } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Opps! A simple problem , Try Again');
     }
     }
     function adduser(){
