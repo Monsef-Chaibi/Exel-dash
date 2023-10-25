@@ -349,7 +349,6 @@ class Controller extends BaseController
         }
         function SemiCheck(Request $request){
                 $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
-                // Loop through selected items and update the database
                 if(empty($selectedItems)) {
                     return redirect()->back()->with('error', 'No items selected for update.');
                 }

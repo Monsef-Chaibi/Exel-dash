@@ -397,7 +397,7 @@
                         <tbody>
                             @foreach($data as $item)
                             <tr>
-                            @if ($item->status!=1)
+                            @if ($item->check!=1)
                             <td data-th="Supplier Name">
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
