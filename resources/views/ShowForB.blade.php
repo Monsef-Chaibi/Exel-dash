@@ -487,7 +487,7 @@
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button></div>
                 </form>
                     <div>
-                        <a href="{{ route('export.data', ['conditionValue' => $title->bildoc ]) }}" class="btn btn-success">Export Data
+                        <a href="{{ route('export.data', ['conditionValue' => $title->bildoc ]) }}">
                             <button type="submit" class="warning" >Export Exel </button>
                         </a>
                     </div>
