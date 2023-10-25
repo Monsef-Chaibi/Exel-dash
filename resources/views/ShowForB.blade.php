@@ -421,11 +421,6 @@
             <div class="btnstatus">
                 <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
             </form>
-            <div>
-                <a href="/Status/{{ $title->bildoc }}"  onclick="return showConfirm()">
-                                <button  class="success" type="button">Total Delivery</button>
-                            </a>
-            </div>
             </div>
             @elseif ($status==2)
             <div class="btnstatus">
