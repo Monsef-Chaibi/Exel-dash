@@ -327,7 +327,6 @@ class Controller extends BaseController
         else{
             $status = 3;
         }
-
         $userinfo = Data::where('bildoc', $id)
         ->whereNotNull('status')
         ->GroupBy('nameuser') // Order by date in ascending order
@@ -371,6 +370,7 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'check' => 1,
+                        'usercheck' => Auth::user()->name,
                     ]);
                 }
 

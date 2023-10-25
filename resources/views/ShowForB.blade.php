@@ -407,9 +407,16 @@
                             <td data-th="Supplier Code">
                                 {{ $item->desc }}
                             </td>
+                            @if ($item->status==1)
                             <td data-th="Supplier Code">
                                 {{ $item->gtnum }}
                             </td>
+                            @else
+                            <td data-th="Supplier Code">
+                                **********
+                            </td>
+
+                            @endif
                             @endif
                         </tr>
                         @endforeach
@@ -417,18 +424,10 @@
                     </tbody>
                 </table>
             @endif
-            @if ($status!=2 && $status!=1)
+            @if ($status==2 || $status==1)
             <div class="btnstatus">
                 <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
             </form>
-            </div>
-            @elseif ($status==2)
-            <div class="btnstatus">
-                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
-            </form>
-            <div>
-
-            </div>
             </div>
             @endif
 
