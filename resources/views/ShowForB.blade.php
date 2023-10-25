@@ -197,7 +197,7 @@
   color: white;
   border: 2px white solid;
 }
-.warning {
+.warning2 {
   border: 2px #5B84B1FF solid;
   padding: 5%;
   border-radius: 10px;
@@ -206,8 +206,36 @@
 
 }
 
-.warning:hover {
+.warning2:hover {
   background: #5B84B1FF;
+  color: black;
+  border: 2px white solid;
+}
+.warning1 {
+  border: 2px #5B84B1FF solid;
+  padding: 5%;
+  border-radius: 10px;
+  color: #5B84B1FF;
+  width: 300px
+
+}
+
+.warning1:hover {
+  background: #5B84B1FF;
+  color: black;
+  border: 2px white solid;
+}
+.warning {
+  border: 2px rgb(55, 192, 117) solid;
+  padding: 5%;
+  border-radius: 10px;
+  color: rgb(55, 192, 117);
+  width: 300px
+
+}
+
+.warning:hover {
+  background: rgb(55, 192, 117);
   color: black;
   border: 2px white solid;
 }
@@ -398,9 +426,17 @@
                             @foreach($data as $item)
                             <tr>
                             @if ($item->check!=1)
-                            <td data-th="Supplier Name">
+                            @if ($item->status==1)
+                            <td data-th="Supplier Code">
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
+                            @else
+                            <td data-th="Supplier Code">
+
+                            </td>
+
+                            @endif
+
                             <td data-th="Supplier Name">
                                 {{ $item->product }}
                             </td>
@@ -425,10 +461,12 @@
                 </table>
             @endif
             @if ($status==2 || $status==1)
-            <div class="btnstatus">
-                <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial Delivery</button></div>
-            </form>
-            </div>
+                <div class="btnstatus">
+                    <div><button type="submit" class="warning" >Export Exel </button></div>
+                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Partial Delivery</button></div>
+                    <div><button type="submit" class="warning2" >View all Check</button></div>
+                </form>
+                </div>
             @endif
 
             </div>
