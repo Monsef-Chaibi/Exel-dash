@@ -18,6 +18,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     function import(){
+        Data::whereNull('status')->delete();
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
     }
