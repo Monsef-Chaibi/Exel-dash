@@ -43,8 +43,15 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
+        $latestRecord = Data::whereNotNull('created_at')->latest()->first();
+
+            if ($latestRecord) {
+                $latestDate = $latestRecord->created_at;
+            } else {
+                $latestDate = now()->setTime(0, 0, 0); // Set the time to 00:00:00 if no records exist
+            }
         $data=Data::paginate(5);
-        return view('ViewData')->with('data', $data);
+        return view('ViewData')->with('data', $data)->with('latestDate', $latestDate);
     }
         function StoreUser(Request $request){
             try {
