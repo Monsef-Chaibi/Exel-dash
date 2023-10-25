@@ -51,15 +51,16 @@
 
 .fr {
   border-top: none;
-  background: linear-gradient(135deg,#71b7e6, #9b59b6);
-  color: #fff;
+  background-color: #1eff00;
+  color: #000000;
 }
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: #f5f9fc;
+    background-color: white
 }
+
 
 .rwd-table tr:nth-child(odd):not(:first-child) {
   background-color: #ebf3f9;
@@ -159,14 +160,15 @@
 }
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
   font-size: 25px;
   text-align: center;
   padding: 2%;
   width: 500px;
   height: 80px;
   text-align: start;
-  border-radius: 10px
+  border-radius: 10px;
+  color: white;
+  border: 3px#1eff00 solid ;
 }
 .tt {
   display: flex;
@@ -176,7 +178,6 @@
 
 }
 .in{
-    background: linear-gradient(135deg,#71b7e6, #9b59b6);
     border-radius: 20px
 }
 .btnstatus {
@@ -360,7 +361,7 @@
                     <div>
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
-                                <tr class="fr">
+                                <tr style="background-color: #1eff00;black :#d8e7f3"  class="fr">
                                     <th><button onclick="selectAll()">Select All</button></th>
                                     <th>Product</th>
                                     <th>Long Description</th>
