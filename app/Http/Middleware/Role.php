@@ -19,6 +19,7 @@ class Role
         if(Auth::check()){
 
             if (Auth::user()->role == 1){
+
                 return $next($request);
             }elseif(Auth::user()->role == 0){
                 return response()->view("DashboardA");

@@ -48,7 +48,7 @@ class Controller extends BaseController
             if ($latestRecord) {
                 $latestDate = $latestRecord->created_at;
             } else {
-                $latestDate = now()->setTime(0, 0, 0); // Set the time to 00:00:00 if no records exist
+                $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
             }
         $data=Data::paginate(5);
         return view('ViewData')->with('data', $data)->with('latestDate', $latestDate);
