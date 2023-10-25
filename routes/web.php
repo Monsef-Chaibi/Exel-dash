@@ -45,11 +45,13 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->middleware(['auth',
 
 Route::get('/action', [Controller::class, 'action'])->name('action');
 
+Route::get('/actionB', [Controller::class, 'actionB'])->name('actionB');
+
 Route::get('/test', [Controller::class, 'test'])->name('test');
 
 Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
 
-Route::get('/ShowForB/{id}', [Controller::class, 'Show'])->name('Show');
+Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->name('ShowForB');
 
 Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
 

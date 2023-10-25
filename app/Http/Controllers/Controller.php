@@ -170,6 +170,112 @@ class Controller extends BaseController
 
 
         }
+        function actionB(Request $request)
+        {
+            if(auth()->user()->cond == 0)
+            {
+                if($request->ajax())
+                {
+
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->groupBy('bildoc')
+                        ->get();
+
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->groupBy('bildoc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td>'.$row->created_at.'</td>
+                                <td><a class="button-32"  href="/ShowForB/'.$row->bildoc.'">Show</a></td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
+                        <tr>
+                        <td  colspan="8">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
+                }
+            }
+            else
+            {
+                if($request->ajax())
+                {   $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->whereIn('plantkey', $cnd1)
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->groupBy('bildoc')
+                        ->get();
+
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->whereIn('plantkey', $cnd1)
+                            ->groupBy('bildoc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td>'.$row->created_at.'</td>
+                                <td><a class="button-32" href="/Show/'.$row->bildoc.'">Show</a></td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
+                        <tr>
+                            <td  colspan="8">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
+                }
+            }
+
+
+        }
     function Show($id){
         $typeid = $id;
         $results = DB::table('data')
@@ -199,6 +305,36 @@ class Controller extends BaseController
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
         return view('Show')->with('data',$data)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
+        }
+    function ShowForB($id){
+        $typeid = $id;
+        $results = DB::table('data')
+            ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
+            ->where('bildoc', $typeid) // Add this line to filter out null statuses
+            ->first();
+
+
+
+        $totalRows = $results->total_rows;
+        $totalFf = $results->total_status;
+
+        if ($totalRows > 0 && $totalRows == $totalFf) {
+            $status = 1;
+        } elseif ($totalFf != '' && $totalRows != $totalFf) {
+
+            $status = 2;
+        }
+        else{
+            $status = 3;
+        }
+
+        $userinfo = Data::where('bildoc', $id)
+        ->whereNotNull('status')
+        ->GroupBy('nameuser') // Order by date in ascending order
+        ->get();
+        $title = Data::where('bildoc',$id)->first();
+        $data = Data::where('bildoc',$id)->get();
+        return view('ShowForB')->with('data',$data)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
 
         function Status($id){

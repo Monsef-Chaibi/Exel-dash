@@ -160,7 +160,7 @@
 
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   padding: 2%;
   width: 500px;
@@ -213,7 +213,7 @@
 }
 .tableuser
 {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 /* CSS */
