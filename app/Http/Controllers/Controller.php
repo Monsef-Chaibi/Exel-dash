@@ -363,6 +363,20 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
+        function SemiCopie(Request $request){
+                $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
+                // Loop through selected items and update the database
+                if(empty($selectedItems)) {
+                    return redirect()->back()->with('error', 'No items selected for update.');
+                }
+                foreach($selectedItems as $itemId) {
+                    Data::where('id', $itemId)->update([
+                        'check' => 1,
+                    ]);
+                }
+
+                return redirect()->back()->with('success', 'Selections updated successfully');
+            }
             function Showsetuser($nameuser, $boldoc){
                 $title = Data::where('bildoc',$boldoc)->first();
                 $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->get();
