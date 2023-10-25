@@ -381,4 +381,8 @@ class Controller extends BaseController
                 $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->get();
                 return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
+            function SowChekUser($boldoc){
+                $data = Data::where('bildoc',$boldoc)->where('check',1)->get();
+                return view('SowChekUser')->with('data',$data);
+            }
 }
