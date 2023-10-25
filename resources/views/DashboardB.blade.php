@@ -162,14 +162,14 @@ body {
 
 .fr {
   border-top: none;
-  background: linear-gradient(135deg,#71b7e6, #9b59b6);
-  color: #fff;
+  background-color: #1eff00;
+  color: #000000;
 }
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: #f5f9fc;
+    background-color: #ffffff;
 }
 
 .rwd-table tr:nth-child(odd):not(:first-child) {
@@ -329,7 +329,7 @@ body {
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Parcel Delivery System</h1>
+                <h1 style="width:600px;text-align: center; color: rgb(0, 0, 0); font-size: 30px; ;background-color:#68FF26 ;   font-weight: bold; padding: 10px; border-radius: 10px; margin-bottom: 10px;">Parcel Delivery System</h1>
                 <div style="position: relative; display: inline-block;">
                     <input type="text" name="search" id="search" style="width:400px;border-radius: 10px; padding-right: 30px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); fill: #999;">
@@ -340,7 +340,7 @@ body {
             <div>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
-                      <tr class="fr">
+                      <tr style="background-color: #000000;color :#d8e7f3" class="fr">
                         <th>Sold-To-Party</th>
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
