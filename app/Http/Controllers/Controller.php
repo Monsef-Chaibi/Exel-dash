@@ -193,7 +193,8 @@ class Controller extends BaseController
         }
 
         $userinfo = Data::where('bildoc', $id)
-        ->whereNotNull('status') // Order by date in ascending order
+        ->whereNotNull('status')
+        ->GroupBy('nameuser') // Order by date in ascending order
         ->get();
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
@@ -226,9 +227,9 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
-            function Showsetuser($nameuser, $boldoc, $date){
+            function Showsetuser($nameuser, $boldoc){
                 $title = Data::where('bildoc',$boldoc)->first();
-                $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->where('bildoc',$boldoc)->get();
+                $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->get();
                 return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
 }
