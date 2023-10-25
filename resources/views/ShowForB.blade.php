@@ -178,7 +178,8 @@
 
 }
 .in{
-    border-radius: 20px
+    border-radius: 20px;
+    background-color: #ffffff;
 }
 .btnstatus {
   display: flex;
@@ -315,7 +316,7 @@
     @endif
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="in">
+            <div >
                 <div class="grid-container">
                 <div class="grid-item">Billing Document :  {{ $title->bildoc }}</div>
                 <div class="grid-item">Owner :
@@ -334,7 +335,7 @@
 
                 @if ($status===1)
                     <div style="margin-top:3%" class="in">
-                        <div class="tt">Status : <span style="color:rgb(48, 255, 48)" > Full Check</span> </div>
+                        <div class="tt">Status : <span style="color:rgb(0, 255, 0)" > Full Check</span> </div>
                         <div class="tt">Approvals </div>
                         <div class="grid-container">
                             <table class="tableuser">
@@ -414,7 +415,7 @@
         @else
             @if ($status === 2 )
             <div style="margin-top:3%" class="in">
-                <div class="tt">Status : <span style="color:rgb(208, 255, 0)" > Semi Check</span> </div>
+                <div class="tt">Status : <span style="color:rgb(255, 238, 1)" > Semi Check</span> </div>
                 <div class="tt">Approvals </div>
                 <div class="grid-container">
                     <table class="tableuser">
