@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DataExport;
 use App\Imports\DataImport;
 use App\Models\Data;
 use App\Models\User;
@@ -385,5 +386,9 @@ class Controller extends BaseController
             function SowChekUser($boldoc){
                 $data = Data::where('bildoc',$boldoc)->where('check',1)->get();
                 return view('SowChekUser')->with('data',$data);
+            }
+            function export($conditionValue)
+            {
+                return Excel::download(new DataExport($conditionValue), 'Gt-Number.xlsx');
             }
 }
