@@ -361,23 +361,45 @@
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
                                 <tr class="fr">
+                                    <th><button onclick="selectAll()">Select All</button></th>
                                     <th>Product</th>
                                     <th>Long Description</th>
                                     <th>GT Number</th>
                                 </tr>
                             </thead>
+                            <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                             <tbody>
-                            @foreach($data as $item)
-                            <tr>
+                                @foreach($data as $item)
+                                <tr>
+                                @if ($item->check!=1)
+                                @if ($item->status==1)
+                                <td data-th="Supplier Code">
+                                    <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
+                                </td>
+                                @else
+                                <td data-th="Supplier Code">
+
+                                </td>
+
+                                @endif
+
                                 <td data-th="Supplier Name">
                                     {{ $item->product }}
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->desc }}
                                 </td>
+                                @if ($item->status==1)
                                 <td data-th="Supplier Code">
                                     {{ $item->gtnum }}
                                 </td>
+                                @else
+                                <td data-th="Supplier Code">
+                                    **********
+                                </td>
+
+                                @endif
+                                @endif
                             </tr>
                             @endforeach
 

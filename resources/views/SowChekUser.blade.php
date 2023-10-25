@@ -272,6 +272,7 @@
                         {{$item->gtnum}}
                     </td>
                     <td>
+                        {{$item->datecheck}}
                     </td>
                   </tr>
                   @endforeach

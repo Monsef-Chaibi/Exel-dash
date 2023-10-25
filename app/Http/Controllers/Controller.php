@@ -371,6 +371,7 @@ class Controller extends BaseController
                     Data::where('id', $itemId)->update([
                         'check' => 1,
                         'usercheck' => Auth::user()->name,
+                        'datecheck' => Carbon::now(),
                     ]);
                 }
 
