@@ -393,7 +393,7 @@
                                 <th>GT Number</th>
                             </tr>
                         </thead>
-                        <form method="GET" action="/SemiCheck" id="partialDeliveryForm">
+                        <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                         <tbody>
                             @foreach($data as $item)
                             <tr>
