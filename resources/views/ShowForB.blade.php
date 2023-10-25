@@ -462,10 +462,10 @@
             @endif
             @if ($status==2 || $status==1)
                 <div class="btnstatus">
-                    <div><button type="submit" class="warning" >Export Exel </button></div>
-                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Partial Delivery</button></div>
-                    <div><button type="submit" class="warning2" >View all Check</button></div>
+                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button></div>
                 </form>
+                    <div><button type="submit" class="warning" >Export Exel </button></div>
+                    <div><button type="submit" class="warning2" >View all Check</button></div>
                 </div>
             @endif
 
