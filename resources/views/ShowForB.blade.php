@@ -369,7 +369,7 @@
                             </thead>
                             <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                             <tbody>
-                                @foreach($data as $item)
+                                @foreach($data as $index => $item)
                                 <tr>
                                 @if ($item->check!=1)
                                 @if ($item->status==1)
@@ -513,12 +513,16 @@
         </div>
     </div>
 </div>
+@foreach($data as $index => $item)
+    <script>
+        document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
+            var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
+            navigator.clipboard.writeText(gtnumText);
+        });
+    </script>
+@endforeach
 <script>
-    document.getElementById('copyIcon').addEventListener('click', function() {
-        var gtnumText = document.getElementById('gtnum').textContent.trim();
-        navigator.clipboard.writeText(gtnumText);
-        alert('Text copied to clipboard!');
-    });
+
 
 
     function showConfirm() {
