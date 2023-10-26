@@ -418,6 +418,6 @@ class Controller extends BaseController
             function ShowUpdateData()
             {
                 $data= Update::get();
-                return view('')->with('data',$data);
+                return view('ShowUpdateData')->with('data',$data);
             }
 }

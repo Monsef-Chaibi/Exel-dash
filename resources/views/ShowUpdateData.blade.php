@@ -277,19 +277,15 @@
                 <tbody>
                     <tr>
                         <th>Name</th>
-                        <th>Check</th>
                         <th>In</th>
                     </tr>
                     @foreach ($data as $item)
                         <tr>
                             <td>
-                                {{ $item->usercheck }}
+                                {{ $item->name }}
                             </td>
                             <td>
-                                {{ $item->gtnum }}
-                            </td>
-                            <td>
-                                {{ $item->datecheck }}
+                                {{ $item->created_at}}
                             </td>
                         </tr>
                     @endforeach

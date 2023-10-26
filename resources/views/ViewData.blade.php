@@ -182,7 +182,7 @@ h3:after {
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="button-container">
                         <p class="last-update">Last update: {{$latestDate}}</p>
-                        <p class="view-button"><a href=""><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
+                        <p class="view-button"><a href="/ShowUpdateData"><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
                     </div>
                        <h1>All Data</h1>
                           <table style="width: 100%; margin-bottom:5%" class="rwd-table">
