@@ -51,15 +51,16 @@
 
 .fr {
   border-top: none;
-  background-color: #1eff00;
-  color: #000000;
+  background: linear-gradient(135deg,#71b7e6, #9b59b6);
+  color: #fff;
 }
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-    background-color: white
+  background-color: #f5f9fc;
 }
+
 
 
 .rwd-table tr:nth-child(odd):not(:first-child) {
@@ -160,15 +161,14 @@
 }
 
 .grid-item {
-  font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.353);
+  font-size: 30px;
   text-align: center;
   padding: 2%;
   width: 500px;
   height: 80px;
   text-align: start;
-  border-radius: 10px;
-  color: white;
-  border: 3px#1eff00 solid ;
+  border-radius: 10px
 }
 .tt {
   display: flex;
@@ -179,7 +179,8 @@
 }
 .in{
     border-radius: 20px;
-    background-color: #ffffff;
+    background: linear-gradient(135deg,#71b7e6, #9b59b6);
+
 }
 .btnstatus {
   display: flex;
@@ -316,7 +317,7 @@
     @endif
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div >
+            <div style="  background: linear-gradient(135deg,#71b7e6, #9b59b6);">
                 <div class="grid-container">
                 <div class="grid-item">Billing Document :  {{ $title->bildoc }}</div>
                 <div class="grid-item">Owner :
