@@ -354,7 +354,7 @@ class Controller extends BaseController
         }
         $userinfo = Data::where('bildoc', $id)
         ->whereNotNull('status')
-        ->GroupBy('nameuser') // Order by date in ascending order
+        ->GroupBy('dateset') // Order by date in ascending order
         ->get();
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->orderBy('status', 'desc')->get();
