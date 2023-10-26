@@ -275,20 +275,20 @@
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                   <tr>
-                    <th>Name</th>
-                    <th>Check</th>
-                    <th>In</th>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Gt Number</th>
                   </tr>
                   @foreach($data as $item)
                   <tr>
                     <td>
-                        {{$item->nameuser}}
+                        {{$item->product}}
+                    </td>
+                    <td>
+                        {{$item->desc}}
                     </td>
                     <td>
                         {{$item->gtnum}}
-                    </td>
-                    <td>
-                        {{$item->dateset}}
                     </td>
                   </tr>
                   @endforeach
