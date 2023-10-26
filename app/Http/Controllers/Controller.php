@@ -51,7 +51,7 @@ class Controller extends BaseController
         $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
             if ($latestRecord) {
-                $latestDate = $latestRecord->created_at;
+                $latestDate ='By ' .$latestRecord->name . ' in ' . $latestRecord->created_at;
             } else {
                 $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
             }
