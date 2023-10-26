@@ -61,7 +61,7 @@ Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->name('SemiCopie');
 
 Route::get('/getdata/{id}', [Controller::class, 'getdata'])->name('getdata');
 
-Route::get('/Showsetuser/{nameuser}/{boldoc}', [Controller::class, 'Showsetuser'])->name('Showsetuser');
+Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Showsetuser'])->name('Showsetuser');
 
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
 
