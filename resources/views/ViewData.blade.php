@@ -196,7 +196,7 @@ h3:after {
                                     {{ $item->bildoc}}
                                 </td>
                                 <td data-th="Supplier Name">
-                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($item->bildt - 2)->format('Y-m-d') }}
+                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays(intval($item->bildt) - 2)->format('Y-m-d') }}
                                 </td>
                                 <td data-th="Invoice Date">
                                     {{ $item->created_at }}
