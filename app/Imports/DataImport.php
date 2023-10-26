@@ -17,7 +17,7 @@ public function model(array $row)
 {
     $this->rowCount++;
 
-    if ($this->rowCount >= 22 && $row[9] !== 'GT TO ISTIMARAH') {
+    if ($this->rowCount >= 24 && $row[9] !== 'GT TO ISTIMARAH') {
 
         // Check if 'gtnum' and 'bild' already exist
         $existingRecord = Data::where('gtnum', $row[8])
