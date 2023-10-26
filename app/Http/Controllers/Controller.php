@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DataExport;
 use App\Imports\DataImport;
 use App\Models\Data;
+use App\Models\Update;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -22,9 +23,13 @@ class Controller extends BaseController
         try {
         Data::whereNull('status')->delete();
         Excel::Import(new DataImport, request()->file('file'));
+        $data = [
+            'name' => Auth::user()->name,
+        ];
+        Update::create($data);
         return redirect()->back()->with('success', 'Data inserted successfully.');
         } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Opps! A simple problem , Try Again');
+        return redirect()->back()->with('error', 'Opps! A simple problem , Try Again'. $e->getMessage());
     }
     }
     function adduser(){
@@ -43,7 +48,7 @@ class Controller extends BaseController
         return view('AddData');
     }
     function ViewData(){
-        $latestRecord = Data::whereNotNull('created_at')->latest()->first();
+        $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
             if ($latestRecord) {
                 $latestDate = $latestRecord->created_at;
