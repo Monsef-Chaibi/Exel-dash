@@ -160,7 +160,7 @@ h3:after {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <p>Last update at : {{$latestDate}}</p>
+                    <p>Last update  : {{$latestDate}}</p>
                         <h1>All Data</h1>
                           <table style="width: 100%; margin-bottom:5%" class="rwd-table">
                             <tbody>
