@@ -325,7 +325,7 @@ class Controller extends BaseController
 
         $userinfo = Data::where('bildoc', $id)
         ->whereNotNull('status')
-        ->GroupBy('nameuser') // Order by date in ascending order
+        ->GroupBy('created_at') // Order by date in ascending order
         ->get();
         $title = Data::where('bildoc',$id)->first();
         $data = Data::where('bildoc',$id)->get();
