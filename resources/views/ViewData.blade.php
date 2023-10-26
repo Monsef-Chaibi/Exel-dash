@@ -155,22 +155,36 @@ h3:after {
   75%   { transform: translateX(10px)}
   100%  { transform: translateX(0)}
 }
-.button
-{
-    border:2px #000 solid;
+.button {
+    border: 2px #1eff00 solid;
     padding: 0.3%;
     border-radius: 10px;
     width: 150px;
-    height: 50px
+    height: 50px;
+    color: rgb(255, 255, 255); /* Set default text color */
+    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
 }
+
+.button:hover {
+    background-color: #1eff00; /* Change background color on hover */
+    color: black; /* Change text color on hover */
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
     </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <p>Last update  : {{$latestDate}}</p>
-                    <p><a href=""><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
-                        <h1>All Data</h1>
+                    <div class="button-container">
+                        <p class="last-update">Last update: {{$latestDate}}</p>
+                        <p class="view-button"><a href=""><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
+                    </div>
+                       <h1>All Data</h1>
                           <table style="width: 100%; margin-bottom:5%" class="rwd-table">
                             <tbody>
                               <tr>
