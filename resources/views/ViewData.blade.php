@@ -155,12 +155,21 @@ h3:after {
   75%   { transform: translateX(10px)}
   100%  { transform: translateX(0)}
 }
+.button
+{
+    border:2px #000 solid;
+    padding: 0.3%;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px
+}
     </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <p>Last update  : {{$latestDate}}</p>
+                    <p><a href=""><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
                         <h1>All Data</h1>
                           <table style="width: 100%; margin-bottom:5%" class="rwd-table">
                             <tbody>

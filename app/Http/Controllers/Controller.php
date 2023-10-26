@@ -21,20 +21,20 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     function import(){
         try {
-        Excel::Import(new DataImport, request()->file('file'));
-        Data::whereNull('status')->delete();
-        $tableLength = Update::count();
-        if ($tableLength >= 5) {
-            // Get the oldest record
-            $oldestRecord = Update::orderBy('created_at')->first();
+            Data::whereNull('status')->delete();
+            $tableLength = Update::count();
+            if ($tableLength >= 5) {
+                // Get the oldest record
+                $oldestRecord = Update::orderBy('created_at')->first();
 
-            // Delete the oldest record
-            $oldestRecord->delete();
-        }
-        $data = [
-            'name' => Auth::user()->name,
-        ];
-        Update::create($data);
+                // Delete the oldest record
+                $oldestRecord->delete();
+            }
+            $data = [
+                'name' => Auth::user()->name,
+            ];
+            Update::create($data);
+        Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
         } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Opps! A simple problem , Try Again'. $e->getMessage());
