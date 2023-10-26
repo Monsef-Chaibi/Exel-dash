@@ -65,5 +65,7 @@ Route::get('/Showsetuser/{nameuser}/{boldoc}', [Controller::class, 'Showsetuser'
 
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
 
+Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
+
 Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->name('export.data');
 

@@ -415,4 +415,9 @@ class Controller extends BaseController
             {
                 return Excel::download(new DataExport($conditionValue), 'Gt-Number.xlsx');
             }
+            function ShowUpdateData()
+            {
+                $data= Update::get();
+                return view('')->with('data',$data);
+            }
 }
