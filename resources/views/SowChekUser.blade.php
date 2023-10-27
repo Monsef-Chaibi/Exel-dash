@@ -273,15 +273,21 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <a href="">Export Exel
+            </a>
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
+                        <th><button onclick="selectAll()">Select All</button></th>
                         <th>Name</th>
                         <th>Check</th>
                         <th>In</th>
                     </tr>
-                    @foreach ($data as $item)
+                    @foreach ($data as $index => $item)
                         <tr>
+                            <td>
+                                <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
+                            </td>
                             <td>
                                 {{ $item->usercheck }}
                             </td>
@@ -302,3 +308,20 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    function selectAll() {
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+            var allChecked = true;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
+            }
+        }
+</script>
