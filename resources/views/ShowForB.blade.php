@@ -451,7 +451,7 @@
                                 <th>GT Number</th>
                             </tr>
                         </thead>
-                        <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
+                        <form  id="partialDeliveryForm">
                         <tbody>
                             @foreach($data as $index => $item)
 
@@ -502,12 +502,10 @@
             @if ($status==2 || $status==1)
                 <div class="btnstatus">
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button></div>
-                </form>
                     <div>
-                        <a href="{{ route('export.data', ['conditionValue' => $title->bildoc ]) }}">
-                            <button type="submit" class="warning" >Export Exel </button>
-                        </a>
+                        <button type="submit" class="warning" >Export Exel </button>
                     </div>
+                </form>
                     <div><a href="/SowChekUser/{{$title->bildoc}}"><button type="submit" class="warning2" >View all Check</button></a></div>
                 </div>
             @endif
@@ -557,8 +555,9 @@
             confirmButtonText: 'Yes, proceed!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // User clicked the confirm button, proceed with the action
-                document.getElementById('partialDeliveryForm').submit();
+
+                document.getElementById('partialDeliveryForm').action = /SemiCopie;
+                return true;
             }
         });
 

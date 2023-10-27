@@ -19,23 +19,15 @@ class DataExport implements FromCollection
 
     public function collection()
     {
-        $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
-        if(empty($selectedItems)) {
-            return redirect()->back()->with('error', 'No items selected for update.');
-        }
-        foreach($selectedItems as $itemId) {
-            return Data::where('id', $this->conditionValue)
-                            ->where('check', 1)
-                            ->get()
-                            ->map(function($item) {
-                                return [
-                                    'gtnum' => $item->gtnum
-                                ];
-                            });
-        }
-
-
-
+        
+    return Data::where('bildoc', $this->conditionValue)
+                ->where('check', 1)
+                ->get()
+                ->map(function($item) {
+                    return [
+                        'gtnum' => $item->gtnum
+                    ];
+                });
 }
 
     }
