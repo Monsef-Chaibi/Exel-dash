@@ -8,15 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HideRouteContent
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle($request, Closure $next)
     {
-        return response()->json(['message' => 'Content hidden.'], 200);
+        // Check if the route parameter 'id' is present and not empty
+        if ($request->has('id')) {
+            // Encrypt the 'id' parameter
+            $request->route()->setParameter('id', encrypt($request->route('id')));
+        }
+
+        return $next($request);
     }
-
-
 }
