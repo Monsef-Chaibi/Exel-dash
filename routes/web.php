@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//Route For Admin
+//Route For Admin role 1
 Route::group(['middleware' => ['checkUserRole:1', 'auth' ]], function () {
 
 Route::post('/import', [Controller::class, 'import']);
@@ -48,15 +48,25 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
 
 });
 
+// Route for user 1 role 0
+Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
+    Route::get('/action', [Controller::class, 'action'])->middleware(['auth'])->name('action');
+    Route::get('/Show/{id}', [Controller::class, 'Show'])->middleware(['auth'])->name('Show');
+    Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->middleware(['auth'])->name('ShowUpdateData');
 
 
-Route::get('/action', [Controller::class, 'action'])->middleware(['auth'])->name('action');
+});
+
+// Route for user 2 role 2
+Route::group(['middleware' => ['checkUserRole:1', 'auth' ]], function () {
+
+});
+
 
 Route::get('/actionB', [Controller::class, 'actionB'])->middleware(['auth'])->name('actionB');
 
 Route::get('/test', [Controller::class, 'test'])->middleware(['auth'])->name('test');
 
-Route::get('/Show/{id}', [Controller::class, 'Show'])->middleware(['auth'])->name('Show');
 
 Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->middleware(['auth'])->name('ShowForB');
 
@@ -72,7 +82,6 @@ Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Sh
 
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
 
-Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->middleware(['auth'])->name('ShowUpdateData');
 
 Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->middleware(['auth'])->name('export.data');
 
