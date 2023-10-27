@@ -50,38 +50,36 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
 
 // Route for user 1 role 0
 Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
-    Route::get('/action', [Controller::class, 'action'])->middleware(['auth'])->name('action');
-    Route::get('/Show/{id}', [Controller::class, 'Show'])->middleware(['auth'])->name('Show');
-    Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->middleware(['auth'])->name('ShowUpdateData');
+    Route::get('/action', [Controller::class, 'action'])->name('action');
+    Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
+    Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
+    Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
+    Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
 
 
 });
 
 // Route for user 2 role 2
-Route::group(['middleware' => ['checkUserRole:1', 'auth' ]], function () {
-
+Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
+    Route::get('/actionB', [Controller::class, 'actionB'])->name('actionB');
+    Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->name('ShowForB');
+    Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->name('SemiCopie');
 });
 
 
-Route::get('/actionB', [Controller::class, 'actionB'])->middleware(['auth'])->name('actionB');
 
 Route::get('/test', [Controller::class, 'test'])->middleware(['auth'])->name('test');
 
 
-Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->middleware(['auth'])->name('ShowForB');
 
-Route::get('/Status/{id}', [Controller::class, 'Status'])->middleware(['auth'])->name('Status');
 
-Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->middleware(['auth'])->name('SemiCheck');
 
-Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->middleware(['auth'])->name('SemiCopie');
 
 Route::get('/getdata/{id}', [Controller::class, 'getdata'])->middleware(['auth'])->name('getdata');
 
 Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Showsetuser'])->middleware(['auth'])->name('Showsetuser');
 
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
-
 
 Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->middleware(['auth'])->name('export.data');
 
