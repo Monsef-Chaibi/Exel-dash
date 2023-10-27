@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\DataExport;
+use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Models\Data;
 use App\Models\Update;
@@ -423,6 +424,7 @@ class Controller extends BaseController
             function SemiExport(Request $request)
             {
                 $selectedItems = $request->input('selectedItems');
-                dd($selectedItems);
+                return Excel::download(new DataSemiExport($selectedItems), 'Gt-Number.xlsx');
+
             }
 }
