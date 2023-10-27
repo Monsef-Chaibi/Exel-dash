@@ -43,31 +43,31 @@ Route::get('/ViewData', [Controller::class, 'ViewData'])->middleware(['auth', 'R
 
 Route::post('/StoreUser', [Controller::class, 'StoreUser'])->middleware(['auth', 'Role'])->name('StoreUser');
 
-Route::get('/action', [Controller::class, 'action'])->name('action');
+Route::get('/action', [Controller::class, 'action'])->middleware(['auth'])->name('action');
 
-Route::get('/actionB', [Controller::class, 'actionB'])->name('actionB');
+Route::get('/actionB', [Controller::class, 'actionB'])->middleware(['auth'])->name('actionB');
 
-Route::get('/test', [Controller::class, 'test'])->name('test');
+Route::get('/test', [Controller::class, 'test'])->middleware(['auth'])->name('test');
 
-Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
+Route::get('/Show/{id}', [Controller::class, 'Show'])->middleware(['auth'])->name('Show');
 
-Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->name('ShowForB');
+Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->middleware(['auth'])->name('ShowForB');
 
-Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
+Route::get('/Status/{id}', [Controller::class, 'Status'])->middleware(['auth'])->name('Status');
 
-Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
+Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->middleware(['auth'])->name('SemiCheck');
 
-Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->name('SemiCopie');
+Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->middleware(['auth'])->name('SemiCopie');
 
-Route::get('/getdata/{id}', [Controller::class, 'getdata'])->name('getdata');
+Route::get('/getdata/{id}', [Controller::class, 'getdata'])->middleware(['auth'])->name('getdata');
 
-Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Showsetuser'])->name('Showsetuser');
+Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Showsetuser'])->middleware(['auth'])->name('Showsetuser');
 
-Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
+Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
 
-Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
+Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->middleware(['auth'])->name('ShowUpdateData');
 
-Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->name('export.data');
+Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->middleware(['auth'])->name('export.data');
 
-Route::get('/SemiExport', [Controller::class, 'SemiExport'])->name('SemiExport');
+Route::get('/SemiExport', [Controller::class, 'SemiExport'])->middleware(['auth'])->name('SemiExport');
 
