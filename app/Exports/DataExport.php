@@ -19,9 +19,9 @@ class DataExport implements FromCollection
 
     public function collection()
     {
-        
+
     return Data::where('bildoc', $this->conditionValue)
-                ->where('check', 1)
+                ->whereNull('check')
                 ->get()
                 ->map(function($item) {
                     return [
