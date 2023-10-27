@@ -291,7 +291,7 @@
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
-                        <th><button onclick="selectAll()">Select All</button></th>
+                        <th><button type="button" onclick="selectAll()">Select All</button></th>
                         <th>Name</th>
                         <th>Check</th>
                         <th>In</th>
