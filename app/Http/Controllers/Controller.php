@@ -408,7 +408,7 @@ class Controller extends BaseController
                 return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
             function SowChekUser($boldoc){
-                $data = Data::where('bildoc',$boldoc)->where('check',1)->get();
+                $data = Data::where('bildoc',$boldoc)->where('check',1)->orderBy('datecheck', 'desc')->get();
                 return view('SowChekUser')->with('data',$data);
             }
             function export($conditionValue)
