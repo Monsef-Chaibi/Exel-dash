@@ -31,17 +31,24 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+//Route For Admin
+Route::group(['middleware' => ['checkUserRole:1', 'auth' ]], function () {
+
 Route::post('/import', [Controller::class, 'import']);
 
-Route::get('/adduser', [Controller::class, 'adduser'])->middleware(['auth', 'Role'])->name('adduser');
+Route::get('/adduser', [Controller::class, 'adduser'])->name('adduser');
 
-Route::get('/Alluser', [Controller::class, 'alluser'])->middleware(['auth', 'Role'])->name('Alluser');
+Route::get('/Alluser', [Controller::class, 'alluser'])->name('Alluser');
 
-Route::get('/AddData', [Controller::class, 'AddData'])->middleware(['auth', 'Role'])->name('AddData');
+Route::get('/AddData', [Controller::class, 'AddData'])->name('AddData');
 
-Route::get('/ViewData', [Controller::class, 'ViewData'])->middleware(['auth', 'Role'])->name('ViewData');
+Route::get('/ViewData', [Controller::class, 'ViewData'])->name('ViewData');
 
-Route::post('/StoreUser', [Controller::class, 'StoreUser'])->middleware(['auth', 'Role'])->name('StoreUser');
+Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
+
+});
+
+
 
 Route::get('/action', [Controller::class, 'action'])->middleware(['auth'])->name('action');
 
