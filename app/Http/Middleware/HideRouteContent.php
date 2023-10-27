@@ -15,12 +15,8 @@ class HideRouteContent
      */
     public function handle($request, Closure $next)
     {
-        // Check if the request matches the condition to hide content
-        if ($request->is('specific/route/*')) {
-            return response()->json(['message' => 'Content hidden.'], 200);
-        }
-
-        return $next($request);
+        return response()->json(['message' => 'Content hidden.'], 200);
     }
+
 
 }
