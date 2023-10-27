@@ -412,10 +412,17 @@ class Controller extends BaseController
                 $data = Data::where('bildoc',$boldoc)->where('check',1)->orderBy('datecheck', 'desc')->get();
                 return view('SowChekUser')->with('data',$data);
             }
-            function export($conditionValue)
-            {
-                return Excel::download(new DataExport($conditionValue), 'Gt-Number.xlsx');
-            }
+
+                public function export($conditionValue)
+                {
+                    $data = new DataExport($conditionValue);
+
+                    if ($data->collection()->isEmpty()) {
+                        return back()->with('error', 'No data found for export.');
+                    }
+
+                    return Excel::download($data, 'Gt-Number.xlsx');
+                }
             function ShowUpdateData()
             {
                 $data= Update::get();
@@ -423,8 +430,17 @@ class Controller extends BaseController
             }
             function SemiExport(Request $request)
             {
-                $selectedItems = $request->input('selectedItems');
-                return Excel::download(new DataSemiExport($selectedItems), 'Gt-Number.xlsx');
+                try {
+                    $selectedItems = $request->input('selectedItems');
+
+                    if (!$selectedItems) {
+                        throw new \Exception('No items selected for export.');
+                    }
+
+                    return Excel::download(new DataSemiExport($selectedItems), 'Gt-Number.xlsx');
+                } catch (\Exception $e) {
+                    return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
+                }
 
             }
 }
