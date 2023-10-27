@@ -265,6 +265,17 @@
             box-shadow: none;
             transform: translateY(0);
         }
+        .btn{
+            color:rgb(103, 255, 103);
+            border:2px rgb(103, 255, 103) solid;
+            padding:1%  ;
+            border-radius:10px
+        }
+        .btn:hover{
+            background: rgb(103, 255, 103);
+            border: 2px white solid ;
+            color: white ;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -275,7 +286,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="">
 
-            <button type="submit">Export Exel
+            <button type="submit" class="btn" style="">Export Exel +
             </button>
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
