@@ -349,7 +349,7 @@
                                        In :  {{$item->dateset}}
                                     </td>
                                     <td>
-                                        <a href="{{ route('Showsetuser', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ,'dateset'=>$item->dateset]) }}">
+                                           <a href="{{ route('Showsetuser', ['nameuser' => $item->nameuser , 'boldoc' => $title->bildoc ,'dateset'=>$item->dateset]) }}">
                                             <button class="button-28">
                                                 <i class="fa fa-eye"></i> View
                                             </button>
@@ -502,8 +502,8 @@
             @if ($status==2 || $status==1)
                 <div class="btnstatus">
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button></div>
+                </form>
                     <div>
-                    </form>
                         <a href="{{ route('export.data', ['conditionValue' => $title->bildoc ]) }}">
                             <button type="submit" class="warning" >Export Exel </button>
                         </a>
