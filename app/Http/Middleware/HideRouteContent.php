@@ -13,8 +13,14 @@ class HideRouteContent
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
+        // Check if the request matches the condition to hide content
+        if ($request->is('specific/route/*')) {
+            return response()->json(['message' => 'Content hidden.'], 200);
+        }
+
         return $next($request);
     }
+
 }
