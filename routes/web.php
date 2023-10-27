@@ -69,3 +69,5 @@ Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('Show
 
 Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->name('export.data');
 
+Route::get('/SemiExport', [Controller::class, 'SemiExport'])->name('SemiExport');
+

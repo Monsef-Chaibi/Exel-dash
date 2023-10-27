@@ -420,4 +420,9 @@ class Controller extends BaseController
                 $data= Update::get();
                 return view('ShowUpdateData')->with('data',$data);
             }
+            function SemiExport(Request $request)
+            {
+                $selectedItems = $request->input('selectedItems');
+                dd($selectedItems);
+            }
 }
