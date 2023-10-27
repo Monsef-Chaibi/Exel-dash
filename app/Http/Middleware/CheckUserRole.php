@@ -13,8 +13,13 @@ class CheckUserRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
+    public function handle($request, Closure $next, $role)
+{
+    if ($request->user() && $request->user()->role == $role) {
         return $next($request);
     }
+
+    return redirect('/');
+}
+
 }
