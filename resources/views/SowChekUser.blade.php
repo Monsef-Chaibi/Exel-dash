@@ -273,8 +273,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="">Export Exel
-            </a>
+            <button type="submit">Export Exel
+            </button>
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
