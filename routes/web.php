@@ -50,7 +50,6 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
 
 // Route for user 1 role 0
 Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
-    Route::get('/DashboardB', [Controller::class, 'DashboardB'])->name('DashboardB');
     Route::get('/action', [Controller::class, 'action'])->name('action');
     Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
     Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');

@@ -44,6 +44,10 @@ class Controller extends BaseController
     function adduser(){
         return view('adduser');
     }
+    function DashboardB(){
+        return view('DashboardB');
+    }
+  
     function test(){
         $cnd=auth()->user()->cond;
         $cnd1 = explode(',', $cnd);
