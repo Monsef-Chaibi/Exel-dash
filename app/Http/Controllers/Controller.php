@@ -123,7 +123,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32"  href="/Show/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -175,7 +175,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32" href="/Show/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -229,7 +229,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32"  href="/ShowForB/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32"  href="/ShowForB/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -281,7 +281,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32" href="/Show/'.$row->bildoc.'">Show</a></td>
+                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -303,7 +303,7 @@ class Controller extends BaseController
 
         }
     function Show($id){
-        $typeid = $id;
+        $typeid = decrypt($id);
         $results = DB::table('data')
             ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
             ->where('bildoc', $typeid) // Add this line to filter out null statuses
@@ -324,16 +324,16 @@ class Controller extends BaseController
             $status = 3;
         }
 
-        $userinfo = Data::where('bildoc', $id)
+        $userinfo = Data::where('bildoc', $typeid)
         ->whereNotNull('status')
         ->GroupBy('dateset') // Order by date in ascending order
         ->get();
-        $title = Data::where('bildoc',$id)->first();
-        $data = Data::where('bildoc',$id)->get();
+        $title = Data::where('bildoc',$typeid)->first();
+        $data = Data::where('bildoc',$typeid)->get();
         return view('Show')->with('data',$data)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
     function ShowForB($id){
-        $typeid = $id;
+        $typeid = decrypt($id);
         $results = DB::table('data')
             ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
             ->where('bildoc', $typeid) // Add this line to filter out null statuses
@@ -353,12 +353,12 @@ class Controller extends BaseController
         else{
             $status = 3;
         }
-        $userinfo = Data::where('bildoc', $id)
+        $userinfo = Data::where('bildoc', $typeid)
         ->whereNotNull('status')
         ->GroupBy('dateset') // Order by date in ascending order
         ->get();
-        $title = Data::where('bildoc',$id)->first();
-        $data = Data::where('bildoc',$id)->orderBy('status', 'desc')->get();
+        $title = Data::where('bildoc',$typeid)->first();
+        $data = Data::where('bildoc',$typeid)->orderBy('status', 'desc')->get();
         return view('ShowForB')->with('data',$data)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
 
@@ -404,8 +404,9 @@ class Controller extends BaseController
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
             function Showsetuser($nameuser, $boldoc,$dateset){
-                $title = Data::where('bildoc',$boldoc)->first();
-                $data = Data::where('nameuser', $nameuser)->where('bildoc',$boldoc)->where('dateset',$dateset)->get();
+                $bol=decrypt($boldoc);
+                $title = Data::where('bildoc',$bol)->first();
+                $data = Data::where('nameuser', $nameuser)->where('bildoc',$bol)->where('dateset',$dateset)->get();
                 return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
             function SowChekUser($boldoc){

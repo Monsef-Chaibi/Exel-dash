@@ -340,7 +340,7 @@
                                     </td>
                                     <td>
                                         <a
-                                            href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => $title->bildoc, 'dateset' => $item->dateset]) }}">
+                                            href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
                                             <button class="button-28">
                                                 <i class="fa fa-eye"></i> View
                                             </button>
@@ -394,7 +394,7 @@
                                             </td>
                                             <td>
                                                 <a
-                                                    href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => $title->bildoc, 'dateset' => $item->dateset]) }}">
+                                                    href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
                                                     <button class="button-28">
                                                         <i class="fa fa-eye"></i> View
                                                     </button>
