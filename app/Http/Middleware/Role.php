@@ -21,7 +21,9 @@ class Role
             if (Auth::user()->role == 1){
 
                 return $next($request);
-            }elseif(Auth::user()->role == 0){
+
+            }
+            elseif(Auth::user()->role == 0){
                 return response()->view("DashboardA");
             }else{
                 return response()->view('/DashboardB');
