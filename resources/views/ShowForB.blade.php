@@ -541,7 +541,7 @@
                             <button type="submit" class="warning">Export Exel </button>
                         </a>
                     </div>
-                    <div><a href="/SowChekUser/{{ $title->bildoc }}"><button type="submit" class="warning2">View
+                    <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
                                 all Check</button></a></div>
                 </div>
             @endif
