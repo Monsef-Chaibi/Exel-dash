@@ -322,7 +322,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Check : 0
+                                        Facture Non Check : 0
                                     </div>
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
