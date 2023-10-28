@@ -24,6 +24,7 @@ class Role
 
             }
             elseif(Auth::user()->role == 0){
+                
                 return response()->view("DashboardA");
             }
             else{
