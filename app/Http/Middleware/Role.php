@@ -25,12 +25,12 @@ class Role
             }
             elseif(Auth::user()->role == 0){
 
-                return response()->view("DashboardA");
-                
+                return redirect('/dwqda');
+
             }
             else{
 
-                return response()->view('/DashboardB');
+                return redirect('/logqdwdqin');
             }
         }
 
