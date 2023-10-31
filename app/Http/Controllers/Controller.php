@@ -453,8 +453,8 @@ class Controller extends BaseController
             public function getLiveValue()
             {
                 $liveValue = Data::whereNull('check')->where('status', 1)->count(); // Replace YourModel and $id with your actual model and ID
-
-                return response()->json(['value' => $liveValue,'value' => $liveValue]);
+                $up= Data::whereNull('check')->where('status', 1)->latest('dateset')->value('dateset');
+                return response()->json(['value' => $liveValue, 'up' => $up]);
             }
 
 }

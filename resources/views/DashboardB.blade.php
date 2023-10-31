@@ -421,7 +421,8 @@
                 url: "{{ route('live.value') }}",
                 method: "GET",
                 success: function(data) {
-                    console.log(data.value);
+                    $('#value').text(data.value);
+                    $('#up').text(data.up);
                 }
             });
         }
