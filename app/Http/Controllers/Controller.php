@@ -456,5 +456,8 @@ class Controller extends BaseController
                 $up= Data::whereNull('check')->where('status', 1)->latest('dateset')->value('dateset');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
-
+            public function notcheck()
+            {
+                
+            }
 }
