@@ -62,6 +62,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
 // Route for user 2 role 2
 Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
     Route::get('/actionB', [Controller::class, 'actionB'])->name('actionB');
+    Route::get('/notcheck', [Controller::class, 'actionB'])->name('actionB');
     Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->name('ShowForB');
     Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->name('SemiCopie');
     Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
