@@ -47,7 +47,7 @@ class Controller extends BaseController
     function DashboardB(){
         return view('DashboardB');
     }
-  
+
     function test(){
         $cnd=auth()->user()->cond;
         $cnd1 = explode(',', $cnd);
@@ -202,6 +202,7 @@ class Controller extends BaseController
         }
         function actionB(Request $request)
         {
+            $count = Data::whereNull('check')->count();
             if(auth()->user()->cond == 0)
             {
                 if($request->ajax())
