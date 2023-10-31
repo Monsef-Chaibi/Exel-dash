@@ -202,7 +202,7 @@ class Controller extends BaseController
         }
         function actionB(Request $request)
         {
-            
+
             if(auth()->user()->cond == 0)
             {
                 if($request->ajax())
@@ -450,4 +450,11 @@ class Controller extends BaseController
                 }
 
             }
+            public function getLiveValue()
+            {
+                $liveValue = Data::whereNull('check')->where('status', 1)->count(); // Replace YourModel and $id with your actual model and ID
+
+                return response()->json(['value' => $liveValue,'value' => $liveValue]);
+            }
+
 }

@@ -414,6 +414,24 @@
                 fetch_customer_data(query);
             });
         });
+
+        $(document).ready(function() {
+        function updateLiveValue() {
+            $.ajax({
+                url: "{{ route('live.value') }}",
+                method: "GET",
+                success: function(data) {
+                    console.log(data.value);
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue, 500);
+    });
     </script>
 
 </x-app-layout>
