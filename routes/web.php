@@ -79,3 +79,4 @@ Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Sh
 
 
 
+Route::get('/get-live-value', 'YourController@getLiveValue')->name('live.value');
