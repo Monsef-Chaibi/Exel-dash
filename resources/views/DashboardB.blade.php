@@ -431,7 +431,7 @@
         updateLiveValue();
 
         // Update live value every 5 seconds (adjust this interval as needed)
-        setInterval(updateLiveValue, 500);
+        setInterval(updateLiveValue, 5000);
     });
     </script>
 

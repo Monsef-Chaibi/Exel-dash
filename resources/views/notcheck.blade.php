@@ -346,6 +346,7 @@
                             </tr>
                         </thead>
                             <tbody>
+                        <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                                 @foreach ($data as $index => $item)
                                 <tr>
                                             <td data-th="Supplier Code">
