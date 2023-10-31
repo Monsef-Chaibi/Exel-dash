@@ -345,9 +345,41 @@
                                 <th>GT Number</th>
                             </tr>
                         </thead>
+                            <tbody>
+                                @foreach ($data as $index => $item)
+                                <tr>
+                                            <td data-th="Supplier Code">
+                                                <input class="custom-checkbox" style="border-radius:5px"
+                                                    type="checkbox" name="selectedItems[]"
+                                                    value="{{ $item->id }}">
+                                            </td>
+                                        <td data-th="Supplier Name">
+                                            {{ $item->product }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->desc }}
+                                        </td>
 
+                                            <td id="gtnum_{{ $index }}" style="display: flex"
+                                                data-th="Supplier Code">
+                                                {{ $item->gtnum }}
+                                                <svg id="copyIcon_{{ $index }}"
+                                                    style="margin-left: 20px; cursor: pointer;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="black" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <rect x="6" y="6" width="13" height="13"
+                                                        rx="2" ry="2" />
+                                                    <path d="M9 1H4a2 2 0 0 0-2 2v5" />
+                                                </svg>
+                                            </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                            </tbody>
                         </table>
-
+                        <button onclick="showConfirmSemi()">dqwsl</button>
 
                 {{-- <div class="btnstatus">
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button>
@@ -367,4 +399,51 @@
     </div>
     </div>
     </div>
+    @foreach ($data as $index => $item)
+    <script>
+        document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
+            var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
+            navigator.clipboard.writeText(gtnumText);
+        });
+    </script>
+    @endforeach
+    <script>
+        function selectAll() {
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+        var allChecked = true;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        for (var i = 0; i <script checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
+    }
+
+
+    function showConfirmSemi() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once confirmed, the action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User clicked the confirm button, proceed with the action
+                document.getElementById('partialDeliveryForm').submit();
+            }
+        });
+
+        return false; // Prevent the default link behavior
+    }
+
+
+    </script>
 </x-app-layout>
