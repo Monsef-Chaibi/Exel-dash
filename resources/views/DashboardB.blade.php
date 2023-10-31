@@ -322,12 +322,12 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check : 0
+                                        Facture Non Check : <span id="value"></span>
                                     </div>
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
-                                        <span class="ag-courses-item_date">
-                                            31.10.2022
+                                        <span id="up" class="ag-courses-item_date">
+
                                         </span>
                                     </div>
                                 </a>
