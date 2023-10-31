@@ -202,7 +202,7 @@ class Controller extends BaseController
         }
         function actionB(Request $request)
         {
-            $count = Data::whereNull('check')->count();
+            
             if(auth()->user()->cond == 0)
             {
                 if($request->ajax())
