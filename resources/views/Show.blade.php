@@ -279,6 +279,19 @@
             transform: translateY(0);
             border-top-left-radius:
         }
+        .warning2 {
+            border: 2px rgb(224, 255, 50) solid;
+            padding: 5%;
+            border-radius: 10px;
+            color: rgb(224, 255, 50);
+            width: 300px
+        }
+
+        .warning2:hover {
+            background: rgb(224, 255, 50);
+            color: black;
+            border: 2px white solid;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
