@@ -361,10 +361,13 @@
                                                 value="{{ $item->id }}">
                                         </td>
                                         <td data-th="Supplier Name">
-                                            {{ $item->product }}
+                                            {{ $item->soldp }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->desc }}
+                                            {{ $item->shipp }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->product }}
                                         </td>
                                         <td id="gtnum_{{ $index }}" style="display: flex"
                                             data-th="Supplier Code">
@@ -379,6 +382,9 @@
                                                     rx="2" ry="2" />
                                                 <path d="M9 1H4a2 2 0 0 0-2 2v5" />
                                             </svg>
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->bildoc }}
                                         </td>
                                     </tr>
                                 @endforeach
