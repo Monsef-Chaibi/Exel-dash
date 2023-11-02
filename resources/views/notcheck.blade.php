@@ -411,7 +411,7 @@
 
                     <div class="btnstatus">
                         <div>
-                            <button type="button" class="warning1" onclick="submitForm('aser1')">Check</button>
+                            <button type="button" class="warning1" onclick="submitForm('SemiCopie')">Check</button>
                         </div>
                         <div>
                             <button type="button" class="warning2" onclick="submitForm('aser2')">Export</button>
@@ -434,7 +434,21 @@
             function submitForm(action) {
                 var form = document.getElementById('partialDeliveryForm');
                 form.action = '/' + action; // Change the form action based on the button clicked
-                form.submit(); // Submit the form
+                Swal.fire({
+                title: 'Are you sure?',
+                text: 'Once confirmed, the action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, proceed!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // User clicked the confirm button, proceed with the action
+                    form.submit(); // Submit the form
+
+                }
+            });
             }
 
             function selectAll() {
