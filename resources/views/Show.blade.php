@@ -462,6 +462,9 @@
 
                     </div>
                 </div>
+            @elseif ($status == 3)
+            <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
+                all Check</button></a></div>
             @endif
 
         </div>
