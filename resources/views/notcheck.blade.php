@@ -395,7 +395,7 @@
                             <button type="button" class="warning1" onclick="return showConfirmSemi()">Check</button>
                         </div>
                         <div>
-                            <button type="button" class="warning1" onclick="return showConfirmSemi()">Check</button>
+                            <button type="button" class="warning2" onclick="return showConfirmSemi()">Export</button>
                         </div>
                     </div>
                 </div>
