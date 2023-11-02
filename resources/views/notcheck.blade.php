@@ -431,6 +431,7 @@
         @endforeach
 
         <script>
+
          function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
@@ -466,13 +467,7 @@
             });
             }
 
-            function selectAll() {
-                // ... Your selectAll function ...
-            }
 
-            function showConfirmSemi() {
-                // ... Your showConfirmSemi function ...
-            }
         </script>
     </x-app-layout>
 
