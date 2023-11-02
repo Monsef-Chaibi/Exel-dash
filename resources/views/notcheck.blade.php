@@ -315,124 +315,129 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
 
-    @if (session()->has('success'))
-        <script>
-            Swal.fire(
-                'Success',
-                '{{ session('success') }}',
-                'success'
-            )
-        </script>
-    @endif
-    @if (session('error'))
-        <script>
-            Swal.fire(
-                'Error',
-                '{{ session('error') }}',
-                'error'
-            )
-        </script>
-    @endif
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+        @if (session()->has('success'))
+            <script>
+                Swal.fire(
+                    'Success',
+                    '{{ session('success') }}',
+                    'success'
+                );
+            </script>
+        @endif
+
+        @if (session('error'))
+            <script>
+                Swal.fire(
+                    'Error',
+                    '{{ session('error') }}',
+                    'error'
+                );
+            </script>
+        @endif
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
-                            <tr style="background-color: #1eff00;black :#d8e7f3" class="fr">
+                            <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                                 <th><button onclick="selectAll()">Select All</button></th>
+                                <th>Sold to party</th>
+                                <th>Ship To party</th>
                                 <th>Product</th>
-                                <th>Long Description</th>
                                 <th>GT Number</th>
+                                <th>Billing Doc</th>
                             </tr>
                         </thead>
-                            <tbody>
-                        <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
+
+                        <tbody>
+                            <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                                 @foreach ($data as $index => $item)
-                                <tr>
-                                            <td data-th="Supplier Code">
-                                                <input class="custom-checkbox" style="border-radius:5px"
-                                                    type="checkbox" name="selectedItems[]"
-                                                    value="{{ $item->id }}">
-                                            </td>
+                                    <tr>
+                                        <td data-th="Supplier Code">
+                                            <input class="custom-checkbox" style="border-radius:5px"
+                                                type="checkbox" name="selectedItems[]"
+                                                value="{{ $item->id }}">
+                                        </td>
                                         <td data-th="Supplier Name">
                                             {{ $item->product }}
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->desc }}
                                         </td>
-
-                                            <td id="gtnum_{{ $index }}" style="display: flex"
-                                                data-th="Supplier Code">
-                                                {{ $item->gtnum }}
-                                                <svg id="copyIcon_{{ $index }}"
-                                                    style="margin-left: 20px; cursor: pointer;"
-                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="black" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <rect x="6" y="6" width="13" height="13"
-                                                        rx="2" ry="2" />
-                                                    <path d="M9 1H4a2 2 0 0 0-2 2v5" />
-                                                </svg>
-                                            </td>
-                                </tr>
-                            @endforeach
+                                        <td id="gtnum_{{ $index }}" style="display: flex"
+                                            data-th="Supplier Code">
+                                            {{ $item->gtnum }}
+                                            <svg id="copyIcon_{{ $index }}"
+                                                style="margin-left: 20px; cursor: pointer;"
+                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="black" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <rect x="6" y="6" width="13" height="13"
+                                                    rx="2" ry="2" />
+                                                <path d="M9 1H4a2 2 0 0 0-2 2v5" />
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </form>
                         </tbody>
-                            </tbody>
-                        </table>
+                    </table>
 
-              <div class="btnstatus">
-                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button>
+                    <div class="btnstatus">
+                        <div>
+                            <button type="button" class="warning1" onclick="return showConfirmSemi()">Check</button>
+                        </div>
                     </div>
-                    </form>
                 </div>
-
-
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
-    @foreach ($data as $index => $item)
-    <script>
-        document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
-            var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
-            navigator.clipboard.writeText(gtnumText);
-        });
-    </script>
-    @endforeach
 
-    <script>
-        function selectAll() {
-            var checkboxes = document.getElementsByClassName('custom-checkbox');
-            var allChecked = true;
+        @foreach ($data as $index => $item)
+            <script>
+                document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
+                    var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
+                    navigator.clipboard.writeText(gtnumText);
+                });
+            </script>
+        @endforeach
 
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (!checkboxes[i].checked) {
-                    allChecked = false;
-                    break;
+        <script>
+            function selectAll() {
+                var checkboxes = document.getElementsByClassName('custom-checkbox');
+                var allChecked = true;
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (!checkboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = !allChecked;
                 }
             }
 
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = !allChecked;
+            function showConfirmSemi() {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Once confirmed, the action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, proceed!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // User clicked the confirm button, proceed with the action
+                        document.getElementById('partialDeliveryForm').submit();
+                    }
+                });
             }
-        }
+        </script>
+    </x-app-layout>
 
-        function showConfirmSemi() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    document.getElementById('partialDeliveryForm').submit();
-                }
-            });
-        }
-    </script>
-</x-app-layout>
+
