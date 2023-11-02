@@ -54,6 +54,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
     Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
     Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
+    Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
     Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
 
 
