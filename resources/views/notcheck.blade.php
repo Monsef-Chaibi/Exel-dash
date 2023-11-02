@@ -431,6 +431,21 @@
         @endforeach
 
         <script>
+         function selectAll() {
+            var checkboxes = document.getElementsByClassName('custom-checkbox');
+            var allChecked = true;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
+            }
+        }
             function submitForm(action) {
                 var form = document.getElementById('partialDeliveryForm');
                 form.action = '/' + action; // Change the form action based on the button clicked
