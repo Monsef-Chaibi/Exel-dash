@@ -294,8 +294,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="/SemiExport" method="GET">
 
-            <button type="submit" class="btn" style="">Export Exel +
-            </button>
+                @if(Auth::user()->role == 2)
+                <button type="submit" class="btn" style="">Export Excel +</button>
+            @endif
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
