@@ -414,7 +414,7 @@
                             <button type="button" class="warning1" onclick="submitForm('SemiCopie')">Check</button>
                         </div>
                         <div>
-                            <button type="button" class="warning2" onclick="submitForm('aser2')">Export</button>
+                            <button type="button" class="warning2" onclick="submitForm('SemiExport')">Export</button>
                         </div>
                     </div>
                 </div>
