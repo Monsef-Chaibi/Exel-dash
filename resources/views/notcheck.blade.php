@@ -380,7 +380,6 @@
                         </tbody>
                             </tbody>
                         </table>
-                        <button onclick="showConfirmSemi()">dqwsl</button>
 
               <div class="btnstatus">
                     <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button>
