@@ -455,8 +455,8 @@
                                 </tbody>
                         </table>
             @endif
+            <div class="btnstatus">
             @if ($status != 2 && $status != 1)
-                <div class="btnstatus">
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
                     </form>
@@ -465,19 +465,20 @@
                             <button class="success" type="button">Total Delivery</button>
                         </a>
                     </div>
-                </div>
+
             @elseif ($status == 2)
-                <div class="btnstatus">
+
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
                     </form>
                     <div>
 
                     </div>
-                </div>
+
             @endif
             <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
                 all Check</button></a></div>
+        </div>
         </div>
     </div>
     </div>
