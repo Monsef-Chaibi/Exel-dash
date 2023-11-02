@@ -68,7 +68,7 @@ Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
     Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
     Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->name('export.data');
     Route::get('/SemiExport', [Controller::class, 'SemiExport'])->name('SemiExport');
-    Route::get('/SelectExport', [Controller::class, 'SemiExport'])->name('SemiExport');
+    Route::get('/SelectExport', [Controller::class, 'SelectExport'])->name('SelectExport');
 });
 
 
