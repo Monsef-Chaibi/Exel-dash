@@ -75,9 +75,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   width: 60rem;
   padding: 4rem 2rem;
   border-radius: .8rem;
-
+  border: 2px black solid;
   color: var(--light);
-  backdrop-filter: blur(30px);
+  background-color:  rgb(255, 255, 255);
   box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
   position: relative;
 
@@ -569,7 +569,7 @@ body {
 
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
-        <h1 class="modal__title">Modal 1 Title</h1>
+        <h1 class="modal__title">Add New user</h1>
         <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
         <button class="modal__btn">Button &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
