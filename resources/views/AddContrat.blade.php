@@ -234,8 +234,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
-
-
         </form>
         <button class="modal__btn">Add &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
