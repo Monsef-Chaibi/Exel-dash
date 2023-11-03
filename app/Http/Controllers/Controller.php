@@ -461,5 +461,9 @@ class Controller extends BaseController
                 $data = Data::whereNull('check')->where('status', 1)->get();
                 return view('notcheck')->with('data',$data);
             }
-          
+            public function AddContrat()
+            {
+                return view('AddContrat');
+            }
+
 }
