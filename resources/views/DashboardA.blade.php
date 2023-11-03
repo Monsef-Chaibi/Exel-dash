@@ -293,15 +293,10 @@ body {
                             <a href="#" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
-                                <div class="ag-courses-item_title">
-                                    Facture Check : 0
+                                <div style="text-align: center;" class="ag-courses-item_title">
+                                    Add New user
                                 </div>
-                                <div class="ag-courses-item_date-box">
-                                    Last Update :
-                                    <span class="ag-courses-item_date">
-                                        31.10.2022
-                                    </span>
-                                </div>
+
                             </a>
                         </div>
 
