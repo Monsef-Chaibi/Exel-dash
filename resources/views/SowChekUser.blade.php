@@ -296,7 +296,7 @@
 
                 @if(Auth::user()->role == 2)
                 <button type="submit" class="btn" style="">Export Excel +</button>
-            @endif 
+            @endif
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
