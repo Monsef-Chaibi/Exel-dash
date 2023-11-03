@@ -290,11 +290,11 @@ body {
                     <div class="ag-courses_box" >
 
                         <div class="ag-courses_item">
-                            <a  href="#m1-o"  class="ag-courses-item_link">
+                            <a  href=""  class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div style="text-align: center;" class="ag-courses-item_title">
-                                    Add New user
+                                    Add New Contrat
                                 </div>
 
                             </a>
