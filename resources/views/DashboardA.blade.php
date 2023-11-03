@@ -77,7 +77,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   border-radius: .8rem;
 
   color: var(--light);
-  background-color: red;
+  backdrop-filter: blur(30px);
   box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
   position: relative;
 
