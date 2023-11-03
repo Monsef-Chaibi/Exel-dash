@@ -73,14 +73,14 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 .modal {
   width: 60rem;
-  padding: 4rem 2rem;
+  padding: 1rem 1rem;
   border-radius: .8rem;
   border: 2px black solid;
   color: var(--light);
   background-color:  rgb(255, 255, 255);
   box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
   position: relative;
-
+  height: 700px;
   overflow: hidden;
 }
 
@@ -89,9 +89,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 .modal__text {
-  padding: 0 4rem;
-  margin-top: 4rem;
 
+  margin-top: 4rem;
   font-size: 1.6rem;
   line-height: 2;
 }
@@ -570,8 +569,19 @@ body {
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Add New user</h1>
-        <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
-        <button class="modal__btn">Button &rarr;</button>
+        <form class="modal__text" dir="ltr">
+            <input style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="Address" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="City" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
+            <input style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
+
+
+        </form>
+        <button class="modal__btn">Add  &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
