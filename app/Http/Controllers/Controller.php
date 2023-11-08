@@ -488,7 +488,7 @@ class Controller extends BaseController
                 $user = ContratUser::find($id);
 
                 if ($user) {
-                    return view('user_data', ['user' => $user]);
+                    return view('AddContrat', ['user' => $user]);
                 }
 
                 return response()->json(['error' => 'User not found'], 404);

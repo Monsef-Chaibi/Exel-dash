@@ -219,7 +219,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <option value="{{$item->id}}">{{$item->name}}</option>
         @endforeach
     </select><br>
-            <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
+            <input name="full_name" style="width: 49%;border-radius:5px" placeholder="{{$user->name}}" type="text">
             <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
             <input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
             <input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text">
