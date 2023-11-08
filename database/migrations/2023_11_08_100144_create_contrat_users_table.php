@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('wornum')->nullable();
+            $table->string('activity')->nullable();
             $table->string('mobnum')->nullable();
 
             $table->timestamps();
