@@ -225,16 +225,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Add New user</h1>
-        <form action="" method="POST" class="modal__text" dir="ltr">
+        <form action="/AddContratUser" method="POST" class="modal__text" dir="ltr">
             @csrf
-            <input style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="Address" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="City" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
-            <input style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
+            <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
+            <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
+            <input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
+            <input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text">
+            <input name="city" style="width: 49%;border-radius:5px" placeholder="City" type="text">
+            <input name="work_phone" style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
+            <input name="activity" style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
+            <input name="mobile_number" style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
             <button type="submit" class="modal__btn">Add &rarr;</button>
         </form>
         <a href="#m1-c" class="link-2"></a>

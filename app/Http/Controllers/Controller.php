@@ -470,17 +470,17 @@ class Controller extends BaseController
             {
 
                 $owner = new ContratUser();
-                $owner->full_name = $request->input('name');
-                $owner->nationality = $request->input('nat');
-                $owner->national_id = $request->input('nat_id');
+                $owner->name = $request->input('full_name');
+                $owner->nat = $request->input('nationality');
+                $owner->nat_id = $request->input('national_id');
                 $owner->address = $request->input('address');
                 $owner->city = $request->input('city');
-                $owner->work_phone = $request->input('wornum');
+                $owner->wornum = $request->input('work_phone');
                 $owner->activity = $request->input('activity');
-                $owner->mobile_number = $request->input('mobnum');
+                $owner->mobnum = $request->input('mobile_number');
                 $owner->save();
 
-                return redirect('/owners')->with('success', 'Owner added successfully!');
+                return redirect()->back()->with('success', 'Owner added successfully!');
             }
 
 
