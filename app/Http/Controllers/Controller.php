@@ -485,12 +485,13 @@ class Controller extends BaseController
             }
 
             public function getUserData($id) {
-                $user = ContratUser::find($id);
+                $user = User::find($id);
 
                 if ($user) {
-                    return view('AddContrat', ['user' => $user]);
+                    return response()->json($user);
                 }
 
                 return response()->json(['error' => 'User not found'], 404);
             }
+
 }
