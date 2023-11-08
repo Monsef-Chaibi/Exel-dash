@@ -225,7 +225,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Add New user</h1>
-        <form class="modal__text" dir="ltr">
+        <form action="" method="POST" class="modal__text" dir="ltr">
+            @csrf
             <input style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
@@ -234,8 +235,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
             <input style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
+            <button type="submit" class="modal__btn">Add &rarr;</button>
         </form>
-        <button class="modal__btn">Add &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
