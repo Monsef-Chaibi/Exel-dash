@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
+use App\Models\ContratUser;
 use App\Models\Data;
 use App\Models\Update;
 use App\Models\User;
@@ -465,5 +466,22 @@ class Controller extends BaseController
             {
                 return view('AddContrat');
             }
+            public function AddContratUser(Request $request)
+            {
+
+                $owner = new ContratUser();
+                $owner->full_name = $request->input('name');
+                $owner->nationality = $request->input('nat');
+                $owner->national_id = $request->input('nat_id');
+                $owner->address = $request->input('address');
+                $owner->city = $request->input('city');
+                $owner->work_phone = $request->input('wornum');
+                $owner->activity = $request->input('activity');
+                $owner->mobile_number = $request->input('mobnum');
+                $owner->save();
+
+                return redirect('/owners')->with('success', 'Owner added successfully!');
+            }
+
 
 }
