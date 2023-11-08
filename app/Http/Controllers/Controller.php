@@ -484,5 +484,13 @@ class Controller extends BaseController
                 return redirect()->back()->with('success', 'Owner added successfully!');
             }
 
+            public function getUserData($id) {
+                $user = ContratUser::find($id);
 
+                if ($user) {
+                    return view('user_data', ['user' => $user]);
+                }
+
+                return response()->json(['error' => 'User not found'], 404);
+            }
 }

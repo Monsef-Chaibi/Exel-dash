@@ -57,6 +57,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
     Route::get('/AddContrat', [Controller::class, 'AddContrat'])->name('AddContrat');
     Route::post('/AddContratUser', [Controller::class, 'AddContratUser'])->name('AddContratUser');
+    Route::get('/get-user-data/{id}', [Controller::class, 'getUserData']);
 
 
 });
