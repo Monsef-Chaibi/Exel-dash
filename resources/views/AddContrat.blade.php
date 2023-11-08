@@ -214,14 +214,40 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         </div>
     </div>
     <label for="">Choise User :</label>
-    <select name="" id="">
+    <select name="selected_id" id="selected_id">
         @foreach ($data as $item)
-        <option value="">{{$item->name}}</option>
+            <option value="{{$item->id}}">{{$item->name}}</option>
         @endforeach
-    </select>
-    <label for=""></label>
+    </select><br>
+            <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
+            <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text">
+            <input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text">
+            <input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text">
+            <input name="city" style="width: 49%;border-radius:5px" placeholder="City" type="text">
+            <input name="work_phone" style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text">
+            <input name="activity" style="width: 49%;border-radius:5px" placeholder="Activity" type="text">
+            <input name="mobile_number" style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text">
 </div>
+<script>
+    document.getElementById('selected_id').addEventListener('change', function() {
+        var selectedId = this.value;
 
+        // Send an AJAX request to fetch user data
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    document.getElementById('user_data').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Error fetching user data:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        xhr.open('GET', '/get-user-data/' + selectedId); // Assuming you have a route to handle this request
+        xhr.send();
+    });
+</script>
 
 
 </x-app-layout>
