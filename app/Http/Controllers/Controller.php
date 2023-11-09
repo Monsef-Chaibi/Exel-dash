@@ -487,11 +487,16 @@ class Controller extends BaseController
             public function getUserData($id) {
                 $user = ContratUser::find($id);
 
-                if ($user) {
-                    return response()->json($user);
-                }
-
-                return response()->json(['error' => 'User not found'], 404);
+                return response()->json([
+                    'full_name' => $user->name,
+                    'nationality' => $user->nat,
+                    'national_id' => $user->nat_id,
+                    'address' => $user->address,
+                    'city' => $user->city,
+                    'work_phone' => $user->wornum,
+                    'activity' => $user->activity,
+                    'mobile_number' => $user->mobnum,
+                ]);
             }
 
 }

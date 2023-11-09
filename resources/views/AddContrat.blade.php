@@ -213,51 +213,49 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </a>
         </div>
     </div>
-    <label for="selected_id">Choose User:</label>
-<select name="selected_id" id="selected_id">
-    @foreach ($data as $item)
-        <option value="{{$item->id}}">{{$item->name}}</option>
-    @endforeach
-</select><br>
+    <select name="selected_id" id="selected_id" onchange="showUserInfo()">
+        @foreach ($data as $item)
+            <option value="{{$item->id}}">{{$item->name}}</option>
+        @endforeach
+    </select><br>
 
-<input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text" readonly>
-<input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text" readonly>
-<input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text" readonly>
-<input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text" readonly>
-<input name="city" style="width: 49%;border-radius:5px" placeholder="City" type="text" readonly>
-<input name="work_phone" style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text" readonly>
-<input name="activity" style="width: 49%;border-radius:5px" placeholder="Activity" type="text" readonly>
-<input name="mobile_number" style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text" readonly>
+    <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text" readonly>
+    <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text" readonly>
+    <input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text" readonly>
+    <input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text" readonly>
+    <input name="city" style="width: 49%;border-radius:5px" placeholder="City" type="text" readonly>
+    <input name="work_phone" style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text" readonly>
+    <input name="activity" style="width: 49%;border-radius:5px" placeholder="Activity" type="text" readonly>
+    <input name="mobile_number" style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text" readonly>
 
 </div>
 <script>
-   document.getElementById('selected_id').addEventListener('change', function() {
-    var selectedId = this.value;
+ function showUserInfo() {
+    var id = document.getElementById('selected_id').value;
 
-    // Send an AJAX request to fetch user data
+    // Make an AJAX request to the Laravel route.
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var userData = JSON.parse(xhr.responseText);
-                document.querySelector('input[name="full_name"]').value = userData.name;
-                document.querySelector('input[name="nationality"]').value = userData.nationality;
-                document.querySelector('input[name="national_id"]').value = userData.national_id;
-                document.querySelector('input[name="address"]').value = userData.address;
-                document.querySelector('input[name="city"]').value = userData.city;
-                document.querySelector('input[name="work_phone"]').value = userData.work_phone;
-                document.querySelector('input[name="activity"]').value = userData.activity;
-                document.querySelector('input[name="mobile_number"]').value = userData.mobile_number;
-            } else {
-                console.error('Error fetching user data:', xhr.status, xhr.statusText);
-            }
+    xhr.open('GET', `/getUserData/${id}`);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Parse the JSON response.
+            var userInfo = JSON.parse(xhr.responseText);
+
+            // Set the values of the input readonly fields.
+            document.querySelector('input[name="full_name"]').value = userInfo.full_name;
+            document.querySelector('input[name="nationality"]').value = userInfo.nationality;
+            document.querySelector('input[name="national_id"]').value = userInfo.national_id;
+            document.querySelector('input[name="address"]').value = userInfo.address;
+            document.querySelector('input[name="city"]').value = userInfo.city;
+            document.querySelector('input[name="work_phone"]').value = userInfo.work_phone;
+            document.querySelector('input[name="activity"]').value = userInfo.activity;
+            document.querySelector('input[name="mobile_number"]').value = userInfo.mobile_number;
+        } else {
+            // Handle the error.
         }
     };
-
-    xhr.open('GET', '/get-user-data/' + selectedId); // Assuming you have a route to handle this request
     xhr.send();
-});
-
+}
 </script>
 
 
