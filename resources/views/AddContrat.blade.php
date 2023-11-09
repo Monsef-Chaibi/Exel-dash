@@ -213,9 +213,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </a>
         </div>
     </div>
-    <label for="">
-        Choose a name</label>
-    <select name="selected_id" id="selected_id" onchange="showUserInfo()">
+    <label for="" style="color: white">Choose A Name :</label>
+    <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
         <option style="display: none;">Select User</option>
         @foreach ($data as $item)
             <option value="{{$item->id}}">{{$item->name}}</option>
