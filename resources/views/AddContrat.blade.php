@@ -213,20 +213,23 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </a>
         </div>
     </div>
+    <label for="">
+        Choose a name</label>
     <select name="selected_id" id="selected_id" onchange="showUserInfo()">
+        <option style="display: none;">Select User</option>
         @foreach ($data as $item)
             <option value="{{$item->id}}">{{$item->name}}</option>
         @endforeach
     </select><br>
 
-    <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text" readonly>
-    <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Nationality" type="text" readonly>
-    <input name="national_id" style="width: 49%;border-radius:5px" placeholder="National ID" type="text" readonly>
-    <input name="address" style="width: 49%;border-radius:5px" placeholder="Address" type="text" readonly>
-    <input name="city" style="width: 49%;border-radius:5px" placeholder="City" type="text" readonly>
-    <input name="work_phone" style="width: 49%;border-radius:5px" placeholder="Work Phone" type="text" readonly>
-    <input name="activity" style="width: 49%;border-radius:5px" placeholder="Activity" type="text" readonly>
-    <input name="mobile_number" style="width: 49%;border-radius:5px" placeholder="Mobile Number" type="text" readonly>
+    <input name="full_name" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Full Name of the Owner" type="text" readonly>
+    <input name="nationality" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Nationality" type="text" readonly>
+    <input name="national_id" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="National ID" type="text" readonly>
+    <input name="address" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Address" type="text" readonly>
+    <input name="city" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="City" type="text" readonly>
+    <input name="work_phone" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Work Phone" type="text" readonly>
+    <input name="activity" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Activity" type="text" readonly>
+    <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
 
 </div>
 <script>
