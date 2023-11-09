@@ -485,7 +485,7 @@ class Controller extends BaseController
             }
 
             public function getUserData($id) {
-                $user = User::find($id);
+                $user = ContratUser::find($id);
 
                 if ($user) {
                     return response()->json($user);
