@@ -726,6 +726,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <option value="{{$item->id}}">{{$item->nameofport}}</option>
                 @endforeach
             </select>
+            <label for="" style="margin-left: 20px">Entry Date :</label>
+            <input type="date" style="width: 38%;border-radius:5px">
 
 
 
