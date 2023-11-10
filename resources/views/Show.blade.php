@@ -671,22 +671,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
             return false; // Prevent the default link behavior
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
@@ -709,7 +693,15 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
-        <h1 class="modal__title">Add New user</h1>
+        <h1 class="modal__title">Print Facture :</h1>
+            <label for="" style="color: white">Choose A Name :</label>
+            <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
+                <option style="display: none;">Select User</option>
+                @foreach ($datauser as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+            </select>
+            <br>
         <form action="/AddContratUser" method="POST" class="modal__text" dir="ltr">
             @csrf
             <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Owner" type="text">
