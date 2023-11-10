@@ -274,13 +274,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   <div class="modal-container" id="m3-o" style="--m-background: transparent;">
     <div class="modal">
       <h1 class="modal__title">Add New Vehicle Brand</h1>
-      <form action="/AddContratUser" method="POST" class="modal__text" dir="ltr">
+      <form action="/Addbrand" method="POST" class="modal__text" dir="ltr">
           @csrf
-          <input name="full_name" style="width: 49%;border-radius:5px;margin-left:25%;margin-bottom:30px" placeholder="Title of brand" type="text"><br>
-          <input name="nationality" style="width: 49%;border-radius:5px" placeholder="Brand Name" type="text">
-          <input name="national_id" style="width: 49%;border-radius:5px" placeholder="Number of Cylinders" type="text">
-          <input name="address" style="width: 49%;border-radius:5px" placeholder="Payload" type="text">
-          <input name="city" style="width: 49%;border-radius:5px" placeholder="Model" type="text">
+          <input name="titel" style="width: 49%;border-radius:5px;margin-left:25%;margin-bottom:30px" placeholder="Title of brand" type="text"><br>
+          <input name="name" style="width: 49%;border-radius:5px" placeholder="Brand Name" type="text">
+          <input name="numcl" style="width: 49%;border-radius:5px" placeholder="Number of Cylinders" type="text">
+          <input name="pay" style="width: 49%;border-radius:5px" placeholder="Payload" type="text">
+          <input name="mod" style="width: 49%;border-radius:5px" placeholder="Model" type="text">
           <br>
           <button type="submit" class="modal__btn">Add &rarr;</button>
       </form>
