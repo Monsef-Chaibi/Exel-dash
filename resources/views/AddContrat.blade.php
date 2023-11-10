@@ -211,6 +211,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         Add New User
                     </button>
                 </a>
+                <a href="#m1-o">
+                    <button class="btn" style="">
+                        Add New User
+                    </button>
+                </a>
+                <a href="#m1-o">
+                    <button class="btn" style="">
+                        Add New User
+                    </button>
+                </a>
             </div>
         </div>
     </div>
