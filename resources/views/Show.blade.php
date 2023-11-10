@@ -715,6 +715,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <label style="margin-left: 5px"  for="">No</label>
                 <input style="margin-left: 20px"  type="radio">
                 <label style="margin-left: 5px"  for="">Yes</label>
+                <select style="border-radius:5px;margin-left:160px;width:49%" name="selected_id" id="selected_id" onchange="showUserInfo()">
+                    <option style="display: none;">Select User</option>
+                    @foreach ($datauser as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
             </div>
             <br>
 
