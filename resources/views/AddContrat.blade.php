@@ -279,10 +279,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m2-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Add New Port of Entry</h1>
-        <form action="/AddContratUser" method="POST" class="modal__text" dir="ltr">
+        <form action="/AddPort" method="POST" class="modal__text" dir="ltr">
             @csrf
             <label for="" style="margin-right: 20px">Name of Port :</label>
-            <input name="full_name" style="width: 49%;border-radius:5px" placeholder="Full Name of the Port" type="text"><br>
+            <input name="nameofport" style="width: 49%;border-radius:5px" placeholder="Full Name of the Port" type="text"><br>
             <button type="submit" class="modal__btn">Add &rarr;</button>
         </form>
         <a href="#m2-c" class="link-2"></a>

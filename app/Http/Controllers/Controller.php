@@ -7,6 +7,7 @@ use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Models\ContratUser;
 use App\Models\Data;
+use App\Models\Port;
 use App\Models\Update;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -480,6 +481,15 @@ class Controller extends BaseController
                 $owner->wornum = $request->input('work_phone');
                 $owner->activity = $request->input('activity');
                 $owner->mobnum = $request->input('mobile_number');
+                $owner->save();
+
+                return redirect()->back()->with('success', 'Owner added successfully!');
+            }
+            public function AddPort(Request $request)
+            {
+
+                $owner = new Port();
+                $owner->nameofport = $request->input('nameofport');
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
