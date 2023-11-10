@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ports', function (Blueprint $table) {
             $table->id();
+            $table->string('nameofport')->nullable();
             $table->timestamps();
         });
     }
