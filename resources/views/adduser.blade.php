@@ -226,7 +226,7 @@ form .button input:hover {
                             <div class="category">
                                 <label for="dot-1">
                                 <span class="dot one"></span>
-                                <span>Accountant</span>
+                                <span>Operation</span>
                               </label>
                               <label for="dot-2">
                                 <span class="dot two"></span>

@@ -46,13 +46,13 @@ Route::get('/ViewData', [Controller::class, 'ViewData'])->name('ViewData');
 
 Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
 
+Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
 });
 
 // Route for user 1 role 0
 Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/action', [Controller::class, 'action'])->name('action');
     Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
-    Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
     Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
     Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
     Route::get('/AddContrat', [Controller::class, 'AddContrat'])->name('AddContrat');
