@@ -715,7 +715,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <label style="margin-left: 5px" for="">No</label>
                 <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="Yes">
                 <label style="margin-left: 5px" for="">Yes</label>
-                <select style="border-radius: 5px; margin-left: 160px; width: 49%;" name="selected_id" id="slc">
+                <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="selected_id" id="slc">
                   <option value="" disabled selected>Select User</option>
                   @foreach ($datauser as $item)
                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -734,6 +734,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <button type="submit" class="modal__btn">Add &rarr;</button>
+            <a href="#m1-c" class="link-2"></a>
         </div>
     </div>
   </div>

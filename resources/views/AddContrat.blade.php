@@ -231,35 +231,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
 
 </div>
-<script>
- function showUserInfo() {
-    var id = document.getElementById('selected_id').value;
-
-    // Make an AJAX request to the Laravel route.
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', `/getUserData/${id}`);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Parse the JSON response.
-            var userInfo = JSON.parse(xhr.responseText);
-
-            // Set the values of the input readonly fields.
-            document.querySelector('input[name="full_name"]').value = userInfo.full_name;
-            document.querySelector('input[name="nationality"]').value = userInfo.nationality;
-            document.querySelector('input[name="national_id"]').value = userInfo.national_id;
-            document.querySelector('input[name="address"]').value = userInfo.address;
-            document.querySelector('input[name="city"]').value = userInfo.city;
-            document.querySelector('input[name="work_phone"]').value = userInfo.work_phone;
-            document.querySelector('input[name="activity"]').value = userInfo.activity;
-            document.querySelector('input[name="mobile_number"]').value = userInfo.mobile_number;
-        } else {
-            // Handle the error.
-        }
-    };
-    xhr.send();
-}
-</script>
-
 
 </x-app-layout>
 
