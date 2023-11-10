@@ -711,7 +711,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
             <div style="margin-top: 20px">
                 <label for="">Is there a tenant?</label>
-                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="No">
+                <input style="margin-left: 20px" checked type="radio" name="is_tenant" onchange="showUserInfo()" value="No">
                 <label style="margin-left: 5px" for="">No</label>
                 <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="Yes">
                 <label style="margin-left: 5px" for="">Yes</label>
