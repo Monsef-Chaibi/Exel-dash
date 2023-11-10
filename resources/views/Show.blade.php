@@ -722,6 +722,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                   @endforeach
                 </select>
             </div><br>
+            <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
+            <select style="border-radius:5px;" id="selected_id" onchange="showUserInfo()">
+                <option style="display: none;">Select User</option>
+                @foreach ($port as $item)
+                    <option value="{{$item->id}}">{{$item->nameofport}}</option>
+                @endforeach
+            </select>
 
 
 
@@ -730,7 +737,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
 
-
+            <br>
             <button type="submit" class="modal__btn">Add &rarr;</button>
             <a href="#m1-c" class="link-2"></a>
         </div>

@@ -338,7 +338,8 @@ class Controller extends BaseController
         $title = Data::where('bildoc',$typeid)->first();
         $data = Data::where('bildoc',$typeid)->get();
         $datauser = ContratUser::get();
-        return view('Show')->with('data',$data)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
+        $port = Port::get();
+        return view('Show')->with('data',$data)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
     function ShowForB($id){
         $typeid = decrypt($id);
