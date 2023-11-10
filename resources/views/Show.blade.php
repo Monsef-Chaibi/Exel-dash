@@ -721,9 +721,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <option value="{{$item->id}}">{{$item->name}}</option>
                   @endforeach
                 </select>
-              </div>
-
-            <br>
+            </div><br>
 
 
 
