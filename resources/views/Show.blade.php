@@ -299,16 +299,13 @@
   top: 0;
   left: 0;
   z-index: 10;
-
   display: none;
   justify-content: center;
   align-items: center;
-
   width: 100%;
   height: 100%;
-
-  /* --m-background is set as inline style */
   background: var(--m-background);
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* using :target */
@@ -325,11 +322,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   border-radius: .8rem;
   border: 2px black solid;
   color: var(--light);
-  background-color:  rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
   position: relative;
-  height: 700px;
-  overflow: hidden;
+  max-height: 80vh; /* Set a maximum height for the modal */
+  overflow-y: auto; /* Enable modal content scrolling if it exceeds the height */
 }
 
 .modal__title {
@@ -723,7 +720,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </select>
             </div><br>
             <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
-            <select style="border-radius:5px;" id="selected_id" onchange="showUserInfo()">
+            <select style="border-radius:5px;width:37%" id="selected_id" onchange="showUserInfo()">
                 <option style="display: none;">Select User</option>
                 @foreach ($port as $item)
                     <option value="{{$item->id}}">{{$item->nameofport}}</option>
