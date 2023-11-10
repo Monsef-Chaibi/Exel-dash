@@ -710,12 +710,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="activity" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Activity" type="text" readonly>
             <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
             <div style="margin-top:20px">
-                <label for="">Is there a tenant ?</label>
-                <input style="margin-left: 20px" type="radio">
-                <label style="margin-left: 5px"  for="">No</label>
-                <input style="margin-left: 20px"  type="radio">
-                <label style="margin-left: 5px"  for="">Yes</label>
-                <select style="border-radius:5px;margin-left:160px;width:49%" name="selected_id" id="selected_id" onchange="showUserInfo()">
+                <label for="">Is there a tenant?</label>
+                <input style="margin-left: 20px" type="radio" name="tenantChoice" onclick="showSelect()">
+                <label style="margin-left: 5px" for="">No</label>
+                <input style="margin-left: 20px" type="radio" name="tenantChoice" onclick="showSelect()">
+                <label style="margin-left: 5px" for="">Yes</label>
+                <select style="border-radius:5px;margin-left:160px;width:49%; display:none;" name="selected_id" id="selected_id" onchange="showUserInfo()">
                     <option style="display: none;">Select User</option>
                     @foreach ($datauser as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
