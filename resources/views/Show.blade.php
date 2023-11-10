@@ -709,11 +709,21 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="work_phone" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Work Phone" type="text" readonly>
             <input name="activity" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Activity" type="text" readonly>
             <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
+            <label for=""></label>
+            <input type="radio">
+            <input type="radio">
+            <br>
+
+
+
+
+
+
+
+
 
             <button type="submit" class="modal__btn">Add &rarr;</button>
-
-        <a href="#m1-c" class="link-2"></a>
-      </div>
+        </div>
     </div>
   </div>
   <!-- /modal 1 -->
