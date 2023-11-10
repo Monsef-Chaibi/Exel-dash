@@ -711,17 +711,18 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
             <div style="margin-top: 20px">
                 <label for="">Is there a tenant?</label>
-                <input style="margin-left: 20px" type="radio" name="tenantChoice" onclick="showSelect()">
+                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="No">
                 <label style="margin-left: 5px" for="">No</label>
-                <input style="margin-left: 20px" type="radio" name="tenantChoice" onclick="showSelect()">
+                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="Yes">
                 <label style="margin-left: 5px" for="">Yes</label>
-                <select style="border-radius: 5px; margin-left: 160px; width: 49%; display: none;" name="selected_id" id="selected_id" onchange="showUserInfo()">
-                    <option value="" disabled selected>Select User</option>
-                    @foreach ($datauser as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
-                    @endforeach
+                <select style="border-radius: 5px; margin-left: 160px; width: 49%;" name="selected_id" id="slc">
+                  <option value="" disabled selected>Select User</option>
+                  @foreach ($datauser as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                  @endforeach
                 </select>
-            </div>
+              </div>
+
             <br>
 
 
@@ -765,14 +766,18 @@ when users will click/enter button(link) browser will add a #id in a url and whe
        };
        xhr.send();
    }
-   function showSelect() {
-        var yesRadio = document.querySelector('input[name="tenantChoice"]:checked');
-        var selectElement = document.getElementById('selected_id');
+   function showUserInfo() {
+    var radioButton = document.querySelector('input[name="is_tenant"]:checked');
+    var selectBox = document.querySelector('#slc');
 
-        if (yesRadio && yesRadio.value === 'Yes') {
-            selectElement.style.display = 'block';
-        } else {
-            selectElement.style.display = 'none';
-        }
+    if (radioButton.value === 'No') {
+        selectBox.setAttribute('disabled', true);
+        selectBox.style.display = 'none';
+    } else if (radioButton.value === 'Yes') {
+        selectBox.removeAttribute('disabled');
+        selectBox.style.removeProperty('display');
     }
+    }
+
+
    </script>
