@@ -9,7 +9,8 @@
             color:rgb(103, 255, 103);
             border:2px rgb(103, 255, 103) solid;
             padding:1%  ;
-            border-radius:10px
+            border-radius:10px;
+            margin-left: 12%;
         }
         .btn:hover{
             background: rgb(103, 255, 103);
@@ -203,15 +204,37 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+    @if (session()->has('error'))
+    <script>
+       Swal.fire(
+           'Error',
+           '{{ session('error') }}',
+           'error'
+       )
+    </script>
+        @endif
+
+        @if (session()->has('success'))
+            <script>
+            Swal.fire(
+                'Success',
+                '{{ session('success') }}',
+                'success'
+            )
+            </script>
+        @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <a href="#m1-o">
+            <div style="padding: 3%" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <a href="#m1-o" style="nargin-left:20px">
                     <button class="btn" style="">
                         Add New User
                     </button>
                 </a>
-                <a href="#m2-o">
+                <a href="#m2-o" style="nargin-left:20%">
                     <button class="btn" style="">
                         Add Port of Entry
                     </button>
