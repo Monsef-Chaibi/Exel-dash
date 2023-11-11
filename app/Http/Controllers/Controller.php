@@ -510,5 +510,13 @@ class Controller extends BaseController
                     'mobile_number' => $user->mobnum,
                 ]);
             }
+            public function AddBrand(Request $request)
+            {
 
+                $owner = new Port();
+                $owner->nameofport = $request->input('nameofport');
+                $owner->save();
+
+                return redirect()->back()->with('success', 'Owner added successfully!');
+            }
 }
