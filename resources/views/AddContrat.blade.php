@@ -274,7 +274,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   <div class="modal-container" id="m3-o" style="--m-background: transparent;">
     <div class="modal">
       <h1 class="modal__title">Add New Vehicle Brand</h1>
-      <form action="/Addbrand" method="POST" class="modal__text" dir="ltr">
+      <form action="/AddBrand" method="POST" class="modal__text" dir="ltr">
           @csrf
           <input name="titel" style="width: 49%;border-radius:5px;margin-left:25%;margin-bottom:30px" placeholder="Title of brand" type="text"><br>
           <input name="name" style="width: 49%;border-radius:5px" placeholder="Brand Name" type="text">
