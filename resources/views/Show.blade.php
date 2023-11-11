@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <style>
-
         @media only screen and (max-width: 979px) {
             .ag-courses_item {
                 -ms-flex-preferred-size: calc(50% - 30px);
@@ -434,7 +433,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   color: hsla(0, 0%, 1000%, .6);
   font-size: 1.6rem;
 }
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -742,8 +740,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="pay" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Payload " type="text" readonly>
             <input name="mod" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Model " type="text" readonly>
             <br>
-            <label for="yearSelect">Select a Year:</label>
-            <input type="date" min="2000-01-01" max="2030-12-31">
+            <label for="" style="margin-top:25px">Entry Date :</label>
+            <input type="number" id="yearInput" name="year" min="1900" max="2100" style="width: 39%;border-radius:5px;margin-top:25px">
 
 
 
