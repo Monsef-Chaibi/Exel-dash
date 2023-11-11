@@ -708,9 +708,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
             <div style="margin-top: 20px">
                 <label for="">Is there a tenant?</label>
-                <input style="margin-left: 20px" checked type="radio" name="is_tenant" onchange="showUserInfo()" value="No">
+                <input style="margin-left: 20px" checked type="radio" name="is_tenant" onchange="showtenantInfo()" value="No">
                 <label style="margin-left: 5px" for="">No</label>
-                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showUserInfo()" value="Yes">
+                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showtenantInfo()" value="Yes">
                 <label style="margin-left: 5px" for="">Yes</label>
                 <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="selected_id" id="slc">
                   <option value="" disabled selected>Select User</option>
@@ -720,7 +720,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </select>
             </div><br>
             <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
-            <select style="border-radius:5px;width:37%" id="selected_id" onchange="showUserInfo()">
+            <select style="border-radius:5px;width:37%" id="selected_id" >
                 <option style="display: none;">Select User</option>
                 @foreach ($port as $item)
                     <option value="{{$item->id}}">{{$item->nameofport}}</option>
@@ -728,7 +728,20 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </select>
             <label for="" style="margin-left: 20px">Entry Date :</label>
             <input type="date" style="width: 38%;border-radius:5px">
-
+            <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>
+            <select style="border-radius:5px;width:37%;margin-top:25px" id="brand_id"  onchange="showBrandInfo()">
+                <option style="display: none;">Select Brand</option>
+                @foreach ($brand as $item)
+                    <option value="{{$item->id}}">{{$item->titel}}</option>
+                @endforeach
+            </select><br>
+            <input name="name" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Vehicle Brand" type="text" readonly>
+            <input name="numcl" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Number of Cylinders " type="text" readonly>
+            <input name="pay" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Payload " type="text" readonly>
+            <input name="mod" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Model " type="text" readonly>
+            <br>
+            <label for="" style="margin-top:25px">Entry Date :</label>
+            <input type="date" style="width: 38%;border-radius:5px;margin-top:25px">
 
 
 
@@ -747,7 +760,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   <script>
     function showUserInfo() {
        var id = document.getElementById('selected_id').value;
-
        // Make an AJAX request to the Laravel route.
        var xhr = new XMLHttpRequest();
        xhr.open('GET', `/getUserData/${id}`);
@@ -771,7 +783,29 @@ when users will click/enter button(link) browser will add a #id in a url and whe
        };
        xhr.send();
    }
-   function showUserInfo() {
+    function showBrandInfo() {
+       var id = document.getElementById('brand_id').value;
+       // Make an AJAX request to the Laravel route.
+       var xhr = new XMLHttpRequest();
+       xhr.open('GET', `/getBrandData/${id}`);
+       xhr.onload = function() {
+           if (xhr.status === 200) {
+               // Parse the JSON response.
+               var userInfo = JSON.parse(xhr.responseText);
+
+               // Set the values of the input readonly fields.
+               document.querySelector('input[name="name"]').value = userInfo.name;
+               document.querySelector('input[name="numcl"]').value = userInfo.numcl;
+               document.querySelector('input[name="pay"]').value = userInfo.pay;
+               document.querySelector('input[name="mod"]').value = userInfo.mod;
+
+           } else {
+               // Handle the error.
+           }
+       };
+       xhr.send();
+   }
+   function showtenantInfo() {
     var radioButton = document.querySelector('input[name="is_tenant"]:checked');
     var selectBox = document.querySelector('#slc');
 

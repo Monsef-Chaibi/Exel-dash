@@ -340,7 +340,8 @@ class Controller extends BaseController
         $data = Data::where('bildoc',$typeid)->get();
         $datauser = ContratUser::get();
         $port = Port::get();
-        return view('Show')->with('data',$data)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
+        $brand = Brand::get();
+        return view('Show')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
     function ShowForB($id){
         $typeid = decrypt($id);
@@ -509,6 +510,16 @@ class Controller extends BaseController
                     'work_phone' => $user->wornum,
                     'activity' => $user->activity,
                     'mobile_number' => $user->mobnum,
+                ]);
+            }
+            public function showBrandInfo($id) {
+                $user = Brand::find($id);
+
+                return response()->json([
+                    'name' => $user->name,
+                    'numcl' => $user->numcl,
+                    'pay' => $user->pay,
+                    'mod' => $user->mod,
                 ]);
             }
             public function AddBrand(Request $request)

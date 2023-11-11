@@ -60,6 +60,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::post('/AddBrand', [Controller::class, 'AddBrand'])->name('AddBrand');
     Route::post('/AddContratUser', [Controller::class, 'AddContratUser'])->name('AddContratUser');
     Route::get('/getUserData/{id}',[Controller::class, 'getUserData']);
+    Route::get('/getBrandData/{id}',[Controller::class, 'showBrandInfo']);
 
 
 });
