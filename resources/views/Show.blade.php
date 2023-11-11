@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <style>
+
         @media only screen and (max-width: 979px) {
             .ag-courses_item {
                 -ms-flex-preferred-size: calc(50% - 30px);
@@ -433,6 +434,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   color: hsla(0, 0%, 1000%, .6);
   font-size: 1.6rem;
 }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -740,9 +742,17 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="pay" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Payload " type="text" readonly>
             <input name="mod" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Model " type="text" readonly>
             <br>
-            <label for="" style="margin-top:25px">Entry Date :</label>
-            <input type="date" style="width: 38%;border-radius:5px;margin-top:25px">
-
+            <label for="yearSelect">Select a Year:</label>
+            <select id="yearSelect" name="selectedYear" required>
+                <option value="" disabled selected>Select Year</option>
+                @php
+                    $currentYear = date("Y");
+                    $startYear = 1900; // Change this to your desired start year
+                @endphp
+                @for ($year = $currentYear; $year >= $startYear; $year--)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endfor
+            </select>
 
 
 
