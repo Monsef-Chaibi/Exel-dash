@@ -743,16 +743,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="mod" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Model " type="text" readonly>
             <br>
             <label for="yearSelect">Select a Year:</label>
-            <select id="yearSelect" name="selectedYear" required>
-                <option value="" disabled selected>Select Year</option>
-                @php
-                    $currentYear = date("Y");
-                    $startYear = 1900; // Change this to your desired start year
-                @endphp
-                @for ($year = $currentYear; $year >= $startYear; $year--)
-                    <option value="{{ $year }}">{{ $year }}</option>
-                @endfor
-            </select>
+            <input type="date" min="2000-01-01" max="2030-12-31">
+
 
 
 
