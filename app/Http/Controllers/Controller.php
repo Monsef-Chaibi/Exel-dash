@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
+use App\Models\Brand;
 use App\Models\ContratUser;
 use App\Models\Data;
 use App\Models\Port;
@@ -513,8 +514,12 @@ class Controller extends BaseController
             public function AddBrand(Request $request)
             {
 
-                $owner = new Port();
-                $owner->nameofport = $request->input('nameofport');
+                $owner = new Brand();
+                $owner->titel = $request->input('titel');
+                $owner->name = $request->input('name');
+                $owner->numcl = $request->input('numcl');
+                $owner->pay = $request->input('pay');
+                $owner->mod = $request->input('mod');
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
