@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('titel')->nullable();
-            $table->string('name')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('model')->nullable();
+            $table->string('modtype')->nullable();
+            $table->string('chtype')->nullable();
+            $table->string('vcap')->nullable();
             $table->string('numcl')->nullable();
-            $table->string('pay')->nullable();
-            $table->string('mod')->nullable();
+            $table->string('weight')->nullable();
             $table->timestamps();
         });
     }
