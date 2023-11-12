@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('vcap')->nullable();
             $table->string('numcl')->nullable();
             $table->string('weight')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

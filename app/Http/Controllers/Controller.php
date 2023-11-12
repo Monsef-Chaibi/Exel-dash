@@ -523,6 +523,7 @@ class Controller extends BaseController
                     'vcap' => $user->vcap,
                     'numcl' => $user->numcl,
                     'weight' => $user->weight,
+                    'year' => $user->year,
                 ]);
             }
             public function AddBrand(Request $request)

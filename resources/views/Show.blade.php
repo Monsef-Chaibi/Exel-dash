@@ -340,7 +340,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 }
 
 .modal__btn {
-  margin-top: 4rem;
+  margin-top: -1rem;
   padding: 1rem 1.6rem;
   border: 1px solid var(--border-color);
   border-radius: 100rem;
@@ -759,8 +759,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="weight" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Weight" type="text">
             <input name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
             <br>
-            <label for="" style="margin-top:25px">Entry Date :</label>
-            <input type="number" id="yearInput" name="year" min="1900" max="2100" style="width: 39%;border-radius:5px;margin-top:25px">
+            <label for="" style="margin-top:25px">Registration Type :</label>
+            <select name="" id="" style="width: 33%;border-radius:5px;margin-top:10px">
+                <option value="">Private </option>
+                <option value="">Private transfer</option>
+                <option value="">Public transport</option>
+            </select>
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
                     <tr class="fr">
@@ -804,7 +808,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
-            <button type="submit" class="modal__btn">Print &rarr;</button>
+            <button type="submit" onclick="alert('الطباعة في طور البرمجة')" class="modal__btn">Print &rarr;</button>
             <a href="#m1-c" class="link-2"></a>
         </div>
     </div>
@@ -837,28 +841,34 @@ when users will click/enter button(link) browser will add a #id in a url and whe
        };
        xhr.send();
    }
-    function showBrandInfo() {
-       var id = document.getElementById('brand_id').value;
-       // Make an AJAX request to the Laravel route.
-       var xhr = new XMLHttpRequest();
-       xhr.open('GET', `/getBrandData/${id}`);
-       xhr.onload = function() {
-           if (xhr.status === 200) {
-               // Parse the JSON response.
-               var userInfo = JSON.parse(xhr.responseText);
+   function showBrandInfo() {
+    var id = document.getElementById('brand_id').value;
+    // Make an AJAX request to the Laravel route.
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', `/getBrandData/${id}`);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Parse the JSON response.
+            var brandInfo = JSON.parse(xhr.responseText);
 
-               // Set the values of the input readonly fields.
-               document.querySelector('input[name="name"]').value = userInfo.name;
-               document.querySelector('input[name="numcl"]').value = userInfo.numcl;
-               document.querySelector('input[name="pay"]').value = userInfo.pay;
-               document.querySelector('input[name="mod"]').value = userInfo.mod;
+            // Set the values of the input readonly fields.
+            document.querySelector('input[name="brand"]').value = brandInfo.brand;
+            document.querySelector('input[name="model"]').value = brandInfo.model;
+            document.querySelector('input[name="modtype"]').value = brandInfo.modtype;
+            document.querySelector('input[name="chtype"]').value = brandInfo.chtype;
+            document.querySelector('input[name="vcap"]').value = brandInfo.vcap;
+            document.querySelector('input[name="numcl"]').value = brandInfo.numcl;
+            document.querySelector('input[name="weight"]').value = brandInfo.weight;
+            document.querySelector('input[name="year"]').value = brandInfo.year;
 
-           } else {
-               // Handle the error.
-           }
-       };
-       xhr.send();
-   }
+        } else {
+            // Handle the error.
+            console.error('Error fetching brand data:', xhr.status, xhr.statusText);
+        }
+    };
+    xhr.send();
+}
+
    function showtenantInfo() {
     var radioButton = document.querySelector('input[name="is_tenant"]:checked');
     var selectBox = document.querySelector('#slc');
