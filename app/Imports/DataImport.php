@@ -34,6 +34,8 @@ public function model(array $row)
                 "shipp"=> $row[14],
                 "bildoc"=> $row[19],
                 "bildt"=> $row[20],
+                "vin"=> $row[7],
+                "color"=> $row[23],
             ]);
         }
     }

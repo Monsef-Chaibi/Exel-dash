@@ -300,10 +300,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
       <form action="/AddBrand" method="POST" class="modal__text" dir="ltr">
           @csrf
           <input name="titel" style="width: 49%;border-radius:5px;margin-left:25%;margin-bottom:30px" placeholder="Title of brand" type="text"><br>
-          <input name="name" style="width: 49%;border-radius:5px" placeholder="Brand Name" type="text">
+          <input name="brand" style="width: 49%;border-radius:5px" placeholder="Vehicle Brand" type="text">
+          <input name="model" style="width: 49%;border-radius:5px" placeholder="Vehicle Model" type="text">
+          <input name="modtype" style="width: 49%;border-radius:5px" placeholder="Vehicle Type" type="text">
+          <input name="chtype" style="width: 49%;border-radius:5px" placeholder="Chassis Type" type="text">
+          <input name="vcap" style="width: 49%;border-radius:5px" placeholder="Vehicle Load Capacity" type="text">
           <input name="numcl" style="width: 49%;border-radius:5px" placeholder="Number of Cylinders" type="text">
-          <input name="pay" style="width: 49%;border-radius:5px" placeholder="Payload" type="text">
-          <input name="mod" style="width: 49%;border-radius:5px" placeholder="Model" type="text">
+          <input name="weight" style="width: 49%;border-radius:5px" placeholder="Vehicle Weight" type="text">
           <br>
           <button type="submit" class="modal__btn">Add &rarr;</button>
       </form>

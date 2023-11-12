@@ -17,5 +17,7 @@ class Data extends Model
         'shipp',
         'bildoc',
         'bildt',
+        'vin',
+        'color',
     ];
 }
