@@ -516,10 +516,13 @@ class Controller extends BaseController
                 $user = Brand::find($id);
 
                 return response()->json([
-                    'name' => $user->name,
+                    'brand' => $user->brand,
+                    'model' => $user->model,
+                    'modtype' => $user->modtype,
+                    'chtype' => $user->chtype,
+                    'vcap' => $user->vcap,
                     'numcl' => $user->numcl,
-                    'pay' => $user->pay,
-                    'mod' => $user->mod,
+                    'weight' => $user->weight,
                 ]);
             }
             public function AddBrand(Request $request)
@@ -534,6 +537,7 @@ class Controller extends BaseController
                 $owner->vcap = $request->input('vcap');
                 $owner->numcl = $request->input('numcl');
                 $owner->weight = $request->input('weight');
+                $owner->year = $request->input('year');
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');

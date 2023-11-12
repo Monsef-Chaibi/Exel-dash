@@ -308,11 +308,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
           <input name="numcl" style="width: 49%;border-radius:5px" placeholder="Number of Cylinders" type="text">
           <input name="weight" style="width: 49%;border-radius:5px" placeholder="Vehicle Weight" type="text">
           <label for="" style="font-size: 20px">Year of Manufacture :</label>
-          <select name="" id="" style="width: 32%;border-radius:5px">
-            <option value="">2023</option>
-            <option value="">2024</option>
-            <option value="">2025</option>
-            <option value="">2026</option>
+          <select name="year" id="" style="width: 32%;border-radius:5px">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
           </select>
           <br>
           <button type="submit" class="modal__btn">Add &rarr;</button>
