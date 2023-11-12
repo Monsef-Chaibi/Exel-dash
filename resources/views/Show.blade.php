@@ -682,6 +682,21 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 checkboxes[i].checked = !allChecked;
             }
         }
+        function selectAllpop() {
+            var checkboxes = document.getElementsByClassName('custom-');
+            var allChecked = true;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
+            }
+        }
     </script>
 </x-app-layout>
   <!-- modal 1 -->
@@ -742,7 +757,38 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <br>
             <label for="" style="margin-top:25px">Entry Date :</label>
             <input type="number" id="yearInput" name="year" min="1900" max="2100" style="width: 39%;border-radius:5px;margin-top:25px">
-
+            <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                <thead>
+                    <tr class="fr">
+                        <th><button onclick="selectAllpop()">Select All</button></th>
+                        <th>Product</th>
+                        <th>Long Description</th>
+                        <th>GT Number</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                @if ($item->status != 1)
+                                    <td data-th="Supplier Name">
+                                        <input class="custom-" style="border-radius:5px"
+                                            type="checkbox" name="selectedItems[]"
+                                            value="{{ $item->id }}">
+                                    </td>
+                                    <td data-th="Supplier Name">
+                                        {{ $item->product }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->desc }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->gtnum }}
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+            </table>
 
 
 
@@ -750,7 +796,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
-            <button type="submit" class="modal__btn">Add &rarr;</button>
+            <button type="submit" class="modal__btn">Print &rarr;</button>
             <a href="#m1-c" class="link-2"></a>
         </div>
     </div>
