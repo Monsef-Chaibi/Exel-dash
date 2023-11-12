@@ -527,10 +527,13 @@ class Controller extends BaseController
 
                 $owner = new Brand();
                 $owner->titel = $request->input('titel');
-                $owner->name = $request->input('name');
+                $owner->brand = $request->input('brand');
+                $owner->model = $request->input('model');
+                $owner->modtype = $request->input('modtype');
+                $owner->chtype = $request->input('chtype');
+                $owner->vcap = $request->input('vcap');
                 $owner->numcl = $request->input('numcl');
-                $owner->pay = $request->input('pay');
-                $owner->mod = $request->input('mod');
+                $owner->weight = $request->input('weight');
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
