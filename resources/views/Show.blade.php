@@ -778,7 +778,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                @if ($item->status != 1)
                                     <td data-th="Supplier Name">
                                         <input class="custom-" style="border-radius:5px"
                                             type="checkbox" name="selectedItems[]"
@@ -796,7 +795,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <td data-th="Supplier Code">
                                         {{ $item->gtnum }}
                                     </td>
-                                @endif
+
                             </tr>
                         @endforeach
                     </tbody>
