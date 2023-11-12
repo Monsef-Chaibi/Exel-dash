@@ -750,10 +750,14 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <option value="{{$item->id}}">{{$item->titel}}</option>
                 @endforeach
             </select><br>
-            <input name="name" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Vehicle Brand" type="text" readonly>
-            <input name="numcl" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Number of Cylinders " type="text" readonly>
-            <input name="pay" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Payload " type="text" readonly>
-            <input name="mod" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Model " type="text" readonly>
+            <input name="brand" style="width: 49%;border-radius:5px;margin-top:25px" placeholder="Vehicle Brand" type="text">
+            <input name="model" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Model" type="text">
+            <input name="modtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Type" type="text">
+            <input name="chtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Chassis Type" type="text">
+            <input name="vcap" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Load Capacity" type="text">
+            <input name="numcl" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Number of Cylinders" type="text">
+            <input name="weight" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Weight" type="text">
+            <input name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
             <br>
             <label for="" style="margin-top:25px">Entry Date :</label>
             <input type="number" id="yearInput" name="year" min="1900" max="2100" style="width: 39%;border-radius:5px;margin-top:25px">
