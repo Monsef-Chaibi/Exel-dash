@@ -307,6 +307,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
           <input name="vcap" style="width: 49%;border-radius:5px" placeholder="Vehicle Load Capacity" type="text">
           <input name="numcl" style="width: 49%;border-radius:5px" placeholder="Number of Cylinders" type="text">
           <input name="weight" style="width: 49%;border-radius:5px" placeholder="Vehicle Weight" type="text">
+          <label for="">Year of Manufacture :</label>
           <select name="" id="">
             <option value="">2023</option>
             <option value="">2024</option>
