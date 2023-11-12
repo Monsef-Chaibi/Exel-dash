@@ -294,7 +294,7 @@ body {
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div style="text-align: center;" class="ag-courses-item_title">
-                                    Add New Contrat
+                                    Add Items of Contrat
                                 </div>
 
                             </a>
@@ -353,7 +353,7 @@ body {
 </div>
 <script>
     $(document).ready(function(){
-
+      
         fetch_customer_data();
 
         function fetch_customer_data(query = '')

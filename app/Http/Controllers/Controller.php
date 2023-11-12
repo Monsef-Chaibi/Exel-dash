@@ -99,7 +99,7 @@ class Controller extends BaseController
         }
         function action(Request $request)
         {
-            if(auth()->user()->cond == 0)
+            if(auth()->user()->cond == 0 || auth()->user()->cond == null )
             {
                 if($request->ajax())
                 {
@@ -119,7 +119,7 @@ class Controller extends BaseController
                             ->groupBy('bildoc')
                             ->get();
                     }
-
+                    
                     $total_row = $data->count();
                     if($total_row > 0){
                         foreach($data as $row)
