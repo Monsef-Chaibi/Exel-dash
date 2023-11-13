@@ -336,25 +336,25 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column22 style8 null"></td>
           </tr>
           <tr class="row11">
-            <td class="column0 style13 s style14" colspan="6">سعودية</td>
+            <td class="column0 style13 s style14" colspan="6">{{ $requestData['nationality'] }}</td>
             <td class="column6 style15 s style15" colspan="3">الجنسية </td>
-            <td class="column9 style16 f style17" colspan="11">{{ $requestData['name'] }}</td>
+            <td class="column9 style16 f style17" colspan="11">{{ $requestData['full_name'] }}</td>
             <td class="column20 style18 null"></td>
             <td class="column21 style19 s style20" colspan="2"> الإسم رباعيا </td>
           </tr>
           <tr class="row12">
-            <td class="column0 style21 f style22" colspan="5">0</td>
+            <td class="column0 style21 f style22" colspan="5">{{ $requestData['mobile_number'] }}</td>
             <td class="column6 style15 s style17" colspan="4" style="border-left: 1px solid #000000 !important;">هاتف المنزل /</td>
-            <td colspan="11" class="column9 style23 f">0</td>
+            <td colspan="11" class="column9 style23 f">{{ $requestData['national_id'] }}</td>
             <td class="column19 style24 s style24" colspan="4">البطاقة الشخصية </td>
           </tr>
           <tr class="row13">
-            <td class="column0 style25 n style14" colspan="6">6930000</td>
+            <td class="column0 style25 n style14" colspan="4">6930000</td>
             <td class="column6 style15 s style15" colspan="3">هاتف العمل </td>
-            <td class="column9 style16 s style15" colspan="4">جدة</td>
-            <td class="column13 style15 s style17" colspan="3">المدينة </td>
-            <td class="column16 style16 s style15" colspan="4">حي الصفا</td>
-            <td class="column20 style15 s style17" colspan="3">العنوان </td>
+            <td class="column9 style16 s style15" colspan="3">جدة</td>
+            <td class="column13 style15 s style17" colspan="2">/ المدينة </td>
+            <td class="column16 style16 s style15" colspan="8">{{ $requestData['address'] }}</td>
+            <td class="column20 style15 s style17" colspan="3">/ العنوان </td>
           </tr>
           <tr class="row14">
             <td class="column0 style26 f style28" colspan="13">=[1]Registration!AM18</td>

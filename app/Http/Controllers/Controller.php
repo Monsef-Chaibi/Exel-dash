@@ -553,7 +553,7 @@ class Controller extends BaseController
                 return $pdf->download('document.pdf');
             }
             function PDF(Request $request){
-                dd($request);
+            
                 $requestData = $request->all();
                 return view('pdf')->with('requestData', $requestData);
             }
