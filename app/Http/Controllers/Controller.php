@@ -554,6 +554,7 @@ class Controller extends BaseController
             }
             function PDF(Request $request){
                 dd($request);
-                return view('pdf');
+                $requestData = $request->all();
+                return view('pdf')->with('requestData', $requestData);
             }
 }

@@ -338,7 +338,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
           <tr class="row11">
             <td class="column0 style13 s style14" colspan="6">سعودية</td>
             <td class="column6 style15 s style15" colspan="3">الجنسية </td>
-            <td class="column9 style16 f style17" colspan="11">0</td>
+            <td class="column9 style16 f style17" colspan="11">{{ $requestData['name'] }}</td>
             <td class="column20 style18 null"></td>
             <td class="column21 style19 s style20" colspan="2"> الإسم رباعيا </td>
           </tr>
