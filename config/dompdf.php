@@ -13,12 +13,13 @@ return array(
     */
     'fonts' => [
         'arabic' => [
-            'normal' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
-            'bold' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
-            'italic' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
-            'bold_italic' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
+            'normal' => public_path('fonts/IBMPlexSansArabic-Regular.ttf'),
+            'bold' => public_path('fonts/IBMPlexSansArabic-Bold.ttf'), // If you have a bold version
+            'italic' => public_path('fonts/IBMPlexSansArabic-Italic.ttf'), // If you have an italic version
+            'bold_italic' => public_path('fonts/IBMPlexSansArabic-BoldItalic.ttf'), // If you have a bold italic version
         ],
     ],
+
     'show_warnings' => false,   // Throw an Exception on warnings from dompdf
 
     'public_path' => null,  // Override the public path if needed
