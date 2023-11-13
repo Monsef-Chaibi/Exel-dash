@@ -552,7 +552,8 @@ class Controller extends BaseController
 
                 return $pdf->download('document.pdf');
             }
-            function PDF(){
+            function PDF(Request $request){
+                dd($request);
                 return view('pdf');
             }
 }

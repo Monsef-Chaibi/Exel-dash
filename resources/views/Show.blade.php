@@ -705,6 +705,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Print Facture :</h1>
+        <form action="/pdf" method="get">
+            @csrf
             <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
             <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
                 <option style="display: none;">Select User</option>
@@ -727,7 +729,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <label style="margin-left: 5px" for="">No</label>
                 <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showtenantInfo()" value="Yes">
                 <label style="margin-left: 5px" for="">Yes</label>
-                <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="selected_id" id="slc">
+                <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="tenant" id="slc">
                   <option value="" disabled selected>Select User</option>
                   @foreach ($datauser as $item)
                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -735,16 +737,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </select>
             </div><br>
             <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
-            <select style="border-radius:5px;width:37%" id="selected_id" >
-                <option style="display: none;">Select User</option>
+            <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
+                <option style="display: none;">Select Port</option>
                 @foreach ($port as $item)
                     <option value="{{$item->id}}">{{$item->nameofport}}</option>
                 @endforeach
             </select>
             <label for="" style="margin-left: 20px">Entry Date :</label>
-            <input type="date" style="width: 38%;border-radius:5px">
+            <input type="date" name="entrydate" style="width: 38%;border-radius:5px">
             <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>
-            <select style="border-radius:5px;width:37%;margin-top:25px" id="brand_id"  onchange="showBrandInfo()">
+            <select  style="border-radius:5px;width:37%;margin-top:25px" id="brand_id"  onchange="showBrandInfo()">
                 <option style="display: none;">Select Brand</option>
                 @foreach ($brand as $item)
                     <option value="{{$item->id}}">{{$item->titel}}</option>
@@ -760,7 +762,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <input name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
             <br>
             <label for="" style="margin-top:25px">Registration Type :</label>
-            <select name="" id="" style="width: 33%;border-radius:5px;margin-top:10px">
+            <select name="regtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
                 <option value="">Private </option>
                 <option value="">Private transfer</option>
                 <option value="">Public transport</option>
@@ -768,7 +770,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
                     <tr class="fr">
-                        <th><button onclick="selectAllpop()">Select All</button></th>
+                        <th><button type="button" onclick="selectAllpop()">Select All</button></th>
                         <th>Product</th>
                         <th>VIN</th>
                         <th>color</th>
@@ -807,6 +809,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
+
             <a href="/generate-pdf">
                 <button type="submit" class="modal__btn">Print &rarr;</button>
             </a>
