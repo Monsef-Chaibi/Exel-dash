@@ -550,7 +550,7 @@ class Controller extends BaseController
                     'content' => 'Your PDF content in Arabic: اللغة العربية',
                 ];
 
-                $pdf = PDF::loadView('pdf.view', $data);
+                $pdf = PDF::loadView('pdf', $data);
 
                 return $pdf->download('example.pdf');
             }
