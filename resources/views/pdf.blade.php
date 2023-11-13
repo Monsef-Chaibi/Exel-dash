@@ -364,61 +364,61 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
           </tr>
           <tr class="row15">
             <td class="column0 style29 f style30" colspan="5">=[1]Registration!AP16</td>
-            <td class="column5 style15 s style17" colspan="3">رقم الهوية </td>
+            <td class="column5 style15 s style17" colspan="3">/ رقم الهوية </td>
             <td class="column8 style31 f style31" colspan="3">0</td>
             <td class="column11 style31 f style31" colspan="3">0</td>
             <td class="column14 style31 f style31" colspan="3">0</td>
             <td class="column17 style31 f style31" colspan="3">0</td>
-            <td class="column20 style32 s style33" colspan="3">إسم المستأجر </td>
+            <td class="column20 style32 s style33" colspan="3"> / إسم المستأجر </td>
           </tr>
           <tr class="row16">
             <td class="column0 style34 f style35" colspan="3">0</td>
-            <td class="column3 style36 s style37" colspan="3">تاريخ الدخول</td>
+            <td class="column3 style36 s style37" colspan="3">/ تاريخ الدخول</td>
             <td class="column6 style16 f style15" colspan="3">0</td>
-            <td class="column9 style15 s style17" colspan="3">ميناء الدخول </td>
+            <td class="column9 style15 s style17" colspan="3">/ ميناء الدخول </td>
             <td class="column12 style38 s style39" colspan="8">1020338292</td>
-            <td class="column20 style15 s style17" colspan="3">بطاقة الجمارك </td>
+            <td class="column20 style15 s style17" colspan="3">/ بطاقة الجمارك </td>
           </tr>
           <tr class="row17">
             <td class="column0 style34 f style35" colspan="3">0</td>
-            <td class="column3 style40 s style41" colspan="3">تاريخ التسجيل</td>
+            <td class="column3 style40 s style41" colspan="3">/ تاريخ التسجيل</td>
             <td class="column6 style16 s style15" colspan="3">خصوصي</td>
-            <td class="column9 style15 s style17" colspan="3">نوع التسجيل </td>
+            <td class="column9 style15 s style17" colspan="3">/ نوع التسجيل </td>
             <td class="column12 style16 null style15" colspan="8"></td>
-            <td class="column20 style15 s style17" colspan="3">اللوحة الحرفية </td>
+            <td class="column20 style15 s style17" colspan="3">/ اللوحة الحرفية </td>
           </tr>
           <tr class="row18">
             <td class="column0 style16 s style15" colspan="3">كامري</td>
-            <td class="column3 style42 s style43" colspan="3">طراز المركبة</td>
+            <td class="column3 style42 s style43" colspan="3">/ طراز المركبة</td>
             <td class="column6 style16 f style15" colspan="3">0</td>
-            <td class="column9 style36 s style37" colspan="3">ماركة المركبة </td>
+            <td class="column9 style36 s style37" colspan="3">/ ماركة المركبة </td>
             <td class="column12 style16 null style15" colspan="8"></td>
-            <td class="column20 style15 s style17" colspan="3">اللوحة الرقمية </td>
+            <td class="column20 style15 s style17" colspan="3">/ اللوحة الرقمية </td>
           </tr>
           <tr class="row19">
             <td class="column0 style44 n style45" colspan="3">4</td>
-            <td class="column3 style36 s style37" colspan="3">عدد السلندرات</td>
+            <td class="column3 style36 s style37" colspan="3">/ عدد السلندرات</td>
             <td class="column6 style44 n style45" colspan="3">5</td>
-            <td class="column9 style36 s style37" colspan="3">حمولة المركبة </td>
+            <td class="column9 style36 s style37" colspan="3">/ حمولة المركبة </td>
             <td class="column12 style16 s style15" colspan="3">سيدان</td>
-            <td class="column15 style15 s style17" colspan="3">نوع الهيكل </td>
+            <td class="column15 style15 s style17" colspan="3">/ نوع الهيكل </td>
             <td class="column18 style15 s style15" colspan="3">صالون</td>
-            <td class="column21 style15 s style17" colspan="2">نوع المركبة </td>
+            <td class="column21 style15 s style17" colspan="2">/ نوع المركبة </td>
           </tr>
           <tr class="row20">
-            <td class="column0 style46 null style33" colspan="12"></td>
+            <td class="column0 style46 null style33" colspan="10"></td>
             <td class="column12 style16 n style15" colspan="3">1525</td>
-            <td class="column15 style15 s style17" colspan="3">وزن المركبة </td>
+            <td class="column15 style15 s style17" colspan="5">/ وزن المركبة </td>
             <td class="column18 style32 n style32" colspan="3">2021</td>
-            <td class="column21 style32 s style33" colspan="2">سنة الصنع </td>
+            <td class="column21 style32 s style33" colspan="2">/ سنة الصنع </td>
           </tr>
           <tr class="row21">
-            <td class="column0 style47 s style15" colspan="5">---------------------</td>
-            <td class="column5 style15 s style17" colspan="3">عدد المحاور </td>
+            <td class="column0 style47 s style15" colspan="4">---------------------</td>
+            <td class="column5 style15 s style17" colspan="4">/ عدد المحاور </td>
             <td class="column8 style47 f style15" colspan="5">=[1]Registration!AP38</td>
-            <td class="column13 style15 s style17" colspan="3">اللون الاخر </td>
+            <td class="column13 style15 s style17" colspan="3">/ اللون الاخر </td>
             <td class="column16 style16 s style15" colspan="5">أبيض</td>
-            <td class="column21 style15 s style17" colspan="2">اللون الرئيسي </td>
+            <td class="column21 style15 s style17" colspan="2">/ اللون الرئيسي </td>
           </tr>
           <tr class="row22">
             <td class="column0 style48 s style50" colspan="20">JTNB29HK0L3087300</td>
