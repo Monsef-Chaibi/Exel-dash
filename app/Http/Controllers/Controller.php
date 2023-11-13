@@ -545,13 +545,7 @@ class Controller extends BaseController
             }
             public function generatePDF()
             {
-                $data = [
-                    'title' => 'Your PDF Title',
-                    'content' => 'Your PDF content in Arabic: اللغة العربية',
-                ];
-
-                $pdf = PDF::loadView('pdf', $data);
-
-                return $pdf->download('example.pdf');
+                $pdf = PDF::loadView('pdf');
+                return $pdf->download('invoice.pdf');
             }
 }
