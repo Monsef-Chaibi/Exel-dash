@@ -2,7 +2,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <style>
-  body { font-family: DejaVu Sans, sans-serif; }
+  @font-face {
+    font-family: 'Amiri-Regular'; /* Specify a name for your font */
+    src: url('fonts/Amiri-Regular.ttf') format('truetype'); /* Adjust the path and format */
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'Amiri-Regular', sans-serif;
+}
+
 </style>
 
 <body>
