@@ -180,9 +180,9 @@
   <body>
 <style>
 @page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
-body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 </style>
-    <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+    <table style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
         <col class="col0">
         <col class="col1">
         <col class="col2">
@@ -219,7 +219,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-botto
             <td class="column8 style1 null"></td>
             <td class="column9 style1 null"></td>
             <td class="column10 style1 null"></td>
-            <td class="column11 style1"><img src="{{ asset('img/logo2.jpg') }}" alt="Example Image">            </td>
+            <td class="column11 style1"><img style="height: 100px" src="{{ asset('img/logo2.jpg') }}" alt="Example Image">            </td>
             <td class="column12 style1 null"></td>
             <td class="column13 style1 null"></td>
             <td class="column14 style1 null"></td>
@@ -230,7 +230,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-botto
             <td class="column19 style1 null"></td>
             <td class="column20 style1 null"></td>
             <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"><img src="{{ asset('img/logo1.jpg') }}" alt="Example Image">            </td>
+            <td class="column22 style1 null"><img style="height: 100px" src="{{ asset('img/logo1.jpg') }}" alt="Example Image">            </td>
           </tr>
           <tr class="row5">
             <td class="column0 style1 null"></td>
