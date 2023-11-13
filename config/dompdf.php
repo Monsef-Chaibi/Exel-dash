@@ -1,7 +1,7 @@
 <?php
 
 return array(
-
+    'font_path' => base_path('public/fonts/'),
     /*
     |--------------------------------------------------------------------------
     | Settings

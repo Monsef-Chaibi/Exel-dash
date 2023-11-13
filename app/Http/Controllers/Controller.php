@@ -543,16 +543,14 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
             }
-            public function generatePDF()
+            public function generatePdf()
             {
-                $data = [
-                    'title' => 'Your PDF Title',
-                    'content' => 'Your PDF content in Arabic: اللغة العربية',
-                ];
+                $pdf = PDF::loadView('pdf', [
+                    'title' => 'Your Title',
+                    'content' => 'النص العربي هنا', // Arabic text here
+                ]);
 
-                $pdf = PDF::loadView('pdf', $data);
-
-                return $pdf->download('example.pdf');
+                return $pdf->download('document.pdf');
             }
 
 }
