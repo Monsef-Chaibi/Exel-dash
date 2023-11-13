@@ -732,7 +732,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="tenant" id="slc">
                   <option value="" disabled selected>Select User</option>
                   @foreach ($datauser as $item)
-                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    <option value="{{$item->name}}">{{$item->name}}</option>
                   @endforeach
                 </select>
             </div><br>
@@ -740,7 +740,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
                 <option style="display: none;">Select Port</option>
                 @foreach ($port as $item)
-                    <option value="{{$item->id}}">{{$item->nameofport}}</option>
+                    <option value="{{$item->nameofport}}">{{$item->nameofport}}</option>
                 @endforeach
             </select>
             <label for="" style="margin-left: 20px">Entry Date :</label>
@@ -763,9 +763,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <br>
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="regtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
-                <option value="">Private </option>
-                <option value="">Private transfer</option>
-                <option value="">Public transport</option>
+                <option value="خصوصي">Private </option>
+                <option value="نقل خاص">Private transfer</option>
+                <option value="نقل عام">Public transport</option>
             </select>
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
@@ -809,6 +809,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
+            <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
 
             <a href="/generate-pdf">
                 <button type="submit" class="modal__btn">Print &rarr;</button>
