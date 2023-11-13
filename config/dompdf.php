@@ -11,6 +11,14 @@ return array(
     | in dompdf_config.inc.php. You can also override the entire config file.
     |
     */
+    'fonts' => [
+        'arabic' => [
+            'normal' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
+            'bold' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
+            'italic' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
+            'bold_italic' => base_path('vendor/arabeyes/arabeyes/fonts/tradbdo.ttf'),
+        ],
+    ],
     'show_warnings' => false,   // Throw an Exception on warnings from dompdf
 
     'public_path' => null,  // Override the public path if needed
