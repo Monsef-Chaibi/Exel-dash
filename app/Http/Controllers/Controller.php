@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use PDF;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
@@ -119,7 +119,7 @@ class Controller extends BaseController
                             ->groupBy('bildoc')
                             ->get();
                     }
-                    
+
                     $total_row = $data->count();
                     if($total_row > 0){
                         foreach($data as $row)
@@ -542,5 +542,13 @@ class Controller extends BaseController
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
+            }
+            public function generatePDF()
+            {
+                $data = ['key' => 'value']; // Your data to be passed to the PDF view
+
+                $pdf = PDF::loadView('pdf', $data);
+
+                return $pdf->download('document.pdf');
             }
 }

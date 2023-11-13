@@ -807,7 +807,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
-            <button type="submit" onclick="alert('الطباعة في طور البرمجة اسف على التاخير الخارج عن ارادتي ')" class="modal__btn">Print &rarr;</button>
+            <a href="/generate-pdf">
+                <button type="submit" class="modal__btn">Print &rarr;</button>
+            </a>
             <a href="#m1-c" class="link-2"></a>
         </div>
     </div>
