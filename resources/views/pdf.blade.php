@@ -232,106 +232,6 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-botto
             <td class="column21 style1 null"></td>
             <td class="column22 style1 null"><img src="{{ asset('img/logo1.jpg') }}" alt="Example Image">            </td>
           </tr>
-          <tr class="row1">
-            <td class="column0 style1 null"></td>
-            <td class="column1 style1 null"></td>
-            <td class="column2 style1 null"></td>
-            <td class="column3 style1 null"></td>
-            <td class="column4 style1 null"></td>
-            <td class="column5 style1 null"></td>
-            <td class="column6 style1 null"></td>
-            <td class="column7 style1 null"></td>
-            <td class="column8 style1 null"></td>
-            <td class="column9 style1 null"></td>
-            <td class="column10 style1 null"></td>
-            <td class="column11 style1 null"></td>
-            <td class="column12 style1 null"></td>
-            <td class="column13 style1 null"></td>
-            <td class="column14 style1 null"></td>
-            <td class="column15 style1 null"></td>
-            <td class="column16 style1 null"></td>
-            <td class="column17 style1 null"></td>
-            <td class="column18 style1 null"></td>
-            <td class="column19 style1 null"></td>
-            <td class="column20 style1 null"></td>
-            <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"></td>
-          </tr>
-          <tr class="row2">
-            <td class="column0 style1 null"></td>
-            <td class="column1 style1 null"></td>
-            <td class="column2 style1 null"></td>
-            <td class="column3 style1 null"></td>
-            <td class="column4 style1 null"></td>
-            <td class="column5 style1 null"></td>
-            <td class="column6 style1 null"></td>
-            <td class="column7 style1 null"></td>
-            <td class="column8 style1 null"></td>
-            <td class="column9 style1 null"></td>
-            <td class="column10 style1 null"></td>
-            <td class="column11 style1 null"></td>
-            <td class="column12 style1 null"></td>
-            <td class="column13 style1 null"></td>
-            <td class="column14 style1 null"></td>
-            <td class="column15 style1 null"></td>
-            <td class="column16 style1 null"></td>
-            <td class="column17 style1 null"></td>
-            <td class="column18 style1 null"></td>
-            <td class="column19 style1 null"></td>
-            <td class="column20 style1 null"></td>
-            <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"></td>
-          </tr>
-          <tr class="row3">
-            <td class="column0 style1 null"></td>
-            <td class="column1 style1 null"></td>
-            <td class="column2 style1 null"></td>
-            <td class="column3 style1 null"></td>
-            <td class="column4 style1 null"></td>
-            <td class="column5 style1 null"></td>
-            <td class="column6 style1 null"></td>
-            <td class="column7 style1 null"></td>
-            <td class="column8 style1 null"></td>
-            <td class="column9 style1 null"></td>
-            <td class="column10 style1 null"></td>
-            <td class="column11 style1 null"></td>
-            <td class="column12 style1 null"></td>
-            <td class="column13 style1 null"></td>
-            <td class="column14 style1 null"></td>
-            <td class="column15 style1 null"></td>
-            <td class="column16 style1 null"></td>
-            <td class="column17 style1 null"></td>
-            <td class="column18 style1 null"></td>
-            <td class="column19 style1 null"></td>
-            <td class="column20 style1 null"></td>
-            <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"></td>
-          </tr>
-          <tr class="row4">
-            <td class="column0 style1 null"></td>
-            <td class="column1 style1 null"></td>
-            <td class="column2 style1 null"></td>
-            <td class="column3 style1 null"></td>
-            <td class="column4 style1 null"></td>
-            <td class="column5 style1 null"></td>
-            <td class="column6 style1 null"></td>
-            <td class="column7 style1 null"></td>
-            <td class="column8 style1 null"></td>
-            <td class="column9 style1 null"></td>
-            <td class="column10 style1 null"></td>
-            <td class="column11 style1 null"></td>
-            <td class="column12 style1 null"></td>
-            <td class="column13 style1 null"></td>
-            <td class="column14 style1 null"></td>
-            <td class="column15 style1 null"></td>
-            <td class="column16 style1 null"></td>
-            <td class="column17 style1 null"></td>
-            <td class="column18 style1 null"></td>
-            <td class="column19 style1 null"></td>
-            <td class="column20 style1 null"></td>
-            <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"></td>
-          </tr>
           <tr class="row5">
             <td class="column0 style1 null"></td>
             <td class="column1 style1 null"></td>
@@ -581,3 +481,4 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-botto
     </table>
   </body>
 </html>
+<button onclick="window.print();">Print this Page</button>
