@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use PDF;
-use ArPHP\I18N\Arabic;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
@@ -546,18 +545,12 @@ class Controller extends BaseController
             }
             public function generatePdf()
             {
-                $reportHtml = view('pdf', [])->render();
+                $pdf = PDF::loadView('pdf', [
+                    'title' => 'Your Title',
+                    'content' => 'النص العربي هنا', // Arabic text here
+                ]);
 
-                $arabic = new Arabic();
-                $p = $arabic->arIdentify($reportHtml);
-
-                for ($i = count($p)-1; $i >= 0; $i-=2) {
-                    $utf8ar = $arabic->utf8Glyphs(substr($reportHtml, $p[$i-1], $p[$i] - $p[$i-1]));
-                    $reportHtml = substr_replace($reportHtml, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
-                }
-
-                $pdf = PDF::loadHTML($reportHtml);
-                return $pdf->download('purchase.pdf');
+                return $pdf->download('document.pdf');
             }
 
 }
