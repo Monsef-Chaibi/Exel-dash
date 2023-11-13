@@ -545,11 +545,13 @@ class Controller extends BaseController
             }
             public function generatePDF()
             {
-                $data = ['key' => 'النص العربي']; // Replace with your Arabic text
+                $data = [
+                    'title' => 'Your PDF Title',
+                    'content' => 'Your PDF content in Arabic: اللغة العربية',
+                ];
 
                 $pdf = PDF::loadView('pdf', $data);
-                $pdf->getDomPDF()->getCanvas()->get_cpdf()->selectFont('arabic');
 
-                return $pdf->download('document.pdf');
+                return $pdf->download('example.pdf');
             }
 }
