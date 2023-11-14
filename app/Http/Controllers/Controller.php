@@ -506,7 +506,8 @@ class Controller extends BaseController
                 $user = ContratUser::get();
                 $port = Port::get();
                 $brand = Brand::get();
-                return view('AddContrat')->with('user',$user)->with('port',$port)->with('brand',$brand);
+                $color = ColorCode::get();
+                return view('AddContrat')->with('user',$user)->with('port',$port)->with('color',$color)->with('brand',$brand);
             }
             public function AddContratUser(Request $request)
             {
@@ -692,6 +693,28 @@ class Controller extends BaseController
 
                         // Update the user information
                         $user->nameofport = $request->input('name');
+
+
+                        // Save the updated user information
+                        $user->save();
+
+                        // Redirect back or return a response as needed
+                        return redirect()->back()->with('success', 'User information updated successfully.');
+                    }
+                    public function editcolorcontrat(Request $request)
+                    {
+                        // Validate the form data (customize the validation rules as needed)
+
+
+                        // Get the user ID from the hidden input in the form
+                        $userId = $request->input('id');
+
+                        // Find the user in the database by ID
+                        $user = ColorCode::find($userId);
+
+                        // Update the user information
+                        $user->color = $request->input('color');
+                        $user->code = $request->input('code');
 
 
                         // Save the updated user information
