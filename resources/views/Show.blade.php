@@ -752,14 +752,14 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <option value="{{$item->id}}">{{$item->titel}}</option>
                 @endforeach
             </select><br>
-            <input name="brand" style="width: 49%;border-radius:5px;margin-top:25px" placeholder="Vehicle Brand" type="text">
-            <input name="model" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Model" type="text">
-            <input name="modtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Type" type="text">
-            <input name="chtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Chassis Type" type="text">
-            <input name="vcap" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Load Capacity" type="text">
-            <input name="numcl" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Number of Cylinders" type="text">
-            <input name="weight" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Weight" type="text">
-            <input name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
+            <input readonly name="brand" style="width: 49%;border-radius:5px;margin-top:25px" placeholder="Vehicle Brand" type="text">
+            <input readonly name="model" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Model" type="text">
+            <input readonly name="modtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Type" type="text">
+            <input readonly name="chtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Chassis Type" type="text">
+            <input readonly name="vcap" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Load Capacity" type="text">
+            <input readonly name="numcl" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Number of Cylinders" type="text">
+            <input readonly name="weight" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Weight" type="text">
+            <input readonly name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
             <br>
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="regtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
@@ -811,7 +811,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <br>
 
 
-            <a target="_blank" href="/generate-pdf">
+            <a  href="/generate-pdf">
                 <button type="submit" class="modal__btn">Print &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>

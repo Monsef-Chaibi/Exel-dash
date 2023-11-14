@@ -343,15 +343,15 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column21 style19 s style20" colspan="2"> الإسم رباعيا </td>
           </tr>
           <tr class="row12">
-            <td class="column0 style21 f style22" colspan="5">{{ $requestData['mobile_number'] }}</td>
+            <td class="column0 style21 f style22" colspan="5">___________</td>
             <td class="column6 style15 s style17" colspan="4" style="border-left: 1px solid #000000 !important;">هاتف المنزل /</td>
             <td colspan="11" class="column9 style23 f">{{ $requestData['national_id'] }}</td>
             <td class="column19 style24 s style24" colspan="4">البطاقة الشخصية </td>
           </tr>
           <tr class="row13">
-            <td class="column0 style25 n style14" colspan="4">6930000</td>
+            <td class="column0 style25 n style14" colspan="4">{{ $requestData['mobile_number'] }}</td>
             <td class="column6 style15 s style15" colspan="3">هاتف العمل </td>
-            <td class="column9 style16 s style15" colspan="3">جدة</td>
+            <td class="column9 style16 s style15" colspan="3">{{ $requestData['city'] }}</td>
             <td class="column13 style15 s style17" colspan="2">/ المدينة </td>
             <td class="column16 style16 s style15" colspan="8">{{ $requestData['address'] }}</td>
             <td class="column20 style15 s style17" colspan="3">/ العنوان </td>
@@ -426,7 +426,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column5 style15 s style17" colspan="4">/ عدد المحاور </td>
             <td class="column8 style47 f style15" colspan="5"></td>
             <td class="column13 style15 s style17" colspan="3">/ اللون الاخر </td>
-            <td class="column16 style16 s style15" colspan="5">أبيض</td>
+            <td class="column16 style16 s style15" colspan="5">{{$color}}</td>
             <td class="column21 style15 s style17" colspan="2">/ اللون الرئيسي </td>
           </tr>
           <tr class="row22">
@@ -487,3 +487,4 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         window.print();
     };
 </script>
+

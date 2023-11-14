@@ -576,6 +576,9 @@ class Controller extends BaseController
                     'gtnum' => $gtnum,
                     'vin' => $vin,
                     'color' => $color,
-                ]);
+                ])->withHeaders([
+                    'Content-Type' => 'text/html; charset=utf-8',
+                    'charset' => 'utf-8',
+                ])->render();
             }
 }
