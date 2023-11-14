@@ -27,9 +27,5 @@ class DataSemiExport implements FromCollection
             return Data::whereIn('id', $this->selectedItems)->get(['gtnum']); // Adjust columns as per your needs
         }
     }
-    public function headings(): array
-    {
-        // Customize column headers as needed
-        return ['Gt Number', 'Description', 'VIN'];
-    }
+ 
 }
