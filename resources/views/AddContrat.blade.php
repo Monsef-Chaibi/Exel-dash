@@ -10,7 +10,7 @@
             border:2px rgb(103, 255, 103) solid;
             padding:1%  ;
             border-radius:10px;
-            margin-left: 12%;
+            margin-left: 6%;
         }
         .btn:hover{
             background: rgb(103, 255, 103);
@@ -229,12 +229,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div style="padding: 3%" class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <a href="#m1-o" style="nargin-left:20px">
+                <a href="#m1-o">
                     <button class="btn" style="">
                         Add New User
                     </button>
                 </a>
-                <a href="#m2-o" style="nargin-left:20%">
+                <a href="#m2-o">
                     <button class="btn" style="">
                         Add Port of Entry
                     </button>
@@ -242,6 +242,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <a href="#m3-o">
                     <button class="btn" style="">
                         Add New Vehicle Brand
+                    </button>
+                </a>
+                <a href="#m4-o">
+                    <button class="btn" style="">
+                        Add New Color Code
                     </button>
                 </a>
             </div>
@@ -318,6 +323,27 @@ when users will click/enter button(link) browser will add a #id in a url and whe
           <button type="submit" class="modal__btn">Add &rarr;</button>
       </form>
       <a href="#m3-c" class="link-2"></a>
+    </div>
+  </div>
+</div>
+<!-- /modal 1 -->
+<!-- modal 1 -->
+<div  class="box">
+
+  <div class="modal-container" id="m4-o" style="--m-background: transparent;">
+    <div class="modal">
+      <h1 class="modal__title">Add New Color</h1>
+      <form action="/AddBrand" method="POST" class="modal__text" dir="ltr">
+          @csrf
+          <label for="">Color :</label>
+          <input name="color" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Color" type="text"><br>
+          <label for="">Code :</label>
+          <input name="code" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Code" type="text"><br>
+
+          <br>
+          <button type="submit" class="modal__btn">Add &rarr;</button>
+      </form>
+      <a href="#m4-c" class="link-2"></a>
     </div>
   </div>
 </div>
