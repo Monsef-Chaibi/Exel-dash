@@ -358,6 +358,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
 
         }
+        .inp
+        {
+            width: 50%;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
@@ -426,29 +430,30 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     @foreach ($user as $item)
                         <tr>
                                 <td data-th="Supplier Code">
-                                    {{$item->name}}
+                                    <input style="border: none" type="text" value="{{$item->name}}" >
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->nat}}
+                                    <input style="border: none" type="text" value="{{$item->nat}}" >
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->nat_id}}
+                                    <input style="border: none" type="text" value="{{$item->nat_id}}" >
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->adress}}
+                                    <input style="border: none" type="text" value="{{$item->adress}}" >
                                 </td>
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->city}}
+                                    <input class="inp" style="border: none" type="text" value="{{$item->city}}" >
+
                                 </td>
                                 <td data-th="Supplier Code">
-                                    <input type="text" value="{{$item->wornum}}" onchange="showValue(this)">
+                                    <input style="border: none" type="text" value="{{$item->wornum}}" >
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->activity}}
+                                    <input style="border: none" type="text" value="{{$item->activity}}" >
                                 </td>
                                 <td data-th="Supplier Code">
-                                    {{$item->mobnum}}
+                                    <input style="border: none" type="text" value="{{$item->wornum}}" >
                                 </td>
                                 <td data-th="Supplier C ode">
 
@@ -462,12 +467,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     </div>
 
 </x-app-layout>
-<script>
-    function showValue(inputElement) {
-        var enteredValue = inputElement.value;
-        console.log('Entered Value:', enteredValue);
-    }
-</script>
+
 
   <!-- modal 1 -->
   <div  class="box">
