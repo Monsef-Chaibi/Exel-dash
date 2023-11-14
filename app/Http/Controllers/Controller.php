@@ -117,7 +117,7 @@ class Controller extends BaseController
         }
         function action(Request $request)
         {
-            if(auth()->user()->cond == 0 || auth()->user()->cond == null )
+            if(auth()->user()->cond == 0 )
             {
                 if($request->ajax())
                 {

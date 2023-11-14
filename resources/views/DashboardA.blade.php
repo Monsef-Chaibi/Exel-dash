@@ -365,6 +365,7 @@ body {
                 dataType:'json',
                 success:function(data)
                 {
+                    console.log('seccess');
                     $('tbody').html(data.table_data);
                     $('#total_records').text(data.total_data);
                 }
