@@ -203,7 +203,7 @@ h3:after {
                                 </td>
                                 <td data-th="Supplier Name">
                                 @if ( $user->role == 0)
-                                    Accountant
+                                     Operation
                                 @endif
                                 @if ( $user->role == 2)
                                     Traffic
