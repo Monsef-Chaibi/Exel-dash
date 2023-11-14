@@ -201,7 +201,163 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   left: 20px;
   color: hsla(0, 0%, 1000%, .6);
   font-size: 1.6rem;
-}
+}   @media only screen and (max-width: 979px) {
+            .ag-courses_item {
+                -ms-flex-preferred-size: calc(50% - 30px);
+                flex-basis: calc(50% - 30px);
+            }
+
+            .ag-courses-item_title {
+                font-size: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .ag-format-container {
+                width: 96%;
+            }
+
+        }
+
+        @media only screen and (max-width: 639px) {
+            .ag-courses_item {
+                -ms-flex-preferred-size: 100%;
+                flex-basis: 100%;
+            }
+
+            .ag-courses-item_title {
+                min-height: 72px;
+                line-height: 1;
+
+                font-size: 24px;
+            }
+
+            .ag-courses-item_link {
+                padding: 22px 40px;
+            }
+
+            .ag-courses-item_date-box {
+                font-size: 16px;
+            }
+        }
+
+        .rwd-table {
+            margin: auto;
+            width: 500px;
+            min-width: 300px;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fr {
+            border-top: none;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            color: #fff;
+        }
+
+        .rwd-table tr {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            background-color: #f5f9fc;
+        }
+
+        .rwd-table tr:nth-child(odd):not(:first-child) {
+            background-color: #ebf3f9;
+        }
+
+        .rwd-table th {
+            display: none;
+        }
+
+        .rwd-table td {
+            display: block;
+        }
+
+        .rwd-table td:first-child {
+            margin-top: .5em;
+        }
+
+        .rwd-table td:last-child {
+            margin-bottom: .5em;
+        }
+
+        .rwd-table td:before {
+            content: attr(data-th) ": ";
+            font-weight: bold;
+            width: 120px;
+            display: inline-block;
+            color: #000;
+        }
+
+        .rwd-table th,
+        .rwd-table td {
+            text-align: left;
+        }
+
+        .rwd-table {
+            color: #333;
+            border-radius: .4em;
+            overflow: hidden;
+        }
+
+        .rwd-table tr {
+            border-color: #bfbfbf;
+        }
+
+        .rwd-table th,
+        .rwd-table td {
+            padding: .5em 1em;
+        }
+
+        @media screen and (max-width: 601px) {
+            .rwd-table tr:nth-child(2) {
+                border-top: none;
+            }
+
+            .grid-item {
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.8);
+                font-size: 30px;
+                text-align: center;
+                padding: 2%;
+                width: 300px;
+                height: 80px;
+                text-align: start
+            }
+        }
+
+        @media screen and (min-width: 600px) {
+            .rwd-table tr:hover:not(:first-child) {
+                background-color: #d8e7f3;
+
+            }
+
+            .rwd-table td:before {
+                display: none;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                display: table-cell;
+                padding: .25em .5em;
+            }
+
+            .rwd-table th:first-child,
+            .rwd-table td:first-child {
+                padding-left: 0;
+            }
+
+            .rwd-table th:last-child,
+            .rwd-table td:last-child {
+                padding-right: 0;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                padding: 1em !important;
+            }
+
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
@@ -251,6 +407,54 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </a>
             </div>
         </div>
+        <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+            <thead>
+                <tr class="fr">
+                    <th>Full name</th>
+                    <th>Nationality</th>
+                    <th>National Id</th>
+                    <th>Adress</th>
+                    <th>City</th>
+                    <th>Work Phone</th>
+                    <th>Activity</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </thead>
+                <tbody>
+
+                        <tr>
+                               
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+                                <td data-th="Supplier Code">
+
+                                </td>
+
+                        </tr>
+
+                </tbody>
+        </table>
+
     </div>
 
 </x-app-layout>
