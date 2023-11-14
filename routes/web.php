@@ -69,6 +69,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/pdf',[Controller::class, 'PDF']);
     Route::post('/Addcolor',[Controller::class, 'Addcolor']);
     Route::get('/editusercontrat',[Controller::class, 'editusercontrat']);
+    Route::get('/editportcontrat',[Controller::class, 'editportcontrat']);
 
 
 });

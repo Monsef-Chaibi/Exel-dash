@@ -511,6 +511,42 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </tbody>
 
         </table>
+        <h2 style="font-size: 30px;margin-left:20px;color:rgb(103, 255, 103);margin-top:20px">Brand :</h2>
+        <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+            <thead>
+                <tr class="fr">
+                    <th>Full name</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($brand as $item)
+                    <tr>
+                        <td data-th="Supplier Code">
+                            {{ $item->nameofport }}
+                        </td>
+                        <td data-th="Supplier Code">
+                            <a href="#" onclick="confirmDelete('/deleteuser/{{ $item->id }}')">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </a>
+                            <!-- Add data attributes to store user information -->
+                            <a href="#" onclick="openModalPort('{{ $item->nameofport }}','{{ $item->id}}')">
+                                <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+        </table>
 
     </div>
     <script>
@@ -586,7 +622,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             var modalContent = document.getElementById('modalContent');
             modalContent.innerHTML = `
             <h3 style='text-align:center;font-size:30px;margin-bottom'>Edit Port</h3>
-            <form action="/editusercontrat" methode="get" id="editForm" style='text-align:left'>
+            <form action="/editportcontrat" methode="get" id="editForm" style='text-align:left'>
                 <input name="id" type="hidden" value="${id}">
                 <label>Port Name:</label>
                 <input name="name" style="width: 25%;border-radius:5px;margin-top:50px" placeholder="Name of Port" type="text" value="${name}">
