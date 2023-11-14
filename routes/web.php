@@ -72,6 +72,11 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/editportcontrat',[Controller::class, 'editportcontrat']);
     Route::get('/editbrandcontrat',[Controller::class, 'editbrandcontrat']);
     Route::get('/editcolorcontrat',[Controller::class, 'editcolorcontrat']);
+    Route::get('/deleteusercontrat/{id}',[Controller::class, 'deleteusercontrat']);
+    Route::get('/deleteportcontrat/{id}',[Controller::class, 'deleteportcontrat']);
+    Route::get('/deletebrandcontrat/{id}',[Controller::class, 'deletebrandcontrat']);
+    Route::get('/deletecolorcontrat/{id}',[Controller::class, 'deletecolorcontrat']);
+
 
 
 });

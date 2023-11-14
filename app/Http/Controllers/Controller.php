@@ -751,4 +751,52 @@ class Controller extends BaseController
                         // Redirect back or return a response as needed
                         return redirect()->back()->with('success', 'User information updated successfully.');
                     }
+                    public function deleteusercontrat($id)
+                        {
+                            $record = ContratUser::find($id);
+
+                            if (!$record) {
+                                return redirect()->back()->with('error', 'Record not found.');
+                            }
+
+                            $record->delete();
+
+                            return redirect()->back()->with('success', 'Record deleted successfully.');
+                        }
+                    public function deleteportcontrat($id)
+                        {
+                            $record = Port::find($id);
+
+                            if (!$record) {
+                                return redirect()->back()->with('error', 'Record not found.');
+                            }
+
+                            $record->delete();
+
+                            return redirect()->back()->with('success', 'Record deleted successfully.');
+                        }
+                    public function deletebrandcontrat($id)
+                        {
+                            $record = Brand::find($id);
+
+                            if (!$record) {
+                                return redirect()->back()->with('error', 'Record not found.');
+                            }
+
+                            $record->delete();
+
+                            return redirect()->back()->with('success', 'Record deleted successfully.');
+                        }
+                    public function deletecolorcontrat($id)
+                        {
+                            $record = ColorCode::find($id);
+
+                            if (!$record) {
+                                return redirect()->back()->with('error', 'Record not found.');
+                            }
+
+                            $record->delete();
+
+                            return redirect()->back()->with('success', 'Record deleted successfully.');
+                        }
 }
