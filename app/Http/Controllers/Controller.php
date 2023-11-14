@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\ColorCode;
 use PDF;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
@@ -539,6 +540,17 @@ class Controller extends BaseController
                 $owner->numcl = $request->input('numcl');
                 $owner->weight = $request->input('weight');
                 $owner->year = $request->input('year');
+                $owner->save();
+
+                return redirect()->back()->with('success', 'Owner added successfully!');
+            }
+            public function Addcolor(Request $request)
+            {
+
+                $owner = new ColorCode();
+                $owner->color = $request->input('color');
+                $owner->code = $request->input('code');
+
                 $owner->save();
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
