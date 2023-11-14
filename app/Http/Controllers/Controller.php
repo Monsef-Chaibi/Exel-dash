@@ -565,11 +565,17 @@ class Controller extends BaseController
                 // Loop through the selected records
                 foreach ($selectedRecords as $record) {
                     // Add names and vins to the respective arrays
-                    $names[] = $record->name;
-                    $vins[] = $record->vin;
+                    $gtnum = $record->gtnum;
+                    $vin = $record->vin;
+                    $color = $record->color;
                 }
 
                 $requestData = $request->all();
-                return view('pdf')->with('requestData', $requestData);
+                return view('pdf')->with([
+                    'requestData' => $requestData,
+                    'gtnum' => $gtnum,
+                    'vin' => $vin,
+                    'color' => $color,
+                ]);
             }
 }
