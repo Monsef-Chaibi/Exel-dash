@@ -357,18 +357,27 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column20 style15 s style17" colspan="3">/ العنوان </td>
           </tr>
           <tr class="row14">
-            <td class="column0 style26 f style28" colspan="13">=[1]Registration!AM18</td>
+            <td class="column0 style26 f style28" colspan="13">{{ $requestData['work_phone'] }}</td>
             <td class="column13 style15 s style17" colspan="3">رقم الجوال </td>
-            <td class="column16 style16 s style15" colspan="4">تجارة السيارات</td>
-            <td class="column20 style15 s style17" colspan="3">النشاط </td>
+            <td class="column16 style16 s style15" colspan="4">{{ $requestData['activity'] }}</td>
+            <td class="column20 style15 s style17" colspan="3">/ النشاط </td>
           </tr>
           <tr class="row15">
-            <td class="column0 style29 f style30" colspan="5">=[1]Registration!AP16</td>
-            <td class="column5 style15 s style17" colspan="3">/ رقم الهوية </td>
-            <td class="column8 style31 f style31" colspan="3">0</td>
-            <td class="column11 style31 f style31" colspan="3">0</td>
-            <td class="column14 style31 f style31" colspan="3">0</td>
-            <td class="column17 style31 f style31" colspan="3">0</td>
+            @php
+                // Get the 'tenant' value from the request
+                $tenant = $requestData['tenant'];
+
+                // Separate name and phone using explode
+                $parts = explode(',', $tenant);
+
+                // Check if both parts exist
+                $namete = isset($parts[0]) ? $parts[0] : '';
+                $phonete = isset($parts[1]) ? $parts[1] : '';
+            @endphp
+
+            <td class="column0 style29 f style30" colspan="5">{{$phonete}}</td>
+            <td class="column5 style15 s style17" colspan="8">/ رقم الهوية </td>
+            <td class="column17 style31 f style31" colspan="8">{{$namete}}</td>
             <td class="column20 style32 s style33" colspan="3"> / إسم المستأجر </td>
           </tr>
           <tr class="row16">
