@@ -358,10 +358,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
 
         }
-        .inp
-        {
-            width: 50%;
-        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
@@ -443,7 +439,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </td>
                                 </td>
                                 <td data-th="Supplier Code">
-                                    <input class="inp" style="border: none" type="text" value="{{$item->city}}" >
+                                    <input class="" style="border: none" type="text" value="{{$item->city}}" >
 
                                 </td>
                                 <td data-th="Supplier Code">
