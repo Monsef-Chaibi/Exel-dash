@@ -588,8 +588,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <h3 style='text-align:center;font-size:30px;margin-bottom'>Edit Port</h3>
             <form action="/editusercontrat" methode="get" id="editForm" style='text-align:left'>
                 <input name="id" type="hidden" value="${id}">
-                <label>User Name:</label>
-                <input name="name" style="width: 25%;border-radius:5px" placeholder="Nationality" type="text" value="${name}">
+                <label>Port Name:</label>
+                <input name="name" style="width: 25%;border-radius:5px" placeholder="Name of Port" type="text" value="${name}">
 
                 <br>
                 <br>
