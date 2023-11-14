@@ -524,7 +524,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 @foreach ($brand as $item)
                     <tr>
                         <td data-th="Supplier Code">
-                            {{ $item->nameofport }}
+                            {{ $item->titel }}
                         </td>
                         <td data-th="Supplier Code">
                             <a href="#" onclick="confirmDelete('/deleteuser/{{ $item->id }}')">
@@ -538,7 +538,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </button>
                             </a>
                             <!-- Add data attributes to store user information -->
-                            <a href="#" onclick="openModalPort('{{ $item->nameofport }}','{{ $item->id}}')">
+                            <a href="#" onclick="openModalBrand('{{ $item->titel }}','{{ $item->id}}','{{ $item->brand}}','{{ $item->model}}','{{ $item->modtype}}','{{ $item->chtype}}','{{ $item->vcap}}','{{ $item->numcl}}','{{ $item->weight}}','{{ $item->year}}')">
                                 <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
                             </a>
                         </td>
@@ -626,6 +626,80 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <input name="id" type="hidden" value="${id}">
                 <label>Port Name:</label>
                 <input name="name" style="width: 25%;border-radius:5px;margin-top:50px" placeholder="Name of Port" type="text" value="${name}">
+
+                <br>
+                <br>
+
+                <!-- Add a submit button to submit the form -->
+                <button type="submit" class="modal__btn">Save &rarr;</button>
+            </form>
+        `;
+
+            // Display the modal
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            // Close the modal when the user clicks the close button (×)
+            var span = document.getElementsByClassName('custom-close')[0];
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            // Close the modal if the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+    </script>
+    <script>
+         function openModalBrand(titel, id, brand, model, modtype, chtype, vcap, numcl, weight, year) {
+        // Populate modal content with port information
+        var modalContent = document.getElementById('modalContent');
+        modalContent.innerHTML = `
+            <h3 style='text-align:center;font-size:30px;margin-bottom:10px;'>Edit Port</h3>
+            <form action="/editbrandcontrat" method="get" id="editForm" style='text-align:left'>
+                <input name="id" type="hidden" value="${id}">
+
+                <label>Titel :</label>
+                <input name="titel" style="width: 25%; border-radius: 5px" type="text" value="${titel}">
+
+                <label style='margin-left:20%'>Brand:</label>
+                <input name="brand" style="width: 25%; border-radius: 5px" type="text" value="${brand}">
+
+                <br>
+                <br>
+
+                <label>Model:</label>
+                <input name="model" style="width: 25%; border-radius: 5px" type="text" value="${model}">
+
+                <label style='margin-left:20%'>Model Type:</label>
+                <input name="modtype" style="width: 25%; border-radius: 5px" type="text" value="${modtype}">
+
+                <br>
+                <br>
+
+                <label>Chassis Type:</label>
+                <input name="chtype" style="width: 25%; border-radius: 5px" type="text" value="${chtype}">
+
+                <label style='margin-left:20%'>Vehicle Capacity:</label>
+                <input name="vcap" style="width: 25%; border-radius: 5px" type="text" value="${vcap}">
+
+                <br>
+                <br>
+
+                <label>Number of Cylinders:</label>
+                <input name="numcl" style="width: 25%; border-radius: 5px" type="text" value="${numcl}">
+
+                <label style='margin-left:20%'>Weight:</label>
+                <input name="weight" style="width: 25%; border-radius: 5px" type="text" value="${weight}">
+
+                <br>
+                <br>
+
+                <label>Year:</label>
+                <input name="year" style="width: 25%; border-radius: 5px" type="text" value="${year}">
 
                 <br>
                 <br>

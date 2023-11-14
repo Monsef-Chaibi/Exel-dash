@@ -700,4 +700,32 @@ class Controller extends BaseController
                         // Redirect back or return a response as needed
                         return redirect()->back()->with('success', 'User information updated successfully.');
                     }
+                    public function editbrandcontrat(Request $request)
+                    {
+                        // Validate the form data (customize the validation rules as needed)
+
+
+                        // Get the user ID from the hidden input in the form
+                        $userId = $request->input('id');
+
+                        // Find the user in the database by ID
+                        $user = Brand::find($userId);
+
+                        // Update the user information
+                        $user->titel = $request->input('titel');
+                        $user->brand = $request->input('brand');
+                        $user->model = $request->input('model');
+                        $user->modtype = $request->input('modtype');
+                        $user->chtype = $request->input('chtype');
+                        $user->vcap = $request->input('vcap');
+                        $user->numcl = $request->input('numcl');
+                        $user->weight = $request->input('weight');
+                        $user->year = $request->input('year');
+
+                        // Save the updated user information
+                        $user->save();
+
+                        // Redirect back or return a response as needed
+                        return redirect()->back()->with('success', 'User information updated successfully.');
+                    }
 }

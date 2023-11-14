@@ -70,6 +70,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::post('/Addcolor',[Controller::class, 'Addcolor']);
     Route::get('/editusercontrat',[Controller::class, 'editusercontrat']);
     Route::get('/editportcontrat',[Controller::class, 'editportcontrat']);
+    Route::get('/editbrandcontrat',[Controller::class, 'editbrandcontrat']);
 
 
 });
