@@ -504,7 +504,8 @@ class Controller extends BaseController
             public function AddContrat()
             {
                 $user = ContratUser::get();
-                return view('AddContrat')->with('user',$user);
+                $port = Port::get();
+                return view('AddContrat')->with('user',$user)->with('port',$port);
             }
             public function AddContratUser(Request $request)
             {
@@ -649,5 +650,32 @@ class Controller extends BaseController
 
                         // Redirect back with a success message
                         return redirect()->back()->with('success', 'User updated successfully.');
+                    }
+                    public function editusercontrat(Request $request)
+                    {
+                        // Validate the form data (customize the validation rules as needed)
+
+
+                        // Get the user ID from the hidden input in the form
+                        $userId = $request->input('id');
+
+                        // Find the user in the database by ID
+                        $user = ContratUser::find($userId);
+
+                        // Update the user information
+                        $user->name = $request->input('name');
+                        $user->nat = $request->input('nationality');
+                        $user->nat_id = $request->input('national_id');
+                        $user->address = $request->input('address');
+                        $user->city = $request->input('city');
+                        $user->wornum = $request->input('work_phone');
+                        $user->activity = $request->input('activity');
+                        $user->mobnum = $request->input('mobile_number');
+
+                        // Save the updated user information
+                        $user->save();
+
+                        // Redirect back or return a response as needed
+                        return redirect()->back()->with('success', 'User information updated successfully.');
                     }
 }
