@@ -4,6 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xrRPeRfbzjUpu8Gm/D6xxrWyJl7Ia3i1sX21aqNfhXbwLgiPzZ3Bc+usMybAk9P96J/T6EKanX+9bH1bwmvBhw==" crossorigin="anonymous" />
     <style>
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
 
@@ -156,6 +157,9 @@ h3:after {
   100%  { transform: translateX(0)}
 }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xrRPeRfbzjUpu8Gm/D6xxrWyJl7Ia3i1sX21aqNfhXbwLgiPzZ3Bc+usMybAk9P96J/T6EKanX+9bH1bwmvBhw==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -169,6 +173,7 @@ h3:after {
                                 <th>Type</th>
                                 <th>Plant-key</th>
                                 <th>Create_at</th>
+                                <th>Action</th>
                               </tr>
                               @foreach($users as $user)
                               <tr>
@@ -196,6 +201,15 @@ h3:after {
                                 <td data-th="Invoice Date">
                                     {{ $user->created_at }}
                                 </td>
+                                <td data-th="Invoice Date">
+                                    <a href="#" onclick="confirmDelete('/deleteuser/{{$user->id}}')">
+                                        <button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </td>
                               </tr>
                               @endforeach
                             </tbody>
@@ -205,3 +219,20 @@ h3:after {
         </div>
     </div>
 </x-app-layout>
+<script>
+    function confirmDelete(deleteUrl) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this user!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user clicks 'Yes', redirect to the delete URL
+                window.location.href = deleteUrl;
+            }
+        });
+    }
+</script>
