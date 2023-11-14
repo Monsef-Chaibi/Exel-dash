@@ -705,7 +705,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
       <div class="modal">
         <h1 class="modal__title">Print Facture :</h1>
-        <form action="/pdf" method="get">
+        <form action="/pdf" method="get" >
             @csrf
             <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
             <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
