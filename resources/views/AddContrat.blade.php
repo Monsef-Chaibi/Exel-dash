@@ -580,7 +580,43 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
         }
     </script>
+    <script>
+        function openModalPort(name, id, nat, nat_id, address, city, wornum, activity, mobnum) {
+            // Populate modal content with user information
+            var modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+            <h3 style='text-align:center;font-size:30px;margin-bottom'>Edit Port</h3>
+            <form action="/editusercontrat" methode="get" id="editForm" style='text-align:left'>
+                <input name="id" type="hidden" value="${id}">
+                <label>User Name:</label>
+                <input name="name" style="width: 25%;border-radius:5px" placeholder="Nationality" type="text" value="${name}">
 
+                <br>
+                <br>
+
+                <!-- Add a submit button to submit the form -->
+                <button type="submit" class="modal__btn">Save &rarr;</button>
+            </form>
+        `;
+
+            // Display the modal
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            // Close the modal when the user clicks the close button (×)
+            var span = document.getElementsByClassName('custom-close')[0];
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            // Close the modal if the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+    </script>
 
 
 <!-- Update modal class names -->
