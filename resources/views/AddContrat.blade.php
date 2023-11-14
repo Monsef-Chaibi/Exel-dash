@@ -358,6 +358,37 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
 
         }
+        /* Update class names to avoid conflicts with existing styles */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.custom-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.custom-close:hover {
+    color: black;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
@@ -416,35 +447,70 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
                 </tr>
             </thead>
-                <tbody>
-
-                    @foreach ($user as $item)
+            <tbody>
+                @foreach ($user as $item)
                     <tr>
-                                <td data-th="Supplier Code">
-                                    {{$item->name}}
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <a href="#" onclick="confirmDelete('/deleteuser/{{ $item->id }}')">
-                                        <button>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                                stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
-                                    </a>
-                                    <a href="#" >
-                                        <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
+                        <td data-th="Supplier Code">
+                            {{ $item->name }}
+                        </td>
+                        <td data-th="Supplier Code">
+                            <a href="#" onclick="confirmDelete('/deleteuser/{{ $item->id }}')">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </a>
+                            <!-- Add data attributes to store user information -->
+                            <a href="#" onclick="openModal('{{ $item->name }}', '{{ $item->id }}')">
+                                <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
 
-                </tbody>
         </table>
 
     </div>
+    <script>
+        function openModal(name, id) {
+            // Populate modal content with user information
+            var modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = 'User Name: ' + name + '<br>User ID: ' + id;
+
+            // Display the modal
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            // Close the modal when the user clicks the close button (×)
+            var span = document.getElementsByClassName('custom-close')[0];
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            // Close the modal if the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+
+<!-- Update modal class names -->
+<div id="myModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-close">&times;</span>
+        <!-- Display user information here -->
+        <div id="modalContent"></div>
+    </div>
+</div>
+
 
 </x-app-layout>
 
@@ -521,27 +587,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 </div>
 <!-- /modal 1 -->
 <!-- modal 1 -->
-<div  class="box">
-
-  <div class="modal-container" id="m4-o" style="--m-background: transparent;">
-    <div class="modal">
-      <h1 class="modal__title">Add New Color</h1>
-      <form action="/Addcolor" method="POST" class="modal__text" dir="ltr">
-          @csrf
-          <label for="">Color :</label>
-          <input name="color" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Color" type="text"><br>
-          <label for="">Code :</label>
-          <input name="code" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Code" type="text"><br>
-
-          <br>
-          <button type="submit" class="modal__btn">Add &rarr;</button>
-      </form>
-      <a href="#m4-c" class="link-2"></a>
-    </div>
-  </div>
-</div>
-<!-- /modal 1 -->
-< !-- modal 7 -->
 <div  class="box">
 
   <div class="modal-container" id="m4-o" style="--m-background: transparent;">
