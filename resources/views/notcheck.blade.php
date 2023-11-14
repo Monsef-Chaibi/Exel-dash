@@ -373,6 +373,7 @@
 
                         <tbody>
                             <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
+                                <input type="hidden" name="alldata" value='alldata'>
                                 @foreach ($data as $index => $item)
                                     <tr>
                                         <td data-th="Supplier Code">

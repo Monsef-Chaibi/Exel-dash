@@ -461,6 +461,7 @@ class Controller extends BaseController
             }
             function SemiExport(Request $request)
             {
+                dd($request);
                 try {
                     $selectedItems = $request->input('selectedItems');
 
