@@ -553,7 +553,22 @@ class Controller extends BaseController
                 return $pdf->download('document.pdf');
             }
             function PDF(Request $request){
-            
+                $selectedItems = $request->input('selectedItems');
+
+                // Use the IDs to retrieve records from the database
+                $selectedRecords = Data::whereIn('id', $selectedItems)->get();
+
+                // Initialize arrays to store names and vins
+                $names = [];
+                $vins = [];
+
+                // Loop through the selected records
+                foreach ($selectedRecords as $record) {
+                    // Add names and vins to the respective arrays
+                    $names[] = $record->name;
+                    $vins[] = $record->vin;
+                }
+
                 $requestData = $request->all();
                 return view('pdf')->with('requestData', $requestData);
             }
