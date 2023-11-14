@@ -303,7 +303,32 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column22 style4 null"></td>
           </tr>
           <tr class="row8">
-            <td class="column0 style5 null style12" colspan="19" rowspan="2"></td>
+            <td class="column9 style16 f style17" style=" border-right: none; " colspan="3" rowspan="2">
+                <label for="">تالف</label>
+                <input type="checkbox" name="" id="">
+            </td>
+            <td class="column9 style16 f style17" style="border-left: none; " colspan="3" rowspan="2">
+                <label for="">فاقد                </label>
+                <input type="checkbox" name="" id="">
+            </td>
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="">نقل ملكية
+                </label>
+                <input type="checkbox" name="" id="">
+            </td>
+            <td class="column9 style16 f " style="text-align: center" colspan="3" rowspan="2">
+                <label for="">إستبدال</label>
+                <input type="checkbox" name="" id="">
+            </td>
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="">تجديد</label>
+                <input type="checkbox" name="" id="">
+            </td>
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="">تسجيل </label>
+                <input type="checkbox" name="" id="">
+            </td>
+
             <td class="column19 style8 null"></td>
             <td class="column20 style9 s style9" colspan="3" rowspan="2">نوع الإجراء</td>
           </tr>
@@ -445,19 +470,19 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column0 style54 null style54" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
             <td class="column8 style55 null"></td>
-            <td class="column9 style54 null style54" colspan="12"></td>
+            <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
             <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
           </tr>
           <tr class="row24">
-            <td class="column0 style54 null style54" colspan="20"></td>
+            <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
             <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
           </tr>
           <tr class="row25">
-            <td class="column0 style54 null style54" colspan="5"></td>
+            <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
-            <td class="column8 style54 null style54" colspan="5"></td>
+            <td class="column8 style54 null style54" colspan="5" style="text-align: right">............................................</td>
             <td class="column13 style54 s style54" colspan="3">رتبه </td>
-            <td class="column16 style54 null style54" colspan="5"></td>
+            <td class="column16 style54 null style54" colspan="5" style="text-align: right" >...........................................</td>
             <td class="column21 style54 s style54" colspan="2">رقمه </td>
           </tr>
           <tr class="row26">
