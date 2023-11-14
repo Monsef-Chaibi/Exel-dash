@@ -21,11 +21,11 @@ class DataSemiExport implements FromCollection
 
         if ($this->alldata == 'alldata') {
 
-            return Data::whereIn('id', $this->selectedItems)->get(['soldp','shipp','product','gtnum','bildoc']); // Adjust columns as per your needs
+            return Data::whereIn('id', $this->selectedItems)->get(['soldp','shipp','product','plantkey','gtnum','bildoc']); // Adjust columns as per your needs
         } else {
             // Export selected data
             return Data::whereIn('id', $this->selectedItems)->get(['gtnum']); // Adjust columns as per your needs
         }
     }
- 
+
 }
