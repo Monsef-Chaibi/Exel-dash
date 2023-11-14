@@ -57,6 +57,23 @@ class Controller extends BaseController
         $cnd1 = explode(',', $cnd);
         dd($cnd1);
     }
+    function deleteuser($id){
+        try {
+            // Find the user by ID
+            $user = User::findOrFail($id);
+
+            // Delete the user
+            $user->delete();
+
+            return back()->with('success', 'User deleted successfully');
+        } catch (\Exception $e) {
+            // Log the exception for debugging
+            \Illuminate\Support\Facades\Log::error('Error deleting user: ' . $e->getMessage());
+
+            // Handle other exceptions or return an error message
+            return back()->with('error', 'An error occurred while deleting the user');
+        }
+    }
     function alluser(){
         $users = User::where('role', '!=', 1)->get();
         return view('alluser')->with('users', $users);
