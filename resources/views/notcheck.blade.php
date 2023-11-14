@@ -366,6 +366,7 @@
                                 <th>Sold to party</th>
                                 <th>Ship To party</th>
                                 <th>Product</th>
+                                <th>Plant Key</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                             </tr>
@@ -388,6 +389,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->plantkey }}
                                         </td>
                                         <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
                                             {{ $item->gtnum }}
@@ -448,25 +452,32 @@
                 checkboxes[i].checked = !allChecked;
             }
         }
-            function submitForm(action) {
-                var form = document.getElementById('partialDeliveryForm');
-                form.action = '/' + action; // Change the form action based on the button clicked
-                Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    form.submit(); // Submit the form
+        function submitForm(action) {
+    var form = document.getElementById('partialDeliveryForm');
+    form.action = '/' + action; // Change the form action based on the button clicked
 
-                }
-            });
+    if (action === 'SemiCopie') {
+        // If the action is 'SemiCopie', show a confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once confirmed, the action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User clicked the confirm button, proceed with the action
+                form.submit(); // Submit the form
             }
+        });
+    } else {
+        // If the action is not 'SemiCopie', directly submit the form without confirmation
+        form.submit(); // Submit the form
+    }
+}
+
 
 
         </script>
