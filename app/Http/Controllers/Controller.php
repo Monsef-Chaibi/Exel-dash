@@ -630,4 +630,24 @@ class Controller extends BaseController
                         ]);
 
                     }
+                    public function edituser(Request $request, $id)
+                    {
+                        // Validate the form data
+                        $request->validate([
+                            'edit-name' => 'required|string|max:255'
+                        ]);
+
+                        // Find the user by ID
+                        $user = User::findOrFail($id);
+
+                        // Update the user with the form data
+                        $user->update([
+                            'name' => $request->input('edit-name'),
+                            'email' => $request->input('edit-email'),
+                            'cond' => $request->input('edit-cond'),
+                        ]);
+
+                        // Redirect back with a success message
+                        return redirect()->back()->with('success', 'User updated successfully.');
+                    }
 }

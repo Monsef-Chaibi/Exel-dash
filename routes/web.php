@@ -49,6 +49,8 @@ Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
 Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('ShowUpdateData');
 
 Route::get('/deleteuser/{id}', [Controller::class, 'deleteuser'])->name('deleteuser');
+
+Route::put('/edituser/{id}', [Controller::class, 'edituser'])->name('edituser');
 });
 
 // Route for user 1 role 0
