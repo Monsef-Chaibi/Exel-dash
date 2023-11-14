@@ -502,7 +502,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </button>
                             </a>
                             <!-- Add data attributes to store user information -->
-                            <a href="#" onclick="openModalPort('{{ $item->name }}')">
+                            <a href="#" onclick="openModalPort('{{ $item->nameofport }}','{{ $item->id}}')">
                                 <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
                             </a>
                         </td>
@@ -581,7 +581,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         }
     </script>
     <script>
-        function openModalPort(name, id, nat, nat_id, address, city, wornum, activity, mobnum) {
+        function openModalPort(name,id) {
             // Populate modal content with user information
             var modalContent = document.getElementById('modalContent');
             modalContent.innerHTML = `
@@ -589,7 +589,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <form action="/editusercontrat" methode="get" id="editForm" style='text-align:left'>
                 <input name="id" type="hidden" value="${id}">
                 <label>Port Name:</label>
-                <input name="name" style="width: 25%;border-radius:5px" placeholder="Name of Port" type="text" value="${name}">
+                <input name="name" style="width: 25%;border-radius:5px;margin-top:50px" placeholder="Name of Port" type="text" value="${name}">
 
                 <br>
                 <br>
