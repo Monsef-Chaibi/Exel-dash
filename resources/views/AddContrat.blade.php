@@ -411,14 +411,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <thead>
                 <tr class="fr">
                     <th>Full name</th>
-                    <th>Nationality</th>
-                    <th>National Id</th>
-                    <th>Adress</th>
-                    <th>City</th>
-                    <th>Work Phone</th>
-                    <th>Activity</th>
-                    <th>Mobile Number</th>
                     <th>Action</th>
+
                 </tr>
             </thead>
                 <tbody>
@@ -426,33 +420,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     @foreach ($user as $item)
                         <tr>
                                 <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->name}}" >
+                                    {{$item->name}}
                                 </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->nat}}" >
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->nat_id}}" >
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->adress}}" >
-                                </td>
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input class="" style="border: none" type="text" value="{{$item->city}}" >
-
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->wornum}}" >
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->activity}}" >
-                                </td>
-                                <td data-th="Supplier Code">
-                                    <input style="border: none" type="text" value="{{$item->wornum}}" >
-                                </td>
-                                <td data-th="Supplier C ode">
-
+                                <td>
+                                    
                                 </td>
                             </tr>
                             @endforeach
