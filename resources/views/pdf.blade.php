@@ -391,7 +391,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
           <tr class="row17">
             <td class="column0 style34 f style35" colspan="3">0</td>
             <td class="column3 style40 s style41" colspan="3">/ تاريخ التسجيل</td>
-            <td class="column6 style16 s style15" colspan="3">خصوصي</td>
+            <td class="column6 style16 s style15" colspan="3">{{ $requestData['regtype'] }}</td>
             <td class="column9 style15 s style17" colspan="3">/ نوع التسجيل </td>
             <td class="column12 style16 null style15" colspan="8"></td>
             <td class="column20 style15 s style17" colspan="3">/ اللوحة الحرفية </td>
