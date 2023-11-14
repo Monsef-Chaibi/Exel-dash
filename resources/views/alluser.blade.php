@@ -159,7 +159,25 @@ h3:after {
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xrRPeRfbzjUpu8Gm/D6xxrWyJl7Ia3i1sX21aqNfhXbwLgiPzZ3Bc+usMybAk9P96J/T6EKanX+9bH1bwmvBhw==" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @if (session()->has('error'))
+    <script>
+       Swal.fire(
+           'Error',
+           '{{ session('error') }}',
+           'error'
+       )
+    </script>
+@endif
 
+@if (session()->has('success'))
+    <script>
+       Swal.fire(
+           'Success',
+           '{{ session('success') }}',
+           'success'
+       )
+    </script>
+@endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
