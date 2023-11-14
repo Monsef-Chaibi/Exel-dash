@@ -461,18 +461,33 @@ class Controller extends BaseController
             }
             function SemiExport(Request $request)
             {
-                dd($request);
-                try {
-                    $selectedItems = $request->input('selectedItems');
+                if($request->input('alldata')){
+                    try {
+                        $selectedItems = $request->input('selectedItems');
+                        $alldata = $request->input('alldata');
+                        if (!$selectedItems) {
+                            throw new \Exception('No items selected for export.');
+                        }
 
-                    if (!$selectedItems) {
-                        throw new \Exception('No items selected for export.');
+                        return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
+                    } catch (\Exception $e) {
+                        return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
                     }
-
-                    return Excel::download(new DataSemiExport($selectedItems), 'Gt-Number.xlsx');
-                } catch (\Exception $e) {
-                    return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
                 }
+                else{
+                    try {
+                        $selectedItems = $request->input('selectedItems');
+
+                        if (!$selectedItems) {
+                            throw new \Exception('No items selected for export.');
+                        }
+
+                        return Excel::download(new DataSemiExport($selectedItems), 'Gt-Number.xlsx');
+                    } catch (\Exception $e) {
+                        return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
+                    }
+                }
+
 
             }
             public function getLiveValue()
