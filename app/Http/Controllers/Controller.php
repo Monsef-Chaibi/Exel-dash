@@ -503,8 +503,8 @@ class Controller extends BaseController
             }
             public function AddContrat()
             {
-                $data = ContratUser::get();
-                return view('AddContrat')->with('data',$data);
+                $user = ContratUser::get();
+                return view('AddContrat')->with('user',$user);
             }
             public function AddContratUser(Request $request)
             {

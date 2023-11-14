@@ -418,39 +418,43 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <th>Work Phone</th>
                     <th>Activity</th>
                     <th>Mobile Number</th>
+                    <th>Action</th>
                 </tr>
             </thead>
                 <tbody>
 
+                    @foreach ($user as $item)
                         <tr>
-                               
                                 <td data-th="Supplier Code">
-
-                                </td>
-                                <td data-th="Supplier Code">
-
+                                    {{$item->name}}
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{$item->nat}}
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{$item->nat_id}}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{$item->adress}}
                                 </td>
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{$item->city}}
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    <input type="text" value="{{$item->wornum}}" onchange="showValue(this)">
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{$item->activity}}
                                 </td>
                                 <td data-th="Supplier Code">
+                                    {{$item->mobnum}}
+                                </td>
+                                <td data-th="Supplier C ode">
 
                                 </td>
-
-                        </tr>
+                            </tr>
+                            @endforeach
 
                 </tbody>
         </table>
@@ -458,6 +462,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     </div>
 
 </x-app-layout>
+<script>
+    function showValue(inputElement) {
+        var enteredValue = inputElement.value;
+        console.log('Entered Value:', enteredValue);
+    }
+</script>
 
   <!-- modal 1 -->
   <div  class="box">
