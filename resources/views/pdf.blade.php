@@ -385,7 +385,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column3 style36 s style37" colspan="3">/ تاريخ الدخول</td>
             <td class="column6 style16 f style15" colspan="3">{{ $requestData['port'] }}</td>
             <td class="column9 style15 s style17" colspan="3">/ ميناء الدخول </td>
-            <td class="column12 style38 s style39" colspan="8">1020338292</td>
+            <td class="column12 style38 s style39" colspan="8">{{ $gtnum}}</td>
             <td class="column20 style15 s style17" colspan="3">/ بطاقة الجمارك </td>
           </tr>
           <tr class="row17">
@@ -430,7 +430,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column21 style15 s style17" colspan="2">/ اللون الرئيسي </td>
           </tr>
           <tr class="row22">
-            <td class="column0 style48 s style50" colspan="20">JTNB29HK0L3087300</td>
+            <td class="column0 style48 s style50" colspan="20">{{$vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
           <tr class="row23">
@@ -481,4 +481,9 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     </table>
   </body>
 </html>
-<button onclick="window.print();">Print this Page</button>
+<script>
+    // Use the window.onload event to trigger the print dialog when the page loads
+    window.onload = function() {
+        window.print();
+    };
+</script>

@@ -809,9 +809,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <br>
-            <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
 
-            <a href="/generate-pdf">
+
+            <a target="_blank" href="/generate-pdf">
                 <button type="submit" class="modal__btn">Print &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>
