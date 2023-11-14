@@ -364,16 +364,24 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
           </tr>
           <tr class="row15">
             @php
+            // Check if 'tenant' key exists in the $requestData array
+            if (isset($requestData['tenant'])) {
                 // Get the 'tenant' value from the request
                 $tenant = $requestData['tenant'];
 
                 // Separate name and phone using explode
                 $parts = explode(',', $tenant);
 
-                // Check if both parts exist
+                // Set $namete and $phonete based on the existence of parts
                 $namete = isset($parts[0]) ? $parts[0] : '';
                 $phonete = isset($parts[1]) ? $parts[1] : '';
-            @endphp
+            } else {
+                // If 'tenant' key does not exist, set variables to ''
+                $namete = '';
+                $phonete = '';
+            }
+        @endphp
+
 
             <td class="column0 style29 f style30" colspan="5">{{$phonete}}</td>
             <td class="column5 style15 s style17" colspan="8">/ رقم الهوية </td>

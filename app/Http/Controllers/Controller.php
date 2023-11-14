@@ -567,34 +567,34 @@ class Controller extends BaseController
             function PDF(Request $request){
                 $selectedItems = $request->input('selectedItems');
 
-// Use the IDs to retrieve records from the database
-$selectedRecords = Data::whereIn('id', $selectedItems)->get();
+                        // Use the IDs to retrieve records from the database
+                        $selectedRecords = Data::whereIn('id', $selectedItems)->get();
 
-// Initialize arrays to store names and vins
-$names = [];
-$vins = [];
+                        // Initialize arrays to store names and vins
+                        $names = [];
+                        $vins = [];
 
-// Loop through the selected records
-foreach ($selectedRecords as $record) {
-    // Add names and vins to the respective arrays
-    $gtnum = $record->gtnum;
-    $vin = $record->vin;
+                        // Loop through the selected records
+                        foreach ($selectedRecords as $record) {
+                            // Add names and vins to the respective arrays
+                            $gtnum = $record->gtnum;
+                            $vin = $record->vin;
 
-    // Check if the color exists in the 'color' table
-    $colorRecord = ColorCode::where('code', $record->color)->first();
+                            // Check if the color exists in the 'color' table
+                            $colorRecord = ColorCode::where('code', $record->color)->first();
 
-    // If the color exists, use its name; otherwise, use the original color
-    $color = $colorRecord ? $colorRecord->color_name : $record->color;
-}
+                            // If the color exists, use its name; otherwise, use the original color
+                            $color = $colorRecord ? $colorRecord->color : $record->color;
+                        }
 
-$requestData = $request->all();
+                        $requestData = $request->all();
 
-return view('pdf')->with([
-    'requestData' => $requestData,
-    'gtnum' => $gtnum,
-    'vin' => $vin,
-    'color' => $color,
-]);
+                        return view('pdf')->with([
+                            'requestData' => $requestData,
+                            'gtnum' => $gtnum,
+                            'vin' => $vin,
+                            'color' => $color,
+                        ]);
 
-            }
+                                    }
 }
