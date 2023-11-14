@@ -333,7 +333,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   <div class="modal-container" id="m4-o" style="--m-background: transparent;">
     <div class="modal">
       <h1 class="modal__title">Add New Color</h1>
-      <form action="/AddBrand" method="POST" class="modal__text" dir="ltr">
+      <form action="/Addcolor" method="POST" class="modal__text" dir="ltr">
           @csrf
           <label for="">Color :</label>
           <input name="color" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Color" type="text"><br>
