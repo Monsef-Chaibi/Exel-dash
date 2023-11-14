@@ -362,6 +362,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     @if (session()->has('error'))
     <script>
@@ -418,12 +419,24 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <tbody>
 
                     @foreach ($user as $item)
-                        <tr>
+                    <tr>
                                 <td data-th="Supplier Code">
                                     {{$item->name}}
                                 </td>
-                                <td>
-                                    
+                                <td data-th="Supplier Code">
+                                    <a href="#" onclick="confirmDelete('/deleteuser/{{ $item->id }}')">
+                                        <button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </button>
+                                    </a>
+                                    <a href="#" >
+                                        <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -434,7 +447,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     </div>
 
 </x-app-layout>
-
 
   <!-- modal 1 -->
   <div  class="box">
@@ -529,3 +541,41 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   </div>
 </div>
 <!-- /modal 1 -->
+< !-- modal 7 -->
+<div  class="box">
+
+  <div class="modal-container" id="m4-o" style="--m-background: transparent;">
+    <div class="modal">
+      <h1 class="modal__title">Add New Color</h1>
+      <form action="/Addcolor" method="POST" class="modal__text" dir="ltr">
+          @csrf
+          <label for="">Color :</label>
+          <input name="color" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Color" type="text"><br>
+          <label for="">Code :</label>
+          <input name="code" style="width: 49%;border-radius:5px;margin-bottom:30px" placeholder="Code" type="text"><br>
+
+          <br>
+          <button type="submit" class="modal__btn">Add &rarr;</button>
+      </form>
+      <a href="#m4-c" class="link-2"></a>
+    </div>
+  </div>
+</div>
+<!-- /modal 1 -->
+<script>
+    function confirmDelete(deleteUrl) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this user!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks 'Yes', redirect to the delete URL
+                    window.location.href = deleteUrl;
+                }
+            });
+        }
+</script>
