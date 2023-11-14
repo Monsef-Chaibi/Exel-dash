@@ -20,11 +20,16 @@ class DataSemiExport implements FromCollection
     {
 
         if ($this->alldata == 'alldata') {
-            // Export all data
-            return Data::whereIn('id', $this->selectedItems)->get(['gtnum']); // Adjust columns as per your needs
+
+            return Data::whereIn('id', $this->selectedItems)->get(['soldp','shipp','product','gtnum','bildoc']); // Adjust columns as per your needs
         } else {
             // Export selected data
             return Data::whereIn('id', $this->selectedItems)->get(['gtnum']); // Adjust columns as per your needs
         }
+    }
+    public function headings(): array
+    {
+        // Customize column headers as needed
+        return ['Gt Number', 'Description', 'VIN'];
     }
 }
