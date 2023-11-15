@@ -231,7 +231,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column19 style1 null"></td>
             <td class="column20 style1 null"></td>
             <td class="column21 style1 null"></td>
-            <td class="column22 style1 null"><img style="height: 100px" src="{{ asset('img/logo1.jpg') }}" alt="Example Image">            </td>
+            <td class="column22 style1 null" ><img style="height: 100px" src="{{ asset('img/logo1.jpg') }}" alt="Example Image">            </td>
           </tr>
           <tr class="row5">
             <td class="column0 style1 null"></td>
@@ -494,13 +494,12 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column16 style54 null style54" colspan="5" style="text-align: right" >...........................................</td>
             <td class="column21 style54 s style54" colspan="2">رقمه </td>
           </tr>
-
         </tbody>
     </table>
     <table>
         <tr>
             <td></td>
-            <td><img style="height: 150px;margin-bottom:30px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
+            <td><img style="height: 150px;margin-bottom:30px;width:500px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
             <td></td>
             <td></td>
