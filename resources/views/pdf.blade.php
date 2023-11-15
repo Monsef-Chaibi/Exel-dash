@@ -303,32 +303,40 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column22 style4 null"></td>
           </tr>
           <tr class="row8">
-            <td class="column9 style16 f style17" style=" border-right: none; " colspan="3" rowspan="2">
-                <label for="">تالف</label>
-                <input type="checkbox" name="" id="">
-            </td>
-            <td class="column9 style16 f style17" style="border-left: none; " colspan="3" rowspan="2">
-                <label for="">فاقد                </label>
-                <input type="checkbox" name="" id="">
-            </td>
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
-                <label for="">نقل ملكية
-                </label>
-                <input type="checkbox" name="" id="">
-            </td>
-            <td class="column9 style16 f " style="text-align: center" colspan="3" rowspan="2">
-                <label for="">إستبدال</label>
-                <input type="checkbox" name="" id="">
-            </td>
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
-                <label for="">تجديد</label>
-                <input type="checkbox" name="" id="">
-            </td>
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
-                <label for="">تسجيل </label>
-                <input type="checkbox" name="" id="">
+            @php
+                $selectedProcedure = $requestData['procedure'];
+            @endphp
+            <td class="column9 style16 f style17" style="border-right: none;" colspan="3" rowspan="2">
+                <label for="Damaged">تالف</label>
+                <input type="checkbox" name="Damaged" id="" {{ $selectedProcedure === 'Damaged' ? 'checked' : '' }}>
             </td>
 
+            <td class="column9 style16 f style17" style="border-left: none;" colspan="3" rowspan="2">
+                <label for="Lost">فاقد</label>
+                <input type="checkbox" name="Lost" id="" {{ $selectedProcedure === 'Lost' ? 'checked' : '' }}>
+            </td>
+
+            <!-- Repeat the pattern for other checkboxes... -->
+
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="OwnershipTransfer">نقل ملكية</label>
+                <input type="checkbox" name="OwnershipTransfer" id="" {{ $selectedProcedure === 'Ownership Transfer' ? 'checked' : '' }}>
+            </td>
+
+            <td class="column9 style16 f " style="text-align: center" colspan="3" rowspan="2">
+                <label for="Replacement">إستبدال</label>
+                <input type="checkbox" name="Replacement" id="" {{ $selectedProcedure === 'Replacement' ? 'checked' : '' }}>
+            </td>
+
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="Renewal">تجديد</label>
+                <input type="checkbox" name="Renewal" id="" {{ $selectedProcedure === 'Renewal' ? 'checked' : '' }}>
+            </td>
+
+            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+                <label for="Registration">تسجيل</label>
+                <input type="checkbox" name="Registration" id="" {{ $selectedProcedure === 'Registration' ? 'checked' : '' }}>
+            </td>
             <td class="column19 style8 null"></td>
             <td class="column20 style9 s style9" colspan="3" rowspan="2">نوع الإجراء</td>
           </tr>
@@ -511,6 +519,232 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column22 style56 null"></td>
           </tr>
         </tbody>
+    </table>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>خطاب معلومات من واقع السيارة بعد الكشف عليها وعلى مسئوليتنا التامة من أي</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>إختلاف في أي معلومات</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>#REF!</td>
+            <td></td>
+            <td>نوع السيارة /</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>#REF!</td>
+            <td></td>
+            <td>موديلها /</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>#REF!</td>
+            <td></td>
+            <td>لونها /</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>#REF!</td>
+            <td></td>
+            <td></td>
+            <td>رقم الهيكل كاملا بلأحرف اللاتينية /</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>#REF!</td>
+            <td></td>
+            <td>رقم البطاقة الجمركية / </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>سعادة مدير إدارة مرور محافظة جدة</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>السلام عليكم ورحمة الله وبركاته         وبعد :</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>إشارة للأمر الصادر منكم برقم 5/1638/4/7 في 1418/5/12 هـــ .</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td> المذكورة أعلاه أخذت بعد الكشف على السيارة من قبلنا وتحت مسئوليتنا التامة</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>من وجود أي إختلاف   ،،،،</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ولكم منا جزيل الشكر</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>التوقيع /</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>0</td>
+            <td>التاريخ /</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>التاريخ /</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>#REF!</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
   </body>
 </html>

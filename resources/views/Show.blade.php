@@ -703,10 +703,43 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   <div  class="box">
 
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
-      <div class="modal">
-        <h1 class="modal__title">Print Facture :</h1>
+        <div class="modal">
+            <h1 class="modal__title">Print :</h1>
+            <label for="">Type of Procedure :  </label>
         <form action="/pdf" method="get" >
             @csrf
+        <br>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Registration" style="border-radius: 10px">
+            Registration
+        </label>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Renewal" style="border-radius: 10px">
+            Renewal
+        </label>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Replacement" style="border-radius: 10px">
+            Replacement
+        </label>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Ownership Transfer" style="border-radius: 10px">
+            Ownership Transfer
+        </label>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Lost" style="border-radius: 10px">
+            Lost
+        </label>
+
+        <label style="margin-left: 15px">
+            <input type="radio" name="procedure" value="Damaged" style="border-radius: 10px">
+            Damaged
+        </label>
+        <br>
             <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
             <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
                 <option style="display: none;">Select User</option>
