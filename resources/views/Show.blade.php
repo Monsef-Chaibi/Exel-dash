@@ -932,9 +932,19 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             data: $('#myForm').serialize(),
             dataType: 'json',
             success: function (data) {
+                // Check if there is an error in the response
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+
+                // Loop through each object in the response
                 data.forEach(function (item) {
                     // Construct the URL for each view
-                    var url = '/pdf?requestData=' + item.requestData + '&gtnum=' + item.gtnum + '&vin=' + item.vin + '&color=' + item.color;
+                    var url = '/pdf?requestData=' + encodeURIComponent(JSON.stringify(item.requestData)) +
+                        '&gtnum=' + item.gtnum +
+                        '&vin=' + item.vin +
+                        '&color=' + item.color;
 
                     // Open each URL in a new tab
                     window.open(url, '_blank');
