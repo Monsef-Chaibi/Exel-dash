@@ -777,7 +777,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 @endforeach
             </select>
             <label for="" style="margin-left: 20px">Entry Date :</label>
-            <input type="date" name="entrydate" style="width: 38%;border-radius:5px">
+            <input type="text" name="entrydate" style="width: 38%;border-radius:5px">
             <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>
             <select  style="border-radius:5px;width:37%;margin-top:25px" id="brand_id"  onchange="showBrandInfo()">
                 <option style="display: none;">Select Brand</option>

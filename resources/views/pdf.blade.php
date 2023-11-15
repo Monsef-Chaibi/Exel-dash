@@ -475,6 +475,14 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column0 style48 s style50" colspan="20">{{ $item->vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
+          <tr>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+        </tr>
           <tr class="row23">
             <td class="column0 style54 null style54" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
@@ -482,11 +490,27 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
             <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
           </tr>
+          <tr >
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+        </tr>
           <tr class="row24">
             <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
             <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
           </tr>
-          <tr class="row25">
+          <tr>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+        </tr>
+          <tr  class="row25">
             <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
             <td class="column8 style54 null style54" colspan="5" style="text-align: right">............................................</td>
