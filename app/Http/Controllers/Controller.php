@@ -591,48 +591,29 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
             }
-            public function generatePdf()
-            {
-                $pdf = PDF::loadView('pdf', [
-                    'title' => 'Your Title',
-                    'content' => 'النص العربي هنا', // Arabic text here
-                ]);
-
-                return $pdf->download('document.pdf');
-            }
             function PDF(Request $request) {
                 $selectedItems = $request->input('selectedItems');
 
-                // Use the IDs to retrieve records from the database and generate PDFs
-                foreach ($selectedItems as $selectedItemId) {
-                
-                    $selectedRecord = Data::where('id', $selectedItemId)->first();
+                $selectedRecords = Data::whereIn('id', $selectedItems)->get();
 
-                    // Initialize variables for each iteration
-                    $gtnum = $selectedRecord->gtnum;
-                    $vin = $selectedRecord->vin;
+                foreach ($selectedRecords as $record) {
+                    $colorRecord = ColorCode::where('code', $record->color)->first();
 
-                    // Check if the color exists in the 'color' table
-                    $colorRecord = ColorCode::where('code', $selectedRecord->color)->first();
-
-                    // If the color exists, use its name; otherwise, use the original color
-                    $color = $colorRecord ? $colorRecord->color : $selectedRecord->color;
-
-                    // Pass data to the view and generate PDF
-                    $requestData = $request->all();
-                    return view('pdf')->with([
-                        'requestData' => $requestData,
-                        'gtnum' => $gtnum,
-                        'vin' => $vin,
-                        'color' => $color,
-                    ]);
-
-
+                    if ($colorRecord) {
+                        $record->color = $colorRecord->color;
+                    }
                 }
 
-                // Redirect back or return a response as needed
+                $requestData = $request->all();
 
+                return view('pdf')->with([
+                    'requestData' => $requestData,
+                    'selectedRecord' => $selectedRecords
+                ]);
+
+                // Redirect back or return a response as needed
             }
+
                     public function edituser(Request $request, $id)
                     {
                         // Validate the form data

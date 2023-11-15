@@ -182,6 +182,7 @@
 @page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
 body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 </style>
+@foreach ($selectedRecord as $item)
     <table style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
         <col class="col0">
         <col class="col1">
@@ -426,7 +427,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column3 style36 s style37" colspan="3">/ تاريخ الدخول</td>
             <td class="column6 style16 f style15" colspan="3">{{ $requestData['port'] }}</td>
             <td class="column9 style15 s style17" colspan="3">/ ميناء الدخول </td>
-            <td class="column12 style38 s style39" colspan="8">{{ $gtnum}}</td>
+            <td class="column12 style38 s style39" colspan="8">{{ $item->gtnum}}</td>
             <td class="column20 style15 s style17" colspan="3">/ بطاقة الجمارك </td>
           </tr>
           <tr class="row17">
@@ -467,11 +468,11 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column5 style15 s style17" colspan="4">/ عدد المحاور </td>
             <td class="column8 style47 f style15" colspan="4"></td>
             <td class="column13 style15 s style17" colspan="5">/ اللون الاخر </td>
-            <td class="column16 style16 s style15" colspan="5">{{$color}}</td>
+            <td class="column16 style16 s style15" colspan="5">{{ $item->color}}</td>
             <td class="column21 style15 s style17" colspan="2">/ اللون الرئيسي </td>
           </tr>
           <tr class="row22">
-            <td class="column0 style48 s style50" colspan="20">{{$vin}}</td>
+            <td class="column0 style48 s style50" colspan="20">{{ $item->vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
           <tr class="row23">
@@ -707,20 +708,20 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         <tr>
             <td></td>
 
-            <td style="font-size: 25px;text-align:right" >{{$color}}</td>
+            <td style="font-size: 25px;text-align:right" >{{ $item->color}}</td>
 
             <td colspan="4" style="font-size: 25px;text-align:right">/ لونها </td>
         </tr>
         <tr>
             <td></td>
-            <td style="font-size: 25px;text-align:right">{{$vin}}</td>
+            <td style="font-size: 25px;text-align:right">{{ $item->vin}}</td>
             <td style="font-size: 25px;text-align:right" colspan="4">/ رقم الهيكل كاملا بلأحرف اللاتينية </td>
 
         </tr>
         <tr>
             <td></td>
 
-            <td style="font-size: 25px;text-align:right">{{$gtnum}}</td>
+            <td style="font-size: 25px;text-align:right">{{ $item->gtnum}}</td>
             <td colspan="4" style="font-size: 25px;text-align:right">/ رقم البطاقة الجمركية  </td>
 
         </tr>
@@ -1265,6 +1266,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 
         </tr>
     </table>
+    @endforeach
   </body>
 </html>
 <script>
