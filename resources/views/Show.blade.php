@@ -698,7 +698,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </x-app-layout>
   <!-- modal 1 -->
   <div  class="box">
@@ -707,7 +706,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <div class="modal">
             <h1 class="modal__title">Print :</h1>
             <label for="">Type of Procedure :  </label>
-        <form id="myForm">
+        <form action="/pdf" method="get"   target="_blank">
             @csrf
         <br>
 
@@ -846,10 +845,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <a  href="/generate-pdf">
-                <button  onclick="submitForm()" type="submit" class="modalbtn">Print &rarr;</button>
+                <button type="submit" class="modal__btn">Print &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>
         </div>
+
     </div>
   </div>
   <!-- /modal 1 -->
@@ -923,36 +923,3 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
    </script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    function submitForm() {
-        $.ajax({
-            type: 'GET',
-            url: '/pdf', // Update with your actual route
-            data: $('#myForm').serialize(),
-            dataType: 'json',
-            success: function (data) {
-                // Check if there is an error in the response
-                if (data.error) {
-                    console.error(data.error);
-                    return;
-                }
-
-                // Loop through each object in the response
-                data.forEach(function (item) {
-                    // Construct the URL for each view
-                    var url = '/pdf?requestData=' + encodeURIComponent(JSON.stringify(item.requestData)) +
-                        '&gtnum=' + item.gtnum +
-                        '&vin=' + item.vin +
-                        '&color=' + item.color;
-
-                    // Open each URL in a new tab
-                    window.open(url, '_blank');
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    }
-</script>

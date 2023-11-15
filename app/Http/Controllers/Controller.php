@@ -601,43 +601,38 @@ class Controller extends BaseController
                 return $pdf->download('document.pdf');
             }
             function PDF(Request $request) {
-                $selectedItems = [
-                    "551",
-                    "552",
-                    "553",
-                ];
-                $data = [];
+                $selectedItems = $request->input('selectedItems');
 
                 // Use the IDs to retrieve records from the database and generate PDFs
-                $selectedRecords = Data::whereIn('id', $selectedItems)->get();
+                foreach ($selectedItems as $selectedItemId) {
+                
+                    $selectedRecord = Data::where('id', $selectedItemId)->first();
 
-                // Loop through the selected records
-                foreach ($selectedRecords as $record) {
                     // Initialize variables for each iteration
-                    $gtnum = $record->gtnum;
-                    $vin = $record->vin;
+                    $gtnum = $selectedRecord->gtnum;
+                    $vin = $selectedRecord->vin;
 
                     // Check if the color exists in the 'color' table
-                    $colorRecord = ColorCode::where('code', $record->color)->first();
+                    $colorRecord = ColorCode::where('code', $selectedRecord->color)->first();
 
                     // If the color exists, use its name; otherwise, use the original color
-                    $color = $colorRecord ? $colorRecord->color : $record->color;
+                    $color = $colorRecord ? $colorRecord->color : $selectedRecord->color;
 
                     // Pass data to the view and generate PDF
                     $requestData = $request->all();
-                    $data[] = [
+                    return view('pdf')->with([
                         'requestData' => $requestData,
                         'gtnum' => $gtnum,
                         'vin' => $vin,
                         'color' => $color,
-                    ];
+                    ]);
+
+
                 }
 
-                // Return the data in JSON format
-                return response()->json($data);
+                // Redirect back or return a response as needed
+
             }
-
-
                     public function edituser(Request $request, $id)
                     {
                         // Validate the form data
