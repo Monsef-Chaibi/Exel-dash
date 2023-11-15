@@ -603,7 +603,7 @@ class Controller extends BaseController
             function PDF(Request $request) {
                 $selectedItems = $request->input('selectedItems');
                 $data = [];
-
+                
                 // Use the IDs to retrieve records from the database and generate PDFs
                 foreach ($selectedItems as $selectedItemId) {
                     $selectedRecord = Data::where('id', $selectedItemId)->first();
