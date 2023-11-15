@@ -846,7 +846,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <a  href="/generate-pdf">
-                <button type="submit" class="modalbtn">Print &rarr;</button>
+                <button type="submit" onclick="submitForm()" class="modalbtn">Print &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>
         </div>
@@ -925,17 +925,22 @@ when users will click/enter button(link) browser will add a #id in a url and whe
    </script>
 <script>
     function submitForm() {
-        // Iterate over the checkboxes
-        $('input[name="selectedItems[]"]').each(function () {
-            // Check if the checkbox is checked
-            if ($(this).prop('checked')) {
-                // Add a hidden input to the form for each checked checkbox
-                $('#myForm').append('<input type="hidden" name="selectedItems[]" value="' + $(this).val() + '">');
-                console.log('kj');
-            }
-        });
+        // Create a copy of the form
+        var formCopy = $('#myForm').clone();
 
-        // Submit the form
-        $('#myForm').submit();
+        // Change the ID of the copy to avoid conflicts
+        formCopy.attr('id', 'myFormCopy');
+
+        // Append the copy to the body
+        $('body').append(formCopy);
+
+        // Submit the original form
+
+
+        // Submit the copy after a delay (2 seconds in this example)
+        setTimeout(function () {
+            console.log('fekw');
+            $('#myForm').submit();
+        }, 2000);
     }
 </script>
