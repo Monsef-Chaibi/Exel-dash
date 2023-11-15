@@ -390,8 +390,8 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column20 style15 s style17" colspan="3">/ العنوان </td>
           </tr>
           <tr class="row14">
-            <td class="column0 style26 f style28" colspan="13">{{ $requestData['work_phone'] }}</td>
-            <td class="column13 style15 s style17" colspan="3">رقم الجوال </td>
+            <td class="column0 style26 f style28" colspan="10">{{ $requestData['work_phone'] }}</td>
+            <td class="column13 style15 s style17" colspan="6">رقم الجوال </td>
             <td class="column16 style16 s style15" colspan="4">{{ $requestData['activity'] }}</td>
             <td class="column20 style15 s style17" colspan="3">/ النشاط </td>
           </tr>
@@ -416,9 +416,9 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         @endphp
 
 
-            <td class="column0 style29 f style30" colspan="5">{{$phonete}}</td>
-            <td class="column5 style15 s style17" colspan="8">/ رقم الهوية </td>
-            <td class="column17 style31 f style31" colspan="8">{{$namete}}</td>
+            <td class="column0 style29 f style30" colspan="7">{{$phonete}}</td>
+            <td class="column5 style15 s style17" colspan="3">/ رقم الهوية </td>
+            <td class="column17 style31 f style31" colspan="10">{{$namete}}</td>
             <td class="column20 style32 s style33" colspan="3"> / إسم المستأجر </td>
           </tr>
           <tr class="row16">
@@ -463,10 +463,10 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column21 style32 s style33" colspan="2">/ سنة الصنع </td>
           </tr>
           <tr class="row21">
-            <td class="column0 style47 s style15" colspan="4">---------------------</td>
+            <td class="column0 style47 s style15" colspan="3">----------------</td>
             <td class="column5 style15 s style17" colspan="4">/ عدد المحاور </td>
-            <td class="column8 style47 f style15" colspan="5"></td>
-            <td class="column13 style15 s style17" colspan="3">/ اللون الاخر </td>
+            <td class="column8 style47 f style15" colspan="4"></td>
+            <td class="column13 style15 s style17" colspan="5">/ اللون الاخر </td>
             <td class="column16 style16 s style15" colspan="5">{{$color}}</td>
             <td class="column21 style15 s style17" colspan="2">/ اللون الرئيسي </td>
           </tr>
@@ -493,37 +493,13 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column16 style54 null style54" colspan="5" style="text-align: right" >...........................................</td>
             <td class="column21 style54 s style54" colspan="2">رقمه </td>
           </tr>
-          <tr class="row26">
-            <td class="column0 style56 null"></td>
-            <td class="column1 style56 null"></td>
-            <td class="column2 style56 null"></td>
-            <td class="column3 style56 null"></td>
-            <td class="column4 style56 null"></td>
-            <td class="column5 style56 null"></td>
-            <td class="column6 style56 null"></td>
-            <td class="column7 style56 null"></td>
-            <td class="column8 style56 null"></td>
-            <td class="column9 style56 null"></td>
-            <td class="column10 style56 null"></td>
-            <td class="column11 style56 null"></td>
-            <td class="column12 style56 null"></td>
-            <td class="column13 style56 null"></td>
-            <td class="column14 style56 null"></td>
-            <td class="column15 style56 null"></td>
-            <td class="column16 style56 null"></td>
-            <td class="column17 style56 null"></td>
-            <td class="column18 style56 null"></td>
-            <td class="column19 style56 null"></td>
-            <td class="column20 style56 null"></td>
-            <td class="column21 style56 null"></td>
-            <td class="column22 style56 null"></td>
-          </tr>
+
         </tbody>
     </table>
     <table>
         <tr>
             <td></td>
-            <td><img style="height: 150px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
+            <td><img style="height: 150px;margin-bottom:30px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
             <td></td>
             <td></td>
@@ -531,7 +507,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         </tr>
         <tr>
 
-            <td style="text-align: center;font-size:30px; text-decoration: underline;" colspan="5">خطاب معلومات من واقع السيارة بعد الكشف عليها وعلى مسئوليتنا التامة من أي</td>
+            <td style="text-align: center;font-size:25px; text-decoration: underline;" colspan="5">خطاب معلومات من واقع السيارة بعد الكشف عليها وعلى مسئوليتنا التامة من أي</td>
 
         </tr>
         <tr>
@@ -581,7 +557,171 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         <tr>
 
 
-            <td style="text-align: center;font-size:30px; text-decoration: underline;"  colspan="5">إختلاف في أي معلومات</td>
+            <td style="text-align: center;font-size:25px; text-decoration: underline;"  colspan="5">إختلاف في أي معلومات</td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td  style="font-size: 25px;text-align:right">{{ $requestData['modtype'] }}</td>
+
+            <td colspan="4" style="font-size: 25px;text-align:right">/ نوع السيارة </td>
+
+        </tr>
+        <tr>
+            <td></td>
+
+            <td  style="font-size: 25px;text-align:right">{{ $requestData['year'] }}</td>
+
+            <td colspan="4" style="font-size: 25px;text-align:right">/ موديلها </td>
+
+        </tr>
+        <tr>
+            <td></td>
+
+            <td style="font-size: 25px;text-align:right" >{{$color}}</td>
+
+            <td colspan="4" style="font-size: 25px;text-align:right">/ لونها </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-size: 25px;text-align:right">{{$vin}}</td>
+            <td style="font-size: 25px;text-align:right" colspan="4">/ رقم الهيكل كاملا بلأحرف اللاتينية </td>
+
+        </tr>
+        <tr>
+            <td></td>
+
+            <td style="font-size: 25px;text-align:right">{{$gtnum}}</td>
+            <td colspan="4" style="font-size: 25px;text-align:right">/ رقم البطاقة الجمركية  </td>
 
         </tr>
         <tr>
@@ -715,272 +855,105 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         <tr>
             <td></td>
             <td></td>
-            <td  style="font-size: 25px">{{ $requestData['modtype'] }}</td>
             <td></td>
-            <td style="font-size: 25px;text-align:right">/ نوع السيارة </td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td  style="font-size: 25px">{{ $requestData['year'] }}</td>
             <td></td>
-            <td  style="font-size: 25px;text-align:right">/ موديلها </td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td style="font-size: 25px" >{{$color}}</td>
             <td></td>
-            <td style="font-size: 25px;text-align:right">/ لونها </td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td style="font-size: 25px">{{$vin}}</td>
-            <td style="font-size: 25px;text-align:right" colspan="3">/ رقم الهيكل كاملا بلأحرف اللاتينية </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="font-size: 20px;text-align:right">سعادة مدير إدارة مرور محافظة جدة</td>
+            <td></td>
+            <td></td>
 
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="font-size: 25px">{{$gtnum}}</td>
-            <td colspan="3" style="font-size: 25px;text-align:right">/ رقم البطاقة الجمركية  </td>
 
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="font-size: 20px">سعادة مدير إدارة مرور محافظة جدة</td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
         <tr>
             <td></td>

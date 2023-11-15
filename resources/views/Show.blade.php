@@ -461,7 +461,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a href="#m1-o">
-                <button style="color: #ebf3f9;padding:10px" type="submit" class="modal__btn">Print Contrat &rarr;</button>
+                <button style="color:rgb(103, 255, 103);padding:10px" type="submit" class="modal__btn">Print Contrat &rarr;</button>
             </a>
 
             <div class="in">

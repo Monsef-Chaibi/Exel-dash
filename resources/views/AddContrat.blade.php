@@ -768,7 +768,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         // Populate modal content with port information
         var modalContent = document.getElementById('modalContent');
         modalContent.innerHTML = `
-            <h3 style='text-align:center;font-size:30px;margin-bottom:10px;'>Edit Port</h3>
+            <h3 style='text-align:center;font-size:30px;margin-bottom:10px;'>Edit Color</h3>
             <form action="/editcolorcontrat" method="get" id="editForm" style='text-align:left'>
                 <input name="id" type="hidden" value="${id}">
 
