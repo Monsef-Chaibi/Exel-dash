@@ -707,7 +707,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <div class="modal">
             <h1 class="modal__title">Print :</h1>
             <label for="">Type of Procedure :  </label>
-        <form  id="pdfForm" action="/pdf" method="get" >
+        <form  id="myForm" action="{{ route('pdf') }}" method="get"  target="_blank">
             @csrf
         <br>
 
@@ -924,17 +924,18 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
    </script>
 <script>
-    $(document).ready(function () {
-        $('input[name="selectedItems[]"]').change(function () {
-            // Toggle the visibility of the form submit button
-            // based on whether any checkbox is checked
-            var anyCheckboxChecked = $('input[name="selectedItems[]"]:checked').length > 0;
-            $('.modalbtn').toggle(anyCheckboxChecked);
+    function submitForm() {
+        // Iterate over the checkboxes
+        $('input[name="selectedItems[]"]').each(function () {
+            // Check if the checkbox is checked
+            if ($(this).prop('checked')) {
+                // Add a hidden input to the form for each checked checkbox
+                $('#myForm').append('<input type="hidden" name="selectedItems[]" value="' + $(this).val() + '">');
+                console.log('kj');
+            }
         });
 
-        // Submit the form when the button is clicked
-        $('.modalbtn').click(function () {
-            $('#pdFcorm').submit();
-        });
-    });
+        // Submit the form
+        $('#myForm').submit();
+    }
 </script>

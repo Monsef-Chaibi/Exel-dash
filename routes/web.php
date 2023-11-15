@@ -66,7 +66,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/getUserData/{id}',[Controller::class, 'getUserData']);
     Route::get('/getBrandData/{id}',[Controller::class, 'showBrandInfo']);
     Route::get('/generate-pdf',[Controller::class, 'generatePDF']);
-    Route::get('/pdf',[Controller::class, 'PDF']);
+    Route::get('/pdf',[Controller::class, 'PDF'])->name('pdf');
     Route::post('/Addcolor',[Controller::class, 'Addcolor']);
     Route::get('/editusercontrat',[Controller::class, 'editusercontrat']);
     Route::get('/editportcontrat',[Controller::class, 'editportcontrat']);
