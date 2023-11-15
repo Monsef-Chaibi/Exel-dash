@@ -1271,6 +1271,11 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
+
+        // Use setTimeout to wait for 2 seconds before returning to the previous page
+        setTimeout(function() {
+            window.history.back();
+        }, 3000); // 2000 milliseconds = 2 seconds
     };
 </script>
 

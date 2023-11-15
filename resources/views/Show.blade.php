@@ -698,6 +698,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </x-app-layout>
   <!-- modal 1 -->
   <div  class="box">
@@ -706,7 +707,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <div class="modal">
             <h1 class="modal__title">Print :</h1>
             <label for="">Type of Procedure :  </label>
-        <form action="/pdf" method="get" >
+        <form  id="pdfForm" action="/pdf" method="get" >
             @csrf
         <br>
 
@@ -845,7 +846,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
             <a  href="/generate-pdf">
-                <button type="submit" class="modal__btn">Print &rarr;</button>
+                <button type="submit" class="modalbtn">Print &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>
         </div>
@@ -922,3 +923,18 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
    </script>
+<script>
+    $(document).ready(function () {
+        $('input[name="selectedItems[]"]').change(function () {
+            // Toggle the visibility of the form submit button
+            // based on whether any checkbox is checked
+            var anyCheckboxChecked = $('input[name="selectedItems[]"]:checked').length > 0;
+            $('.modalbtn').toggle(anyCheckboxChecked);
+        });
+
+        // Submit the form when the button is clicked
+        $('.modalbtn').click(function () {
+            $('#pdFcorm').submit();
+        });
+    });
+</script>
