@@ -600,39 +600,40 @@ class Controller extends BaseController
 
                 return $pdf->download('document.pdf');
             }
-            function PDF(Request $request){
+            function PDF(Request $request) {
                 $selectedItems = $request->input('selectedItems');
+                $data = [];
 
-                        // Use the IDs to retrieve records from the database
-                        $selectedRecords = Data::whereIn('id', $selectedItems)->get();
+                // Use the IDs to retrieve records from the database and generate PDFs
+                foreach ($selectedItems as $selectedItemId) {
+                    $selectedRecord = Data::where('id', $selectedItemId)->first();
 
-                        // Initialize arrays to store names and vins
-                        $names = [];
-                        $vins = [];
+                    // Initialize variables for each iteration
+                    $gtnum = $selectedRecord->gtnum;
+                    $vin = $selectedRecord->vin;
 
-                        // Loop through the selected records
-                        foreach ($selectedRecords as $record) {
-                            // Add names and vins to the respective arrays
-                            $gtnum = $record->gtnum;
-                            $vin = $record->vin;
+                    // Check if the color exists in the 'color' table
+                    $colorRecord = ColorCode::where('code', $selectedRecord->color)->first();
 
-                            // Check if the color exists in the 'color' table
-                            $colorRecord = ColorCode::where('code', $record->color)->first();
+                    // If the color exists, use its name; otherwise, use the original color
+                    $color = $colorRecord ? $colorRecord->color : $selectedRecord->color;
 
-                            // If the color exists, use its name; otherwise, use the original color
-                            $color = $colorRecord ? $colorRecord->color : $record->color;
-                        }
+                    // Pass data to the view and generate PDF
+                    $requestData = $request->all();
 
-                        $requestData = $request->all();
+                    // Store the data in an array
+                    $data[] = [
+                        'requestData' => $requestData,
+                        'gtnum' => $gtnum,
+                        'vin' => $vin,
+                        'color' => $color,
+                    ];
+                }
 
-                        return view('pdf')->with([
-                            'requestData' => $requestData,
-                            'gtnum' => $gtnum,
-                            'vin' => $vin,
-                            'color' => $color,
-                        ]);
+                // Return the data in JSON format
+                return response()->json($data);
+            }
 
-                    }
                     public function edituser(Request $request, $id)
                     {
                         // Validate the form data

@@ -1273,9 +1273,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         window.print();
 
         // Use setTimeout to wait for 2 seconds before returning to the previous page
-        setTimeout(function() {
-            window.history.back();
-        },2000); // 2000 milliseconds = 2 seconds
+       
     };
 </script>
 
