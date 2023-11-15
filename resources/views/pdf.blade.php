@@ -748,10 +748,10 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     </table>
   </body>
 </html>
-<script>
+{{-- <script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
     };
-</script>
+</script> --}}
 
