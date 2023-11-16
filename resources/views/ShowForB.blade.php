@@ -475,6 +475,7 @@
                                     <th><button onclick="selectAll()">Select All</button></th>
                                     <th>Product</th>
                                     <th>Long Description</th>
+                                    <th>Vin</th>
                                     <th>GT Number</th>
                                 </tr>
                             </thead>
@@ -500,6 +501,9 @@
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->desc }}
+                                                </td>
+                                                <td data-th="Supplier Code">
+                                                    {{ $item->vin }}
                                                 </td>
                                                 @if ($item->status == 1)
                                                     <td id="gtnum_{{ $index }}" style="display: flex"

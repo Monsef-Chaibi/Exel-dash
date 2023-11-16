@@ -572,6 +572,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th><button onclick="selectAll()">Select All</button></th>
                                     <th>Product</th>
                                     <th>Long Description</th>
+                                    <th>Vin</th>
                                     <th>GT Number</th>
                                 </tr>
                             </thead>
@@ -590,6 +591,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->desc }}
+                                                </td>
+                                                <td data-th="Supplier Code">
+                                                    {{ $item->vin }}
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->gtnum }}
