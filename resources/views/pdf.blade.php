@@ -475,6 +475,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column0 style48 s style50" colspan="20">{{ $item->vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
+          
           <tr>
             <td style="border:none;"></td>
             <td style="border:none;"></td>
