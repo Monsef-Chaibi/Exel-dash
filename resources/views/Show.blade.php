@@ -773,6 +773,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                   @endforeach
                 </select>
             </div><br>
+            <label for="" style="display: none" id='documents'>Print ALJUF documents ?</label>
+            <input style="margin-left: 20px;display: none" checked type="radio" id="documents"  value="No">
+            <label style="margin-left: 5px;display: none" for="" id='documents'>No</label>
+            <input style="margin-left: 20px;display: none"  type="radio" id="documents" value="Yes">
+            <label style="margin-left: 5px;display: none" for="" id='documents'>Yes</label>
+            <br>
+            <br>
             <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
             <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
                 <option style="display: none;">Select Port</option>
@@ -915,13 +922,23 @@ when users will click/enter button(link) browser will add a #id in a url and whe
    function showtenantInfo() {
     var radioButton = document.querySelector('input[name="is_tenant"]:checked');
     var selectBox = document.querySelector('#slc');
+    var selects = document.querySelectorAll('#documents');
+
 
     if (radioButton.value === 'No') {
         selectBox.setAttribute('disabled', true);
         selectBox.style.display = 'none';
+        selects.forEach(function (select) {
+        select.setAttribute('disabled', true);
+        select.style.display = 'none';
+        });
     } else if (radioButton.value === 'Yes') {
         selectBox.removeAttribute('disabled');
         selectBox.style.removeProperty('display');
+        selects.forEach(function (select) {
+        select.removeAttribute('disabled');
+        select.style.removeProperty('display');
+        });
     }
     }
 
