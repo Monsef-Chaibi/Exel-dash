@@ -1369,6 +1369,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 
         </tr>
     </table>
+
     <div class="pic">
         <img src='{{ asset('img/body.jpg') }}' alt="Description of the image">
         <div class="type">
@@ -1399,6 +1400,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $requestData['work_phone'] }}</p>
         </div>
     </div>
+    
     @endforeach
   </body>
 </html>
