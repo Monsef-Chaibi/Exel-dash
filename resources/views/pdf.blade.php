@@ -178,7 +178,7 @@
     position: relative;
     display: inline-block;
     font-weight: bold;
-    color: #CECECE;
+
     /* or block, depending on your layout needs */
 }
 
@@ -525,8 +525,8 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column20 style15 s style17" colspan="3">/ اللوحة الرقمية </td>
           </tr>
           <tr class="row19">
-            <td class="column0 style44 n style45" colspan="3">{{ $requestData['numcl'] }}</td>
-            <td class="column3 style36 s style37" colspan="3">/ عدد السلندرات</td>
+            <td class="column0 style44 n style45" colspan="2">{{ $requestData['numcl'] }}</td>
+            <td class="column3 style36 s style37" colspan="4">/ عدد السلندرات</td>
             <td class="column6 style44 n style45" colspan="3">{{ $requestData['vcap'] }}</td>
             <td class="column9 style36 s style37" colspan="3">/ حمولة المركبة </td>
             <td class="column12 style16 s style15" colspan="3">{{ $requestData['chtype'] }}</td>
@@ -1400,12 +1400,35 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $requestData['work_phone'] }}</p>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
 @endif
 
     @endforeach
   </body>
 </html>
-<script>
+{{-- <script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
@@ -1413,5 +1436,5 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         // Use setTimeout to wait for 2 seconds before returning to the previous page
 
     };
-</script>
+</script> --}}
 
