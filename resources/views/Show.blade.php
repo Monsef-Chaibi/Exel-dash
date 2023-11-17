@@ -772,14 +772,15 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <option value="{{ $item->name . ',' . $item->nat_id }}">{{$item->name}}</option>
                   @endforeach
                 </select>
-            </div><br>
+            </div>
+            <br>
             <label for="" style="display: none" id='documents'>Print ALJUF documents ?</label>
-            <input style="margin-left: 20px;display: none" checked type="radio" id="documents"  value="No">
+            <input style="margin-left: 20px;display: none" name="documents" checked type="radio" id="documents"  value="No">
             <label style="margin-left: 5px;display: none" for="" id='documents'>No</label>
-            <input style="margin-left: 20px;display: none"  type="radio" id="documents" value="Yes">
+            <input style="margin-left: 20px;display: none" name="documents"  type="radio" id="documents" value="Yes">
             <label style="margin-left: 5px;display: none" for="" id='documents'>Yes</label>
-            <br>
-            <br>
+            <br style="display: none" id='documents'>
+            <br style="display: none" id='documents'>
             <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
             <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
                 <option style="display: none;">Select Port</option>
