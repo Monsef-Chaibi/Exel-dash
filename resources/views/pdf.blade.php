@@ -611,7 +611,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     <table>
         <tr>
             <td></td>
-            <td><img style="height: 150px;margin-bottom:30px;width:500px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
+            <td><img style="height: 130px;margin-bottom:30px;width:500px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
             <td></td>
             <td></td>
