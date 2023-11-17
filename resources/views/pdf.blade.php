@@ -183,8 +183,8 @@
 }
 
 .pic img {
-    width: 100%;
-    height: auto;
+    width: 106%;
+    height: 1300px;
     display: block;
     text-align: center;
 }
@@ -192,63 +192,63 @@
 .type{
     position: absolute;
     top: 46.8%; /* Adjust as needed */
-    left: 80%; /* Adjust as needed */
+    left: 84%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .model{
     position: absolute;
     top: 46.9%; /* Adjust as needed */
-    left: 59%; /* Adjust as needed */
+    left: 62.5%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .gt{
     position: absolute;
     top: 46.8%; /* Adjust as needed */
-    left: 40%; /* Adjust as needed */
+    left: 42%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .name{
     position: absolute;
     top: 53.5%; /* Adjust as needed */
-    left: 80%; /* Adjust as needed */
+    left: 84%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .nat{
     position: absolute;
     top: 53.5%; /* Adjust as needed */
-    left: 60%; /* Adjust as needed */
+    left: 63%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .num{
     position: absolute;
     top: 53.5%; /* Adjust as needed */
-    left: 40%; /* Adjust as needed */
+    left: 42.5%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .met{
     position: absolute;
     top: 58.8%; /* Adjust as needed */
-    left: 80%; /* Adjust as needed */
+    left: 83.5%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .ad{
     position: absolute;
     top: 58.8%; /* Adjust as needed */
-    left: 60%; /* Adjust as needed */
+    left: 63%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
 .mob{
     position: absolute;
     top: 58.8%; /* Adjust as needed */
-    left: 40%; /* Adjust as needed */
+    left: 42.5%; /* Adjust as needed */
     transform: translate(-50%, -50%);
 
 }
@@ -456,17 +456,17 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
           </tr>
           <tr class="row12">
             <td class="column0 style21 f style22" colspan="5">___________</td>
-            <td class="column6 style15 s style17" colspan="4" style="border-left: 1px solid #000000 !important;">هاتف المنزل /</td>
+            <td class="column6 style15 s style17" colspan="4" style="border-left: 1px solid #000000 !important;">/ هاتف المنزل </td>
             <td colspan="11" class="column9 style23 f">{{ $requestData['national_id'] }}</td>
             <td class="column19 style24 s style24" colspan="4">البطاقة الشخصية </td>
           </tr>
           <tr class="row13">
             <td class="column0 style25 n style14" colspan="4">{{ $requestData['mobile_number'] }}</td>
             <td class="column6 style15 s style15" colspan="3">هاتف العمل </td>
-            <td class="column9 style16 s style15" colspan="3">{{ $requestData['city'] }}</td>
+            <td class="column9 style16 s style15" colspan="4">{{ $requestData['city'] }}</td>
             <td class="column13 style15 s style17" colspan="2">/ المدينة </td>
             <td class="column16 style16 s style15" colspan="8">{{ $requestData['address'] }}</td>
-            <td class="column20 style15 s style17" colspan="3">/ العنوان </td>
+            <td class="column20 style15 s style17" colspan="2">/ العنوان </td>
           </tr>
           <tr class="row14">
             <td class="column0 style26 f style28" colspan="10">{{ $requestData['work_phone'] }}</td>
@@ -509,11 +509,11 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column20 style32 s style33" colspan="3"> / إسم المستأجر </td>
           </tr>
           <tr class="row16">
-            <td class="column0 style34 f style35" colspan="3">{{ $requestData['entrydate'] }}</td>
-            <td class="column3 style36 s style37" colspan="3">/ تاريخ الدخول</td>
+            <td class="column0 style34 f style35" colspan="4">{{ $requestData['entrydate'] }}</td>
+            <td class="column3 style36 s style37" colspan="4">/ تاريخ الدخول</td>
             <td class="column6 style16 f style15" colspan="3">{{ $requestData['port'] }}</td>
             <td class="column9 style15 s style17" colspan="3">/ ميناء الدخول </td>
-            <td class="column12 style38 s style39" colspan="8">{{ $item->gtnum}}</td>
+            <td class="column12 style38 s style39" colspan="6">{{ $item->gtnum}}</td>
             <td class="column20 style15 s style17" colspan="3">/ بطاقة الجمارك </td>
           </tr>
           <tr class="row17">
@@ -578,26 +578,10 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
             <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
           </tr>
-          <tr >
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-        </tr>
           <tr class="row24">
             <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
             <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
           </tr>
-          <tr>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-        </tr>
           <tr  class="row25">
             <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
@@ -1408,26 +1392,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $mobte }}</p>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
 
 
 
@@ -1436,7 +1401,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     @endforeach
   </body>
 </html>
-{{-- <script>
+ {{-- <script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
