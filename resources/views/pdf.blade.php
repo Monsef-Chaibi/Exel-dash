@@ -177,7 +177,9 @@
       .pic {
     position: relative;
     display: inline-block;
-    font-weight: bold;/* or block, depending on your layout needs */
+    font-weight: bold;
+    color: #CECECE;
+    /* or block, depending on your layout needs */
 }
 
 .pic img {
@@ -1400,7 +1402,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     @endforeach
   </body>
 </html>
-<script>
+{{-- <script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
@@ -1408,5 +1410,5 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         // Use setTimeout to wait for 2 seconds before returning to the previous page
 
     };
-</script>
+</script> --}}
 
