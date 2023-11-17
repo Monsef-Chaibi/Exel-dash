@@ -117,7 +117,7 @@ class Controller extends BaseController
         }
         function action(Request $request)
         {
-            if(auth()->user()->cond === 0 || auth()->user()->cond === null)
+               if(auth()->user()->cond == 0)
             {
                 if($request->ajax())
                 {
@@ -307,7 +307,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32" href="/ShowForB/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -504,6 +504,7 @@ class Controller extends BaseController
             public function AddContrat()
             {
                 $user = ContratUser::get();
+
                 $port = Port::get();
                 $brand = Brand::get();
                 $color = ColorCode::get();
@@ -591,8 +592,7 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Owner added successfully!');
             }
-            function PDF(Request $request) {
-
+           function PDF(Request $request) {
                 $selectedItems = $request->input('selectedItems');
 
                 $selectedRecords = Data::whereIn('id', $selectedItems)->get();
@@ -614,7 +614,6 @@ class Controller extends BaseController
 
                 // Redirect back or return a response as needed
             }
-
                     public function edituser(Request $request, $id)
                     {
                         // Validate the form data
