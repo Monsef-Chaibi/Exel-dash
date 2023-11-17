@@ -487,10 +487,18 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
                 // Set $namete and $phonete based on the existence of parts
                 $namete = isset($parts[0]) ? $parts[0] : '';
                 $phonete = isset($parts[1]) ? $parts[1] : '';
+                $natte = isset($parts[2]) ? $parts[2] : '';
+                $actte = isset($parts[3]) ? $parts[3] : '';
+                $adte = isset($parts[4]) ? $parts[4] : '';
+                $mobte = isset($parts[5]) ? $parts[5] : '';
             } else {
                 // If 'tenant' key does not exist, set variables to ''
                 $namete = '';
                 $phonete = '';
+                $natte = '';
+                $actte = '';
+                $adte = '';
+                $mobte = '';
             }
         @endphp
 
@@ -1379,25 +1387,25 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $requestData['year'] }}</p>
         </div>
         <div class="gt">
-            <p style="color: black;">{{ $item->vin}}</p>
+            <p style="color: black;font-size:13px">{{ $item->vin}}</p>
         </div>
         <div class="name">
             <p style="color: black;font-size:10px">{{$namete}}</p>
         </div>
         <div class="nat">
-            <p style="color: black;">{{ $requestData['nationality'] }}</p>
+            <p style="color: black;">{{ $natte}}</p>
         </div>
         <div class="num">
-            <p style="color: black;">{{$phonete}}</p>
+            <p style="color: black;font-size:15px">{{$phonete}}</p>
         </div>
         <div class="met">
-            <p style="color: black;">{{ $requestData['activity'] }}</p>
+            <p style="color: black;">{{ $actte }}</p>
         </div>
         <div class="ad">
-            <p style="color: black;">{{ $requestData['address'] }}</p>
+            <p style="color: black;">{{ $adte }}</p>
         </div>
         <div class="mob">
-            <p style="color: black;">{{ $requestData['work_phone'] }}</p>
+            <p style="color: black;">{{ $mobte }}</p>
         </div>
     </div>
     <br>
