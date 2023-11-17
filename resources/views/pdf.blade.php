@@ -818,7 +818,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         <tr>
             <td></td>
             <td style="font-size: 25px;text-align:right">{{ $item->vin}}</td>
-            <td style="font-size: 25px;text-align:right" colspan="4">/ رقم الهيكل كاملا بلأحرف اللاتينية </td>
+            <td style="font-size: 25px;text-align:right" colspan="4">/ رقم الهيكل بلأحرف اللاتينية </td>
 
         </tr>
         <tr>
