@@ -1369,7 +1369,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 
         </tr>
     </table>
-
+@if ( $requestData['documents'] == 'Yes')
     <div class="pic">
         <img src='{{ asset('img/body.jpg') }}' alt="Description of the image">
         <div class="type">
@@ -1382,13 +1382,13 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $item->vin}}</p>
         </div>
         <div class="name">
-            <p style="color: black;">{{$namete}}</p>
+            <p style="color: black;font-size:10px">{{$namete}}</p>
         </div>
         <div class="nat">
             <p style="color: black;">{{ $requestData['nationality'] }}</p>
         </div>
         <div class="num">
-            <p style="color: black;">{{$phonete}}/p>
+            <p style="color: black;">{{$phonete}}</p>
         </div>
         <div class="met">
             <p style="color: black;">{{ $requestData['activity'] }}</p>
@@ -1400,11 +1400,12 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;">{{ $requestData['work_phone'] }}</p>
         </div>
     </div>
-    
+@endif
+
     @endforeach
   </body>
 </html>
-{{-- <script>
+<script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
@@ -1412,5 +1413,5 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         // Use setTimeout to wait for 2 seconds before returning to the previous page
 
     };
-</script> --}}
+</script>
 

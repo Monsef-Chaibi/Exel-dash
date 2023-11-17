@@ -592,7 +592,7 @@ class Controller extends BaseController
                 return redirect()->back()->with('success', 'Owner added successfully!');
             }
             function PDF(Request $request) {
-                dd($request);
+              
                 $selectedItems = $request->input('selectedItems');
 
                 $selectedRecords = Data::whereIn('id', $selectedItems)->get();
