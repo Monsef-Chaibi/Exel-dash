@@ -174,6 +174,82 @@
       table.sheet0 tr.row24 { height:15.6pt }
       table.sheet0 tr.row25 { height:15.6pt }
       table.sheet0 tr.row26 { height:16.2pt }
+      .pic {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;/* or block, depending on your layout needs */
+}
+
+.pic img {
+    width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+}
+
+.type{
+    position: absolute;
+    top: 46.8%; /* Adjust as needed */
+    left: 80%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.model{
+    position: absolute;
+    top: 46.9%; /* Adjust as needed */
+    left: 59%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.gt{
+    position: absolute;
+    top: 46.8%; /* Adjust as needed */
+    left: 40%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.name{
+    position: absolute;
+    top: 53.5%; /* Adjust as needed */
+    left: 80%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.nat{
+    position: absolute;
+    top: 53.5%; /* Adjust as needed */
+    left: 60%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.num{
+    position: absolute;
+    top: 53.5%; /* Adjust as needed */
+    left: 40%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.met{
+    position: absolute;
+    top: 58.8%; /* Adjust as needed */
+    left: 80%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.ad{
+    position: absolute;
+    top: 58.8%; /* Adjust as needed */
+    left: 60%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
+.mob{
+    position: absolute;
+    top: 58.8%; /* Adjust as needed */
+    left: 40%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+
+}
     </style>
   </head>
 
@@ -1291,6 +1367,36 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
 
         </tr>
     </table>
+    <div class="pic">
+        <img src='{{ asset('img/body.jpg') }}' alt="Description of the image">
+        <div class="type">
+            <p style="color: black;">{{ $requestData['modtype'] }}</p>
+        </div>
+        <div class="model">
+            <p style="color: black;">{{ $requestData['year'] }}</p>
+        </div>
+        <div class="gt">
+            <p style="color: black;">{{ $item->vin}}</p>
+        </div>
+        <div class="name">
+            <p style="color: black;">{{$namete}}</p>
+        </div>
+        <div class="nat">
+            <p style="color: black;">{{ $requestData['nationality'] }}</p>
+        </div>
+        <div class="num">
+            <p style="color: black;">{{$phonete}}/p>
+        </div>
+        <div class="met">
+            <p style="color: black;">{{ $requestData['activity'] }}</p>
+        </div>
+        <div class="ad">
+            <p style="color: black;">{{ $requestData['address'] }}</p>
+        </div>
+        <div class="mob">
+            <p style="color: black;">{{ $requestData['work_phone'] }}</p>
+        </div>
+    </div>
     @endforeach
   </body>
 </html>
