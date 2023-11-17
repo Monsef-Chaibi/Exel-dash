@@ -17,7 +17,7 @@ class Role
      */
     public function handle(Request $request, Closure $next): Response
     {
-       
+
 
         if(Auth::check()){
 
@@ -30,8 +30,11 @@ class Role
 
                 return response()->view("DashboardA");
             }
-            else{
+            elseif(Auth::user()->role == 2){
                 return response()->view('/DashboardB');
+            }
+            elseif(Auth::user()->role == 3){
+                return response()->view('/DashboardC');
             }
         }
 
