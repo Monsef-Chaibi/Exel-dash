@@ -20,7 +20,7 @@
       .s { text-align:left }
       td.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
       th.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
-      td.style1 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:#FFFFFF }
+      td.style1 { height:40px;vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:#FFFFFF }
       th.style1 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:#FFFFFF }
       td.style2 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:16pt; background-color:#FFFFFF }
       th.style2 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:16pt; background-color:#FFFFFF }
@@ -184,7 +184,7 @@
 
 .pic img {
     width: 106%;
-    height: 1200px;
+    height: 1230px;
     display: block;
     text-align: center;
 }
@@ -252,6 +252,12 @@
     transform: translate(-50%, -50%);
 
 }
+@media print {
+        /* Add a page break before each div */
+        .print-page-break {
+            page-break-before: always;
+        }
+    }
     </style>
   </head>
 
@@ -260,7 +266,7 @@
 
 </style>
 @foreach ($selectedRecord as $item)
-    <table style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+    <table class="print-page-break" style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
         <col class="col0">
         <col class="col1">
         <col class="col2">
@@ -355,32 +361,7 @@
             <td class="column21 style1 null"></td>
             <td class="column22 style1 null"></td>
           </tr>
-          <tr class="row7">
-            <td class="column0 style4 null"></td>
-            <td class="column1 style4 null"></td>
-            <td class="column2 style4 null"></td>
-            <td class="column3 style4 null"></td>
-            <td class="column4 style4 null"></td>
-            <td class="column5 style4 null"></td>
-            <td class="column6 style4 null"></td>
-            <td class="column7 style4 null"></td>
-            <td class="column8 style4 null"></td>
-            <td class="column9 style4 null"></td>
-            <td class="column10 style4 null"></td>
-            <td class="column11 style4 null"></td>
-            <td class="column12 style4 null"></td>
-            <td class="column13 style4 null"></td>
-            <td class="column14 style4 null"></td>
-            <td class="column15 style4 null"></td>
-            <td class="column16 style4 null"></td>
-            <td class="column17 style4 null"></td>
-            <td class="column18 style4 null"></td>
-            <td class="column19 style4 null"></td>
-            <td class="column20 style4 null"></td>
-            <td class="column21 style4 null"></td>
-            <td class="column22 style4 null"></td>
-          </tr>
-          <tr class="row8">
+          <tr class="row8" style="margin-bottom: 20%">
             @php
                 $selectedProcedure = $requestData['procedure'];
             @endphp
@@ -418,9 +399,7 @@
             <td class="column19 style8 null"></td>
             <td class="column20 style9 s style9" colspan="3" rowspan="2">نوع الإجراء</td>
           </tr>
-          <tr class="row9">
-            <td class="column19 style8 null"></td>
-          </tr>
+
           <tr class="row10">
             <td class="column0 style8 null"></td>
             <td class="column1 style8 null"></td>
@@ -605,7 +584,7 @@
           </tr>
         </tbody>
     </table>
-    <table>
+    <table class="print-page-break">
         <tr>
             <td></td>
             <td><img style="height: 130px;margin-bottom:30px;width:500px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
@@ -1375,7 +1354,7 @@
         </tr>
     </table>
 @if ( $requestData['documents'] == 'Yes')
-    <div class="pic">
+    <div class="pic print-page-break">
         <img src='{{ asset('img/body.jpg') }}' alt="Description of the image">
         <div class="type">
             <p style="color: black;">{{ $requestData['modtype'] }}</p>
@@ -1406,19 +1385,6 @@
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-
-
 @endif
 
     @endforeach
@@ -1429,8 +1395,7 @@
     window.onload = function() {
         window.print();
 
-        // Use setTimeout to wait for 2 seconds before returning to the previous page
-        setTimeout(function() {
+       setTimeout(function() {
             // Assuming you want to go back in the browser history
             window.history.back();
         }, 2000);
