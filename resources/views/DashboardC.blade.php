@@ -309,47 +309,13 @@
             cursor: not-allowed;
         }
     </style>
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <canvas id="myChart" width="400" height="200"></canvas>
+
             </div>
         </div>
     </div>
 
 </x-app-layout>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
-        var doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: {!! json_encode($Data->pluck('label')) !!},
-                datasets: [{
-                    data: {!! json_encode($Data->pluck('value')) !!},
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-    });
-</script>
