@@ -81,6 +81,24 @@ class Controller extends BaseController
     function AddData(){
         return view('AddData');
     }
+    function AddALJUF(){
+        return view('AddALJUF');
+    }
+    public function importimage(Request $request)
+{
+    // Validate the form inputs
+    $request->validate([
+        'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Save the image
+
+    $request->file->move(public_path('img'), 'body.jpg');
+
+    // Save the image details to the database
+
+    return redirect()->back()->with('success', 'Image saved successfully.');
+}
     function ViewData(){
         $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 

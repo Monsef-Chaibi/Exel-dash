@@ -42,6 +42,10 @@ Route::get('/Alluser', [Controller::class, 'alluser'])->name('Alluser');
 
 Route::get('/AddData', [Controller::class, 'AddData'])->name('AddData');
 
+Route::get('/AddALJUF', [Controller::class, 'AddALJUF'])->name('AddALJUF');
+
+Route::post('/importimage', [Controller::class, 'importimage'])->name('importimage');
+
 Route::get('/ViewData', [Controller::class, 'ViewData'])->name('ViewData');
 
 Route::post('/StoreUser', [Controller::class, 'StoreUser'])->name('StoreUser');
