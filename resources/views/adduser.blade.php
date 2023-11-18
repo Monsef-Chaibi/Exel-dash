@@ -228,7 +228,11 @@ form .button input:hover {
                             <input type="radio" value="4" name="role" id="dot-4">
                             <span class="gender__title">Type</span>
                             <div class="category">
-                                <label for="dot-1">
+                            <label for="dot-4">
+                                  <span class="dot for"></span>
+                                  <span>Accountant</span>
+                            </label>
+                            <label for="dot-1">
                                 <span class="dot one"></span>
                                 <span>Operation</span>
                               </label>
@@ -239,10 +243,6 @@ form .button input:hover {
                               <label for="dot-3">
                                 <span class="dot three"></span>
                                 <span>Observe</span>
-                              </label>
-                              <label for="dot-4">
-                                <span class="dot for"></span>
-                                <span>UserA</span>
                               </label>
                             </div>
                           </div>
