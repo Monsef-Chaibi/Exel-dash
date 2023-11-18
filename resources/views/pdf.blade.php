@@ -184,7 +184,7 @@
 
 .pic img {
     width: 106%;
-    height: 1300px;
+    height: 1100px;
     display: block;
     text-align: center;
 }
@@ -1374,7 +1374,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;font-size:13px">{{ $item->vin}}</p>
         </div>
         <div class="name">
-            <p style="color: black;font-size:10px">{{$namete}}</p>
+            <p style="color: black;font-size:10px;text-align:center;width:400px">{{$namete}}</p>
         </div>
         <div class="nat">
             <p style="color: black;">{{ $natte}}</p>
@@ -1393,6 +1393,16 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
         </div>
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 
 
 
@@ -1401,13 +1411,17 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
     @endforeach
   </body>
 </html>
- {{-- <script>
+<script>
     // Use the window.onload event to trigger the print dialog when the page loads
     window.onload = function() {
         window.print();
 
         // Use setTimeout to wait for 2 seconds before returning to the previous page
-
+        setTimeout(function() {
+            // Assuming you want to go back in the browser history
+            window.history.back();
+        }, 2000);
     };
-</script> --}}
+</script>
+
 

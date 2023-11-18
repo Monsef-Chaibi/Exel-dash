@@ -710,7 +710,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <div class="modal">
             <h1 class="modal__title">Print :</h1>
             <label for="">Type of Procedure :  </label>
-        <form action="/pdf" method="get"   target="_blank">
+        <form action="/pdf" method="get">
             @csrf
         <br>
 
@@ -769,7 +769,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="tenant" id="slc">
                   <option value="" disabled selected>Select User</option>
                   @foreach ($datauser as $item)
-                    <option value="{{ $item->name . ',' . $item->nat_id . ',' . $item->nat . ',' . $item->activity . ',' . $item->address . ',' . $item->wornum }}">{{$item->name}}</option>
+                    <option value="{{ $item->name . ',' . $item->nat_id . ',' . $item->nat . ',' . $item->activity . ',' . $item->address . ',' . $item->mobnum }}">{{$item->name}}</option>
                   @endforeach
                 </select>
             </div>
