@@ -341,6 +341,9 @@
                                         @if ($user->role == 3)
                                             Observe
                                         @endif
+                                        @if ($user->role == 4)
+                                            Accountant
+                                        @endif
                                     </td>
                                     <td data-th="Supplier Name">
                                         @if ($user->cond == 0)
