@@ -37,6 +37,11 @@
                         {{ __('VIEW DATA') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('AddALJUF')" :active="request()->routeIs('AddALJUF')">
+                        {{ __('ADD ALJUF') }}
+                    </x-nav-link>
+                </div>
                 @endif
             </div>
 
@@ -103,7 +108,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                
+
                 @if(Auth::user()->role == '1')
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
