@@ -313,7 +313,49 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="text-gray-900 dark:text-gray-100">
+                    <div class="ag-format-container">
+                        <div class="ag-courses_box">
 
+                            <div class="ag-courses_item">
+                                <a href="/notcheck" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Facture Non Check By Oprations :<span id="value"></span>
+                                    </div>
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="up" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="ag-courses_item">
+
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="#" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Facture Non Check By Traffic :<span id="value1"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span class="ag-courses-item_date">
+                                            31.10.2022
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
