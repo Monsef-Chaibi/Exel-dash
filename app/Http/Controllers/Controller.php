@@ -84,6 +84,10 @@ class Controller extends BaseController
     function AddALJUF(){
         return view('AddALJUF');
     }
+    function dashboardC(){
+        $Data = Data::all();
+        return view('DashboardC')->with('Data',$Data);
+    }
     public function importimage(Request $request)
 {
     // Validate the form inputs
