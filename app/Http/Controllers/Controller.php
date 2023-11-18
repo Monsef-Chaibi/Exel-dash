@@ -651,6 +651,7 @@ class Controller extends BaseController
                             'name' => $request->input('edit-name'),
                             'email' => $request->input('edit-email'),
                             'cond' => $request->input('edit-cond'),
+                            'role' => $request->input('edit-role'),
                         ]);
 
                         // Redirect back with a success message

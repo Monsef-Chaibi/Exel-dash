@@ -332,7 +332,7 @@
                                         {{ $user->email }}
                                     </td>
                                     <td data-th="Supplier Name">
-                                        @if ($user->role == 0)
+                                        @if ($user->role == 4)
                                             Operation
                                         @endif
                                         @if ($user->role == 2)
@@ -341,7 +341,7 @@
                                         @if ($user->role == 3)
                                             Observe
                                         @endif
-                                        @if ($user->role == 4)
+                                        @if ($user->role == 0)
                                             Accountant
                                         @endif
                                     </td>

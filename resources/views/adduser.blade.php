@@ -222,10 +222,10 @@ form .button input:hover {
 
                         </div>
                         <div class="gender__details">
-                            <input type="radio" value="0" name="role" id="dot-1">
+                            <input type="radio" value="4" name="role" id="dot-1">
                             <input type="radio" value="2" name="role" id="dot-2">
                             <input type="radio" value="3" name="role" id="dot-3">
-                            <input type="radio" value="4" name="role" id="dot-4">
+                            <input type="radio" value="0" name="role" id="dot-4">
                             <span class="gender__title">Type</span>
                             <div class="category">
                             <label for="dot-4">
