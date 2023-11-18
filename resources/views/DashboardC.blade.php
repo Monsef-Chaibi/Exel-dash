@@ -309,13 +309,39 @@
             cursor: not-allowed;
         }
     </style>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                
+                <canvas id="myChart" width="400" height="200"></canvas>
             </div>
         </div>
     </div>
 
 </x-app-layout>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($Data->pluck('label')) !!},
+                datasets: [{
+                    label: 'Chart Data',
+                    data: {!! json_encode($Data->pluck('value')) !!},
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
