@@ -184,7 +184,7 @@
 
 .pic img {
     width: 106%;
-    height: 1100px;
+    height: 1200px;
     display: block;
     text-align: center;
 }
@@ -257,8 +257,7 @@
 
   <body>
 <style>
-@page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
-body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
+
 </style>
 @foreach ($selectedRecord as $item)
     <table style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
@@ -561,7 +560,6 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column0 style48 s style50" colspan="20">{{ $item->vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
-
           <tr>
             <td style="border:none;"></td>
             <td style="border:none;"></td>
@@ -570,7 +568,6 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td style="border:none;"></td>
             <td style="border:none;"></td>
         </tr>
-
         <tr class="row23">
             <td class="column0 style54 null style54" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
@@ -578,10 +575,26 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
             <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
           </tr>
+          <tr>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+        </tr>
           <tr class="row24">
             <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
             <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
           </tr>
+          <tr>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+            <td style="border:none;"></td>
+        </tr>
           <tr  class="row25">
             <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
             <td class="column5 style54 s style54" colspan="3">التوقيع </td>
@@ -1374,7 +1387,7 @@ body { margin-left: 0.7in; margin-right: 0.7in; margin-bottom: 0.75in; }
             <p style="color: black;font-size:13px">{{ $item->vin}}</p>
         </div>
         <div class="name">
-            <p style="color: black;font-size:10px;text-align:center;width:400px">{{$namete}}</p>
+            <p style="color: black;font-size:11px;text-align:center;width:400px">{{$namete}}</p>
         </div>
         <div class="nat">
             <p style="color: black;">{{ $natte}}</p>

@@ -34,6 +34,7 @@ class Role
                 return response()->view('/DashboardB');
             }
             elseif(Auth::user()->role == 3){
+                
                 return response()->view('/DashboardC');
             }
         }
