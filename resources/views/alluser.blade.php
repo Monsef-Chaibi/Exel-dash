@@ -338,6 +338,9 @@
                                         @if ($user->role == 2)
                                             Traffic
                                         @endif
+                                        @if ($user->role == 3)
+                                            Observe
+                                        @endif
                                     </td>
                                     <td data-th="Supplier Name">
                                         @if ($user->cond == 0)
