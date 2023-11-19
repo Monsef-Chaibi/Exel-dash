@@ -658,7 +658,7 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'nameuser' => Auth::user()->name,
-                        'dateset' => Carbon::now(),
+                        'dateset' =>  Carbon::now('Asia/Riyadh'),
                         'status' => 1,
                     ]);
                 }
