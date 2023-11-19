@@ -342,6 +342,7 @@ body {
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
+                        <th>Plant Key</th>
                         <th>Sold-To-Party</th>
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
