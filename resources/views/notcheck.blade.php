@@ -367,6 +367,7 @@
                                 <th>Ship To party</th>
                                 <th>Product</th>
                                 <th>Plant Key</th>
+                                <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                             </tr>
@@ -392,6 +393,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->plantkey }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->vin }}
                                         </td>
                                         <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
                                             {{ $item->gtnum }}
