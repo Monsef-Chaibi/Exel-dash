@@ -346,7 +346,8 @@ body {
                         <th>Sold-To-Party</th>
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
-                        <th>Create_at</th>
+                        <th>Billing Date</th>
+                        <th></th>
                         <th>Action</th>
                       </tr>
                     </thead>

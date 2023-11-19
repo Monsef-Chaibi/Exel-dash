@@ -193,7 +193,7 @@ class Controller extends BaseController
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
-                                <td>'.$row->created_at.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
                                 <td><a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
@@ -246,7 +246,7 @@ class Controller extends BaseController
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
-                                <td>'.$row->created_at.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
                                 <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
@@ -412,7 +412,7 @@ class Controller extends BaseController
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
-                                <td>'.$row->created_at.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
                                 <td><a class="button-32"  href="/ShowForB/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
@@ -467,7 +467,7 @@ class Controller extends BaseController
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
-                                <td>'.$row->created_at.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
                                 <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
