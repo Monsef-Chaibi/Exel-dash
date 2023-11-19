@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('nameuser')->nullable();
             $table->timestamp('dateset')->nullable();
             $table->string('status')->nullable();
+            $table->string('user2')->nullable();
+            $table->timestamp('dateuser2')->nullable();
+            $table->string('stuser2')->nullable();
             $table->string('usercheck')->nullable();
             $table->string('check')->nullable();
             $table->timestamp('datecheck')->nullable();
