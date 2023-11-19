@@ -484,7 +484,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </div>
 
             <div style="margin-top:3%" class="in">
-                <div class="tt">Status : <span style="color:rgb(48, 255, 48)">
+                <div class="tt">Approvals By Accountant</div>
+                <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
                     @if ($status === 1)
                         Full Check
                     @endif
@@ -492,7 +493,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         Semi Check
                     @endif
                 </span> </div>
-                <div class="tt">Approvals </div>
                 <div class="grid-container">
                     <table class="tableuser">
                         @foreach ($userinfo as $item)
