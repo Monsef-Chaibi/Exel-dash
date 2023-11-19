@@ -341,12 +341,12 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Checked :
+                                        Facture Checked :  <span id="value1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
-                                        <span class="ag-courses-item_date">
+                                        <span id="up1" class="ag-courses-item_date">
 
                                         </span>
                                     </div>
@@ -439,17 +439,17 @@
                 url: "{{ route('NumNonCheck') }}",
                 method: "GET",
                 success: function(data) {
-                    $('#value').text(data.value);
-                    $('#up').text(data.up);
+                    $('#value1').text(data.value);
+                    $('#up1').text(data.up);
                 }
             });
         }
 
         // Update live value initially
-        updateLiveValue();
+        updateLiveValue2();
 
         // Update live value every 5 seconds (adjust this interval as needed)
-        setInterval(updateLiveValue, 5000);
+        setInterval(updateLiveValue2, 5000);
     });
     </script>
 
