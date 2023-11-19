@@ -83,7 +83,14 @@ class Controller extends BaseController
         return view('AddData');
     }
     function AddALJUF(){
-        return view('AddALJUF');
+        $latestRecord = Aljuf::whereNotNull('created_at')->latest()->first();
+
+        if ($latestRecord) {
+            $latestDate ='By ' .$latestRecord->name . ' in ' . $latestRecord->created_at;
+        } else {
+            $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
+        }
+        return view('AddALJUF')->with('latestDate', $latestDate);
     }
     function dashboardC(){
         $Data = Data::all();
@@ -112,7 +119,7 @@ class Controller extends BaseController
     $data = [
         'name' => Auth::user()->name,
     ];
-    
+
     Aljuf::create($data);
 
     // Save the image details to the database
