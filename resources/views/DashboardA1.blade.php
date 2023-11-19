@@ -308,13 +308,13 @@ body {
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                    Facture Semi : 0
+                                    Facture Non check : <span id="value"></span>
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
                                     Last Update :
-                                    <span class="ag-courses-item_date">
-                                        31.10.2022
+                                    <span id="up" class="ag-courses-item_date">
+
                                     </span>
                                 </div>
                             </a>
@@ -365,7 +365,7 @@ body {
                 dataType:'json',
                 success:function(data)
                 {
-                    console.log('seccess');
+
                     $('tbody').html(data.table_data);
                     $('#total_records').text(data.total_data);
                 }
@@ -376,6 +376,24 @@ body {
             var query = $(this).val();
             fetch_customer_data(query);
         });
+    });
+    $(document).ready(function() {
+        function updateLiveValue() {
+            $.ajax({
+                url: "{{ route('Noncheck') }}",
+                method: "GET",
+                success: function(data) {
+                    $('#value').text(data.value);
+                    $('#up').text(data.up);
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue, 5000);
     });
     </script>
 

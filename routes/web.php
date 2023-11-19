@@ -107,6 +107,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/deleteportcontrat/{id}',[Controller::class, 'deleteportcontrat']);
     Route::get('/deletebrandcontrat/{id}',[Controller::class, 'deletebrandcontrat']);
     Route::get('/deletecolorcontrat/{id}',[Controller::class, 'deletecolorcontrat']);
+    Route::get('/Noncheck', [Controller::class, 'Noncheck'])->name('Noncheck');
 
 
 

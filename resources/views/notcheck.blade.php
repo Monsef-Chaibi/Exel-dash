@@ -406,7 +406,9 @@
                                             </svg>
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->bildoc }}
+                                            <a href="/ShowForB/{{encrypt($item->bildoc)}}">
+                                                {{ $item->bildoc }}
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

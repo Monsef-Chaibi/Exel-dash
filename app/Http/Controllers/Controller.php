@@ -807,6 +807,12 @@ class Controller extends BaseController
                 $data = Data::whereNotNull('check')->get();
                 return view('Setcheck')->with('data',$data);
             }
+            public function Noncheck()
+            {
+                $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
+                $up= Data::whereNotNull('status')->whereNull('stuser2')->latest('dateset')->value('dateset');
+                return response()->json(['value' => $liveValue, 'up' => $up]);
+            }
             public function AddContrat()
             {
                 $user = ContratUser::get();
