@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->timestamps();
+
         });
+        // Set the timezone for created_at and updated_at columns
+      
     }
 
     /**
