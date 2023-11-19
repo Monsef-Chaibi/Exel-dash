@@ -807,6 +807,11 @@ class Controller extends BaseController
                 $data = Data::whereNotNull('check')->get();
                 return view('Setcheck')->with('data',$data);
             }
+            public function NonCheckItems()
+            {
+                $data = Data::whereNotNull('status')->get();
+                return view('NonCheckItems')->with('data',$data);
+            }
             public function Noncheck()
             {
                 $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
