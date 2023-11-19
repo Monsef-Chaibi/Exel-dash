@@ -277,7 +277,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32"  href="/ShowForA1/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -331,7 +331,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td>'.$row->created_at.'</td>
-                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32" href="/ShowForA1/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -491,6 +491,39 @@ class Controller extends BaseController
         $port = Port::get();
         $brand = Brand::get();
         return view('Show')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
+        }
+    function ShowForA1($id){
+        $typeid = decrypt($id);
+        $results = DB::table('data')
+            ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
+            ->where('bildoc', $typeid) // Add this line to filter out null statuses
+            ->first();
+
+
+
+        $totalRows = $results->total_rows;
+        $totalFf = $results->total_status;
+
+        if ($totalRows > 0 && $totalRows == $totalFf) {
+            $status = 1;
+        } elseif ($totalFf != '' && $totalRows != $totalFf) {
+
+            $status = 2;
+        }
+        else{
+            $status = 3;
+        }
+
+        $userinfo = Data::where('bildoc', $typeid)
+        ->whereNotNull('status')
+        ->GroupBy('dateset') // Order by date in ascending order
+        ->get();
+        $title = Data::where('bildoc',$typeid)->first();
+        $data = Data::where('bildoc',$typeid)->get();
+        $datauser = ContratUser::get();
+        $port = Port::get();
+        $brand = Brand::get();
+        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
         }
     function ShowForB($id){
         $typeid = decrypt($id);

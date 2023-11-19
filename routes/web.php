@@ -87,7 +87,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
 // Route for user 2 role 4
 Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/action', [Controller::class, 'actionA1'])->name('action');
-    Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
+    Route::get('/ShowForA1/{id}', [Controller::class, 'ShowForA1'])->name('ShowForA1');
     Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
     Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
     Route::get('/AddContrat', [Controller::class, 'AddContrat'])->name('AddContrat');
