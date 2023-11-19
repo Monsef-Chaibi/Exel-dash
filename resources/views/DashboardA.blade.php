@@ -290,13 +290,19 @@ body {
                     <div class="ag-courses_box" >
 
                         <div class="ag-courses_item">
-                            <a  href="/AddContrat"  class="ag-courses-item_link">
+                            <a href="#" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
-                                <div style="text-align: center;" class="ag-courses-item_title">
-                                    Add Items of Contrat
+                                <div class="ag-courses-item_title">
+                                    Facture Full : 0
                                 </div>
 
+                                <div class="ag-courses-item_date-box">
+                                    Last Update :
+                                    <span class="ag-courses-item_date">
+                                        31.10.2022
+                                    </span>
+                                </div>
                             </a>
                         </div>
 
