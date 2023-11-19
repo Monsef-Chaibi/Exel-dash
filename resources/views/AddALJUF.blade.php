@@ -54,6 +54,25 @@
   text-align: center;
   transition: color .2s ease-in-out;
 }
+.button {
+    border: 2px #1eff00 solid;
+    padding: 0.3%;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    color: #1eff00; /* Set default text color */
+    transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+}
+
+.button:hover {
+    background-color: #1eff00; /* Change background color on hover */
+    color: black; /* Change text color on hover */
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
     </style>\
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -86,11 +105,15 @@
       </script>
   @endif
 
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+                    <div class="button-container" style="margin-bottom: 50px">
+                        <p class="last-update">Last update : {{$latestDate}}</p>
+                        <p class="view-button"><a href="/ShowUpdateImage"><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
+                    </div>
                     <form class="form-container" action="{{url('/importimage')}}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
