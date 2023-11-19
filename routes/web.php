@@ -117,6 +117,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
 Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
     Route::get('/actionB', [Controller::class, 'actionB'])->name('actionB');
     Route::get('/notcheck', [Controller::class, 'notcheck'])->name('notcheck');
+    Route::get('/Setcheck', [Controller::class, 'Setcheck'])->name('Setcheck');
     Route::get('/ShowForB/{id}', [Controller::class, 'ShowForB'])->name('ShowForB');
     Route::get('/SemiCopie', [Controller::class, 'SemiCopie'])->name('SemiCopie');
     Route::get('/export-data/{conditionValue}', [Controller::class, 'export'])->name('export.data');
