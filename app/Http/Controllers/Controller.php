@@ -809,7 +809,7 @@ class Controller extends BaseController
             }
             public function NonCheckItems()
             {
-                $data = Data::whereNotNull('status')->get();
+                $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
                 return view('NonCheckItems')->with('data',$data);
             }
             public function Noncheck()
