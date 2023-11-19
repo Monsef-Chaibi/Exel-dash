@@ -468,7 +468,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <div class="grid-container">
                     <div class="grid-item">Billing Document : {{ $title->bildoc }}</div>
                     <div class="grid-item">Owner :
-                        <span style="font-size: 20px">
+                        <span style="font-size: 17px">
                             {{ $title->soldp }}
                         </span>
                     </div>
@@ -476,7 +476,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($title->bildt - 2)->format('Y-m-d') }}
                     </div>
                     <div class="grid-item">User :
-                        <span style="font-size: 20px">
+                        <span style="font-size: 17px">
                             {{ $title->shipp }}
                         </span>
                     </div>
