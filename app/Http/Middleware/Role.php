@@ -37,6 +37,9 @@ class Role
 
                 return redirect()->route('dashboardC');
             }
+            elseif(Auth::user()->role == 4){
+                return response()->view('/DashboardA1');
+            }
         }
 
         else {
