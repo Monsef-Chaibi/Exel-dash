@@ -86,6 +86,14 @@ class Controller extends BaseController
     }
     function dashboardC(){
         $Data = Data::all();
+        $count1 = Data::whereNull('stuser2')
+        ->where('status', 1)
+        ->count();
+        $count2 = Data::whereNull('check')
+        ->where('status', 1)
+        ->where('status', 1)
+        ->count();
+
         return view('DashboardC')->with('Data',$Data);
     }
     public function importimage(Request $request)
