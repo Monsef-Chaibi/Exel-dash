@@ -513,13 +513,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </span> </div>
                 <div class="grid-container">
                     <table class="tableuser">
-                        @foreach ($userinfo2 as $item)
+                        @foreach ($userinfo as $item)
                             <tr>
                                 <td>
-                                    By : {{ $item->user2 }}
+                                    By : {{ $item->nameuser }}
                                 </td>
                                 <td>
-                                    In : {{ $item->dateuser2 }}
+                                    In : {{ $item->dateset }}
                                 </td>
                                 <td>
                                     <a
@@ -547,13 +547,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </span> </div>
                 <div class="grid-container">
                     <table class="tableuser">
-                        @foreach ($userinfo as $item)
-                            <tr>
+                        @foreach ($userinfo2 as $item)
+                        <tr>
                                 <td>
-                                    By : {{ $item->nameuser }}
+                                    By : {{ $item->user2 }}
                                 </td>
                                 <td>
-                                    In : {{ $item->dateset }}
+                                    In : {{ $item->dateuser2 }}
                                 </td>
                                 <td>
                                     <a
