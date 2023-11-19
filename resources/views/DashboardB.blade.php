@@ -341,13 +341,13 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Semi : 0
+                                        Facture Checked :
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
                                         <span class="ag-courses-item_date">
-                                            31.10.2022
+
                                         </span>
                                     </div>
                                 </a>
@@ -419,6 +419,24 @@
         function updateLiveValue() {
             $.ajax({
                 url: "{{ route('live.value') }}",
+                method: "GET",
+                success: function(data) {
+                    $('#value').text(data.value);
+                    $('#up').text(data.up);
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue, 5000);
+    });
+    $(document).ready(function() {
+        function updateLiveValue2() {
+            $.ajax({
+                url: "{{ route('NumNonCheck') }}",
                 method: "GET",
                 success: function(data) {
                     $('#value').text(data.value);
