@@ -139,6 +139,8 @@ Route::get('/getdata/{id}', [Controller::class, 'getdata'])->middleware(['auth']
 
 Route::get('/Showsetuser/{nameuser}/{boldoc}/{dateset}', [Controller::class, 'Showsetuser'])->middleware(['auth'])->name('Showsetuser');
 
+Route::get('/ShowsetuserA1/{user2}/{boldoc}/{dateuser2}', [Controller::class, 'ShowsetuserA1'])->middleware(['auth'])->name('ShowsetuserA1');
+
 
 
 Route::get('/get-live-value', [Controller::class, 'getLiveValue'])->name('live.value');

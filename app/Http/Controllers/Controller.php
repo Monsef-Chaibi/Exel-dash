@@ -649,6 +649,12 @@ class Controller extends BaseController
                 $data = Data::where('nameuser', $nameuser)->where('bildoc',$bol)->where('dateset',$dateset)->get();
                 return view('Showsetuser')->with('data',$data)->with('title',$title);
             }
+            function ShowsetuserA1($user2, $boldoc,$dateuser2){
+                $bol=decrypt($boldoc);
+                $title = Data::where('bildoc',$bol)->first();
+                $data = Data::where('user2', $user2)->where('bildoc',$bol)->where('dateuser2',$dateuser2)->get();
+                return view('Showsetuser')->with('data',$data)->with('title',$title);
+            }
             function SowChekUser($boldoc){
                 $bol=decrypt($boldoc);
                 $data = Data::where('bildoc',$bol)->where('check',1)->orderBy('datecheck', 'desc')->get();
