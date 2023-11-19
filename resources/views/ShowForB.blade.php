@@ -193,9 +193,24 @@
 
         }
 
-        .in {
-            border-radius: 20px;
+        .flex-container {
+            display: flex;
+            justify-content: space-between; /* or use justify-content: space-around; depending on your spacing preference */
+        }
+
+        .in1 {
             background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            border-radius: 20px;
+            width: 48%; /* Adjust the width as needed */
+            margin-top: 3%;
+            box-sizing: border-box; /* Ensures padding and border are included in the width */
+        }
+
+        /* Add any other styles for .in1 elements as needed */
+
+        .in {
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            border-radius: 20px;
 
         }
 
@@ -354,33 +369,119 @@
                 </div>
             </div>
 
+
+
+            @if ($status1 != 1 ||  $status1 != 2 || $status1 != 3)
+
+            <div class="flex-container">
+                   <div style="margin-top:3%" class="in1">
+                       <div class="tt">Approvals By Accountant</div>
+                       <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                           @if ($status === 1)
+                               Full Check
+                           @endif
+                           @if ($status === 2)
+                               Semi Check
+                           @endif
+                       </span> </div>
+                       <div class="grid-container">
+                           <table class="tableuser">
+                               @foreach ($userinfo as $item)
+                                   <tr>
+                                       <td>
+                                           By : {{ $item->nameuser }}
+                                       </td>
+                                       <td>
+                                           In : {{ $item->dateset }}
+                                       </td>
+                                       <td>
+                                           <a
+                                               href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
+                                               <button class="button-28">
+                                                   <i class="fa fa-eye"></i> View
+                                               </button>
+                                           </a>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
+                       </div>
+                   </div>
+
+                   <div style="margin-top:3%" class="in1">
+                       <div class="tt">Approvals By Operation</div>
+                       <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                           @if ($status1 === 1)
+                               Full Check
+                           @endif
+                           @if ($status1 === 2)
+                               Semi Check
+                           @endif
+                       </span> </div>
+                       <div class="grid-container">
+                           <table class="tableuser">
+                               @foreach ($userinfo2 as $item)
+                               <tr>
+                                       <td>
+                                           By : {{ $item->user2 }}
+                                       </td>
+                                       <td>
+                                           In : {{ $item->dateuser2 }}
+                                       </td>
+                                       <td>
+                                           <a
+                                               href="{{ route('ShowsetuserA1', ['user2' => $item->user2, 'boldoc' => encrypt($title->bildoc), 'dateuser2' => $item->dateuser2]) }}">
+                                               <button class="button-28">
+                                                   <i class="fa fa-eye"></i> View
+                                               </button>
+                                           </a>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
+                       </div>
+                   </div>
+            </div>
+           @else
+           <div style="margin-top:3%" class="in">
+               <div class="tt">Approvals By Accountant</div>
+               <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                   @if ($status === 1)
+                       Full Check
+                   @endif
+                   @if ($status === 2)
+                       Semi Check
+                   @endif
+               </span> </div>
+               <div class="grid-container">
+                   <table class="tableuser">
+                       @foreach ($userinfo as $item)
+                           <tr>
+                               <td>
+                                   By : {{ $item->nameuser }}
+                               </td>
+                               <td>
+                                   In : {{ $item->dateset }}
+                               </td>
+                               <td>
+                                   <a
+                                       href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
+                                       <button class="button-28">
+                                           <i class="fa fa-eye"></i> View
+                                       </button>
+                                   </a>
+                               </td>
+                           </tr>
+                       @endforeach
+                   </table>
+               </div>
+           </div>
+           @endif
+
+
+
+
             @if ($status === 1)
-                <div style="margin-top:3%" class="in">
-                    <div class="tt">Status : <span style="color:rgb(0, 255, 0)"> Full Check</span> </div>
-                    <div class="tt">Approvals </div>
-                    <div class="grid-container">
-                        <table class="tableuser">
-                            @foreach ($userinfo as $item)
-                                <tr>
-                                    <td>
-                                        By : {{ $item->nameuser }}
-                                    </td>
-                                    <td>
-                                        In : {{ $item->dateset }}
-                                    </td>
-                                    <td>
-                                        <a
-                                            href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' =>encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                            <button class="button-28">
-                                                <i class="fa fa-eye"></i> View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
@@ -440,34 +541,6 @@
                             </tbody>
                     </table>
                 @else
-                    @if ($status === 2)
-                        <div style="margin-top:3%" class="in">
-                            <div class="tt">Status : <span style="color:rgb(255, 238, 1)"> Semi Check</span> </div>
-                            <div class="tt">Approvals </div>
-                            <div class="grid-container">
-                                <table class="tableuser">
-                                    @foreach ($userinfo as $item)
-                                        <tr>
-                                            <td>
-                                                By : {{ $item->nameuser }}
-                                            </td>
-                                            <td>
-                                                In : {{ $item->dateset }}
-                                            </td>
-                                            <td>
-                                                <a
-                                                    href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                                    <button class="button-28">
-                                                        <i class="fa fa-eye"></i> View
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-                        </div>
-                    @endif
                     <div>
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
