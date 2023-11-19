@@ -557,7 +557,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </td>
                                 <td>
                                     <a
-                                       >
+                                        href="{{ route('ShowsetuserA1', ['user2' => $item->user2, 'boldoc' => encrypt($title->bildoc), 'dateuser2' => $item->dateuser2]) }}">
                                         <button class="button-28">
                                             <i class="fa fa-eye"></i> View
                                         </button>
