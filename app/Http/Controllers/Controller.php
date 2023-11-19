@@ -262,7 +262,6 @@ class Controller extends BaseController
                     }
                     else {
                         $data = DB::table('data')
-                            ->where('status',1)
                             ->groupBy('bildoc')
                             ->get();
                     }
@@ -307,7 +306,6 @@ class Controller extends BaseController
                         $data = DB::table('data')
                         ->whereIn('plantkey', $cnd1)
                         ->where('bildoc', 'like', '%' . $query . '%')
-                        ->where('status',1)
                         ->groupBy('bildoc')
                         ->get();
 
@@ -316,7 +314,6 @@ class Controller extends BaseController
                     else {
                         $data = DB::table('data')
                             ->whereIn('plantkey', $cnd1)
-                            ->where('status',1)
                             ->groupBy('bildoc')
                             ->get();
                     }
@@ -349,7 +346,7 @@ class Controller extends BaseController
                     echo json_encode($data);
                 }
             }
-
+ 
 
         }
         function actionB(Request $request)
