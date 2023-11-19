@@ -91,10 +91,10 @@ class Controller extends BaseController
         ->count();
         $count2 = Data::whereNull('check')
         ->where('status', 1)
-        ->where('status', 1)
+        ->where('stuser2', 1)
         ->count();
 
-        return view('DashboardC')->with('Data',$Data);
+        return view('DashboardC')->with('Data',$Data)->with('count2',$count2)->with('count1',$count1);
     }
     public function importimage(Request $request)
 {
