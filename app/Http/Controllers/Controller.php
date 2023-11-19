@@ -513,7 +513,25 @@ class Controller extends BaseController
         else{
             $status = 3;
         }
+        $result1 = DB::table('data')
+            ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(stuser2) as total_status'))
+            ->where('bildoc', $typeid) // Add this line to filter out null statuses
+            ->first();
 
+
+
+        $totalRows1 = $result1->total_rows;
+        $totalFf1 = $result1->total_status;
+
+        if ($totalRows1 > 0 && $totalRows1 == $totalFf1) {
+            $status1 = 1;
+        } elseif ($totalFf1 != '' && $totalRows1 != $totalFf1) {
+
+            $status1 = 2;
+        }
+        else{
+            $status1 = 3;
+        }
         $userinfo = Data::where('bildoc', $typeid)
         ->whereNotNull('status')
         ->GroupBy('dateset') // Order by date in ascending order
@@ -523,7 +541,7 @@ class Controller extends BaseController
         $datauser = ContratUser::get();
         $port = Port::get();
         $brand = Brand::get();
-        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('userinfo',$userinfo);
+        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo);
         }
     function ShowForB($id){
         $typeid = decrypt($id);

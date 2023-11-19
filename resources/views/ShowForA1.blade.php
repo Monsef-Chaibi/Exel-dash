@@ -483,33 +483,40 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </div>
             </div>
 
-            @if ($status === 1)
-                <div style="margin-top:3%" class="in">
-                    <div class="tt">Status : <span style="color:rgb(48, 255, 48)"> Full Check</span> </div>
-                    <div class="tt">Approvals </div>
-                    <div class="grid-container">
-                        <table class="tableuser">
-                            @foreach ($userinfo as $item)
-                                <tr>
-                                    <td>
-                                        By : {{ $item->nameuser }}
-                                    </td>
-                                    <td>
-                                        In : {{ $item->dateset }}
-                                    </td>
-                                    <td>
-                                        <a
-                                            href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                            <button class="button-28">
-                                                <i class="fa fa-eye"></i> View
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
+            <div style="margin-top:3%" class="in">
+                <div class="tt">Status : <span style="color:rgb(48, 255, 48)">
+                    @if ($status === 1)
+                        Full Check
+                    @endif
+                    @if ($status === 2)
+                        Semi Check
+                    @endif
+                </span> </div>
+                <div class="tt">Approvals </div>
+                <div class="grid-container">
+                    <table class="tableuser">
+                        @foreach ($userinfo as $item)
+                            <tr>
+                                <td>
+                                    By : {{ $item->nameuser }}
+                                </td>
+                                <td>
+                                    In : {{ $item->dateset }}
+                                </td>
+                                <td>
+                                    <a
+                                        href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
+                                        <button class="button-28">
+                                            <i class="fa fa-eye"></i> View
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </div>
+            </div>
+            @if ($status1 === 1)
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
@@ -533,38 +540,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
-                @else
-                    @if ($status === 2)
-                        <div style="margin-top:3%" class="in">
-                            <div class="tt">Status : <span style="color:rgb(208, 255, 0)"> Semi Check</span> </div>
-                            <div class="tt">Approvals </div>
-                            <div class="grid-container">
-                                <table class="tableuser">
-                                    @foreach ($userinfo as $item)
-                                        <tr>
-                                            <td>
-                                                By : {{ $item->nameuser }}
-                                            </td>
-                                            <td>
-                                                In : {{ $item->dateset }}
-                                            </td>
-                                            <td>
-                                                <a
-                                                    href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                                    <button class="button-28">
-                                                        <i class="fa fa-eye"></i> View
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-                        </div>
-                    @endif
+            @else
                     <div>
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
@@ -580,7 +558,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 <tbody>
                                     @foreach ($data as $item)
                                         <tr>
-                                            @if ($item->status != 1)
+                                            @if ($item->status1 != 1)
                                                 <td data-th="Supplier Name">
                                                     <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
@@ -606,7 +584,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         </table>
             @endif
             <div class="btnstatus">
-            @if ($status != 2 && $status != 1)
+            @if ($status1 != 2 && $status1 != 1)
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
                     </form>
@@ -616,7 +594,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         </a>
                     </div>
 
-            @elseif ($status == 2)
+            @elseif ($status1 == 2)
 
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
