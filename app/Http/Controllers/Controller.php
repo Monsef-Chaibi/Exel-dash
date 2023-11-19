@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Aljuf;
 use App\Models\ColorCode;
 use PDF;
 use App\Exports\DataExport;
@@ -98,7 +99,8 @@ class Controller extends BaseController
     }
     public function importimage(Request $request)
 {
-    // Validate the form inputs
+
+
     $request->validate([
         'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
@@ -106,6 +108,12 @@ class Controller extends BaseController
     // Save the image
 
     $request->file->move(public_path('img'), 'body.jpg');
+
+    $data = [
+        'name' => Auth::user()->name,
+    ];
+    
+    Aljuf::create($data);
 
     // Save the image details to the database
 
