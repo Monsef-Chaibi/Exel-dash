@@ -498,7 +498,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </div>
                 </div>
             </div>
-    @if ($status1 == Null)
+    @if ($status1 != Null)
 
      <div class="flex-container">
             <div style="margin-top:3%" class="in1">
@@ -650,7 +650,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 <tbody>
                                     @foreach ($data as $item)
                                         <tr>
-                                            @if ($item->status1 != 1)
+                                            @if ($item->stuser2 != 1)
                                                 <td data-th="Supplier Name">
                                                     <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
