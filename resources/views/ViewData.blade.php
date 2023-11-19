@@ -161,7 +161,7 @@ h3:after {
     border-radius: 10px;
     width: 150px;
     height: 50px;
-    color: rgb(255, 255, 255); /* Set default text color */
+    color: #1eff00; /* Set default text color */
     transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
 }
 

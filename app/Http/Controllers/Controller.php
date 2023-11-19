@@ -635,7 +635,7 @@ class Controller extends BaseController
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
             ->update([
                 'nameuser' => Auth::user()->name,
-                'dateset' => Carbon::now(),
+                'dateset' =>  Carbon::now('Asia/Riyadh'),
                 'status' => 1,
             ]);
             return redirect()->back()->with('success', 'Successfully.');
@@ -645,7 +645,7 @@ class Controller extends BaseController
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
             ->update([
                 'user2' => Auth::user()->name,
-                'dateuser2' => Carbon::now(),
+                'dateuser2' =>  Carbon::now('Asia/Riyadh'),
                 'stuser2' => 1,
             ]);
             return redirect()->back()->with('success', 'Successfully.');
@@ -673,7 +673,7 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'user2' => Auth::user()->name,
-                        'dateuser2' => Carbon::now(),
+                        'dateuser2' =>  Carbon::now('Asia/Riyadh'),
                         'stuser2' => 1,
                     ]);
                 }
@@ -690,7 +690,7 @@ class Controller extends BaseController
                     Data::where('id', $itemId)->update([
                         'check' => 1,
                         'usercheck' => Auth::user()->name,
-                        'datecheck' => Carbon::now(),
+                        'datecheck' =>  Carbon::now('Asia/Riyadh'),
                     ]);
                 }
 
