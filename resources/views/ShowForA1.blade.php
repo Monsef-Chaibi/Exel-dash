@@ -652,10 +652,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         <tr>
                                             @if ($item->stuser2 != 1)
                                                 <td data-th="Supplier Name">
+                                                    @if ($item->status != Null)
                                                     <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
                                                         value="{{ $item->id }}">
-                                                </td>
+                                                    @endif
+                                                    </td>
                                                 <td data-th="Supplier Name">
                                                     {{ $item->product }}
                                                 </td>
@@ -676,27 +678,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         </table>
             @endif
             <div class="btnstatus">
-            @if ($status1 != 2 && $status1 != 1)
+            @if ($status1 != 1)
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
                     </form>
-                    <div>
-                        <a href="/StatusA1/{{ $title->bildoc }}" onclick="return showConfirm()">
-                            <button class="success" type="button">Total Delivery</button>
-                        </a>
-                    </div>
-
-            @elseif ($status1 == 2)
-
-                    <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
-                            Delivery</button></div>
-                    </form>
-                    <div>
-
-                    </div>
 
             @endif
-            <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
+            <div><a href="/SowChekUserA1/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
                 all Check</button></a></div>
         </div>
         </div>

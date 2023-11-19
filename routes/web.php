@@ -131,7 +131,9 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
 
 });
 
-Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('SowChekUser');
+Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
+
+Route::get('/SowChekUserA1/{boldoc}', [Controller::class, 'SowChekUserA1'])->middleware(['auth'])->name('SowChekUserA1');
 
 Route::get('/test', [Controller::class, 'test'])->middleware(['auth'])->name('test');
 
