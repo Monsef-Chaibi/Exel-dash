@@ -536,12 +536,16 @@ class Controller extends BaseController
         ->whereNotNull('status')
         ->GroupBy('dateset') // Order by date in ascending order
         ->get();
+        $userinfo2 = Data::where('bildoc', $typeid)
+        ->whereNotNull('stuser2')
+        ->GroupBy('dateuser2') // Order by date in ascending order
+        ->get();
         $title = Data::where('bildoc',$typeid)->first();
         $data = Data::where('bildoc',$typeid)->get();
         $datauser = ContratUser::get();
         $port = Port::get();
         $brand = Brand::get();
-        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo);
+        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
     function ShowForB($id){
         $typeid = decrypt($id);
