@@ -503,14 +503,19 @@ when users will click/enter button(link) browser will add a #id in a url and whe
      <div class="flex-container">
             <div style="margin-top:3%" class="in1">
                 <div class="tt">Approvals By Accountant</div>
-                <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                <div class="tt"> Status :
                     @if ($status === 1)
+                    <span style="color:rgb(48, 255, 48);margin-left:5px">
                         Full Check
+                    </span>
                     @endif
                     @if ($status === 2)
+                    <span style="color:rgb(241, 255, 48);margin-left:5px">
                         Semi Check
+                    </span>
                     @endif
-                </span> </div>
+
+            </div>
                 <div class="grid-container">
                     <table class="tableuser">
                         @foreach ($userinfo as $item)
@@ -537,14 +542,19 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
             <div style="margin-top:3%" class="in1">
                 <div class="tt">Approvals By Operation</div>
-                <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                <div class="tt"> Status :
                     @if ($status1 === 1)
+                    <span style="color:rgb(48, 255, 48);margin-left:5px">
                         Full Check
+                    </span>
                     @endif
                     @if ($status1 === 2)
+                    <span style="color:rgb(241, 255, 48);margin-left:5px">
                         Semi Check
+                    </span>
                     @endif
-                </span> </div>
+
+            </div>
                 <div class="grid-container">
                     <table class="tableuser">
                         @foreach ($userinfo2 as $item)
