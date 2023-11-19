@@ -393,11 +393,11 @@
                            <table class="tableuser">
                                @foreach ($userinfo as $item)
                                    <tr>
-                                       <td style="font-size: 20px">
-                                        {{ $item->nameuser }}
+                                       <td colspan="3" style="font-size: 20px" >
+                                          {{ $item->nameuser }}
                                        </td>
-                                       <td style="font-size: 20px">
-                                        {{ $item->dateset }}
+                                       <td colspan="3" style="font-size: 20px" >
+                                         {{ $item->dateset }}
                                        </td>
                                        <td>
                                            <a
@@ -432,11 +432,11 @@
                            <table class="tableuser">
                                @foreach ($userinfo2 as $item)
                                <tr>
-                                       <td colspan="2" style="font-size: 20px">
-                                          {{ $item->user2 }}
-                                       </td>
+                                       <td  colspan="3" style="font-size: 20px" >
+                                         {{ $item->user2 }}
+                                       </td colspan="3" style="font-size: 20px" >
                                        <td>
-                                           In : {{ $item->dateuser2 }}
+                                         {{ $item->dateuser2 }}
                                        </td>
                                        <td>
                                            <a
@@ -468,10 +468,10 @@
                        @foreach ($userinfo as $item)
                            <tr>
                                <td>
-                                   By : {{ $item->nameuser }}
+                                 {{ $item->nameuser }}
                                </td>
                                <td>
-                                   In : {{ $item->dateset }}
+                                 {{ $item->dateset }}
                                </td>
                                <td>
                                    <a

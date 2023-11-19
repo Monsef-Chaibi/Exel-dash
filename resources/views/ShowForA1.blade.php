@@ -498,122 +498,123 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </div>
                 </div>
             </div>
-    @if ($status1 != 1 ||  $status1 != 2 || $status1 != 3)
+            @if ($status1 != 1 ||  $status1 != 2 || $status1 != 3)
 
-     <div class="flex-container">
-            <div style="margin-top:3%" class="in1">
-                <div class="tt">Approvals By Accountant</div>
-                <div class="tt"> Status :
-                    @if ($status === 1)
-                    <span style="color:rgb(48, 255, 48);margin-left:5px">
-                        Full Check
-                    </span>
-                    @endif
-                    @if ($status === 2)
-                    <span style="color:rgb(241, 255, 48);margin-left:5px">
-                        Semi Check
-                    </span>
-                    @endif
+            <div class="flex-container">
+                   <div style="margin-top:3%" class="in1">
+                       <div class="tt">Approvals By Accountant</div>
+                       <div class="tt"> Status :
+                           @if ($status === 1)
+                           <span style="color:rgb(48, 255, 48);margin-left:5px">
+                               Full Check
+                           </span>
+                           @endif
+                           @if ($status === 2)
+                           <span style="color:rgb(241, 255, 48);margin-left:5px">
+                               Semi Check
+                           </span>
+                           @endif
 
-            </div>
-                <div class="grid-container">
-                    <table class="tableuser">
-                        @foreach ($userinfo as $item)
-                            <tr>
-                                <td>
-                                    By : {{ $item->nameuser }}
-                                </td>
-                                <td>
-                                    In : {{ $item->dateset }}
-                                </td>
-                                <td>
-                                    <a
-                                        href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                        <button class="button-28">
-                                            <i class="fa fa-eye"></i> View
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
+                   </div>
+                       <div class="grid-container">
+                           <table class="tableuser">
+                               @foreach ($userinfo as $item)
+                                   <tr>
+                                       <td colspan="3" style="font-size: 20px" >
+                                          {{ $item->nameuser }}
+                                       </td>
+                                       <td colspan="3" style="font-size: 20px" >
+                                         {{ $item->dateset }}
+                                       </td>
+                                       <td>
+                                           <a
+                                               href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
+                                               <button class="button-28">
+                                                   <i class="fa fa-eye"></i> View
+                                               </button>
+                                           </a>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
+                       </div>
+                   </div>
 
-            <div style="margin-top:3%" class="in1">
-                <div class="tt">Approvals By Operation</div>
-                <div class="tt"> Status :
-                    @if ($status1 === 1)
-                    <span style="color:rgb(48, 255, 48);margin-left:5px">
-                        Full Check
-                    </span>
-                    @endif
-                    @if ($status1 === 2)
-                    <span style="color:rgb(241, 255, 48);margin-left:5px">
-                        Semi Check
-                    </span>
-                    @endif
+                   <div style="margin-top:3%" class="in1">
+                       <div class="tt">Approvals By Operation</div>
+                       <div class="tt"> Status :
+                           @if ($status1 === 1)
+                           <span style="color:rgb(48, 255, 48);margin-left:5px">
+                               Full Check
+                           </span>
+                           @endif
+                           @if ($status1 === 2)
+                           <span style="color:rgb(241, 255, 48);margin-left:5px">
+                               Semi Check
+                           </span>
+                           @endif
 
+                   </div>
+                       <div class="grid-container">
+                           <table class="tableuser">
+                               @foreach ($userinfo2 as $item)
+                               <tr>
+                                       <td  colspan="3" style="font-size: 20px" >
+                                         {{ $item->user2 }}
+                                       </td colspan="3" style="font-size: 20px" >
+                                       <td>
+                                         {{ $item->dateuser2 }}
+                                       </td>
+                                       <td>
+                                           <a
+                                               href="{{ route('ShowsetuserA1', ['user2' => $item->user2, 'boldoc' => encrypt($title->bildoc), 'dateuser2' => $item->dateuser2]) }}">
+                                               <button class="button-28">
+                                                   <i class="fa fa-eye"></i> View
+                                               </button>
+                                           </a>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
+                       </div>
+                   </div>
             </div>
-                <div class="grid-container">
-                    <table class="tableuser">
-                        @foreach ($userinfo2 as $item)
-                        <tr>
-                                <td>
-                                    By : {{ $item->user2 }}
-                                </td>
-                                <td>
-                                    In : {{ $item->dateuser2 }}
-                                </td>
-                                <td>
-                                    <a
-                                        href="{{ route('ShowsetuserA1', ['user2' => $item->user2, 'boldoc' => encrypt($title->bildoc), 'dateuser2' => $item->dateuser2]) }}">
-                                        <button class="button-28">
-                                            <i class="fa fa-eye"></i> View
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
-            </div>
-     </div>
-    @else
-    <div style="margin-top:3%" class="in">
-        <div class="tt">Approvals By Accountant</div>
-        <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
-            @if ($status === 1)
-                Full Check
-            @endif
-            @if ($status === 2)
-                Semi Check
-            @endif
-        </span> </div>
-        <div class="grid-container">
-            <table class="tableuser">
-                @foreach ($userinfo as $item)
-                    <tr>
-                        <td>
-                            By : {{ $item->nameuser }}
-                        </td>
-                        <td>
-                            In : {{ $item->dateset }}
-                        </td>
-                        <td>
-                            <a
-                                href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
-                                <button class="button-28">
-                                    <i class="fa fa-eye"></i> View
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-    </div>
-    @endif
+           @else
+           <div style="margin-top:3%" class="in">
+               <div class="tt">Approvals By Accountant</div>
+               <div class="tt"> Status :  <span style="color:rgb(48, 255, 48);margin-left:5px">
+                   @if ($status === 1)
+                       Full Check
+                   @endif
+                   @if ($status === 2)
+                       Semi Check
+                   @endif
+               </span> </div>
+               <div class="grid-container">
+                   <table class="tableuser">
+                       @foreach ($userinfo as $item)
+                           <tr>
+                               <td>
+                                 {{ $item->nameuser }}
+                               </td>
+                               <td>
+                                 {{ $item->dateset }}
+                               </td>
+                               <td>
+                                   <a
+                                       href="{{ route('Showsetuser', ['nameuser' => $item->nameuser, 'boldoc' => encrypt($title->bildoc), 'dateset' => $item->dateset]) }}">
+                                       <button class="button-28">
+                                           <i class="fa fa-eye"></i> View
+                                       </button>
+                                   </a>
+                               </td>
+                           </tr>
+                       @endforeach
+                   </table>
+               </div>
+           </div>
+           @endif
+
 
 
 
