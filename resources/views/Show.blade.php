@@ -265,10 +265,10 @@
             font-weight: 600;
             line-height: normal;
             margin: 0;
-            min-height: 60px;
+            height: 50px;
             min-width: 0;
             outline: none;
-            padding: 16px 24px;
+
             text-align: center;
             text-decoration: none;
             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -520,11 +520,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                            <table class="tableuser">
                                @foreach ($userinfo as $item)
                                    <tr>
-                                       <td>
-                                           By : {{ $item->nameuser }}
+                                       <td colspan="3" style="font-size: 20px" >
+                                          {{ $item->nameuser }}
                                        </td>
-                                       <td>
-                                           In : {{ $item->dateset }}
+                                       <td style="font-size: 20px">
+                                         {{ $item->dateset }}
                                        </td>
                                        <td>
                                            <a
@@ -560,10 +560,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                @foreach ($userinfo2 as $item)
                                <tr>
                                        <td>
-                                           By : {{ $item->user2 }}
+                                         {{ $item->user2 }}
                                        </td>
                                        <td>
-                                           In : {{ $item->dateuser2 }}
+                                         {{ $item->dateuser2 }}
                                        </td>
                                        <td>
                                            <a
@@ -595,10 +595,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                        @foreach ($userinfo as $item)
                            <tr>
                                <td>
-                                   By : {{ $item->nameuser }}
+                                 {{ $item->nameuser }}
                                </td>
                                <td>
-                                   In : {{ $item->dateset }}
+                                 {{ $item->dateset }}
                                </td>
                                <td>
                                    <a

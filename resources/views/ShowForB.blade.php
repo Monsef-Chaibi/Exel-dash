@@ -358,7 +358,7 @@
                             {{ $title->soldp }}
                         </span>
                     </div>
-                    <div class="grid-item">Billing Date :
+                    <div class="grid-item" >Billing Date :
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($title->bildt - 2)->format('Y-m-d') }}
                     </div>
                     <div class="grid-item">User :
@@ -393,11 +393,11 @@
                            <table class="tableuser">
                                @foreach ($userinfo as $item)
                                    <tr>
-                                       <td>
+                                       <td style="font-size: 20px">
                                         {{ $item->nameuser }}
                                        </td>
-                                       <td>
-                                           In : {{ $item->dateset }}
+                                       <td style="font-size: 20px">
+                                        {{ $item->dateset }}
                                        </td>
                                        <td>
                                            <a
@@ -432,7 +432,7 @@
                            <table class="tableuser">
                                @foreach ($userinfo2 as $item)
                                <tr>
-                                       <td>
+                                       <td colspan="2" style="font-size: 20px">
                                           {{ $item->user2 }}
                                        </td>
                                        <td>
