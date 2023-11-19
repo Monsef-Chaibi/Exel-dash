@@ -111,7 +111,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="button-container" style="margin-bottom: 50px">
-                        <p class="last-update">Last update : {{$latestDate}}</p>
+                        <p class="last-update">Last update : </p>
                         <p class="view-button"><a href="/ShowUpdateImage"><button class="button"><i class="fa fa-eye"></i> View</button></a></p>
                     </div>
                     <form class="form-container" action="{{url('/importimage')}}" method="POST" enctype='multipart/form-data'>
