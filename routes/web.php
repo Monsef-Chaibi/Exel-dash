@@ -84,6 +84,33 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
 
 
 });
+// Route for user 2 role 4
+Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
+    Route::get('/action', [Controller::class, 'action'])->name('action');
+    Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
+    Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
+    Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
+    Route::get('/AddContrat', [Controller::class, 'AddContrat'])->name('AddContrat');
+    Route::post('/AddPort', [Controller::class, 'AddPort'])->name('AddPort');
+    Route::post('/AddBrand', [Controller::class, 'AddBrand'])->name('AddBrand');
+    Route::post('/AddContratUser', [Controller::class, 'AddContratUser'])->name('AddContratUser');
+    Route::get('/getUserData/{id}',[Controller::class, 'getUserData']);
+    Route::get('/getBrandData/{id}',[Controller::class, 'showBrandInfo']);
+    Route::get('/generate-pdf',[Controller::class, 'generatePDF']);
+    Route::get('/pdf',[Controller::class, 'PDF'])->name('pdf');
+    Route::post('/Addcolor',[Controller::class, 'Addcolor']);
+    Route::get('/editusercontrat',[Controller::class, 'editusercontrat']);
+    Route::get('/editportcontrat',[Controller::class, 'editportcontrat']);
+    Route::get('/editbrandcontrat',[Controller::class, 'editbrandcontrat']);
+    Route::get('/editcolorcontrat',[Controller::class, 'editcolorcontrat']);
+    Route::get('/deleteusercontrat/{id}',[Controller::class, 'deleteusercontrat']);
+    Route::get('/deleteportcontrat/{id}',[Controller::class, 'deleteportcontrat']);
+    Route::get('/deletebrandcontrat/{id}',[Controller::class, 'deletebrandcontrat']);
+    Route::get('/deletecolorcontrat/{id}',[Controller::class, 'deletecolorcontrat']);
+
+
+
+});
 
 
 // Route for user 2 role 2
