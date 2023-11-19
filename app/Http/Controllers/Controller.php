@@ -362,6 +362,7 @@ class Controller extends BaseController
                     if($query != '') {
                         $data = DB::table('data')
                         ->where('bildoc', 'like', '%' . $query . '%')
+                        ->where('stuser2', 1)
                         ->groupBy('bildoc')
                         ->get();
 
@@ -369,6 +370,7 @@ class Controller extends BaseController
                     }
                     else {
                         $data = DB::table('data')
+                            ->where('stuser2', 1)
                             ->groupBy('bildoc')
                             ->get();
                     }
@@ -413,6 +415,7 @@ class Controller extends BaseController
                         $data = DB::table('data')
                         ->whereIn('plantkey', $cnd1)
                         ->where('bildoc', 'like', '%' . $query . '%')
+                        ->where('stuser2', 1)
                         ->groupBy('bildoc')
                         ->get();
 
@@ -421,6 +424,7 @@ class Controller extends BaseController
                     else {
                         $data = DB::table('data')
                             ->whereIn('plantkey', $cnd1)
+                            ->where('stuser2', 1)
                             ->groupBy('bildoc')
                             ->get();
                     }
