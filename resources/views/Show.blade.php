@@ -498,7 +498,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </div>
 
 
-            @if ($status1 != Null)
+            @if ($status1 != 1 ||  $status1 != 2 || $status1 != 3)
 
             <div class="flex-container">
                    <div style="margin-top:3%" class="in1">
