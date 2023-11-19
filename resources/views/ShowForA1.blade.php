@@ -681,7 +681,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                             Delivery</button></div>
                     </form>
                     <div>
-                        <a href="/Status/{{ $title->bildoc }}" onclick="return showConfirm()">
+                        <a href="/StatusA1/{{ $title->bildoc }}" onclick="return showConfirm()">
                             <button class="success" type="button">Total Delivery</button>
                         </a>
                     </div>

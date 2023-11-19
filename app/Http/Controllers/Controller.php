@@ -587,6 +587,16 @@ class Controller extends BaseController
             ]);
             return redirect()->back()->with('success', 'Successfully.');
         }
+        function StatusA1($id){
+            DB::table('data')
+            ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
+            ->update([
+                'user2' => Auth::user()->name,
+                'dateuser2' => Carbon::now(),
+                'stuser2' => 1,
+            ]);
+            return redirect()->back()->with('success', 'Successfully.');
+        }
         function SemiCheck(Request $request){
                 $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
                 if(empty($selectedItems)) {
