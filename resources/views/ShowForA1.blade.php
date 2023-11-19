@@ -646,7 +646,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th>GT Number</th>
                                 </tr>
                             </thead>
-                            <form method="GET" action="/SemiCheck" id="partialDeliveryForm">
+                            <form method="GET" action="/SemiCheckA1" id="partialDeliveryForm">
                                 <tbody>
                                     @foreach ($data as $item)
                                         <tr>

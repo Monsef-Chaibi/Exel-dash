@@ -612,6 +612,21 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
+        function SemiCheckA1(Request $request){
+                $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
+                if(empty($selectedItems)) {
+                    return redirect()->back()->with('error', 'No items selected for update.');
+                }
+                foreach($selectedItems as $itemId) {
+                    Data::where('id', $itemId)->update([
+                        'user2' => Auth::user()->name,
+                        'dateuser2' => Carbon::now(),
+                        'stuser2' => 1,
+                    ]);
+                }
+
+                return redirect()->back()->with('success', 'Selections updated successfully');
+            }
         function SemiCopie(Request $request){
                 $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
                 // Loop through selected items and update the database
