@@ -322,7 +322,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check By Oprations :<span id="value"></span>
+                                        Facture Non Check By Oprations : <span id="value">{{$count1}}</span>
                                     </div>
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
@@ -341,13 +341,13 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check By Traffic :<span id="value1"></span>
+                                        Facture Non Check By Traffic : <span id="value1">{{$count2}}</span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
                                         <span class="ag-courses-item_date">
-                                            31.10.2022
+                                        31.10.2022
                                         </span>
                                     </div>
                                 </a>
@@ -357,7 +357,7 @@
                     </div>
                 </div>
 
-                
+
 
             </div>
         </div>
