@@ -311,13 +311,13 @@
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
                             <td>
-                                {{ $item->usercheck }}
+                                {{ $item->user2 }}
                             </td>
                             <td>
                                 {{ $item->gtnum }}
                             </td>
                             <td>
-                                {{ $item->datecheck }}
+                                {{ $item->dateuser2 }}
                             </td>
                         </tr>
                     @endforeach

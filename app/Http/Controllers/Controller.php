@@ -663,7 +663,7 @@ class Controller extends BaseController
             function SowChekUserA1($boldoc){
                 $bol=decrypt($boldoc);
                 $data = Data::where('bildoc',$bol)->where('stuser2',1)->orderBy('datecheck', 'desc')->get();
-                return view('SowChekUser')->with('data',$data);
+                return view('SowChekUserA1')->with('data',$data);
             }
 
                 public function export($conditionValue)

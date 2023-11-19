@@ -490,7 +490,7 @@
             <td class="column0 style34 f style35" colspan="4">{{ $requestData['entrydate'] }}</td>
             <td class="column3 style36 s style37" colspan="4">/ تاريخ الدخول</td>
             <td class="column6 style16 f style15" colspan="3">{{ $requestData['port'] }}</td>
-            <td class="column9 style15 s style17" colspan="3">/ ميناء الدخول </td>
+            <td class="column9 style15 s style17" style='text-align-right' colspan="3">/ ميناء الدخول </td>
             <td class="column12 style38 s style39" colspan="6">{{ $item->gtnum}}</td>
             <td class="column20 style15 s style17" colspan="3">/ بطاقة الجمارك </td>
           </tr>
@@ -511,17 +511,16 @@
             <td class="column20 style15 s style17" colspan="3">/ اللوحة الرقمية </td>
           </tr>
           <tr class="row19">
-            <td class="column0 style44 n style45" colspan="2">{{ $requestData['numcl'] }}</td>
+            <td class="column0 style44 n style45" colspan="4">{{ $requestData['numcl'] }}</td>
             <td class="column3 style36 s style37" colspan="4">/ عدد السلندرات</td>
-            <td class="column6 style44 n style45" colspan="3">{{ $requestData['vcap'] }}</td>
-            <td class="column9 style36 s style37" colspan="3">/ حمولة المركبة </td>
             <td class="column12 style16 s style15" colspan="3">{{ $requestData['chtype'] }}</td>
-            <td class="column15 style15 s style17" colspan="3">/ نوع الهيكل </td>
-            <td class="column18 style15 s style15" colspan="3">{{ $requestData['modtype'] }}</td>
-            <td class="column21 style15 s style17" colspan="2">/ نوع المركبة </td>
+            <td class="column21 style15 s style17" colspan="5">/ نوع الهيكل </td>
+            <td class="column18 style15 s style15" colspan="4">{{ $requestData['modtype'] }}</td>
+            <td class="column21 style15 s style17" colspan="3">/ نوع المركبة </td>
           </tr>
           <tr class="row20">
-            <td class="column0 style46 null style33" colspan="10"></td>
+            <td class="column0 style46 null style33" colspan="5">{{ $requestData['vcap'] }}</td>
+            <td class="column0 style46 null style33" colspan="5">/ حمولة المركبة</td>
             <td class="column12 style16 n style15" colspan="3">{{ $requestData['weight'] }}</td>
             <td class="column15 style15 s style17" colspan="5">/ وزن المركبة </td>
             <td class="column18 style32 n style32" colspan="3">{{ $requestData['year'] }}</td>
@@ -587,7 +586,7 @@
     <table class="print-page-break">
         <tr>
             <td></td>
-            <td><img style="height: 130px;margin-bottom:30px;width:500px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
+            <td><img style="width:400px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
             <td></td>
             <td></td>
@@ -1395,7 +1394,7 @@
     window.onload = function() {
         window.print();
 
-       setTimeout(function() {
+         setTimeout(function() {
             // Assuming you want to go back in the browser history
             window.history.back();
         }, 2000);
