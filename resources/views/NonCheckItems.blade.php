@@ -362,11 +362,12 @@
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button onclick="selectAll()">Select All</button></th>
+
                                 <th>Sold to party</th>
                                 <th>Ship To party</th>
                                 <th>Product</th>
                                 <th>Plant Key</th>
+                                <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                             </tr>
@@ -377,10 +378,6 @@
                                 <input type="hidden" name="alldata" value='alldata'>
                                 @foreach ($data as $index => $item)
                                     <tr>
-                                        <td data-th="Supplier Code">
-                                            <input class="custom-checkbox" style="border-radius:5px" type="checkbox"
-                                                name="selectedItems[]" value="{{ $item->id }}">
-                                        </td>
                                         <td data-th="Supplier Name">
                                             {{ $item->soldp }}
                                         </td>
@@ -392,6 +389,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->plantkey }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->vin }}
                                         </td>
                                         <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
                                             {{ $item->gtnum }}
@@ -406,7 +406,7 @@
                                             </svg>
                                         </td>
                                         <td data-th="Supplier Code">
-                                            <a href="/ShowForB/{{encrypt($item->bildoc)}}">
+                                            <a href="/ShowForA1/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
                                             </a>
                                         </td>
@@ -420,9 +420,9 @@
                         {{-- <div>
                             <button type="button" class="warning1" onclick="submitForm('SemiCopie')">Check</button>
                         </div> --}}
-                        <div>
+                        {{-- <div>
                             <button type="button" class="warning2" onclick="submitForm('SemiExport')">Export</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
