@@ -135,6 +135,8 @@ Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middlew
 
 Route::get('/SowChekUserA1/{boldoc}', [Controller::class, 'SowChekUserA1'])->middleware(['auth'])->name('SowChekUserA1');
 
+Route::get('/SowChekUserA/{boldoc}', [Controller::class, 'SowChekUserA'])->middleware(['auth'])->name('SowChekUserA');
+
 Route::get('/test', [Controller::class, 'test'])->middleware(['auth'])->name('test');
 
 Route::get('/getdata/{id}', [Controller::class, 'getdata'])->middleware(['auth'])->name('getdata');

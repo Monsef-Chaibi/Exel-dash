@@ -697,7 +697,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </div>
 
             @endif
-            <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
+            <div><a href="/SowChekUserA/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
                 all Check</button></a></div>
         </div>
         </div>
