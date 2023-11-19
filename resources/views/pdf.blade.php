@@ -184,7 +184,7 @@
 
 .pic img {
     width: 106%;
-    height: 1230px;
+    height: 1330px;
     display: block;
     text-align: center;
 }
@@ -258,6 +258,10 @@
             page-break-before: always;
         }
     }
+@page { margin-right: 0.7in;margin-top: 0.5in;}
+.tb2{
+    height:1300px;
+}
     </style>
   </head>
 
@@ -266,7 +270,7 @@
 
 </style>
 @foreach ($selectedRecord as $item)
-    <table class="print-page-break" style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+    <table class="print-page-break tb" style="height: 1200px;width:800px" border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
         <col class="col0">
         <col class="col1">
         <col class="col2">
@@ -325,8 +329,8 @@
             <td class="column5 style1 null"></td>
             <td class="column6 style1 null"></td>
             <td class="column7 style1 null"></td>
-            <td class="column8 style2 null"></td>
-            <td class="column9 style3 s style3" colspan="6">نموذج رخص سير</td>
+            <td class="column9 style3 s style3" colspan="7">نموذج رخص سير</td>
+
             <td class="column15 style2 null"></td>
             <td class="column16 style1 null"></td>
             <td class="column17 style1 null"></td>
@@ -538,56 +542,38 @@
             <td class="column0 style48 s style50" colspan="20">{{ $item->vin}}</td>
             <td class="column20 style51 s style53" colspan="3">رقم الهيكل </td>
           </tr>
-          <tr>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-        </tr>
-        <tr class="row23">
-            <td class="column0 style54 null style54" colspan="5"></td>
-            <td class="column5 style54 s style54" colspan="3">التوقيع </td>
-            <td class="column8 style55 null"></td>
-            <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
-            <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
-          </tr>
-          <tr>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-        </tr>
-          <tr class="row24">
-            <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
-            <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
-          </tr>
-          <tr>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-            <td style="border:none;"></td>
-        </tr>
-          <tr  class="row25">
-            <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
-            <td class="column5 style54 s style54" colspan="3">التوقيع </td>
-            <td class="column8 style54 null style54" colspan="5" style="text-align: right">............................................</td>
-            <td class="column13 style54 s style54" colspan="3">رتبه </td>
-            <td class="column16 style54 null style54" colspan="5" style="text-align: right" >...........................................</td>
-            <td class="column21 style54 s style54" colspan="2">رقمه </td>
-          </tr>
         </tbody>
+        <tfoot style="height:180px">
+                <tr class="row23">
+                <td class="column0 style54 null style54" colspan="5"></td>
+                <td class="column5 style54 s style54" colspan="3">التوقيع </td>
+                <td class="column8 style55 null"></td>
+                <td class="column9 style54 null style54" style="text-align: right" colspan="12">..........................................</td>
+                <td class="column21 style54 s style54" colspan="2">مقدم الطلب </td>
+              </tr>
+              <tr class="row24">
+                <td class="column0 style54 null style54" style="text-align: right" colspan="20">....................................................................................................................................................</td>
+                <td class="column20 style54 s style54" colspan="3">قام بتدقيق الطلب </td>
+              </tr>
+              <tr class="row24">
+                <td class="column0 style54 null style54" style="text-align: right" colspan="20"></td>
+                <td class="column20 style54 s style54" colspan="3"></td>
+              </tr>
+              <tr  class="row25" >
+                <td class="column0 style54 null style54" style="text-align: right" colspan="5"></td>
+                <td class="column5 style54 s style54" colspan="3">التوقيع </td>
+                <td class="column8 style54 null style54" colspan="5" style="text-align: right">............................................</td>
+                <td class="column13 style54 s style54" colspan="3">رتبه </td>
+                <td class="column16 style54 null style54" colspan="5" style="text-align: right" >...........................................</td>
+                <td class="column21 style54 s style54" colspan="2">رقمه </td>
+              </tr>
+        </tfoot>
     </table>
-    <table class="print-page-break">
+    <table class="print-page-break tb2">
         <tr>
             <td></td>
-            <td><img style="width:400px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
+            <td><img style="width:400px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
             <td></td>
             <td></td>
             <td></td>
@@ -1348,7 +1334,7 @@
         </tr>
         <tr>
 
-            <td colspan="6"><img style="height: 60px;" src="{{ asset('img/logopg2.jpg') }}" alt="Example Image">           </td>
+            <td colspan="6"><img style="height: 60px;width:100%" src="{{ asset('img/logopg2.jpg') }}" alt="Example Image">           </td>
 
         </tr>
     </table>
@@ -1396,8 +1382,8 @@
 
          setTimeout(function() {
             // Assuming you want to go back in the browser history
-            window.history.back();
-        }, 2000);
+             window.history.back();
+         }, 2000);
     };
 </script>
 

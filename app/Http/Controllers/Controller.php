@@ -137,7 +137,7 @@ class Controller extends BaseController
                 return redirect()->back()->with('error', 'Name already exists Or Password not match');
             }
         }
-        function action(Request $request)
+        function actionA(Request $request)
         {
                if(auth()->user()->cond == 0)
             {

@@ -59,7 +59,7 @@ Route::put('/edituser/{id}', [Controller::class, 'edituser'])->name('edituser');
 
 // Route for user 1 role 0
 Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
-    Route::get('/action', [Controller::class, 'action'])->name('action');
+    Route::get('/actionA', [Controller::class, 'actionA'])->name('actionA');
     Route::get('/Show/{id}', [Controller::class, 'Show'])->name('Show');
     Route::get('/Status/{id}', [Controller::class, 'Status'])->name('Status');
     Route::get('/SemiCheck', [Controller::class, 'SemiCheck'])->name('SemiCheck');
