@@ -818,8 +818,12 @@ class Controller extends BaseController
             }
             public function checktr()
             {
+                 $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')
+                ->select('plantkey', \DB::raw('count(*) as count'))
+                ->groupBy('plantkey')
+                ->get();
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
-                return view('Stats')->with('data',$data);
+                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function Setcheck()
             {

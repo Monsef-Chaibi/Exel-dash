@@ -297,6 +297,12 @@
             @if(Auth::user()->role == 2)
                 <button type="submit" class="btn" style="">Export Excel +</button>
             @endif
+            <div style="display: flex; justify-content: center;">
+                @foreach ($plantKeysWithCounts as $item)
+                    <span style="color: rgb(103, 255, 103); margin-right: 10px;border:2px solid rgb(103, 255, 103) ;padding:1%;border-radius:20px">{{$item->plantkey}} --> {{$item->count}}</span>
+                @endforeach
+            </div>
+
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
