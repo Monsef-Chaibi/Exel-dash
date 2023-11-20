@@ -765,7 +765,7 @@ class Controller extends BaseController
                     try {
                         $selectedItems = $request->input('selectedItems');
                         $alldata = $request->input('ob');
-                 
+
                         if (!$selectedItems) {
                             throw new \Exception('No items selected for export.');
                         }
@@ -830,6 +830,15 @@ class Controller extends BaseController
                 ->groupBy('plantkey')
                 ->get();
                 $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
+                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
+            }
+            public function notcheckob()
+            {
+                $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNull('check')
+                ->select('plantkey', \DB::raw('count(*) as count'))
+                ->groupBy('plantkey')
+                ->get();
+                $data = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNull('check')->get();
                 return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function checktr()

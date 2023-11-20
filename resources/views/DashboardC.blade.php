@@ -316,6 +316,24 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900 dark:text-gray-100">
                     <div style="margin-top: 30px">
+                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Oprations</h1>
+                        <div class="ag-courses_box">
+
+                            <div class="ag-courses_item">
+                                <a href="/notcheckob" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Facture Non Check By Oprations : <span id="value">{{ $countpo1 }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px">
                         <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Traffic</h1>
                         <div class="ag-courses_box">
 
@@ -327,12 +345,7 @@
                                         Facture Non Check By Traffic : <span
                                             id="value">{{ $counttr1 }}</span>
                                     </div>
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span id="up" class="ag-courses-item_date">
 
-                                        </span>
-                                    </div>
                                 </a>
                             </div>
                             <div class="ag-courses_item">
@@ -343,75 +356,9 @@
                                         Facture Checked By Traffic : <span id="value1">{{ $counttr2 }}</span>
                                     </div>
 
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span class="ag-courses-item_date">
-                                            31.10.2022
-                                        </span>
-                                    </div>
                                 </a>
                             </div>
-
-
                         </div>
-                    <div style="margin-top: 30px">
-                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Oprations</h1>
-                        <div class="ag-courses_box">
-
-                            <div class="ag-courses_item">
-                                <a href="/notcheck" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        Facture Non Check By Oprations : <span id="value">{{ $countpo1 }}</span>
-                                    </div>
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span id="up" class="ag-courses-item_date">
-
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div style="display: none" class="ag-courses_item">
-
-                            </div>
-                            <div class="ag-courses_item">
-                                <a href="#" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        Facture Checked By Oprations : <span id="value1">{{ $countpo2 }}</span>
-                                    </div>
-
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span class="ag-courses-item_date">
-                                            31.10.2022
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ag-courses_item">
-                                <a href="#" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        All Facture By Oprations : <span id="value1">{{ $countpo3 }}</span>
-                                    </div>
-
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span class="ag-courses-item_date">
-                                            31.10.2022
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
             </div>
 

@@ -292,10 +292,10 @@
     @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form action="/SemiExport" method="GET">
+            <form action="/SemiExportob" method="GET">
 
 
-                <button type="submit" class="btn" style="">Export Excel +</button>
+                <button type="submit" style="color: rgb(103, 255, 103);" >Export Excel --></button>
 
             <div style="display: flex; justify-content: center;">
                 @foreach ($plantKeysWithCounts as $item)
