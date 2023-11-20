@@ -24,7 +24,8 @@
             align-items: flex-start;
             -ms-flex-wrap: wrap;
             flex-wrap: wrap;
-
+            justify-content: center;
+            margin: auto;
             padding: 50px 0;
         }
 

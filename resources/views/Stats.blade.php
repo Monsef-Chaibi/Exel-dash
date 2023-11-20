@@ -301,9 +301,11 @@
                 <tbody>
                     <tr>
                         <th><button type="button" onclick="selectAll()">Select All</button></th>
-                        <th>Name</th>
-                        <th>Check</th>
-                        <th>In</th>
+                        <th>Plant Key</th>
+                        <th>Product</th>
+                        <th>Vin</th>
+                        <th>Billing Document</th>
+                        <th>By</th>
                     </tr>
                     @foreach ($data as $index => $item)
                         <tr>
