@@ -660,6 +660,17 @@ class Controller extends BaseController
             ]);
             return redirect()->back()->with('success', 'Successfully.');
         }
+        function TotalCheckA1(){
+            DB::table('data')
+            ->whereNotNull('status')
+            ->whereNull('stuser2')
+            ->update([
+                'user2' => Auth::user()->name,
+                'dateuser2' =>  Carbon::now('Asia/Riyadh'),
+                'stuser2' => 1,
+            ]);
+            return redirect()->back()->with('success', 'Successfully.');
+        }
         function StatusA1($id){
             DB::table('data')
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
