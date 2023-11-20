@@ -339,6 +339,7 @@ body {
                 </div>
             </div>
             <div>
+                <h1 style="text-align: right;margin-right:10px;color:#1eff00">Last Update --> <span id="date"></span></h1>
                 <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                     <thead>
                       <tr class="fr">
@@ -384,6 +385,24 @@ body {
             var query = $(this).val();
             fetch_customer_data(query);
         });
+    });
+    $(document).ready(function() {
+        function updateLiveValue() {
+            $.ajax({
+                url: "{{ route('dateup') }}",
+                method: "GET",
+                success: function(data) {
+                $('#date').text(data.date);
+
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue, 5000);
     });
     </script>
 

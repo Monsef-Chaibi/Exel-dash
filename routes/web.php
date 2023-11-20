@@ -168,3 +168,5 @@ Route::get('/ShowsetuserA1/{user2}/{boldoc}/{dateuser2}', [Controller::class, 'S
 Route::get('/get-live-value', [Controller::class, 'getLiveValue'])->name('live.value');
 
 Route::get('/NumNonCheck', [Controller::class, 'NumNonCheck'])->name('NumNonCheck');
+
+Route::get('/dateup', [Controller::class, 'dateup'])->name('dateup');

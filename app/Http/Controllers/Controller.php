@@ -838,6 +838,17 @@ class Controller extends BaseController
                 $up= Data::whereNotNull('check')->where('stuser2', 1)->latest('dateuser2')->value('dateuser2');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
+            public function dateup()
+            {
+                $latestRecord = Update::whereNotNull('created_at')->latest()->first();
+
+                if ($latestRecord) {
+                    $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                } else {
+                    $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
+                }
+                return response()->json(['date' => $latestDate]);
+            }
             public function notcheck()
             {
                 if(auth()->user()->cond != Null){
