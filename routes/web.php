@@ -131,6 +131,7 @@ Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
 
 Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
     Route::get('/dashboardC', [Controller::class, 'dashboardC'])->name('dashboardC');
+    Route::get('/getlast', [Controller::class, 'getlast'])->name('getlast');
 
 });
 

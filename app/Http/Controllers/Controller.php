@@ -824,6 +824,12 @@ class Controller extends BaseController
                 $up= Data::whereNotNull('status')->whereNull('stuser2')->latest('dateset')->value('dateset');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
+            public function getlast()
+            {
+                $liveValue = Update::latest()->get('name'); // Replace YourModel and $id with your actual model and ID
+                $up=  Update::latest()->get('created_at');
+                return response()->json(['value' => $liveValue, 'up' => $up]);
+            }
             public function AddContrat()
             {
                 $user = ContratUser::get();
