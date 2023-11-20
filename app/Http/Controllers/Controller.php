@@ -94,15 +94,14 @@ class Controller extends BaseController
     }
     function dashboardC(){
         $Data = Data::all();
-        $count1 = Data::whereNull('stuser2')
-        ->where('status', 1)
-        ->count();
-        $count2 = Data::whereNull('check')
-        ->where('status', 1)
-        ->where('stuser2', 1)
-        ->count();
+        $counttr1 = Data::whereNotNull('status')->whereNull('stuser2')->count();
+        $counttr2 = Data::whereNotNull('status')->whereNotNull('stuser2')->count();
+        $counttr3 = $counttr1 + $counttr2;
+        $countpo1 = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNull('check')->count();
+        $countpo2 = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNotNull('check')->count();
+        $countpo3 = $countpo1 + $countpo2;
 
-        return view('DashboardC')->with('Data',$Data)->with('count2',$count2)->with('count1',$count1);
+        return view('DashboardC')->with('Data',$Data)->with('countpo1',$countpo1)->with('countpo2',$countpo2)->with('countpo3',$countpo3)->with('counttr1',$counttr1)->with('counttr2',$counttr2)->with('counttr3',$counttr3);
     }
     public function importimage(Request $request)
 {
