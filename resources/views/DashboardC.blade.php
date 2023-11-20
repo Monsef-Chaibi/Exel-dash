@@ -319,7 +319,7 @@
                         <div class="ag-courses_box">
 
                             <div class="ag-courses_item">
-                                <a href="/notcheck" class="ag-courses-item_link">
+                                <a href="/notchecktr" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">

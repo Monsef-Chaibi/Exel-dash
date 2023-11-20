@@ -139,10 +139,12 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
 
 Route::group(['middleware' => ['checkUserRole:5', 'auth' ]], function () {
     Route::post('/importup', [Controller::class, 'import']);
+    Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('notchecktr');
 
 });
 
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
+
 
 Route::get('/SowChekUserA1/{boldoc}', [Controller::class, 'SowChekUserA1'])->middleware(['auth'])->name('SowChekUserA1');
 
