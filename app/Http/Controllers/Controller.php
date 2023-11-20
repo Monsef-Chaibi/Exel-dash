@@ -857,9 +857,22 @@ class Controller extends BaseController
             }
             public function NonCheckItems()
             {
-                $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
-                return view('NonCheckItems')->with('data',$data);
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('status')->whereNull('stuser2')->whereIn('plantkey', $cnd1)->get();
+                    return view('NonCheckItems')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
+                    return view('NonCheckItems')->with('data',$data);
+                }
+
             }
+
+
             public function Noncheck()
             {
                 if(auth()->user()->cond != Null){

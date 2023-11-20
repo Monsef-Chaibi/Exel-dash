@@ -341,7 +341,6 @@ body {
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
                         <th>Billing Date</th>
-                        <th></th>
                         <th>Action</th>
                       </tr>
                     </thead>
