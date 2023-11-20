@@ -134,6 +134,13 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
 
 });
 
+// Route for user 5 role 5 Upholder
+
+Route::group(['middleware' => ['checkUserRole:5', 'auth' ]], function () {
+    Route::post('/import', [Controller::class, 'import']);
+
+});
+
 Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->middleware(['auth'])->name('SowChekUser');
 
 Route::get('/SowChekUserA1/{boldoc}', [Controller::class, 'SowChekUserA1'])->middleware(['auth'])->name('SowChekUserA1');
