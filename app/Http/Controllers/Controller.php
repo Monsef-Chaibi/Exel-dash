@@ -792,8 +792,8 @@ class Controller extends BaseController
             }
             public function getLiveValue()
             {
-                $liveValue = Data::whereNull('check')->where('status', 1)->count(); // Replace YourModel and $id with your actual model and ID
-                $up= Data::whereNull('check')->where('status', 1)->latest('dateset')->value('dateset');
+                $liveValue = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up= Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->latest('dateset')->value('dateset');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
             public function NumNonCheck()
@@ -804,7 +804,7 @@ class Controller extends BaseController
             }
             public function notcheck()
             {
-                $data = Data::whereNull('check')->where('status', 1)->get();
+                $data = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->get();
                 return view('notcheck')->with('data',$data);
             }
             public function Setcheck()

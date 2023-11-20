@@ -277,7 +277,7 @@
                   <tr>
                     <th>Product</th>
                     <th>Description</th>
-                    <th>Gt Number</th>
+                    <th>Vin</th>
                   </tr>
                   @foreach($data as $item)
                   <tr>
@@ -288,7 +288,7 @@
                         {{$item->desc}}
                     </td>
                     <td>
-                        {{$item->gtnum}}
+                        {{$item->vin}}
                     </td>
                   </tr>
                   @endforeach
