@@ -353,7 +353,7 @@ class Controller extends BaseController
                                 <td>'.$row->soldp.'</td>
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
-                                <td>'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
                                 <td><a class="button-32" href="/ShowForA1/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
