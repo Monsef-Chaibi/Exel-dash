@@ -358,9 +358,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <button onclick="showConfirm()">
-                    <h2 style='color:rgb(103, 255, 103);font-size:25px'>Total Check --></h2>
-                </button>
+              
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
@@ -482,24 +480,7 @@
     }
 }
 
-function showConfirm() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    window.location.href = "/TotalCheckA1";
-                }
-            });
 
-            return false; // Prevent the default link behavior
-        }
 
         </script>
     </x-app-layout>
