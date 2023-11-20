@@ -91,6 +91,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="button-container">
+                        <p class="last-update">Last update: <span></span> By :  <span></span> </p>
+
+                    </div>
                     <form class="form-container" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
@@ -165,3 +169,23 @@ fileInput.addEventListener("click", () => {
 }( document, window, 0 ));
     </script>
 </x-app-layout>
+<script>
+     $(document).ready(function() {
+        function updateLiveValue() {
+            $.ajax({
+                url: "{{ route('getlast') }}",
+                method: "GET",
+                success: function(data) {
+                    $('#value').text(data.value);
+                    $('#up').text(data.up);
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue, 5000);
+    });
+</script>
