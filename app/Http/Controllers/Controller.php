@@ -814,7 +814,12 @@ class Controller extends BaseController
             }
             public function checktr()
             {
-                $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
+                $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
+                return view('Stats')->with('data',$data);
+            }
+            public function Allchecktr()
+            {
+                $data = Data::whereNotNull('status')->get();
                 return view('Stats')->with('data',$data);
             }
             public function Setcheck()

@@ -334,10 +334,6 @@
                                     </div>
                                 </a>
                             </div>
-
-                            <div style="display: none" class="ag-courses_item">
-
-                            </div>
                             <div class="ag-courses_item">
                                 <a href="/checktr" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
@@ -354,23 +350,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="ag-courses_item">
-                                <a href="#" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
 
-
-                                    <div class="ag-courses-item_title">
-                                        All Facture By Traffic : <span id="value1">{{ $counttr3 }}</span>
-                                    </div>
-
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span class="ag-courses-item_date">
-                                            31.10.2022
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
 
                         </div>
                     <div style="margin-top: 30px">

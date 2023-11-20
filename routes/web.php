@@ -133,7 +133,8 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
     Route::get('/dashboardC', [Controller::class, 'dashboardC'])->name('dashboardC');
     Route::get('/getlast', [Controller::class, 'getlast'])->name('getlast');
     Route::get('/notchecktr', [Controller::class, 'notchecktr'])->name('notchecktr');
-    Route::get('/checktr', [Controller::class, 'notchecktr'])->name('checktr');
+    Route::get('/checktr', [Controller::class, 'checktr'])->name('checktr');
+    Route::get('/Allchecktr', [Controller::class, 'Allchecktr'])->name('Allchecktr');
 
 });
 
