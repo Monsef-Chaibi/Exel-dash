@@ -832,8 +832,19 @@ class Controller extends BaseController
             }
             public function notcheck()
             {
-                $data = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->get();
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNull('check')->whereIn('plantkey', $cnd1)->where('status', 1)->where('stuser2', 1)->get();
                 return view('notcheck')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->get();
+                    return view('notcheck')->with('data',$data);
+                }
+
             }
             public function notchecktr()
             {
@@ -864,8 +875,20 @@ class Controller extends BaseController
             }
             public function Setcheck()
             {
-                $data = Data::whereNotNull('check')->get();
-                return view('Setcheck')->with('data',$data);
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->get();
+                    return view('Setcheck')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::whereNotNull('check')->get();
+                    return view('Setcheck')->with('data',$data);
+                }
+
+
             }
             public function NonCheckItems()
             {
