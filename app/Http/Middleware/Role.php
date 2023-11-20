@@ -40,6 +40,9 @@ class Role
             elseif(Auth::user()->role == 4){
                 return response()->view('/DashboardA1');
             }
+            elseif(Auth::user()->role == 5){
+                return response()->view('/DashboardAddExel');
+            }
         }
 
         else {
