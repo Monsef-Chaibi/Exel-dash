@@ -114,7 +114,8 @@ form .gender__details .category {
 #dot-1:checked ~ .category .one,
 #dot-2:checked ~ .category .two,
 #dot-3:checked ~ .category .three ,
-#dot-4:checked ~ .category .for
+#dot-4:checked ~ .category .for,
+#dot-5:checked ~ .category .five
 {
   border-color: var(--sub-grey);
   background: var(--main-purple);
@@ -226,6 +227,7 @@ form .button input:hover {
                             <input type="radio" value="2" name="role" id="dot-2">
                             <input type="radio" value="3" name="role" id="dot-3">
                             <input type="radio" value="0" name="role" id="dot-4">
+                            <input type="radio" value="5" name="role" id="dot-5">
                             <span class="gender__title">Type</span>
                             <div class="category">
                             <label for="dot-4">
@@ -243,6 +245,10 @@ form .button input:hover {
                               <label for="dot-3">
                                 <span class="dot three"></span>
                                 <span>Observe</span>
+                              </label>
+                              <label for="dot-5">
+                                <span class="dot five"></span>
+                                <span>Upholder</span>
                               </label>
                             </div>
                           </div>
