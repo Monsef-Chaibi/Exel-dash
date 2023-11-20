@@ -859,6 +859,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </select>
             </div>
             <br>
+            <input type="hidden" name="documents" value="">
             <label for="" style="display: none" id='documents'>Print ALJUF documents ?</label>
             <input style="margin-left: 20px;display: none" name="documents" checked type="radio" id="documents"  value="No">
             <label style="margin-left: 5px;display: none" for="" id='documents'>No</label>

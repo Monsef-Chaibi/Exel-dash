@@ -302,6 +302,8 @@
                     <tr>
                         <th><button type="button" onclick="selectAll()">Select All</button></th>
                         <th>Plant Key</th>
+                        <th>Sold To Party</th>
+                        <th>Shipp To Party</th>
                         <th>Product</th>
                         <th>Vin</th>
                         <th>Billing Document</th>
@@ -313,13 +315,25 @@
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
                             <td>
-                                {{ $item->usercheck }}
+                                {{ $item->plantkey }}
                             </td>
                             <td>
-                                {{ $item->gtnum }}
+                                {{ $item->soldp }}
                             </td>
                             <td>
-                                {{ $item->datecheck }}
+                                {{ $item->shipp }}
+                            </td>
+                            <td>
+                                {{ $item->product }}
+                            </td>
+                            <td>
+                                {{ $item->vin }}
+                            </td>
+                            <td>
+                                {{ $item->bildoc }}
+                            </td>
+                            <td>
+                                {{ $item->user2 }}
                             </td>
                         </tr>
                     @endforeach
