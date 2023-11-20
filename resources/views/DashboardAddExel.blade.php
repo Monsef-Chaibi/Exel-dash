@@ -85,16 +85,18 @@
          )
       </script>
   @endif
+      <!-- Latest version of jQuery from Google CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="button-container">
-                        <p class="last-update">Last update: <span></span> By :  <span></span> </p>
+                    {{-- <div class="button-container">
+                        <p class="last-update">Last update: <span id="value"></span> By :  <span id="up"></span> </p>
 
-                    </div>
+                    </div> --}}
                     <form class="form-container" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
@@ -110,6 +112,11 @@
     </div>
 </div>
     <script>
+
+
+
+
+
         var isAdvancedUpload = function() {
   var div = document.createElement('div');
   return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
@@ -170,22 +177,5 @@ fileInput.addEventListener("click", () => {
     </script>
 </x-app-layout>
 <script>
-     $(document).ready(function() {
-        function updateLiveValue() {
-            $.ajax({
-                url: "{{ route('getlast') }}",
-                method: "GET",
-                success: function(data) {
-                    $('#value').text(data.value);
-                    $('#up').text(data.up);
-                }
-            });
-        }
 
-        // Update live value initially
-        updateLiveValue();
-
-        // Update live value every 5 seconds (adjust this interval as needed)
-        setInterval(updateLiveValue, 5000);
-    });
 </script>

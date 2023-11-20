@@ -826,8 +826,8 @@ class Controller extends BaseController
             }
             public function getlast()
             {
-                $liveValue = Update::latest()->get('name'); // Replace YourModel and $id with your actual model and ID
-                $up=  Update::latest()->get('created_at');
+                $liveValue = Update::latest('created_at')->value('name');
+                $up=  Update::latest()->value('created_at');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
             public function AddContrat()
