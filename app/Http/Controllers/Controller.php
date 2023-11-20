@@ -662,6 +662,7 @@ class Controller extends BaseController
         }
         function TotalCheckA1($id){
             DB::table('data')
+            ->where('bildoc',$id)
             ->whereNotNull('status')
             ->whereNull('stuser2')
             ->update([
