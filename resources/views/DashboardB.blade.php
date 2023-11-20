@@ -371,6 +371,7 @@
                     </div>
                 </div>
                 <div>
+                    <h1 style="text-align: right;margin-right:10px;color:#1eff00">Last Update --> <span id="date"></span></h1>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr class="fr">
@@ -425,6 +426,8 @@
                 success: function(data) {
                     $('#value').text(data.value);
                     $('#up').text(data.up);
+                    $('#date').text(data.date);
+
                 }
             });
         }
