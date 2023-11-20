@@ -135,6 +135,7 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
     Route::get('/notchecktr', [Controller::class, 'notchecktr'])->name('notchecktr');
     Route::get('/checktr', [Controller::class, 'checktr'])->name('checktr');
     Route::get('/Allchecktr', [Controller::class, 'Allchecktr'])->name('Allchecktr');
+    Route::get('/SemiExport', [Controller::class, 'SemiExport'])->name('SemiExport');
 
 });
 
