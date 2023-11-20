@@ -559,10 +559,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                            <table class="tableuser">
                                @foreach ($userinfo2 as $item)
                                <tr>
-                                       <td  colspan="3" style="font-size: 20px" >
+                                       <td   colspan="3" style="font-size: 20px" >
                                          {{ $item->user2 }}
-                                       </td colspan="3" style="font-size: 20px" >
-                                       <td>
+                                       </td >
+                                       <td  colspan="3" style="font-size: 20px">
                                          {{ $item->dateuser2 }}
                                        </td>
                                        <td>

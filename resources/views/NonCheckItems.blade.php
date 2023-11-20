@@ -406,7 +406,7 @@
                                             </svg>
                                         </td>
                                         <td data-th="Supplier Code">
-                                            <a href="/ShowForA1/{{encrypt($item->bildoc)}}">
+                                            <a style="color: blue" href="/ShowForA1/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
                                             </a>
                                         </td>

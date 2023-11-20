@@ -268,7 +268,7 @@
             min-height: 60px;
             min-width: 0;
             outline: none;
-            padding: 16px 24px;
+
             text-align: center;
             text-decoration: none;
             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -561,8 +561,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                <tr>
                                        <td  colspan="3" style="font-size: 20px" >
                                          {{ $item->user2 }}
-                                       </td colspan="3" style="font-size: 20px" >
-                                       <td>
+                                       </td >
+                                       <td colspan="3" style="font-size: 20px" >
                                          {{ $item->dateuser2 }}
                                        </td>
                                        <td>

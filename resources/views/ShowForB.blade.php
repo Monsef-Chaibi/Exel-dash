@@ -298,7 +298,7 @@
             min-height: 60px;
             min-width: 0;
             outline: none;
-            padding: 16px 24px;
+
             text-align: center;
             text-decoration: none;
             transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -434,8 +434,8 @@
                                <tr>
                                        <td  colspan="3" style="font-size: 20px" >
                                          {{ $item->user2 }}
-                                       </td colspan="3" style="font-size: 20px" >
-                                       <td>
+                                       </td >
+                                       <td colspan="3" style="font-size: 20px" >
                                          {{ $item->dateuser2 }}
                                        </td>
                                        <td>
@@ -571,7 +571,7 @@
                                     @foreach ($data as $index => $item)
                                         <tr>
                                             @if ($item->check != 1)
-                                                @if ($item->status == 1)
+                                                @if ($item->stuser2 == 1)
                                                     <td data-th="Supplier Code">
                                                         <input class="custom-checkbox" style="border-radius:5px"
                                                             type="checkbox" name="selectedItems[]"
@@ -592,7 +592,7 @@
                                                 <td data-th="Supplier Code">
                                                     {{ $item->vin }}
                                                 </td>
-                                                @if ($item->status == 1)
+                                                @if ($item->stuser2 == 1)
                                                     <td id="gtnum_{{ $index }}" style="display: flex"
                                                         data-th="Supplier Code">
                                                         {{ $item->gtnum }}
