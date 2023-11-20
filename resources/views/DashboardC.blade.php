@@ -333,7 +333,7 @@
                                 </a>
                             </div>
 
-                            <div class="ag-courses_item">
+                            <div style="display: none" class="ag-courses_item">
 
                             </div>
                             <div class="ag-courses_item">
@@ -341,7 +341,78 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check By Traffic : <span id="value1">{{$count2}}</span>
+                                        Facture Check  By Oprations : <span id="value1">{{$count2}}</span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span class="ag-courses-item_date">
+                                        31.10.2022
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="#" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                     All Facture By Oprations : <span id="value1">{{$count2}}</span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span class="ag-courses-item_date">
+                                        31.10.2022
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="ag-courses_box">
+
+                            <div class="ag-courses_item">
+                                <a href="/notcheck" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Facture Non Check By Traffic : <span id="value">{{$count1}}</span>
+                                    </div>
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="up" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div style="display: none" class="ag-courses_item">
+
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="#" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Facture Check By Traffic : <span id="value1">{{$count2}}</span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span class="ag-courses-item_date">
+                                        31.10.2022
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="#" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        All Facture By Traffic : <span id="value1">{{$count2}}</span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
