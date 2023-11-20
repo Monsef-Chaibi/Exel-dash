@@ -807,6 +807,11 @@ class Controller extends BaseController
                 $data = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->get();
                 return view('notcheck')->with('data',$data);
             }
+            public function notchecktr()
+            {
+                $data = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->get();
+                return view('notcheck')->with('data',$data);
+            }
             public function Setcheck()
             {
                 $data = Data::whereNotNull('check')->get();

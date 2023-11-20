@@ -132,6 +132,7 @@ Route::group(['middleware' => ['checkUserRole:2', 'auth' ]], function () {
 Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
     Route::get('/dashboardC', [Controller::class, 'dashboardC'])->name('dashboardC');
     Route::get('/getlast', [Controller::class, 'getlast'])->name('getlast');
+    Route::get('/notchecktr', [Controller::class, 'notchecktr'])->name('notchecktr');
 
 });
 
@@ -139,7 +140,6 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
 
 Route::group(['middleware' => ['checkUserRole:5', 'auth' ]], function () {
     Route::post('/importup', [Controller::class, 'import']);
-    Route::get('/SowChekUser/{boldoc}', [Controller::class, 'SowChekUser'])->name('notchecktr');
 
 });
 
