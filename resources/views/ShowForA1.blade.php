@@ -308,6 +308,19 @@
             color: black;
             border: 2px white solid;
         }
+        .warning1 {
+            border: 2px rgb(67, 255, 50) solid;
+            padding: 5%;
+            border-radius: 10px;
+            color: rgb(67, 255, 50);
+            width: 300px
+        }
+
+        .warning1:hover {
+            background: rgb(67, 255, 50);
+            color: black;
+            border: 2px white solid;
+        }
 
 /* modal */
 .modal-container {
@@ -697,9 +710,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Delivery</button></div>
                     </form>
-
+                    <div><button type="button" class="warning1" onclick="return showConfirm2()">Total
+                        Delivery</button></div>
             @endif
-            <div><a href="/SowChekUserA1/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
+
+            <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
                 all Check</button></a></div>
         </div>
         </div>
@@ -707,6 +722,24 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     </div>
     </div>
     <script>
+        function showConfirm2() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Once confirmed, the action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, proceed!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // User clicked the confirm button, proceed with the action
+                    window.location.href = "/TotalCheckA1/{{ $title->bildoc }}";
+                }
+            });
+
+            return false; // Prevent the default link behavior
+        }
         function showConfirm() {
             Swal.fire({
                 title: 'Are you sure?',
