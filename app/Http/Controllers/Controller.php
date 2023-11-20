@@ -809,17 +809,16 @@ class Controller extends BaseController
             }
             public function notchecktr()
             {
+                $plantKeysWithCounts = Data::whereNotNull('status')->whereNull('stuser2')
+                ->select('plantkey', \DB::raw('count(*) as count'))
+                ->groupBy('plantkey')
+                ->get();
                 $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
-                return view('Stats')->with('data',$data);
+                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function checktr()
             {
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
-                return view('Stats')->with('data',$data);
-            }
-            public function Allchecktr()
-            {
-                $data = Data::whereNotNull('status')->get();
                 return view('Stats')->with('data',$data);
             }
             public function Setcheck()
