@@ -315,7 +315,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900 dark:text-gray-100">
                     <div style="margin-top: 30px">
-                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Oprations</h1>
+                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Traffic</h1>
                         <div class="ag-courses_box">
 
                             <div class="ag-courses_item">
