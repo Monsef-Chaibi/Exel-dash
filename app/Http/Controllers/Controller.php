@@ -862,8 +862,17 @@ class Controller extends BaseController
             }
             public function Noncheck()
             {
-                $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
-                $up= Data::whereNotNull('status')->whereNull('stuser2')->latest('dateset')->value('dateset');
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('status')->whereNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                }else
+                {
+                    $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('status')->whereNull('stuser2')->latest('dateset')->value('dateset');
+                }
+
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
             public function getlast()
