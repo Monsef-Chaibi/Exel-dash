@@ -572,8 +572,8 @@
     <table class="print-page-break tb2">
         <tr>
             <td></td>
-            <td></td>
             <td><img style="width:400px" src="{{ asset('img/logopg1.jpg') }}" alt="Example Image">           </td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -1094,6 +1094,54 @@
         <tr>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: right;font-size: 20px;">{{ $requestData['sing'] }}</td>
             <td style="font-size: 20px;text-align:right">/ التوقيع </td>
             <td></td>
             <td></td>

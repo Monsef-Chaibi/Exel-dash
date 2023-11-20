@@ -885,6 +885,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <option value="نقل خاص">Private transfer</option>
                 <option value="نقل عام">Public transport</option>
             </select>
+            <label for="" style="margin-left: 20px">Signature name</label>
+            <input type="text" name="sing" style="width: 30%;border-radius:5px;margin-top:10px" placeholder="Signature name">
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
                     <tr class="fr">
