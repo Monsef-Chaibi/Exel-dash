@@ -810,7 +810,7 @@ class Controller extends BaseController
             public function notchecktr()
             {
                 $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
-                return view('notcheck')->with('data',$data);
+                return view('Stats')->with('data',$data);
             }
             public function Setcheck()
             {
