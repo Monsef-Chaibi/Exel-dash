@@ -97,7 +97,7 @@
                         <p class="last-update">Last update: <span id="value"></span> By :  <span id="up"></span> </p>
 
                     </div> --}}
-                    <form class="form-container" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
+                    <form class="form-container" action="{{url('/importup')}}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
                             <span class="drop-title">Drop files here</span>

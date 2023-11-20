@@ -138,7 +138,7 @@ Route::group(['middleware' => ['checkUserRole:3', 'auth' ]], function () {
 // Route for user 5 role 5 Upholder
 
 Route::group(['middleware' => ['checkUserRole:5', 'auth' ]], function () {
-    Route::post('/import', [Controller::class, 'import']);
+    Route::post('/importup', [Controller::class, 'import']);
 
 });
 

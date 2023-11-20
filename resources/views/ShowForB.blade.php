@@ -508,7 +508,7 @@
                                 @foreach ($data as $index => $item)
                                     <tr>
                                         @if ($item->check != 1)
-                                            @if ($item->status == 1)
+                                            @if ($item->stuser2 == 1)
                                                 <td data-th="Supplier Code">
                                                     <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
@@ -529,7 +529,7 @@
                                             <td data-th="Supplier Code">
                                                 {{ $item->vin }}
                                             </td>
-                                            @if ($item->status == 1)
+                                            @if ($item->stuser2 == 1)
                                                 <td id="gtnum_{{ $index }}" style="display: flex"
                                                     data-th="Supplier Code">
                                                     {{ $item->gtnum }}
