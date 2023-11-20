@@ -660,7 +660,7 @@ class Controller extends BaseController
             ]);
             return redirect()->back()->with('success', 'Successfully.');
         }
-        function TotalCheckA1(){
+        function TotalCheckA1($id){
             DB::table('data')
             ->whereNotNull('status')
             ->whereNull('stuser2')
