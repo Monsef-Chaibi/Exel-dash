@@ -368,7 +368,7 @@
                                 <th>Product</th>
                                 <th>Plant Key</th>
                                 <th>Vin</th>
-                                <th>GT Number</th>
+
                                 <th>Billing Doc</th>
                             </tr>
                         </thead>
@@ -397,18 +397,7 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->vin }}
                                         </td>
-                                        <td id="gtnum_{{ $index }}" style="display: flex" data-th="Supplier Code">
-                                            {{ $item->gtnum }}
-                                            <svg id="copyIcon_{{ $index }}"
-                                                style="margin-left: 20px; cursor: pointer;"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="6" y="6" width="13" height="13" rx="2"
-                                                    ry="2" />
-                                                <path d="M9 1H4a2 2 0 0 0-2 2v5" />
-                                            </svg>
-                                        </td>
+                                       
                                         <td data-th="Supplier Code">
                                             <a style="color: blue" href="/ShowForB/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
