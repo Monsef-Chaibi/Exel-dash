@@ -1,11 +1,13 @@
 <?php
+// app/Exports/DataExport.php
 
 namespace App\Exports;
 
 use App\Models\Data;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class DataSemiExport implements FromCollection
+class DataSemiExport implements FromCollection, WithHeadings
 {
     protected $selectedItems;
     protected $alldata;
@@ -19,16 +21,47 @@ class DataSemiExport implements FromCollection
     public function collection()
     {
         if ($this->alldata === 'ob') {
-
-            return Data::whereIn('id', $this->selectedItems)->get(['plantkey','soldp','shipp','product','vin','bildoc','user2']); // Adjust columns as per your needs
+            return Data::whereIn('id', $this->selectedItems)
+                ->get(['plantkey', 'soldp', 'shipp', 'product', 'vin', 'bildoc']);
         }
-        if ($this->alldata == 'alldata') {
 
-            return Data::whereIn('id', $this->selectedItems)->get(['soldp','shipp','product','plantkey','gtnum','bildoc']); // Adjust columns as per your needs
-        } else {
-            // Export selected data
-            return Data::whereIn('id', $this->selectedItems)->get(['gtnum']); // Adjust columns as per your needs
+        if ($this->alldata === 'alldata') {
+            return Data::whereIn('id', $this->selectedItems)
+                ->get(['soldp', 'shipp', 'product', 'plantkey', 'vin', 'bildoc']);
         }
+
+        // Export selected data
+        return Data::whereIn('id', $this->selectedItems)->get(['gtnum']);
     }
 
+    public function headings(): array
+    {
+        if ($this->alldata === 'ob') {
+            return [
+                'Plant Key',
+                'Sold To Party',
+                'Shipp To Party',
+                'Product',
+                'Vin',
+                'Billing Document',
+               
+            ];
+        }
+
+        if ($this->alldata === 'alldata') {
+            return [
+                'Sold To Party',
+                'Shipp To Party',
+                'Product',
+                'Plant Key',
+                'Vin',
+                'Billing Document',
+            ];
+        }
+
+        // Export selected data
+        return [
+            'GT Num',
+        ];
+    }
 }
