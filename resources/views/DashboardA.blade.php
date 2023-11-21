@@ -294,7 +294,7 @@ body {
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                    Facture Full : 0
+                                   GT Delivered : 0
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
@@ -306,31 +306,12 @@ body {
                             </a>
                         </div>
 
-                        <div class="ag-courses_item">
-
-                        </div>
-                        <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
-                                <div class="ag-courses-item_bg"></div>
-
-                                <div class="ag-courses-item_title">
-                                    Facture Semi : 0
-                                </div>
-
-                                <div class="ag-courses-item_date-box">
-                                    Last Update :
-                                    <span class="ag-courses-item_date">
-                                        31.10.2022
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
 
                     </div>
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Parcel Delivery System</h1>
+                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Delivery System</h1>
                 <div style="position: relative; display: inline-block;">
                     <input type="text" name="search" id="search" style="width:400px;border-radius: 10px; padding-right: 30px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); fill: #999;">
