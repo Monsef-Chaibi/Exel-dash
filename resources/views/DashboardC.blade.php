@@ -316,15 +316,17 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900 dark:text-gray-100">
                     <div style="margin-top: 30px">
-                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Oprations</h1>
+                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Traffic</h1>
                         <div class="ag-courses_box">
+
+
 
                             <div class="ag-courses_item">
                                 <a href="/notcheckob" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check By Oprations : <span id="value">{{ $countpo1 }}</span>
+                                       GT Received: <span id="value">{{ $countpo1 }}</span>
                                     </div>
 
                                 </a>
@@ -334,30 +336,30 @@
                         </div>
                     </div>
                     <div style="margin-top: 30px">
-                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Traffic</h1>
+                        <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Oprations </h1>
                         <div class="ag-courses_box">
-
-                            <div class="ag-courses_item">
-                                <a href="/notchecktr" class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                        Facture Non Check By Traffic : <span
-                                            id="value">{{ $counttr1 }}</span>
-                                    </div>
-
-                                </a>
-                            </div>
                             <div class="ag-courses_item">
                                 <a href="/checktr" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Checked By Traffic : <span id="value1">{{ $counttr2 }}</span>
+                                        ISTIMARAH Printed: <span id="value1">{{ $counttr2 }}</span>
                                     </div>
 
                                 </a>
                             </div>
+                            <div class="ag-courses_item">
+                                <a href="/notchecktr" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        GT Received not-print : <span
+                                            id="value">{{ $counttr1 }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+
                         </div>
                 </div>
             </div>

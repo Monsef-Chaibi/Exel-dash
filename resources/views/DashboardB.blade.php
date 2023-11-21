@@ -322,7 +322,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Non Check : <span id="value"></span>
+                                        GT Received not-print : <span id="value"></span>
                                     </div>
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
@@ -341,7 +341,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Facture Checked :  <span id="value1"></span>
+                                        ISTIMARAH  Printed :  <span id="value1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -359,7 +359,7 @@
                 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                     <h1
                         style="width:600px;text-align: center; color: rgb(255, 255, 255); font-size: 30px; ;  background: linear-gradient(135deg,#71b7e6, #9b59b6);font-weight: bold; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
-                        Parcel Delivery System</h1>
+                         Delivery System</h1>
                     <div style="position: relative; display: inline-block;">
                         <input type="text" name="search" id="search"
                             style="width:400px;border-radius: 10px; padding-right: 30px;">

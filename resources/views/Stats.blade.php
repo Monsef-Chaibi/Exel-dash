@@ -313,7 +313,7 @@
                         <th>Product</th>
                         <th>Vin</th>
                         <th>Billing Document</th>
-                        <th>By</th>
+                        <th> By</th>
                     </tr>
                     @foreach ($data as $index => $item)
                         <tr>
@@ -339,7 +339,7 @@
                                 {{ $item->bildoc }}
                             </td>
                             <td>
-                                {{ $item->user2 }}
+                                {{ $item->usercheck }}
                             </td>
                         </tr>
                     @endforeach

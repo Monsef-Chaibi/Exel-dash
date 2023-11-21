@@ -624,7 +624,7 @@
             @endif
             @if ($status == 2 || $status == 1)
                 <div class="btnstatus">
-                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Check</button>
+                    <div><button type="submit" class="warning1" onclick="return showConfirmSemi()">Print The ISTIMARAH</button>
                     </div>
                     </form>
                     <div>
@@ -632,8 +632,7 @@
                             <button type="submit" class="warning">Export Exel </button>
                         </a>
                     </div>
-                    <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View
-                                all Check</button></a></div>
+                    <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">View ISTIMARAH printed</button></a></div>
                 </div>
             @endif
 

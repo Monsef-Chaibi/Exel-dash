@@ -302,7 +302,9 @@
                     <tr>
                         <th><button type="button" onclick="selectAll()">Select All</button></th>
                         <th>Name</th>
-                        <th>Check</th>
+                        <th>Product</th>
+                        <th>Vin</th>
+                        <th>Gt</th>
                         <th>In</th>
                     </tr>
                     @foreach ($data as $index => $item)
@@ -312,6 +314,12 @@
                             </td>
                             <td>
                                 {{ $item->nameuser }}
+                            </td>
+                            <td>
+                                {{ $item->product }}
+                            </td>
+                            <td>
+                                {{ $item->vin }}
                             </td>
                             <td>
                                 {{ $item->gtnum }}

@@ -294,15 +294,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="/SemiExport" method="GET">
 
-            @if(Auth::user()->role == 2)
-                <button type="submit" class="btn" style="">Export Excel +</button>
-            @endif
+
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                     <tr>
                         <th><button type="button" onclick="selectAll()">Select All</button></th>
                         <th>Name</th>
-                        <th>Check</th>
+                        <th>Product</th>
+                        <th>Vin</th>
+                        <th>GT</th>
                         <th>In</th>
                     </tr>
                     @foreach ($data as $index => $item)
@@ -311,13 +311,19 @@
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
                             <td>
-                                {{ $item->usercheck }}
+                                {{ $item->nameuser }}
+                            </td>
+                            <td>
+                                {{ $item->product }}
+                            </td>
+                            <td>
+                                {{ $item->vin }}
                             </td>
                             <td>
                                 {{ $item->gtnum }}
                             </td>
                             <td>
-                                {{ $item->datecheck }}
+                                {{ $item->dateset }}
                             </td>
                         </tr>
                     @endforeach
