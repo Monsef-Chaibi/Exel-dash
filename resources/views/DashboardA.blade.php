@@ -290,17 +290,17 @@ body {
                     <div class="ag-courses_box" >
 
                         <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
+                            <a href="/CheckA1" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                   GT Delivered : 0
+                                   GT Delivered : <span id="value"></span>
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
                                     Last Update :
-                                    <span class="ag-courses-item_date">
-                                        31.10.2022
+                                    <span id="up" class="ag-courses-item_date">
+
                                     </span>
                                 </div>
                             </a>
@@ -384,6 +384,24 @@ body {
 
         // Update live value every 5 seconds (adjust this interval as needed)
         setInterval(updateLiveValue, 5000);
+    });
+     $(document).ready(function() {
+        function updateLiveValue1() {
+            $.ajax({
+                url: "{{ route('NumCheckA') }}",
+                method: "GET",
+                success: function(data) {
+                    $('#value').text(data.value);
+                    $('#up').text(data.up);
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue1();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue1, 5000);
     });
     </script>
 

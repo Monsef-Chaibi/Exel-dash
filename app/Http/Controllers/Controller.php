@@ -878,6 +878,24 @@ class Controller extends BaseController
                 }
 
             }
+            public function NumCheckA()
+            {
+                if(auth()->user()->cond != Null){
+                $cnd=auth()->user()->cond;
+                $cnd1 = explode(',', $cnd);
+                $liveValue = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
+                return response()->json(['value' => $liveValue, 'up' => $up]);
+
+                }
+                else
+                {
+                    $liveValue = Data::whereNotNull('status')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
+                    return response()->json(['value' => $liveValue, 'up' => $up]);
+                }
+
+            }
             public function dateup()
             {
                 $latestRecord = Update::whereNotNull('created_at')->latest()->first();
