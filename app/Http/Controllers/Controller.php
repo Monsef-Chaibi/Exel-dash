@@ -820,17 +820,35 @@ class Controller extends BaseController
             }
             public function getLiveValue()
             {
-                $latestRecord = Update::whereNotNull('created_at')->latest()->first();
+               if(auth()->user()->cond !== Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
-                if ($latestRecord) {
-                    $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
-                } else {
-                    $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
+                    if ($latestRecord) {
+                        $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                    } else {
+                        $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
+                    }
+                    $liveValue = Data::whereNull('check')->where('status', 1)->whereIn('plantkey', $cnd1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                    return response()->json(['value' => $liveValue, 'up' => $up, 'date' => $latestDate]);
+
                 }
-                $liveValue = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
-                $up= Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->latest('dateset')->value('dateset');
+                else
+                {
+                    $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
-                return response()->json(['value' => $liveValue, 'up' => $up, 'date' => $latestDate]);
+                    if ($latestRecord) {
+                        $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                    } else {
+                        $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
+                    }
+                    $liveValue = Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNull('check')->where('status', 1)->where('stuser2', 1)->latest('dateset')->value('dateset');
+
+                    return response()->json(['value' => $liveValue, 'up' => $up, 'date' => $latestDate]);
+                }
             }
             public function NumNonCheck()
             {
@@ -1054,6 +1072,10 @@ class Controller extends BaseController
 
                 $requestData = $request->all();
 
+                if (!isset($requestData['documents'])) {
+                    // If not, set 'documents' to 'No'
+                    $requestData['documents'] = 'No';
+                }
                 return view('pdf')->with([
                     'requestData' => $requestData,
                     'selectedRecord' => $selectedRecords
