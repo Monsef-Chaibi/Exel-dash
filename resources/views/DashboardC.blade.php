@@ -322,7 +322,7 @@
 
 
                             <div class="ag-courses_item">
-                                <a href="/notcheckob" class="ag-courses-item_link">
+                                <a href="/checktr" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
@@ -339,7 +339,7 @@
                         <h1 style="color:white;width: 300px; font-size:40px; background-color: black; border-radius: 20px; margin: auto;text-align:center"> Traffic</h1>
                         <div class="ag-courses_box">
                             <div class="ag-courses_item">
-                                <a href="/checktr" class="ag-courses-item_link">
+                                <a href="/notcheckob" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">

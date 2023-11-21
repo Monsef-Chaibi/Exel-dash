@@ -394,9 +394,15 @@ class Controller extends BaseController
                     }
                     else {
                         $data = DB::table('data')
-                            ->where('stuser2', 1)
-                            ->groupBy('bildoc')
-                            ->get();
+                        ->where('stuser2', 1)
+                        ->whereIn('bildoc', function ($query) {
+                            $query->select('bildoc')
+                                ->from('data')
+                                ->groupBy('bildoc')
+                                ->whereNull('check');
+                        })
+                        ->groupBy('bildoc')
+                        ->get();
                     }
 
                     $total_row = $data->count();
@@ -448,10 +454,16 @@ class Controller extends BaseController
                     }
                     else {
                         $data = DB::table('data')
-                            ->whereIn('plantkey', $cnd1)
-                            ->where('stuser2', 1)
-                            ->groupBy('bildoc')
-                            ->get();
+                        ->where('stuser2', 1)
+                        ->whereIn('plantkey', $cnd1)
+                        ->whereIn('bildoc', function ($query) {
+                            $query->select('bildoc')
+                                ->from('data')
+                                ->groupBy('bildoc')
+                                ->whereNull('check');
+                        })
+                        ->groupBy('bildoc')
+                        ->get();
                     }
 
                     $total_row = $data->count();
@@ -465,7 +477,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
-                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32" href="/ShowForB/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -850,9 +862,21 @@ class Controller extends BaseController
             }
             public function NumNonCheck()
             {
-                $liveValue = Data::whereNotNull('check')->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
+                if(auth()->user()->cond != Null){
+                $cnd=auth()->user()->cond;
+                $cnd1 = explode(',', $cnd);
+                $liveValue = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
                 $up= Data::whereNotNull('check')->where('stuser2', 1)->latest('dateuser2')->value('dateuser2');
                 return response()->json(['value' => $liveValue, 'up' => $up]);
+
+                }
+                else
+                {
+                    $liveValue = Data::whereNotNull('check')->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('check')->where('stuser2', 1)->latest('dateuser2')->value('dateuser2');
+                    return response()->json(['value' => $liveValue, 'up' => $up]);
+                }
+
             }
             public function dateup()
             {
@@ -883,12 +907,13 @@ class Controller extends BaseController
             }
             public function notchecktr()
             {
-                $plantKeysWithCounts = Data::whereNotNull('status')->whereNull('stuser2')
+                $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')
                 ->select('plantkey', \DB::raw('count(*) as count'))
                 ->groupBy('plantkey')
                 ->get();
-                $data = Data::whereNotNull('status')->whereNull('stuser2')->get();
-                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $data = Data::whereNotNull('check')->get();
+                $tp='tp3';
+                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function notcheckob()
             {
@@ -897,7 +922,8 @@ class Controller extends BaseController
                 ->groupBy('plantkey')
                 ->get();
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNull('check')->get();
-                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $tp='tp2';
+                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function checktr()
             {
@@ -906,7 +932,8 @@ class Controller extends BaseController
                 ->groupBy('plantkey')
                 ->get();
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
-                return view('Stats')->with('data',$data)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $tp='tp1';
+                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function Setcheck()
             {

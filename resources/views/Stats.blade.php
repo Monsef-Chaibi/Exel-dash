@@ -313,7 +313,14 @@
                         <th>Product</th>
                         <th>Vin</th>
                         <th>Billing Document</th>
-                        <th> By</th>
+                        @if ( $tp === 'tp1' )
+                            <th> By Operation</th>
+                            <th>In</th>
+                        @endif
+                        @if ( $tp === 'tp3' )
+                            <th> By Traffic</th>
+                            <th> In </th>
+                        @endif
                     </tr>
                     @foreach ($data as $index => $item)
                         <tr>
@@ -338,9 +345,22 @@
                             <td>
                                 {{ $item->bildoc }}
                             </td>
+                            @if ( $tp === 'tp1')
                             <td>
-                                {{ $item->usercheck }}
+                                {{$item->user2}}
                             </td>
+                            <td>
+                                {{$item->dateuser2}}
+                            </td>
+                            @endif
+                            @if ( $tp === 'tp3')
+                            <td>
+                                {{$item->usercheck}}
+                            </td>
+                            <td>
+                                {{$item->datecheck}}
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
