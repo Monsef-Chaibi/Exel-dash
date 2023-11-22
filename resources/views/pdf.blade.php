@@ -50,7 +50,7 @@
       th.style14 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:16pt; background-color:#FFFFFF }
       td.style15 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       th.style15 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
-      td.style16 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
+      td.style16 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:none; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       th.style16 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:1px solid #000000 !important; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       td.style17 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:none #000000; border-right:1px solid #000000 !important; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       th.style17 { vertical-align:middle; text-align:center; border-bottom:1px solid #000000 !important; border-top:1px solid #000000 !important; border-left:none #000000; border-right:1px solid #000000 !important; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
@@ -132,48 +132,8 @@
       th.style55 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       td.style56 { vertical-align:bottom; border-bottom:2px solid #000000 !important; border-top:none #000000; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
       th.style56 { vertical-align:bottom; border-bottom:2px solid #000000 !important; border-top:none #000000; border-left:none #000000; border-right:none #000000; font-weight:bold; color:#000000; font-family:'Calibri'; font-size:12pt; background-color:#FFFFFF }
-      table.sheet0 col.col0 { width:42pt }
-      table.sheet0 col.col1 { width:42pt }
-      table.sheet0 col.col2 { width:42pt }
-      table.sheet0 col.col3 { width:42pt }
-      table.sheet0 col.col4 { width:42pt }
-      table.sheet0 col.col5 { width:42pt }
-      table.sheet0 col.col6 { width:42pt }
-      table.sheet0 col.col7 { width:42pt }
-      table.sheet0 col.col8 { width:42pt }
-      table.sheet0 col.col9 { width:42pt }
-      table.sheet0 col.col10 { width:42pt }
-      table.sheet0 col.col11 { width:42pt }
-      table.sheet0 col.col12 { width:42pt }
-      table.sheet0 col.col13 { width:42pt }
-      table.sheet0 col.col14 { width:42pt }
-      table.sheet0 col.col15 { width:42pt }
-      table.sheet0 col.col16 { width:42pt }
-      table.sheet0 col.col17 { width:42pt }
-      table.sheet0 col.col18 { width:42pt }
-      table.sheet0 col.col19 { width:42pt }
-      table.sheet0 col.col20 { width:42pt }
-      table.sheet0 col.col21 { width:42pt }
-      table.sheet0 col.col22 { width:42pt }
-      table.sheet0 tr { height:15pt }
-      table.sheet0 tr.row5 { height:21pt }
-      table.sheet0 tr.row6 { height:15pt }
-      table.sheet0 tr.row11 { height:22.8pt }
-      table.sheet0 tr.row12 { height:27pt }
-      table.sheet0 tr.row13 { height:21pt }
-      table.sheet0 tr.row14 { height:27pt }
-      table.sheet0 tr.row15 { height:21pt }
-      table.sheet0 tr.row16 { height:25.8pt }
-      table.sheet0 tr.row17 { height:15.6pt }
-      table.sheet0 tr.row18 { height:15.6pt }
-      table.sheet0 tr.row19 { height:18pt }
-      table.sheet0 tr.row20 { height:15.6pt }
-      table.sheet0 tr.row21 { height:15.6pt }
-      table.sheet0 tr.row22 { height:31.2pt }
-      table.sheet0 tr.row23 { height:15.6pt }
-      table.sheet0 tr.row24 { height:15.6pt }
-      table.sheet0 tr.row25 { height:15.6pt }
-      table.sheet0 tr.row26 { height:16.2pt }
+
+
       .pic {
     position: relative;
     display: inline-block;
@@ -261,6 +221,9 @@
 @page { margin-right: 0.7in;margin-top: 0.3in;}
 .tb2{
     height:1300px;
+}
+tr.style1  {
+   padding: 20px
 }
     </style>
   </head>
@@ -365,23 +328,23 @@
             <td class="column21 style1 null"></td>
             <td class="column22 style1 null"></td>
           </tr>
-          <tr class="row8" style="margin-bottom: 20%">
+          <tr class="style1" >
             @php
                 $selectedProcedure = $requestData['procedure'];
             @endphp
-            <td class="column9 style16 f style17" style="border-right: none;" colspan="3" rowspan="2">
+            <td class="column9 style16 f " style="border-left:1px solid black" colspan="3" rowspan="2">
                 <label for="Damaged">تالف</label>
                 <input type="checkbox" name="Damaged" id="" {{ $selectedProcedure === 'Damaged' ? 'checked' : '' }}>
             </td>
 
-            <td class="column9 style16 f style17" style="border-left: none;" colspan="3" rowspan="2">
+            <td class="column9 style16 f " style="border-left: none;" colspan="3" rowspan="2">
                 <label for="Lost">فاقد</label>
                 <input type="checkbox" name="Lost" id="" {{ $selectedProcedure === 'Lost' ? 'checked' : '' }}>
             </td>
 
             <!-- Repeat the pattern for other checkboxes... -->
 
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+            <td class="column9 style16 f " style="text-align: center" colspan="4" rowspan="2">
                 <label for="OwnershipTransfer">نقل ملكية</label>
                 <input type="checkbox" name="OwnershipTransfer" id="" {{ $selectedProcedure === 'Ownership Transfer' ? 'checked' : '' }}>
             </td>
@@ -391,20 +354,68 @@
                 <input type="checkbox" name="Replacement" id="" {{ $selectedProcedure === 'Replacement' ? 'checked' : '' }}>
             </td>
 
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+            <td class="column9 style16 f " style="text-align: center" colspan="4" rowspan="2">
                 <label for="Renewal">تجديد</label>
                 <input type="checkbox" name="Renewal" id="" {{ $selectedProcedure === 'Renewal' ? 'checked' : '' }}>
             </td>
 
-            <td class="column9 style16 f style17" style="text-align: center" colspan="4" rowspan="2">
+            <td class="column9 style16 f  " style="text-align: center;border-right:1px solid black"   colspan="4" rowspan="2">
                 <label for="Registration">تسجيل</label>
                 <input type="checkbox" name="Registration" id="" {{ $selectedProcedure === 'Registration' ? 'checked' : '' }}>
             </td>
             <td class="column19 style8 null"></td>
-            <td class="column20 style9 s style9" colspan="3" rowspan="2">نوع الإجراء</td>
+            <td class="column20 style9 s style9" colspan="3" rowspan="2"> 	<span style="width: 80px;  font-size: 20px; ">&larr; </span>	  نوع الإجراء</td>
           </tr>
-
-          <tr class="row10">
+          <tr class="row6">
+            <td class="column0 style1 null"></td>
+            <td class="column1 style1 null"></td>
+            <td class="column2 style1 null"></td>
+            <td class="column3 style1 null"></td>
+            <td class="column4 style1 null"></td>
+            <td class="column5 style1 null"></td>
+            <td class="column6 style1 null"></td>
+            <td class="column7 style1 null"></td>
+            <td class="column8 style1 null"></td>
+            <td class="column9 style1 null"></td>
+            <td class="column10 style1 null"></td>
+            <td class="column11 style1 null"></td>
+            <td class="column12 style1 null"></td>
+            <td class="column13 style1 null"></td>
+            <td class="column14 style1 null"></td>
+            <td class="column15 style1 null"></td>
+            <td class="column16 style1 null"></td>
+            <td class="column17 style1 null"></td>
+            <td class="column18 style1 null"></td>
+            <td class="column19 style1 null"></td>
+            <td class="column20 style1 null"></td>
+            <td class="column21 style1 null"></td>
+            <td class="column22 style1 null"></td>
+          </tr>      <tr class="row6">
+            <td class="column0 style1 null"></td>
+            <td class="column1 style1 null"></td>
+            <td class="column2 style1 null"></td>
+            <td class="column3 style1 null"></td>
+            <td class="column4 style1 null"></td>
+            <td class="column5 style1 null"></td>
+            <td class="column6 style1 null"></td>
+            <td class="column7 style1 null"></td>
+            <td class="column8 style1 null"></td>
+            <td class="column9 style1 null"></td>
+            <td class="column10 style1 null"></td>
+            <td class="column11 style1 null"></td>
+            <td class="column12 style1 null"></td>
+            <td class="column13 style1 null"></td>
+            <td class="column14 style1 null"></td>
+            <td class="column15 style1 null"></td>
+            <td class="column16 style1 null"></td>
+            <td class="column17 style1 null"></td>
+            <td class="column18 style1 null"></td>
+            <td class="column19 style1 null"></td>
+            <td class="column20 style1 null"></td>
+            <td class="column21 style1 null"></td>
+            <td class="column22 style1 null"></td>
+          </tr>
+          <tr style="margin-top:20px" class="row10">
             <td class="column0 style8 null"></td>
             <td class="column1 style8 null"></td>
             <td class="column2 style8 null"></td>
@@ -430,25 +441,25 @@
             <td class="column22 style8 null"></td>
           </tr>
           <tr class="row11">
-            <td class="column0 style13 s style14" colspan="6">{{ $requestData['nationality'] }}</td>
-            <td class="column6 style15 s style15" colspan="3">الجنسية </td>
-            <td class="column9 style16 f style17" colspan="11">{{ $requestData['full_name'] }}</td>
-            <td class="column20 style18 null"></td>
-            <td class="column21 style19 s style20" colspan="2"> الإسم رباعيا </td>
+            <td class=" style16 s "  style="border-left:1px solid black" colspan="6">{{ $requestData['nationality'] }}</td>
+            <td class=" style16 s "  style="border-right:1px solid black"  colspan="3">/ الجنسية </td>
+            <td class=" style16 f " style="border:1px solid black"  colspan="12">{{ $requestData['full_name'] }}</td>
+
+            <td class="column21 style19 s style20" colspan="2"> / الإسم رباعيا </td>
           </tr>
-          <tr class="row12">
-            <td class="column0 style21 f style22" colspan="5">___________</td>
-            <td class="column6 style15 s style17" colspan="4" style="border-left: 1px solid #000000 !important;">/ هاتف المنزل </td>
-            <td colspan="11" class="column9 style23 f">{{ $requestData['national_id'] }}</td>
-            <td class="column19 style24 s style24" colspan="4">البطاقة الشخصية </td>
+          <tr style="height: 50px">
+            <td class=" style16  "  style="border-left:1px solid black" colspan="6">___________</td>
+            <td class=" style16 " colspan="3" style="border-right: 1px solid">/ هاتف المنزل </td>
+            <td colspan="12" class=" style16 ">{{ $requestData['national_id'] }}</td>
+            <td class=" style16 "  style="border:1px solid black" colspan="2">/ البطاقة الشخصية </td>
           </tr>
           <tr class="row13">
-            <td class="column0 style25 n style14" colspan="4">{{ $requestData['mobile_number'] }}</td>
-            <td class="column6 style15 s style15" colspan="3">هاتف العمل </td>
-            <td class="column9 style16 s style15" colspan="4">{{ $requestData['city'] }}</td>
-            <td class="column13 style15 s style17" colspan="2">/ المدينة </td>
-            <td class="column16 style16 s style15" colspan="8">{{ $requestData['address'] }}</td>
-            <td class="column20 style15 s style17" colspan="2">/ العنوان </td>
+            <td class=" style16 "   style="border-left:1px solid black"colspan="5">{{ $requestData['mobile_number'] }}</td>
+            <td class="style16 "   style="border-right:1px solid black"colspan="4">/ هاتف العمل </td>
+            <td class=" style16  "  style="border-left:1px solid black" colspan="5">{{ $requestData['city'] }}</td>
+            <td class=" style16  "  style="border-right:1px solid black" colspan="1">/ المدينة </td>
+            <td class=" style16  "  style="border-left:1px solid black" colspan="6">{{ $requestData['address'] }}</td>
+            <td class=" style16  "  style="border-right:1px solid black"  colspan="2">/ العنوان </td>
           </tr>
           <tr class="row14">
             <td class="column0 style26 f style28" colspan="10">{{ $requestData['work_phone'] }}</td>
@@ -1425,13 +1436,13 @@
 </html>
 <script>
     // Use the window.onload event to trigger the print dialog when the page loads
-    window.onload = function() {
-        window.print();
+    // window.onload = function() {
+    //     window.print();
 
-         setTimeout(function() {
-            // Assuming you want to go back in the browser history
-             window.history.back();
-         }, 2000);
+        //  setTimeout(function() {
+        //     // Assuming you want to go back in the browser history
+        //      window.history.back();
+        //  }, 2000);
     };
 </script>
 
