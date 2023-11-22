@@ -443,9 +443,9 @@ tr.style1  {
           <tr class="row11">
             <td class=" style16 s "  style="border-left:1px solid black" colspan="6">{{ $requestData['nationality'] }}</td>
             <td class=" style16 s "  style="border-right:1px solid black"  colspan="3">/ الجنسية </td>
-            <td class=" style16 f " style="border:1px solid black"  colspan="12">{{ $requestData['full_name'] }}</td>
+            <td class=" style16 f " style="border-left:1px solid black"  colspan="12">{{ $requestData['full_name'] }}</td>
 
-            <td class="column21 style19 s style20" colspan="2"> / الإسم رباعيا </td>
+            <td class=" style16 s"  style="border-right:1px solid black" colspan="2"> / الإسم رباعيا </td>
           </tr>
           <tr style="height: 50px">
             <td class=" style16  "  style="border-left:1px solid black" colspan="6">___________</td>
@@ -454,8 +454,8 @@ tr.style1  {
             <td class=" style16 "  style="border:1px solid black" colspan="2">/ البطاقة الشخصية </td>
           </tr>
           <tr class="row13">
-            <td class=" style16 "   style="border-left:1px solid black"colspan="5">{{ $requestData['mobile_number'] }}</td>
-            <td class="style16 "   style="border-right:1px solid black"colspan="4">/ هاتف العمل </td>
+            <td class=" style16 "   style="border-left:1px solid black"colspan="6">{{ $requestData['mobile_number'] }}</td>
+            <td class="style16 "   style="border-right:1px solid black"colspan="3">/ هاتف العمل </td>
             <td class=" style16  "  style="border-left:1px solid black" colspan="5">{{ $requestData['city'] }}</td>
             <td class=" style16  "  style="border-right:1px solid black" colspan="1">/ المدينة </td>
             <td class=" style16  "  style="border-left:1px solid black" colspan="6">{{ $requestData['address'] }}</td>
