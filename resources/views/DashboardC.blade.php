@@ -326,7 +326,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        ISTIMARAH Printed: <span id="value1">{{ $counttr2 }}</span>
+                                         GT Received : <span id="value1">{{ $counttr2 }}</span>
                                     </div>
 
                                 </a>
@@ -343,7 +343,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        GT Received: <span id="value">{{ $countpo1 }}</span>
+                                        GT Received not-print: <span id="value">{{ $countpo1 }}</span>
 
                                     </div>
 
@@ -354,7 +354,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        GT Received not-print : <span
+                                        ISTIMARAH Printed  : <span
                                             id="value">{{ $counttr1 }}</span>
                                     </div>
 
