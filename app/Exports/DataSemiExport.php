@@ -27,7 +27,7 @@ class DataSemiExport implements FromCollection, WithHeadings
 
         if ($this->alldata === 'alldata') {
             return Data::whereIn('id', $this->selectedItems)
-                ->get(['soldp', 'shipp', 'product', 'plantkey', 'vin', 'bildoc']);
+                ->get([ 'plantkey','soldp', 'shipp', 'product', 'vin', 'bildoc','usercheck','datecheck']);
         }
 
         // Export selected data
@@ -44,18 +44,20 @@ class DataSemiExport implements FromCollection, WithHeadings
                 'Product',
                 'Vin',
                 'Billing Document',
-               
+
             ];
         }
 
         if ($this->alldata === 'alldata') {
             return [
+                'Plant Key',
                 'Sold To Party',
                 'Shipp To Party',
                 'Product',
-                'Plant Key',
                 'Vin',
                 'Billing Document',
+                'By',
+                'In',
             ];
         }
 

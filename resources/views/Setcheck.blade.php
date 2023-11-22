@@ -405,6 +405,13 @@
                                                 {{ $item->bildoc }}
                                             </a>
                                         </td>
+
+                                        <td data-th="Supplier Code">
+                                            {{ $item->usercheck }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->datecheck }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </form>
