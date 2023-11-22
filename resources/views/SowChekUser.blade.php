@@ -311,7 +311,7 @@
                                 <input class="custom-checkbox" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item->id }}">
                             </td>
                             <td>
-                                {{ $item->nameuser }}
+                                {{ $item->usercheck }}
                             </td>
                             <td>
                                 {{ $item->product }}
