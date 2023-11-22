@@ -363,13 +363,14 @@
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                                 <th><button onclick="selectAll()">Select All</button></th>
+                                <th>Plant Key</th>
                                 <th>Sold to party</th>
                                 <th>Ship To party</th>
                                 <th>Product</th>
-                                <th>Plant Key</th>
                                 <th>Vin</th>
-
                                 <th>Billing Doc</th>
+                                <th>By</th>
+                                <th>In</th>
                             </tr>
                         </thead>
 
@@ -382,6 +383,9 @@
                                             <input class="custom-checkbox" style="border-radius:5px" type="checkbox"
                                                 name="selectedItems[]" value="{{ $item->id }}">
                                         </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->plantkey }}
+                                        </td>
                                         <td data-th="Supplier Name">
                                             {{ $item->soldp }}
                                         </td>
@@ -391,13 +395,11 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->plantkey }}
-                                        </td>
+
                                         <td data-th="Supplier Code">
                                             {{ $item->vin }}
                                         </td>
-                                       
+
                                         <td data-th="Supplier Code">
                                             <a style="color: blue" href="/ShowForB/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
