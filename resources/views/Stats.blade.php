@@ -294,7 +294,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if ( $tp === 'tp1')
-            <div id="donutchart" style="width: 50%; height: 500px;"></div>
+            <div style="display: flex;">
+                <div id="donutchart" style="width: 50%; height: 500px;"></div>
+                <div id="columnchart_material" style="width: 50%; height: 500px;"></div>
+            </div>
+
             <script type="text/javascript">
                 google.charts.load("current", {packages:["corechart"]});
                 google.charts.setOnLoadCallback(drawChart);
@@ -305,32 +309,29 @@
                   ]);
 
                   var options = {
-                    title: 'GT Received According To Plant Key',
+                    title: 'Number GT Received By Plant Key',
                     pieHole: 0.4,
+
                   };
 
                   var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
                   chart.draw(data, options);
                 }
               </script>
-              
+
               <script type="text/javascript">
                 google.charts.load('current', {'packages':['bar']});
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
-                    ['Year', 'Sales', 'Expenses', 'Profit'],
-                    ['2014', 1000, 400, 200],
-                    ['2015', 1170, 460, 250],
-                    ['2016', 660, 1120, 300],
-                    ['2017', 1030, 540, 350]
+                    ['Date', 'Number'],
+                    <?php echo $chart2 ; ?>
                     ]);
 
                     var options = {
                     chart: {
-                        title: 'Company Performance',
-                        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                        title: 'Number Of GT Received By Day',
                     }
                     };
 
@@ -352,7 +353,7 @@
             <form action="/SemiExportob" method="GET">
 
 
-                <button type="submit" style="color: rgb(103, 255, 103);" >Export Excel --></button>
+                <button type="submit" style="color: rgb(103, 255, 103);margin-top:20px" >Export Excel --></button>
 
             <div style="display: flex; justify-content: center;">
                 @foreach ($plantKeysWithCounts as $item)

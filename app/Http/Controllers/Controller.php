@@ -945,7 +945,7 @@ class Controller extends BaseController
             }
             public function checktr()
             {
-                 $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')
+                $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')
                 ->select('plantkey', \DB::raw('count(*) as count'))
                 ->groupBy('plantkey')
                 ->get();
@@ -959,7 +959,16 @@ class Controller extends BaseController
                     $chart.="['".$item->plantkey."',".$item->num."],";
                 }
 
-                return view('Stats')->with('data',$data)->with('chart',$chart)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $result2 = Data::whereNotNull('stuser2')
+                ->selectRaw('COUNT(stuser2) as num, DATE(dateuser2) as day')
+                ->groupBy('day')
+                ->get();
+                $chart2='';
+                foreach ( $result2 as $item){
+                    $chart2.="['".$item->day."',".$item->num."],";
+                }
+
+                return view('Stats')->with('data',$data)->with('chart',$chart)->with('chart2',$chart2)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function Setcheck()
             {
