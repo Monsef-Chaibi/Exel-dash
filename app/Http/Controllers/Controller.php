@@ -951,7 +951,15 @@ class Controller extends BaseController
                 ->get();
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
                 $tp='tp1';
-                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $result = Data::selectRaw('COUNT(stuser2) as num, plantkey')
+                      ->groupBy('plantkey')
+                      ->get();
+                $chart='';
+                foreach ( $result as $item){
+                    $chart.="['".$item->plantkey."',".$item->num."],";
+                }
+
+                return view('Stats')->with('data',$data)->with('chart',$chart)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function Setcheck()
             {
