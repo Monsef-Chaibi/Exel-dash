@@ -369,6 +369,8 @@
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>Billing Doc</th>
+                                <th>By</th>
+                                <th>In</th>
                             </tr>
                         </thead>
 
@@ -392,11 +394,16 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->vin }}
                                         </td>
-
                                         <td data-th="Supplier Code">
                                             <a style="color: blue" href="/Show/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
                                             </a>
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->user2 }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->dateuser2 }}
                                         </td>
                                     </tr>
                                 @endforeach

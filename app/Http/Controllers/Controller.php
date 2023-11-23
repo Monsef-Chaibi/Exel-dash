@@ -1063,13 +1063,13 @@ class Controller extends BaseController
                 if(auth()->user()->cond != Null){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
-                    $data = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->get();
+                    $data = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->get();
                     return view('CheckItemsA1')->with('data',$data);
 
                 }
                 else
                 {
-                    $data = Data::whereNotNull('status')->get();
+                    $data = Data::whereNotNull('status')->whereNotNull('stuser2')->get();
                     return view('CheckItemsA1')->with('data',$data);
                 }
 
