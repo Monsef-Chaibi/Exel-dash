@@ -1042,6 +1042,22 @@ class Controller extends BaseController
                 }
 
             }
+            public function CheckItemsA()
+            {
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->get();
+                    return view('CheckItemsA')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::whereNotNull('status')->get();
+                    return view('CheckItemsA')->with('data',$data);
+                }
+
+            }
             public function CheckItemsA1()
             {
                 if(auth()->user()->cond != Null){
