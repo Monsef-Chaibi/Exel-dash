@@ -1245,6 +1245,7 @@ class Controller extends BaseController
                             'email' => $request->input('edit-email'),
                             'cond' => $request->input('edit-cond'),
                             'role' => $request->input('edit-role'),
+                            'password' => bcrypt($request->input('pass')),
                         ]);
 
                         // Redirect back with a success message

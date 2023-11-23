@@ -419,17 +419,19 @@
         <div>
             <label for="edit-name">Name:</label>
                     <input type="text" style='border-radius:10px' id="edit-name" name="edit-name" value="${name}">
-                    <label for="edit-email" style='margin-left:400px'>Email:</label>
+                    <label for="edit-email" style='margin-left:300px'>Email:</label>
                     <input type="text" style='border-radius:10px' id="edit-email" name="edit-email" value="${email}">
             <br>
             <br>
 
-            <label for="edit-role">Role:</label>
+                    <label for="edit-role">Role:</label>
                     <input type="text" style='border-radius:10px' id="edit-role" name="edit-role" value="${role}">
-                    <label for="edit-cond" style='margin-left:400px'>Condition:</label>
+                    <label for="edit-cond" style='margin-left:300px'>Condition:</label>
                     <input type="text" style='border-radius:10px' id="edit-cond"  placeholder="Ex 1885,1884,1886"  name="edit-cond" value="${cond}">
                     <p style="color: red; margin-top:7px;font-size:15px">* If you want to set it admin set 1 or Traffic set 2 or Operation set 0 <span style="color: red; margin-top:7px;font-size:15px;margin-left:250px">* If you want to set all parent keys to it, set it to 0.</span></p>
-
+                    <br>
+                    <label for="edit-role">Password :</label>
+                    <input type="text" style='border-radius:10px' id="" name="pass" >
         </div>
 
 
