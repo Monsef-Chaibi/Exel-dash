@@ -1091,6 +1091,21 @@ class Controller extends BaseController
 
                 return response()->json(['value' => $liveValue, 'up' => $up]);
             }
+            public function CheckA1()
+            {
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                }else
+                {
+                    $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('status')->whereNotNull('stuser2')->latest('dateset')->value('dateset');
+                }
+
+                return response()->json(['value' => $liveValue, 'up' => $up]);
+            }
             public function getlast()
             {
                 $liveValue = Update::latest('created_at')->value('name');

@@ -92,7 +92,7 @@
 
 .pic img {
     width: 106%;
-    height: 1200px;
+    height: 1150px;
     display: block;
     text-align: center;
 }

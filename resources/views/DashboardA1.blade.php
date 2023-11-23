@@ -426,6 +426,25 @@ body {
         // Update live value every 5 seconds (adjust this interval as needed)
         setInterval(updateLiveValue, 5000);
     });
+    $(document).ready(function() {
+        function updateLiveValue1() {
+            $.ajax({
+                url: "{{ route('CheckA1') }}",
+                method: "GET",
+                success: function(data) {
+                $('#vl').text(data.value);
+                $('#dt').text(data.up);
+
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue1();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue1, 5000);
+    });
     </script>
 
 </x-app-layout>
