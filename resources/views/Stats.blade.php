@@ -293,11 +293,11 @@
     @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if ( $tp === 'tp1')
             <div style="display: flex;">
                 <div id="donutchart" style="width: 50%; height: 500px;"></div>
                 <div id="columnchart_material" style="width: 50%; height: 500px;"></div>
             </div>
+            @if ( $tp === 'tp1')
 
             <script type="text/javascript">
                 google.charts.load("current", {packages:["corechart"]});
@@ -309,7 +309,7 @@
                   ]);
 
                   var options = {
-                    title: 'Number GT Received By Plant Key',
+                    title: 'Number Of GT Received By Plant Key',
                     pieHole: 0.4,
 
                   };
@@ -340,12 +340,95 @@
                     chart.draw(data, google.charts.Bar.convertOptions(options));
                 }
     </script>
+            @endif
+            @if ( $tp === 'tp2')
 
+            <script type="text/javascript">
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                    ['Plant Key', 'Number'],
+                    <?php echo $chart ; ?>
+                  ]);
 
+                  var options = {
+                    title: 'Number Of GT Received Not Print By Plant Key',
+                    pieHole: 0.4,
 
+                  };
 
+                  var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                  chart.draw(data, options);
+                }
+              </script>
 
+              <script type="text/javascript">
+                google.charts.load('current', {'packages':['bar']});
+                google.charts.setOnLoadCallback(drawChart);
 
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Date', 'Number'],
+                    <?php echo $chart2 ; ?>
+                    ]);
+
+                    var options = {
+                    chart: {
+                        title: 'Number Of GT Received Not Print By Day',
+                    }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+    </script>
+
+            @endif
+            @if ( $tp === 'tp3')
+
+            <script type="text/javascript">
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                    ['Plant Key', 'Number'],
+                    <?php echo $chart ; ?>
+                  ]);
+
+                  var options = {
+                    title: 'Number Of Istimarah Printed By Plant Key',
+                    pieHole: 0.4,
+
+                  };
+
+                  var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                  chart.draw(data, options);
+                }
+              </script>
+
+              <script type="text/javascript">
+                google.charts.load('current', {'packages':['bar']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Date', 'Number'],
+                    <?php echo $chart2 ; ?>
+                    ]);
+
+                    var options = {
+                    chart: {
+                        title: 'Number Of Istimarah Printed By Day',
+                    }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+    </script>
 
             @endif
 

@@ -925,13 +925,31 @@ class Controller extends BaseController
             }
             public function notchecktr()
             {
-                $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')
+                $plantKeysWithCounts = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNotNull('check')
                 ->select('plantkey', \DB::raw('count(*) as count'))
                 ->groupBy('plantkey')
                 ->get();
                 $data = Data::whereNotNull('check')->get();
                 $tp='tp3';
-                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $result = Data::whereNotNull('check')
+                ->selectRaw('COUNT(stuser2) as num, plantkey')
+                ->groupBy('plantkey')
+                ->get();
+                $chart='';
+                foreach ( $result as $item){
+                    $chart.="['".$item->plantkey."',".$item->num."],";
+                }
+
+                $result2 = Data::whereNotNull('stuser2')->whereNotNull('check')
+                ->selectRaw('COUNT(`check`) as num, DATE(datecheck) as day')
+                ->groupBy('day')
+                ->get();
+                $chart2='';
+                foreach ( $result2 as $item){
+                    $chart2.="['".$item->day."',".$item->num."],";
+                }
+
+                return view('Stats')->with('data',$data)->with('chart',$chart)->with('chart2',$chart2)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function notcheckob()
             {
@@ -941,7 +959,28 @@ class Controller extends BaseController
                 ->get();
                 $data = Data::whereNotNull('status')->whereNotNull('stuser2')->whereNull('check')->get();
                 $tp='tp2';
-                return view('Stats')->with('data',$data)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
+                $result = Data::whereNotNull('status')
+                            ->whereNotNull('stuser2')
+                            ->whereNull('check')
+                            ->selectRaw('COUNT(*) as num, plantkey')
+                            ->groupBy('plantkey')
+                            ->get();
+                $chart='';
+                foreach ( $result as $item){
+                    $chart.="['".$item->plantkey."',".$item->num."],";
+                }
+                $result2 = Data::whereNotNull('status')
+                ->whereNotNull('stuser2')
+                ->whereNull('check')
+                ->selectRaw('COUNT(stuser2) as num, DATE(dateuser2) as day')
+                ->groupBy('day')
+                ->get();
+                $chart2='';
+                foreach ( $result2 as $item){
+                    $chart2.="['".$item->day."',".$item->num."],";
+                }
+
+                return view('Stats')->with('data',$data)->with('chart',$chart)->with('chart2',$chart2)->with('tp',$tp)->with('plantKeysWithCounts',$plantKeysWithCounts);
             }
             public function checktr()
             {
