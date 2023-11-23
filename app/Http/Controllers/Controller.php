@@ -86,7 +86,7 @@ class Controller extends BaseController
         $latestRecord = Aljuf::whereNotNull('created_at')->latest()->first();
 
         if ($latestRecord) {
-            $latestDate ='By ' .$latestRecord->name . ' in ' . $latestRecord->created_at;
+            $latestDate ='By ' .$latestRecord->name . ' in ' . Carbon::parse($latestRecord->created_at)->addHours(3)->format('Y-m-d H:i:s');
         } else {
             $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
         }
@@ -127,7 +127,7 @@ class Controller extends BaseController
         $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
             if ($latestRecord) {
-                $latestDate ='By ' .$latestRecord->name . ' in ' . $latestRecord->created_at;
+                $latestDate ='By ' .$latestRecord->name . ' in ' . Carbon::parse($latestRecord->created_at)->addHours(3)->format('Y-m-d H:i:s');
             } else {
                 $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
             }
@@ -836,7 +836,7 @@ class Controller extends BaseController
                     $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
                     if ($latestRecord) {
-                        $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                        $latestDate = Carbon::parse($latestRecord->created_at)->addHours(3)->format('Y-m-d H:i:s');
                     } else {
                         $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
                     }
@@ -850,7 +850,7 @@ class Controller extends BaseController
                     $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
                     if ($latestRecord) {
-                        $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                        $latestDate =Carbon::parse($latestRecord->created_at)->addHours(3)->format('Y-m-d H:i:s');
                     } else {
                         $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
                     }
@@ -901,7 +901,7 @@ class Controller extends BaseController
                 $latestRecord = Update::whereNotNull('created_at')->latest()->first();
 
                 if ($latestRecord) {
-                    $latestDate = $latestRecord->created_at->format('Y-m-d H:i:s');
+                    $latestDate = Carbon::parse($latestRecord->created_at)->addHours(3)->format('Y-m-d H:i:s');
                 } else {
                     $latestDate = '00:00' ;// Set the time to 00:00:00 if no records exist
                 }

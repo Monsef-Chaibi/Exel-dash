@@ -356,7 +356,9 @@
                                         @endif
                                     </td>
                                     <td data-th="Invoice Date">
-                                        {{ $user->created_at }}
+                                        @if ($user->created_at)
+                                        {{ $user->created_at->addHours(3) }}
+                                        @endif
                                     </td>
                                     <td data-th="Invoice Date">
                                         <a href="#" onclick="confirmDelete('/deleteuser/{{ $user->id }}')">
