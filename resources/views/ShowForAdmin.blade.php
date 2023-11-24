@@ -707,9 +707,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </div>
                 </form>
                     <div>
-                        <a href="/Status/{{ $title->bildoc }}" onclick="return showConfirm()">
-                            <button class="success" type="button">Total Restore</button>
-                        </a>
+                        <form action="/TotalRestore" method="get" id="totalRestoreForm">
+                            @csrf
+                            <input type="hidden" name="bildoc" value="{{ $title->bildoc }}">
+                            <button class="success" type="button" onclick="showConfirm()">Total Restore</button>
+                        </form>
+
+
                     </div>
 
 
@@ -719,24 +723,62 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     </div>
     </div>
     <script>
-        function showConfirm() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    window.location.href = "/Status/{{ $title->bildoc }}";
-                }
-            });
-
-            return false; // Prevent the default link behavior
+    function showConfirm() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once confirmed, the action cannot be undone!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed!',
+        input: 'text',
+        inputPlaceholder: 'Enter additional information',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'You need to enter something!';
+            }
         }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked the confirm button, proceed with the action
+
+            // Create a form element
+            const form = document.createElement('form');
+            form.action = '/TotalRestore';
+            form.method = 'get';
+
+            // Add CSRF token input to the form
+            const csrfTokenInput = document.createElement('input');
+            csrfTokenInput.type = 'hidden';
+            csrfTokenInput.name = '_token';
+            csrfTokenInput.value = '{{ csrf_token() }}';
+            form.appendChild(csrfTokenInput);
+
+            // Add bildoc input to the form
+            const bildocInput = document.createElement('input');
+            bildocInput.type = 'hidden';
+            bildocInput.name = 'bildoc';
+            bildocInput.value = '{{ $title->bildoc }}';
+            form.appendChild(bildocInput);
+
+            // Add additionalInfo input to the form with the value from the confirmation dialog
+            const additionalInfoInput = document.createElement('input');
+            additionalInfoInput.type = 'hidden';
+            additionalInfoInput.name = 'additionalInfo';
+            additionalInfoInput.value = result.value;
+            form.appendChild(additionalInfoInput);
+
+            // Append the form to the body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+        }
+    });
+
+    return false; // Prevent the default link behavior
+}
 
         function showConfirmSemi() {
     Swal.fire({

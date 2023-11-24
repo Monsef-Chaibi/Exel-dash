@@ -68,7 +68,7 @@ Route::get('/NumRemoveAdmin', [Controller::class, 'NumRemoveAdmin'])->name('NumR
 
 Route::get('/RmoveItems', [Controller::class, 'RmoveItems'])->name('RmoveItems');
 
-Route::get('/TotalRestore/{id}', [Controller::class, 'TotalRestore'])->name('Status');
+Route::post('/TotalRestore', [Controller::class, 'TotalRestore'])->name('Status');
 });
 
 // Route for user 1 role 0
