@@ -765,7 +765,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             // Add additionalInfo input to the form with the value from the confirmation dialog
             const additionalInfoInput = document.createElement('input');
             additionalInfoInput.type = 'hidden';
-            additionalInfoInput.name = 'additionalInfo';
+            additionalInfoInput.name = 'reason';
             additionalInfoInput.value = result.value;
             form.appendChild(additionalInfoInput);
 

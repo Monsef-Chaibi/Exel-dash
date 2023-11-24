@@ -846,7 +846,7 @@ class Controller extends BaseController
             return redirect()->back()->with('success', 'Successfully.');
         }
         function TotalRestore(Request $request){
-
+            $id = $request->input('bildoc');
             DB::table('data')
             ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
             ->update([
