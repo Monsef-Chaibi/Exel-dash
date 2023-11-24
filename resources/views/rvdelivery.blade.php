@@ -290,11 +290,11 @@ body {
                     <div class="ag-courses_box" >
 
                         <div class="ag-courses_item">
-                            <a href="/CheckItemsA" class="ag-courses-item_link">
+                            <a href="/RmoveItems" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                   GT Delivered : <span id="value"></span>
+                                   Number Of Removed <span id="value"></span>
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
