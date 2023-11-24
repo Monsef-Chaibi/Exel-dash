@@ -82,6 +82,9 @@ class Controller extends BaseController
     function AddData(){
         return view('AddData');
     }
+    function rvdelivery(){
+        return view('rvdelivery');
+    }
     function AddALJUF(){
         $latestRecord = Aljuf::whereNotNull('created_at')->latest()->first();
 
@@ -229,6 +232,118 @@ class Controller extends BaseController
                     else {
                         $data = DB::table('data')
                             ->whereIn('plantkey', $cnd1)
+                            ->groupBy('bildoc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->plantkey.'</td>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
+                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
+                        <tr>
+                            <td  colspan="8">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
+                }
+            }
+
+
+        }
+        function actionAdmin(Request $request)
+        {
+               if(auth()->user()->cond == 0)
+            {
+                if($request->ajax())
+                {
+
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->whereNotNull('status')
+                        ->groupBy('bildoc')
+                        ->get();
+
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->whereNotNull('status')
+                            ->groupBy('bildoc')
+                            ->get();
+                    }
+
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        foreach($data as $row)
+                        {
+                            $output .= '
+                            <tr>
+                                <td>'.$row->plantkey.'</td>
+                                <td>'.$row->soldp.'</td>
+                                <td>'.$row->shipp.'</td>
+                                <td>'.$row->bildoc.'</td>
+                                <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
+                                <td><a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                            </tr>
+                            ';
+                        }
+                    } else {
+                        $output = '
+                        <tr>
+                        <td  colspan="8">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $data = array(
+                        'table_data'  => $output,
+                        'total_data'  => $total_row
+                    );
+                    echo json_encode($data);
+                }
+            }
+            else
+            {
+                if($request->ajax())
+                {   $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+
+                    $output = '';
+                    $query = $request->get('query');
+                    if($query != '') {
+                        $data = DB::table('data')
+                        ->whereIn('plantkey', $cnd1)
+                        ->where('bildoc', 'like', '%' . $query . '%')
+                        ->whereNotNull('status')
+                        ->groupBy('bildoc')
+                        ->get();
+
+
+                    }
+                    else {
+                        $data = DB::table('data')
+                            ->whereIn('plantkey', $cnd1)
+                            ->whereNotNull('status')
                             ->groupBy('bildoc')
                             ->get();
                     }

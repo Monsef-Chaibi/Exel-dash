@@ -57,6 +57,9 @@ Route::get('/deleteuser/{id}', [Controller::class, 'deleteuser'])->name('deleteu
 Route::get('/rvdelivery', [Controller::class, 'rvdelivery'])->name('rvdelivery');
 
 Route::put('/edituser/{id}', [Controller::class, 'edituser'])->name('edituser');
+
+Route::get('/actionAdmin', [Controller::class, 'actionAdmin'])->name('actionAdmin');
+
 });
 
 // Route for user 1 role 0
