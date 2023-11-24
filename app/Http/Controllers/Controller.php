@@ -845,6 +845,28 @@ class Controller extends BaseController
             ]);
             return redirect()->back()->with('success', 'Successfully.');
         }
+        function TotalRestore($id){
+
+            DB::table('data')
+            ->where('bildoc', $id) // Assuming $id is the ID of the product you want to update
+            ->update([
+                'nameuser' => null,
+                'dateset' => null,
+                'status' => null,
+                'user2' => null,
+                'dateuser2' => null,
+                'stuser2' => null,
+                'usercheck' => null,
+                'check' => null,
+                'datecheck' => null,
+                'removeby' => Auth::user()->name,
+                'remove' => 1,
+                'dateremove' => Carbon::now('Asia/Riyadh'),
+                'reason' => $request->input('reason'),
+            ]);
+            return redirect()->back()->with('success', 'Successfully.');
+        }
+
         function TotalCheckA1($id){
             DB::table('data')
             ->where('bildoc',$id)
