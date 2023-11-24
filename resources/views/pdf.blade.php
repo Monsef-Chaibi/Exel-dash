@@ -705,14 +705,14 @@ tr.style1  {
 </html>
 <script>
     // Use the window.onload event to trigger the print dialog when the page loads
-    // window.onload = function() {
-    //     window.print();
+    window.onload = function() {
+        window.print();
 
-    //      setTimeout(function() {
-    //         // Assuming you want to go back in the browser history
-    //          window.history.back();
-    //      }, 2000);
-    // };
+         setTimeout(function() {
+            // Assuming you want to go back in the browser history
+             window.history.back();
+         }, 2000);
+    };
 </script>
 
 
