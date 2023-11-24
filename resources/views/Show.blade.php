@@ -667,7 +667,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         <tr>
                                             @if ($item->status != 1)
                                                 <td data-th="Supplier Name">
-                                                    <input class="custom-checkbox" style="border-radius:5px"
+
+                                                        <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
+
+                                                        <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
                                                         value="{{ $item->id }}">
                                                 </td>
@@ -688,6 +691,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     @endforeach
 
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center">
+                                            The Number Of Selected : <span id="selectedCount">0</span>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                         </table>
             @endif
             <div class="btnstatus">
@@ -789,169 +799,23 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         }
     </script>
 </x-app-layout>
-  <!-- modal 1 -->
-  <div  class="box">
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all checkboxes with the name 'selectedItems[]'
+        const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
 
-    <div class="modal-container" id="m1-o" style="--m-background: transparent;">
-        <div class="modal">
-            <h1 class="modal__title">Print :</h1>
-            <label for="">Type of Procedure :  </label>
-        <form action="/pdf" method="get">
-            @csrf
-        <br>
+        // Add a change event listener to each checkbox
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
 
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Registration" style="border-radius: 10px">
-            Registration
-        </label>
-
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Renewal" style="border-radius: 10px">
-            Renewal
-        </label>
-
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Replacement" style="border-radius: 10px">
-            Replacement
-        </label>
-
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Ownership Transfer" style="border-radius: 10px">
-            Ownership Transfer
-        </label>
-
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Lost" style="border-radius: 10px">
-            Lost
-        </label>
-
-        <label style="margin-left: 15px">
-            <input type="radio" name="procedure" value="Damaged" style="border-radius: 10px">
-            Damaged
-        </label>
-        <br>
-            <label for="" style="color: rgb(0, 0, 0)">Choose A Name :</label>
-            <select style="border-radius:5px;margin-top:20px" name="selected_id" id="selected_id" onchange="showUserInfo()">
-                <option style="display: none;">Select User</option>
-                @foreach ($datauser as $item)
-                    <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
-            </select>
-            <br>
-            <input name="full_name" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Full Name of the Owner" type="text" readonly>
-            <input name="nationality" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Nationality" type="text" readonly>
-            <input name="national_id" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="National ID" type="text" readonly>
-            <input name="address" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Address" type="text" readonly>
-            <input name="city" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="City" type="text" readonly>
-            <input name="work_phone" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Work Phone" type="text" readonly>
-            <input name="activity" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Activity" type="text" readonly>
-            <input name="mobile_number" style="width: 49%;border-radius:5px;margin-top:10px;" placeholder="Mobile Number" type="text" readonly>
-            <div style="margin-top: 20px">
-                <label for="">Is there a tenant?</label>
-                <input style="margin-left: 20px" checked type="radio" name="is_tenant" onchange="showtenantInfo()" value="No">
-                <label style="margin-left: 5px" for="">No</label>
-                <input style="margin-left: 20px"  type="radio" name="is_tenant" onchange="showtenantInfo()" value="Yes">
-                <label style="margin-left: 5px" for="">Yes</label>
-                <select style="border-radius: 5px; margin-left: 160px; width: 49%;display:none" name="tenant" id="slc">
-                  <option value="" disabled selected>Select User</option>
-                  @foreach ($datauser as $item)
-                    <option value="{{ $item->name . ',' . $item->nat_id . ',' . $item->nat . ',' . $item->activity . ',' . $item->address . ',' . $item->mobnum }}">{{$item->name}}</option>
-                  @endforeach
-                </select>
-            </div>
-            <br>
-            <input type="hidden" name="documents" value="">
-            <label for="" style="display: none" id='documents'>Print ALJUF documents ?</label>
-            <input style="margin-left: 20px;display: none" name="documents" checked type="radio" id="documents"  value="No">
-            <label style="margin-left: 5px;display: none" for="" id='documents'>No</label>
-            <input style="margin-left: 20px;display: none" name="documents"  type="radio" id="documents" value="Yes">
-            <label style="margin-left: 5px;display: none" for="" id='documents'>Yes</label>
-            <br style="display: none" id='documents'>
-            <br style="display: none" id='documents'>
-            <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
-            <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
-                <option style="display: none;">Select Port</option>
-                @foreach ($port as $item)
-                    <option value="{{$item->nameofport}}">{{$item->nameofport}}</option>
-                @endforeach
-            </select>
-            <label for="" style="margin-left: 20px">Entry Date :</label>
-            <input type="text" name="entrydate" style="width: 38%;border-radius:5px">
-            <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>
-            <select  style="border-radius:5px;width:37%;margin-top:25px" id="brand_id"  onchange="showBrandInfo()">
-                <option style="display: none;">Select Brand</option>
-                @foreach ($brand as $item)
-                    <option value="{{$item->id}}">{{$item->titel}}</option>
-                @endforeach
-            </select><br>
-            <input readonly name="brand" style="width: 49%;border-radius:5px;margin-top:25px" placeholder="Vehicle Brand" type="text">
-            <input readonly name="model" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Model" type="text">
-            <input readonly name="modtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Type" type="text">
-            <input readonly name="chtype" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Chassis Type" type="text">
-            <input readonly name="vcap" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Load Capacity" type="text">
-            <input readonly name="numcl" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Number of Cylinders" type="text">
-            <input readonly name="weight" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Vehicle Weight" type="text">
-            <input readonly name="year" style="width: 49%;border-radius:5px;margin-top:10px" placeholder="Year of Manufacture" type="text">
-            <br>
-            <label for="" style="margin-top:25px">Registration Type :</label>
-            <select name="regtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
-                <option value="خصوصي">Private </option>
-                <option value="نقل خاص">Private transfer</option>
-                <option value="نقل عام">Public transport</option>
-            </select>
-            <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
-                <thead>
-                    <tr class="fr">
-                        <th><button type="button" onclick="selectAllpop()">Select All</button></th>
-                        <th>Product</th>
-                        <th>VIN</th>
-                        <th>color</th>
-                        <th>GT Number</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        @foreach ($data as $item)
-                            <tr>
-                                    <td data-th="Supplier Name">
-                                        <input class="custom-" style="border-radius:5px"
-                                            type="checkbox" name="selectedItems[]"
-                                            value="{{ $item->id }}">
-                                    </td>
-                                    <td data-th="Supplier Name">
-                                        {{ $item->product }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->vin }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->color }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->gtnum }}
-                                    </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-            </table>
-
-
-
-
-
-
-            <br>
-
-
-            <a  href="/generate-pdf">
-                <button type="submit" class="modal__btn">Print &rarr;</button>
-            </a>
-            <a href="#m1-c" class="link-2"></a>
-        </div>
-
-    </div>
-  </div>
-  <!-- /modal 1 -->
+        // Function to update the selected count in the span
+        function updateSelectedCount() {
+            const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+            document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+        }
+    });
+</script>
 
   <script>
     function showUserInfo() {

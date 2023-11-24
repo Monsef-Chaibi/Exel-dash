@@ -506,13 +506,18 @@
                         <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
                             <tbody>
                                 @foreach ($data as $index => $item)
-                                    <tr>
-                                        @if ($item->check != 1)
-                                            @if ($item->stuser2 == 1)
-                                                <td data-th="Supplier Code">
+                                <tr>
+                                    @if ($item->check != 1)
+                                    @if ($item->stuser2 == 1)
+                                    <td data-th="Supplier Code">
+
+                                                    <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
+
                                                     <input class="custom-checkbox" style="border-radius:5px"
                                                         type="checkbox" name="selectedItems[]"
                                                         value="{{ $item->id }}">
+
+
                                                 </td>
                                             @else
                                                 <td data-th="Supplier Code">
@@ -553,6 +558,13 @@
                                 @endforeach
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" style="text-align: center">
+                                        The Number Of Selected : <span id="selectedCount">0</span>
+                                    </td>
+                                </tr>
+                            </tfoot>
                     </table>
                 @else
                     <div>
@@ -573,6 +585,9 @@
                                             @if ($item->check != 1)
                                                 @if ($item->stuser2 == 1)
                                                     <td data-th="Supplier Code">
+
+                                                        <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
+
                                                         <input class="custom-checkbox" style="border-radius:5px"
                                                             type="checkbox" name="selectedItems[]"
                                                             value="{{ $item->id }}">
@@ -620,6 +635,13 @@
                                     @endforeach
 
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center">
+                                            The Number Of Selected : <span id="selectedCount">0</span>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                         </table>
             @endif
             @if ($status == 2 || $status == 1)
@@ -640,6 +662,23 @@
     </div>
     </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all checkboxes with the name 'selectedItems[]'
+            const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
+
+            // Add a change event listener to each checkbox
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+
+            // Function to update the selected count in the span
+            function updateSelectedCount() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+                document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+            }
+        });
+    </script>
     @foreach ($data as $index => $item)
         <script>
             document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
