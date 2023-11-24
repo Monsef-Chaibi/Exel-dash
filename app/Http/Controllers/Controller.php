@@ -1108,7 +1108,7 @@ class Controller extends BaseController
                 }
                 else
                 {
-                    $liveValue = Data::whereNotNull('remove')->count(); // Replace YourModel and $id with your actual model and ID
+                    $liveValue = Data::where('remove','1')->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('dateremove')->latest('dateremove')->value('dateremove');
                     return response()->json(['value' => $liveValue, 'up' => $up]);
                 }
