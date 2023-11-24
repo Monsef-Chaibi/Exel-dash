@@ -25,7 +25,7 @@
 
 /* container and form */
 .container {
-  max-width: 700px;
+  max-width: 1000px;
   width: 100%;
   background: none;
   padding: 25px 30px;
@@ -115,7 +115,8 @@ form .gender__details .category {
 #dot-2:checked ~ .category .two,
 #dot-3:checked ~ .category .three ,
 #dot-4:checked ~ .category .for,
-#dot-5:checked ~ .category .five
+#dot-5:checked ~ .category .five,
+#dot-6:checked ~ .category .sex
 {
   border-color: var(--sub-grey);
   background: var(--main-purple);
@@ -223,6 +224,7 @@ form .button input:hover {
 
                         </div>
                         <div class="gender__details">
+                            <input type="radio" value="1" name="role" id="dot-6">
                             <input type="radio" value="4" name="role" id="dot-1">
                             <input type="radio" value="2" name="role" id="dot-2">
                             <input type="radio" value="3" name="role" id="dot-3">
@@ -230,6 +232,10 @@ form .button input:hover {
                             <input type="radio" value="5" name="role" id="dot-5">
                             <span class="gender__title">Type</span>
                             <div class="category">
+                            <label for="dot-6">
+                                  <span class="dot sex"></span>
+                                  <span>Admin</span>
+                            </label>
                             <label for="dot-4">
                                   <span class="dot for"></span>
                                   <span>Accountant</span>
