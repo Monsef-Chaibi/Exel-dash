@@ -281,6 +281,11 @@ body {
   cursor: not-allowed;
 }
     </style>
+      @if(Auth::user()->rmvgt !== '1')
+      <script>
+          window.location.href = "/";
+      </script>
+     @endif
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

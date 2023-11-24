@@ -104,7 +104,11 @@
          )
       </script>
   @endif
-
+    @if(Auth::user()->adjuf !== '1')
+        <script>
+            window.location.href = "/";
+        </script>
+    @endif
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
