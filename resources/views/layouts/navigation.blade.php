@@ -17,36 +17,48 @@
                     </x-nav-link>
                 </div>
                 @if(Auth::user()->role == '1')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
-                        {{ __('ADD USER') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('Alluser')" :active="request()->routeIs('Alluser')">
-                        {{ __('ALL USER') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('AddData')" :active="request()->routeIs('AddData')">
-                        {{ __('ADD DATA') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('ViewData')" :active="request()->routeIs('ViewData')">
-                        {{ __('VIEW DATA') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('AddALJUF')" :active="request()->routeIs('AddALJUF')">
-                        {{ __('ADD ALJUF') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
-                        {{ __('REMOVE GT DELIVERY') }}
-                    </x-nav-link>
-                </div>
+                    @if(Auth::user()->aduser == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('adduser')" :active="request()->routeIs('adduser')">
+                            {{ __('ADD USER') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->aduser == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('Alluser')" :active="request()->routeIs('Alluser')">
+                            {{ __('ALL USER') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->addata == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('AddData')" :active="request()->routeIs('AddData')">
+                            {{ __('ADD DATA') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->addata == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('ViewData')" :active="request()->routeIs('ViewData')">
+                            {{ __('VIEW DATA') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->adjuf == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('AddALJUF')" :active="request()->routeIs('AddALJUF')">
+                            {{ __('ADD ALJUF') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->rmvgt == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
+                            {{ __('REMOVE GT DELIVERY') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
                 @endif
             </div>
 
