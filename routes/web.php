@@ -60,6 +60,8 @@ Route::put('/edituser/{id}', [Controller::class, 'edituser'])->name('edituser');
 
 Route::get('/actionAdmin', [Controller::class, 'actionAdmin'])->name('actionAdmin');
 
+Route::get('/ShowForAdmin/{id}', [Controller::class, 'ShowForAdmin'])->name('ShowForAdmin');
+
 });
 
 // Route for user 1 role 0

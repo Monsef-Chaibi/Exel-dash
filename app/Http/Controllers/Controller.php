@@ -304,7 +304,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
-                                <td><a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32"  href="/ShowForAdmin/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -359,7 +359,7 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
-                                <td><a class="button-32" href="/Show/'.encrypt($row->bildoc).'">Show</a></td>
+                                <td><a class="button-32" href="/ShowForAdmin/'.encrypt($row->bildoc).'">Show</a></td>
                             </tr>
                             ';
                         }
@@ -693,7 +693,7 @@ class Controller extends BaseController
 
         $result1 = DB::table('data')
         ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(stuser2) as total_status'))
-        ->where('bildoc', $typeid) 
+        ->where('bildoc', $typeid)
         ->first();
 
             $totalRows1 = $result1->total_rows;
@@ -723,7 +723,7 @@ class Controller extends BaseController
                 $brand = Brand::get();
 
             $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
-        return view('Show')->with('data',$data)->with('sumAmount',$sumAmount)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
+        return view('ShowForAdmin')->with('data',$data)->with('sumAmount',$sumAmount)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
     function ShowForA1($id){
         $typeid = decrypt($id);
