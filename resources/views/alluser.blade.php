@@ -345,7 +345,7 @@
                                             Accountant
                                         @endif
                                         @if ($user->role == 5)
-                                            Upholder
+                                            Uploader
                                         @endif
                                     </td>
                                     <td data-th="Supplier Name">

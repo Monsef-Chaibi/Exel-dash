@@ -1496,14 +1496,19 @@ class Controller extends BaseController
                         $user = User::findOrFail($id);
 
                         // Update the user with the form data
-                        $user->update([
+                        $userData = [
                             'name' => $request->input('edit-name'),
                             'email' => $request->input('edit-email'),
                             'cond' => $request->input('edit-cond'),
                             'role' => $request->input('edit-role'),
-                            'password' => bcrypt($request->input('pass')),
-                        ]);
+                        ];
 
+                        // Check if the password is not empty before updating
+                        if (!empty($request->input('pass'))) {
+                            $userData['password'] = bcrypt($request->input('pass'));
+                        }
+
+                        $user->update($userData);
                         // Redirect back with a success message
                         return redirect()->back()->with('success', 'User updated successfully.');
                     }

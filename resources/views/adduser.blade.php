@@ -248,7 +248,7 @@ form .button input:hover {
                               </label>
                               <label for="dot-5">
                                 <span class="dot five"></span>
-                                <span>Upholder</span>
+                                <span>Uploader</span>
                               </label>
                             </div>
                           </div>
