@@ -641,6 +641,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 <th>Long Description</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
+                                <th>Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -658,6 +659,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <td data-th="Supplier Code">
                                         {{ $item->gtnum }}
                                     </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->amount }}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -672,6 +676,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th>Long Description</th>
                                     <th>Vin</th>
                                     <th>GT Number</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <form method="GET" action="/SemiCheckA1" id="partialDeliveryForm">
@@ -700,6 +705,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->gtnum }}
+                                                </td>
+                                                <td data-th="Supplier Code">
+                                                    {{ $item->amount }}
                                                 </td>
                                             @endif
                                         </tr>

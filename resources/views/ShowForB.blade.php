@@ -501,6 +501,7 @@
                                 <th>Long Description</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
+                                <th>Amount</th>
                             </tr>
                         </thead>
                         <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
@@ -533,6 +534,9 @@
                                             </td>
                                             <td data-th="Supplier Code">
                                                 {{ $item->vin }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item->amount }}
                                             </td>
                                             @if ($item->stuser2 == 1)
                                                 <td id="gtnum_{{ $index }}" style="display: flex"
@@ -576,6 +580,7 @@
                                     <th>Long Description</th>
                                     <th>Vin</th>
                                     <th>GT Number</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
@@ -606,6 +611,9 @@
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->vin }}
+                                                </td>
+                                                <td data-th="Supplier Code">
+                                                    {{ $item->amount }}
                                                 </td>
                                                 @if ($item->stuser2 == 1)
                                                     <td id="gtnum_{{ $index }}" style="display: flex"
