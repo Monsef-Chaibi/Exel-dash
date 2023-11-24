@@ -43,8 +43,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('AddALJUF')" :active="request()->routeIs('AddALJUF')">
-                        {{ __('ADD ALJUF') }}
+                    <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
+                        {{ __('Remove The Delivery') }}
                     </x-nav-link>
                 </div>
                 @endif
