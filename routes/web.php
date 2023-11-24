@@ -66,6 +66,8 @@ Route::get('/SemiRemove', [Controller::class, 'SemiRemove'])->name('SemiRemove')
 
 Route::get('/NumRemoveAdmin', [Controller::class, 'NumRemoveAdmin'])->name('NumRemoveAdmin');
 
+Route::get('/RmoveItems', [Controller::class, 'RmoveItems'])->name('RmoveItems');
+
 });
 
 // Route for user 1 role 0

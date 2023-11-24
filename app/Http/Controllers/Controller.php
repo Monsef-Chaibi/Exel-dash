@@ -1276,6 +1276,22 @@ class Controller extends BaseController
                 }
 
             }
+            public function RmoveItems()
+            {
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::where('remove',1)->whereIn('plantkey', $cnd1)->get();
+                    return view('RmoveItems')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::where('remove',1)->get();
+                    return view('RmoveItems')->with('data',$data);
+                }
+
+            }
             public function CheckItemsA1()
             {
                 if(auth()->user()->cond != Null){
