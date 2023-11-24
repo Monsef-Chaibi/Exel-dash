@@ -669,6 +669,62 @@ class Controller extends BaseController
             $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
         return view('Show')->with('data',$data)->with('sumAmount',$sumAmount)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
+    function ShowForAdmin($id){
+        $typeid = decrypt($id);
+        $results = DB::table('data')
+            ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(status) as total_status'))
+            ->where('bildoc', $typeid)
+            ->first();
+
+
+
+        $totalRows = $results->total_rows;
+        $totalFf = $results->total_status;
+
+        if ($totalRows > 0 && $totalRows == $totalFf) {
+            $status = 1;
+        } elseif ($totalFf != '' && $totalRows != $totalFf) {
+
+            $status = 2;
+        }
+        else{
+            $status = 3;
+        }
+
+        $result1 = DB::table('data')
+        ->select(DB::raw('COUNT(*) as total_rows'), DB::raw('SUM(stuser2) as total_status'))
+        ->where('bildoc', $typeid) 
+        ->first();
+
+            $totalRows1 = $result1->total_rows;
+            $totalFf1 = $result1->total_status;
+
+            if ($totalRows1 > 0 && $totalRows1 == $totalFf1) {
+                $status1 = 1;
+            } elseif ($totalFf1 != '' && $totalRows1 != $totalFf1) {
+
+                $status1 = 2;
+            }
+            else{
+                $status1 = 3;
+            }
+            $userinfo = Data::where('bildoc', $typeid)
+            ->whereNotNull('status')
+            ->GroupBy('dateset') // Order by date in ascending order
+            ->get();
+            $userinfo2 = Data::where('bildoc', $typeid)
+            ->whereNotNull('stuser2')
+            ->GroupBy('dateuser2') // Order by date in ascending order
+            ->get();
+                $title = Data::where('bildoc',$typeid)->first();
+                $data = Data::where('bildoc',$typeid)->get();
+                $datauser = ContratUser::get();
+                $port = Port::get();
+                $brand = Brand::get();
+
+            $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
+        return view('Show')->with('data',$data)->with('sumAmount',$sumAmount)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
+        }
     function ShowForA1($id){
         $typeid = decrypt($id);
         $results = DB::table('data')
