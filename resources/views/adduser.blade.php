@@ -115,6 +115,10 @@ form .gender__details .category {
 #dot-2:checked ~ .category .two,
 #dot-3:checked ~ .category .three ,
 #dot-4:checked ~ .category .for,
+#dot-11:checked ~ .category .one1,
+#dot-22:checked ~ .category .two2,
+#dot-33:checked ~ .category .three3 ,
+#dot-44:checked ~ .category .for4,
 #dot-5:checked ~ .category .five,
 #dot-6:checked ~ .category .sex
 {
@@ -174,6 +178,7 @@ form .button input:hover {
 }
 
     </style>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
      <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
      @if (session()->has('error'))
@@ -230,7 +235,7 @@ form .button input:hover {
                             <input type="radio" value="3" name="role" id="dot-3">
                             <input type="radio" value="0" name="role" id="dot-4">
                             <input type="radio" value="5" name="role" id="dot-5">
-                            <span class="gender__title">Type</span>
+                            <span class="title" style="font-size: 20px">Type :</span>
                             <div class="category">
                             <label for="dot-6">
                                   <span class="dot sex"></span>
@@ -258,31 +263,27 @@ form .button input:hover {
                               </label>
                             </div>
                           </div>
-                        <div class="gender__details">
-                            <input type="radio" value="1" name="aduser" id="dot-1">
-                            <input type="radio" value="1" name="addata" id="dot-2">
-                            <input type="radio" value="1" name="adjuf" id="dot-3">
-                            <input type="radio" value="1" name="rmvgt" id="dot-4">
-                            <span class="gender__title">Role</span>
-                            <div class="category">
-                              <label for="dot-1">
-                                <span class="dot one"></span>
-                                <span>Add User</span>
-                              </label>
-                              <label for="dot-2">
-                                <span class="dot two"></span>
-                                <span>Add Data</span>
-                              </label>
-                              <label for="dot-3">
-                                <span class="dot three"></span>
-                                <span>Add Aljuf</span>
-                              </label>
-                              <label for="dot-4">
-                                <span class="dot five"></span>
-                                <span>Remove GT Delivery</span>
-                              </label>
-                            </div>
-                          </div>
+                        <span class="title" id="showdiv1" style="font-size: 20px;display: none;">Role :</span>
+                        <div id="showdiv" style="margin: 0px 15px 20px;display: none;">
+                            <br>
+                            <input style="border-radius: 10px" type="checkbox" value="1" name="aduser" id="1">
+                            <label  style="margin-right:8px" for="1">
+                                Add User
+                            </label>
+                            <input style="border-radius: 10px" type="checkbox" value="1" name="addata" id="2">
+                            <label style="margin-right:8px"   for="1">
+                                Add Data
+                            </label>
+                            <input style="border-radius: 10px" type="checkbox" value="1" name="adjuf" id="3">
+                            <label style="margin-right:8px"  for="1">
+                                Add Aljuf
+                            </label>
+                            <input style="border-radius: 10px" type="checkbox" value="1" name="rmvgt" id="4">
+                            <label style="margin-right:8px"  for="1">
+                                Remove GT Delivery
+                            </label>
+
+                        </div>
 
                           <div class="input__box">
                             <span class="details">Plant-Key :</span>
@@ -299,3 +300,16 @@ form .button input:hover {
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function () {
+        $('input[name="role"]').change(function () {
+            if ($(this).val() == 1) {
+                $('#showdiv1').show();
+                $('#showdiv').show();
+            } else {
+                $('#showdiv1').hide();
+                $('#showdiv').hide();
+            }
+        });
+    });
+</script>

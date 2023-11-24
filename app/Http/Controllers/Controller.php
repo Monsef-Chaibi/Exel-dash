@@ -138,6 +138,7 @@ class Controller extends BaseController
         return view('ViewData')->with('data', $data)->with('latestDate', $latestDate);
     }
         function StoreUser(Request $request){
+
             try {
                 $request->validate([
                     'name' => 'required|string|max:255',
@@ -146,16 +147,26 @@ class Controller extends BaseController
                     'role' => 'required',
                 ]);
 
-                User::create([
+                $userData = [
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('pass')),
                     'role' => $request->input('role'),
                     'cond' => $request->input('cond'),
-                    // Other fields...
-                ]);
+                ];
+
+                // Check if role is 1 (Admin)
+                if ($request->input('role') == 1) {
+                    $userData['aduser'] = $request->has('aduser') ? 1 : 0;
+                    $userData['addata'] = $request->has('addata') ? 1 : 0;
+                    $userData['adjuf'] = $request->has('adjuf') ? 1 : 0;
+                    $userData['rmvgt'] = $request->has('rmvgt') ? 1 : 0;
+                }
+
+                User::create($userData);
+
                 return redirect()->back()->with('success', 'Data inserted successfully.');
-            }
+            } 
             catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Name already exists Or Password not match');
             }

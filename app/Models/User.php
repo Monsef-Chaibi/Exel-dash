@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'role',
         'cond',
+        'aduser',
+        'addata',
+        'rmvgt',
     ];
 
     /**
