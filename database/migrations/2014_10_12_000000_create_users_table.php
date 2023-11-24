@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('role')->default('0');
             $table->string('cond')->nullable();
+            $table->string('aduser')->nullable();
+            $table->string('addata')->nullable();
+            $table->string('adjuf')->nullable();
+            $table->string('rmvgt')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
