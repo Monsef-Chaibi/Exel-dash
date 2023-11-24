@@ -388,7 +388,7 @@ body {
      $(document).ready(function() {
         function updateLiveValue1() {
             $.ajax({
-                url: "{{ route('NumCheckA') }}",
+                url: "{{ route('NumRemoveAdmin') }}",
                 method: "GET",
                 success: function(data) {
                     $('#value').text(data.value);

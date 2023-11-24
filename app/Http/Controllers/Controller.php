@@ -1096,6 +1096,24 @@ class Controller extends BaseController
                 }
 
             }
+            public function NumRemoveAdmin()
+            {
+                if(auth()->user()->cond != Null){
+                $cnd=auth()->user()->cond;
+                $cnd1 = explode(',', $cnd);
+                $liveValue = Data::whereNotNull('remove')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up= Data::whereNotNull('remove')->latest('dateremove')->value('dateremove');
+                return response()->json(['value' => $liveValue, 'up' => $up]);
+
+                }
+                else
+                {
+                    $liveValue = Data::whereNotNull('remove')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up= Data::whereNotNull('dateremove')->latest('dateremove')->value('dateremove');
+                    return response()->json(['value' => $liveValue, 'up' => $up]);
+                }
+
+            }
             public function dateup()
             {
                 $latestRecord = Update::whereNotNull('created_at')->latest()->first();
