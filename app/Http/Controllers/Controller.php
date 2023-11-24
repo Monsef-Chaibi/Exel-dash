@@ -550,7 +550,9 @@ class Controller extends BaseController
                 $datauser = ContratUser::get();
                 $port = Port::get();
                 $brand = Brand::get();
-        return view('Show')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
+
+            $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
+        return view('Show')->with('data',$data)->with('sumAmount',$sumAmount)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
     function ShowForA1($id){
         $typeid = decrypt($id);
@@ -605,7 +607,8 @@ class Controller extends BaseController
         $datauser = ContratUser::get();
         $port = Port::get();
         $brand = Brand::get();
-        return view('ShowForA1')->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
+        $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
+        return view('ShowForA1')->with('sumAmount',$sumAmount)->with('data',$data)->with('brand',$brand)->with('port',$port)->with('datauser',$datauser)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
     function ShowForB($id){
         $typeid = decrypt($id);
@@ -657,7 +660,8 @@ class Controller extends BaseController
     ->get();
         $title = Data::where('bildoc',$typeid)->first();
         $data = Data::where('bildoc',$typeid)->orderBy('status', 'desc')->get();
-        return view('ShowForB')->with('data',$data)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
+        $sumAmount = Data::where('bildoc', $typeid)->sum('amount');
+        return view('ShowForB')->with('sumAmount',$sumAmount)->with('data',$data)->with('title',$title)->with('status',$status)->with('status1',$status1)->with('userinfo',$userinfo)->with('userinfo2',$userinfo2);
         }
 
         function Status($id){

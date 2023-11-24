@@ -182,6 +182,21 @@
             text-align: start;
             border-radius: 10px
         }
+        .amount-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .amount {
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 30px;
+            text-align: center;
+            padding: 2%;
+            width: 50%;
+            max-width: 600px; /* Set a maximum width if needed */
+            border-radius: 10px;
+        }
 
         .tt {
             display: flex;
@@ -495,6 +510,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         </span>
                     </div>
                 </div>
+                <div class="amount-container">
+                    <div class="amount">
+                        <p>Total Amount : {{$sumAmount}}</p>
+                    </div>
+                </div>
+
             </div>
 
 

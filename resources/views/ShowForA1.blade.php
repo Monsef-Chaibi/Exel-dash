@@ -462,6 +462,21 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   color: hsla(0, 0%, 1000%, .6);
   font-size: 1.6rem;
 }
+.amount-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .amount {
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 30px;
+            text-align: center;
+            padding: 2%;
+            width: 50%;
+            max-width: 600px; /* Set a maximum width if needed */
+            border-radius: 10px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -508,6 +523,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         <span style="font-size: 17px">
                             {{ $title->shipp }}
                         </span>
+                    </div>
+                </div>
+                <div class="amount-container">
+                    <div class="amount">
+                        <p>Total Amount : {{$sumAmount}}</p>
                     </div>
                 </div>
             </div>
