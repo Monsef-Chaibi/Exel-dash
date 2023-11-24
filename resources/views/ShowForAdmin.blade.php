@@ -637,44 +637,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
            @endif
 
 
-            @if ($status === 1)
-                <div>
-                    <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
-                        <thead>
-                            <tr class="fr">
-                                <th>Product</th>
-                                <th>Long Description</th>
-                                <th>Vin</th>
-                                <th>GT Number</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td data-th="Supplier Name">
-                                        {{ $item->product }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->desc }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->vin }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->gtnum }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ number_format($item->amount, 2, '.', ',') }}
-                                    </td>
-                                </tr>
-                            @endforeach
 
-                        </tbody>
-                    </table>
-                @else
-                    @if ($status === 2)
-                    @endif
+                <div>
                     <div>
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
@@ -687,18 +651,23 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th>Amount</th>
                                 </tr>
                             </thead>
-                            <form method="GET" action="/SemiCheck" id="partialDeliveryForm">
+                        <form method="GET" action="/SemiRemove" id="partialDeliveryForm">
                                 <tbody>
+                                    {{$lop = 0 }}
                                     @foreach ($data as $item)
-                                        <tr>
-                                            @if ($item->status != 1)
+
+                                        @if ($item->status !== null)
+
+                                            <tr>
+
                                                 <td data-th="Supplier Name">
 
-                                                        <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
+                                                    <span style="margin-right: 5px">{{ $lop +=1 }}</span>
 
-                                                        <input class="custom-checkbox" style="border-radius:5px"
-                                                        type="checkbox" name="selectedItems[]"
-                                                        value="{{ $item->id }}">
+                                                    <input class="custom-checkbox" style="border-radius:5px"
+                                                    type="checkbox" name="selectedItems[]"
+                                                    value="{{ $item->id }}">
+
                                                 </td>
                                                 <td data-th="Supplier Name">
                                                     {{ $item->product }}
@@ -715,8 +684,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                 <td data-th="Supplier Code">
                                                     {{ number_format($item->amount, 2, '.', ',') }}
                                                 </td>
-                                            @endif
-                                        </tr>
+
+                                            </tr>
+
+                                        @endif
                                     @endforeach
 
                                 </tbody>
@@ -728,32 +699,21 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     </tr>
                                 </tfoot>
                         </table>
-            @endif
-            <div class="btnstatus">
-            @if ($status != 2 && $status != 1)
-                    <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
-                            Delivery</button></div>
-                    </form>
+                     <div class="btnstatus">
+                    <div>
+                        <button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
+                            Delivery
+                        </button>
+                    </div>
+                </form>
                     <div>
                         <a href="/Status/{{ $title->bildoc }}" onclick="return showConfirm()">
                             <button class="success" type="button">Total Delivery</button>
                         </a>
                     </div>
 
-            @elseif ($status == 2)
-
-                    <div><button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
-                            Delivery</button></div>
-                    </form>
-                    <div>
 
                     </div>
-
-            @endif
-            <div><a href="/SowChekUser/{{ encrypt($title->bildoc) }}"><button type="submit" class="warning2">
-                View ISTIMARAH printed
-            </button></a></div>
-        </div>
         </div>
     </div>
     </div>
@@ -779,23 +739,45 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         }
 
         function showConfirmSemi() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    document.getElementById('partialDeliveryForm').submit();
-                }
-            });
-
-            return false; // Prevent the default link behavior
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once confirmed, the action cannot be undone!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed!',
+        input: 'text', // Add an input field to the dialog
+        inputPlaceholder: 'Write The Reason', // Placeholder for the input field
+        inputValidator: (value) => {
+            // Validate the input if needed
+            if (!value) {
+                return 'You need to enter something!';
+            }
         }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked the confirm button, proceed with the action
+
+            // Get the entered text value
+            const enteredText = result.value;
+
+            // You can send the enteredText value along with the form submission
+            // Add a hidden input field to your form and set its value
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'reason';
+            hiddenInput.value = enteredText;
+            document.getElementById('partialDeliveryForm').appendChild(hiddenInput);
+
+            // Submit the form
+            document.getElementById('partialDeliveryForm').submit();
+        }
+    });
+
+    return false; // Prevent the default link behavior
+}
+
         function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;

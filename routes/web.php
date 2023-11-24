@@ -62,6 +62,8 @@ Route::get('/actionAdmin', [Controller::class, 'actionAdmin'])->name('actionAdmi
 
 Route::get('/ShowForAdmin/{id}', [Controller::class, 'ShowForAdmin'])->name('ShowForAdmin');
 
+Route::get('/SemiRemove', [Controller::class, 'SemiRemove'])->name('SemiRemove');
+
 });
 
 // Route for user 1 role 0
