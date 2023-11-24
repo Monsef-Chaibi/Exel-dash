@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('bildt')->nullable();
             $table->string('vin')->nullable();
             $table->string('color')->nullable();
+            $table->string('amount')->nullable();
             $table->string('nameuser')->nullable();
             $table->timestamp('dateset')->nullable();
             $table->string('status')->nullable();
