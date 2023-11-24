@@ -555,9 +555,7 @@
                                             <td data-th="Supplier Code">
                                                 {{ $item->vin }}
                                             </td>
-                                            <td data-th="Supplier Code">
-                                                {{ number_format($item->amount, 2, '.', ',') }}
-                                            </td>
+
                                             @if ($item->stuser2 == 1)
                                                 <td id="gtnum_{{ $index }}" style="display: flex"
                                                     data-th="Supplier Code">
@@ -576,7 +574,10 @@
                                                 <td data-th="Supplier Code">
                                                     **********
                                                 </td>
-                                            @endif
+                                                @endif
+                                                <td data-th="Supplier Code">
+                                                    {{ number_format($item->amount, 2, '.', ',') }}
+                                                </td>
                                         @endif
                                     </tr>
                                 @endforeach
@@ -632,15 +633,12 @@
                                                 <td data-th="Supplier Code">
                                                     {{ $item->vin }}
                                                 </td>
-                                                <td data-th="Supplier Code">
-                                                    {{ number_format($item->amount, 2, '.', ',') }}
-                                                </td>
                                                 @if ($item->stuser2 == 1)
-                                                    <td id="gtnum_{{ $index }}" style="display: flex"
-                                                        data-th="Supplier Code">
+                                                <td id="gtnum_{{ $index }}" style="display: flex"
+                                                data-th="Supplier Code">
                                                         {{ $item->gtnum }}
                                                         <svg id="copyIcon_{{ $index }}"
-                                                            style="margin-left: 20px; cursor: pointer;"
+                                                        style="margin-left: 20px; cursor: pointer;"
                                                             xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none"
                                                             stroke="black" stroke-width="2" stroke-linecap="round"
@@ -651,16 +649,16 @@
                                                         </svg>
                                                     </td>
                                                 @else
-                                                    <td data-th="Supplier Code">
+                                                <td data-th="Supplier Code">
                                                         **********
-
-
-
-                                                    </td>
+                                                </td>
                                                 @endif
-                                            @endif
-                                        </tr>
-                                    @endforeach
+                                                <td data-th="Supplier Code">
+                                                    {{ number_format($item->amount, 2, '.', ',') }}
+                                                </td>
+                                                    @endif
+                                                </tr>
+                                                @endforeach
 
                                 </tbody>
                                 <tfoot>
