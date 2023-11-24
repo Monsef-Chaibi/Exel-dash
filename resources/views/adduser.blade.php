@@ -258,6 +258,32 @@ form .button input:hover {
                               </label>
                             </div>
                           </div>
+                        <div class="gender__details">
+                            <input type="radio" value="1" name="aduser" id="dot-1">
+                            <input type="radio" value="1" name="addata" id="dot-2">
+                            <input type="radio" value="1" name="adjuf" id="dot-3">
+                            <input type="radio" value="1" name="rmvgt" id="dot-4">
+                            <span class="gender__title">Role</span>
+                            <div class="category">
+                              <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span>Add User</span>
+                              </label>
+                              <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span>Add Data</span>
+                              </label>
+                              <label for="dot-3">
+                                <span class="dot three"></span>
+                                <span>Add Aljuf</span>
+                              </label>
+                              <label for="dot-4">
+                                <span class="dot five"></span>
+                                <span>Remove GT Delivery</span>
+                              </label>
+                            </div>
+                          </div>
+
                           <div class="input__box">
                             <span class="details">Plant-Key :</span>
                             <input style="color:black;width: 500px;border-radius:10px"  placeholder="Ex 1885,1884,1886" type="text" name="cond" >
