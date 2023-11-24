@@ -36,6 +36,8 @@ public function model(array $row)
                 "bildt"=> $row[20],
                 "vin"=> $row[7],
                 "color"=> $row[23],
+                "amount"=> $row[27
+            ],
             ]);
         }
     }

@@ -19,5 +19,6 @@ class Data extends Model
         'bildt',
         'vin',
         'color',
+        'amount',
     ];
 }
