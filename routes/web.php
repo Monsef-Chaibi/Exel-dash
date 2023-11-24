@@ -54,6 +54,8 @@ Route::get('/ShowUpdateData', [Controller::class, 'ShowUpdateData'])->name('Show
 
 Route::get('/deleteuser/{id}', [Controller::class, 'deleteuser'])->name('deleteuser');
 
+Route::get('/rvdelivery', [Controller::class, 'rvdelivery'])->name('rvdelivery');
+
 Route::put('/edituser/{id}', [Controller::class, 'edituser'])->name('edituser');
 });
 
