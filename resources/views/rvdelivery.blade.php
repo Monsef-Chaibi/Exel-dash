@@ -311,7 +311,7 @@ body {
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Remove The Delivery</h1>
+                <h1 style="width:600px;text-align: center; color: white; font-size: 30px; background: linear-gradient(135deg, #71b7e6, #9b59b6); padding: 10px; border-radius: 10px; margin-bottom: 10px;">Remove GT Delivery</h1>
                 <div style="position: relative; display: inline-block;">
                     <input type="text" name="search" id="search" style="width:400px;border-radius: 10px; padding-right: 30px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); fill: #999;">

@@ -702,13 +702,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                      <div class="btnstatus">
                     <div>
                         <button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
-                            Delivery
+                            Restore
                         </button>
                     </div>
                 </form>
                     <div>
                         <a href="/Status/{{ $title->bildoc }}" onclick="return showConfirm()">
-                            <button class="success" type="button">Total Delivery</button>
+                            <button class="success" type="button">Total Restore</button>
                         </a>
                     </div>
 

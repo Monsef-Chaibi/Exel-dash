@@ -370,6 +370,7 @@
                                 <th>Vin</th>
                                 <th>Billing Doc</th>
                                 <th>By</th>
+                                <th>Reason</th>
                                 <th>In</th>
                             </tr>
                         </thead>
@@ -395,15 +396,16 @@
                                             {{ $item->vin }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            <a style="color: blue" href="/ShowForA1/{{encrypt($item->bildoc)}}">
-                                                {{ $item->bildoc }}
-                                            </a>
+                                            {{ $item->bildoc }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->user2 }}
+                                            {{ $item->removeby }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->dateuser2 }}
+                                            {{ $item->reason }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->dateremove }}
                                         </td>
                                     </tr>
                                 @endforeach
