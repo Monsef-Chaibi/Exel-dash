@@ -527,7 +527,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </div>
                 <div class="amount-container">
                     <div class="amount">
-                        <p>Total Amount : {{$sumAmount}}</p>
+                        <p>Total Amount :{{ number_format($sumAmount, 2, '.', ',') }}</p>
                     </div>
                 </div>
             </div>
@@ -680,7 +680,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         {{ $item->gtnum }}
                                     </td>
                                     <td data-th="Supplier Code">
-                                        {{ $item->amount }}
+                                        {{ number_format($item->amount, 2, '.', ',') }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -691,7 +691,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                             <thead>
                                 <tr class="fr">
-                                    <th><button onclick="selectAll()">Select All</button></th>
+                                    <th>
+                                        <button onclick="selectAll()">Select All</button>
+                                    </th>
                                     <th>Product</th>
                                     <th>Long Description</th>
                                     <th>Vin</th>
@@ -706,14 +708,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                             @if ($item->stuser2 != 1)
                                                 <td data-th="Supplier Name">
                                                     @if ($item->status != Null)
-
-                                                    <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
-
-                                                    <input class="custom-checkbox" style="border-radius:5px"
-                                                        type="checkbox" name="selectedItems[]"
-                                                        value="{{ $item->id }}">
+                                                        <span style="margin-right: 5px">{{ $loop->index + 1 }}</span>
+                                                        <input class="custom-checkbox" style="border-radius:5px"
+                                                            type="checkbox" name="selectedItems[]"
+                                                            value="{{ $item->id }}">
                                                     @endif
-                                                    </td>
+                                                </td>
                                                 <td data-th="Supplier Name">
                                                     {{ $item->product }}
                                                 </td>
@@ -727,12 +727,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                     {{ $item->gtnum }}
                                                 </td>
                                                 <td data-th="Supplier Code">
-                                                    {{ $item->amount }}
+                                                    {{ number_format($item->amount, 2, '.', ',') }}
                                                 </td>
                                             @endif
                                         </tr>
                                     @endforeach
-
                                 </tbody>
 
                                 <tfoot>
@@ -765,6 +764,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             // Get all checkboxes with the name 'selectedItems[]'
             const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
 
+            // Get the 'Select All' button
+            const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
+
+            // Add a click event listener to the 'Select All' button
+            selectAllButton.addEventListener('click', updateSelectedCount);
+
             // Add a change event listener to each checkbox
             checkboxes.forEach(function (checkbox) {
                 checkbox.addEventListener('change', updateSelectedCount);
@@ -777,6 +782,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             }
         });
     </script>
+
     <script>
         function showConfirm2() {
             Swal.fire({

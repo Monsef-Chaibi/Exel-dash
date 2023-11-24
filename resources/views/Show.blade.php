@@ -512,7 +512,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </div>
                 <div class="amount-container">
                     <div class="amount">
-                        <p>Total Amount : {{$sumAmount}}</p>
+                        <p>Total Amount :{{ number_format($sumAmount, 2, '.', ',') }}  </p>
                     </div>
                 </div>
 
@@ -665,7 +665,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         {{ $item->gtnum }}
                                     </td>
                                     <td data-th="Supplier Code">
-                                        {{ $item->amount }}
+                                        {{ number_format($item->amount, 2, '.', ',') }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -713,7 +713,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                     {{ $item->gtnum }}
                                                 </td>
                                                 <td data-th="Supplier Code">
-                                                    {{ $item->amount }}
+                                                    {{ number_format($item->amount, 2, '.', ',') }}
                                                 </td>
                                             @endif
                                         </tr>
@@ -833,6 +833,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         // Get all checkboxes with the name 'selectedItems[]'
         const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
 
+        // Get the 'Select All' button
+        const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
+
+        // Add a click event listener to the 'Select All' button
+        selectAllButton.addEventListener('click', updateSelectedCount);
+
         // Add a change event listener to each checkbox
         checkboxes.forEach(function (checkbox) {
             checkbox.addEventListener('change', updateSelectedCount);
@@ -845,6 +851,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         }
     });
 </script>
+
 
   <script>
     function showUserInfo() {

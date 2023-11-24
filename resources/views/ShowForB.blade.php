@@ -384,7 +384,7 @@
                 </div>
                 <div class="amount-container">
                     <div class="amount">
-                        <p>Total Amount : {{$sumAmount}}</p>
+                        <p>Total Amount : {{ number_format($sumAmount, 2, '.', ',') }}</p>
                     </div>
                 </div>
             </div>
@@ -556,7 +556,7 @@
                                                 {{ $item->vin }}
                                             </td>
                                             <td data-th="Supplier Code">
-                                                {{ $item->amount }}
+                                                {{ number_format($item->amount, 2, '.', ',') }}
                                             </td>
                                             @if ($item->stuser2 == 1)
                                                 <td id="gtnum_{{ $index }}" style="display: flex"
@@ -633,7 +633,7 @@
                                                     {{ $item->vin }}
                                                 </td>
                                                 <td data-th="Supplier Code">
-                                                    {{ $item->amount }}
+                                                    {{ number_format($item->amount, 2, '.', ',') }}
                                                 </td>
                                                 @if ($item->stuser2 == 1)
                                                     <td id="gtnum_{{ $index }}" style="display: flex"
@@ -694,6 +694,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Get all checkboxes with the name 'selectedItems[]'
             const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
+
+            // Get the 'Select All' button
+            const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
+
+            // Add a click event listener to the 'Select All' button
+            selectAllButton.addEventListener('click', updateSelectedCount);
 
             // Add a change event listener to each checkbox
             checkboxes.forEach(function (checkbox) {
