@@ -883,16 +883,25 @@ class Controller extends BaseController
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
         function SemiRemove(Request $request){
-                dd($request);
                 $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
                 if(empty($selectedItems)) {
                     return redirect()->back()->with('error', 'No items selected for update.');
                 }
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
-                        'nameuser' => Auth::user()->name,
-                        'dateset' =>  Carbon::now('Asia/Riyadh'),
-                        'status' => 1,
+                        'nameuser' => null,
+                        'dateset' => null,
+                        'status' => null,
+                        'user2' => null,
+                        'dateuser2' => null,
+                        'stuser2' => null,
+                        'usercheck' => null,
+                        'check' => null,
+                        'datecheck' => null,
+                        'removeby' => Auth::user()->name,
+                        'remove' => 1,
+                        'dateremove' => Carbon::now('Asia/Riyadh'),
+                        'reason' => $request->input('reason'),
                     ]);
                 }
 

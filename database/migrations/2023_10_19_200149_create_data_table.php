@@ -33,6 +33,10 @@ return new class extends Migration
             $table->string('usercheck')->nullable();
             $table->string('check')->nullable();
             $table->timestamp('datecheck')->nullable();
+            $table->string('removeby')->nullable();
+            $table->string('remove')->nullable();
+            $table->string('dateremove')->nullable();
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }
