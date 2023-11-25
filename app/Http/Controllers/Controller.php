@@ -1187,6 +1187,23 @@ class Controller extends BaseController
 
 
             }
+            public function archivestatsgtdelivered()
+            {
+                if (auth()->user()->cond != null) {
+
+                    $cnd = auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->get();
+                    return view('archivestats')->with('data',$data);
+
+                } else {
+
+                    $data = Data::whereNotNull('status')->get();
+                    return view('archivestats')->with('data',$data);
+                }
+
+
+            }
             public function NumRemoveAdmin()
             {
                 if(auth()->user()->cond != Null){

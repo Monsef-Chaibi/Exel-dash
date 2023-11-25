@@ -190,3 +190,5 @@ Route::get('/NumNonCheck', [Controller::class, 'NumNonCheck'])->name('NumNonChec
 Route::get('/dateup', [Controller::class, 'dateup'])->name('dateup');
 
 Route::get('/archivelive', [Controller::class, 'archivelive'])->name('archivelive');
+
+Route::get('/archivestatsgtdelivered', [Controller::class, 'archivestatsgtdelivered'])->name('archivestatsgtdelivered');
