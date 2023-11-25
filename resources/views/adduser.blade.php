@@ -251,7 +251,7 @@ form .button input:hover {
                             </label>
                             <label for="dot-1">
                                 <span class="dot one"></span>
-                                <span>Operation</span>
+                                <span>Coordinator</span>
                               </label>
                               <label for="dot-2">
                                 <span class="dot two"></span>

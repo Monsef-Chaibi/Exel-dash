@@ -256,6 +256,7 @@ h3:after {
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                        <h1 style="color: #1eff00; ">All Data</h1>
+
                        <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
                         <thead>
                             <tr class="aa">
@@ -291,17 +292,3 @@ h3:after {
         </div>
     </div>
 </x-app-layout>
-<!-- Include DataTables JavaScript -->
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable({
-            // Customize DataTables options here
-            "order": [[0, "asc"]], // Sort by the first column in ascending order
-            "paging": true, // Enable paging
-            "searching": true, // Enable searching
-
-        });
-    });
-</script>

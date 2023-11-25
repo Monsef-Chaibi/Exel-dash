@@ -55,7 +55,7 @@
                     @if(Auth::user()->rmvgt == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
-                            {{ __('REMOVE GT DELIVERY') }}
+                            {{ __('RESTORE GT DELIVERY') }}
                         </x-nav-link>
                     </div>
                     @endif

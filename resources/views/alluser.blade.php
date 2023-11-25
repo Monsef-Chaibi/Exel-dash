@@ -337,7 +337,7 @@
                                     </td>
                                     <td data-th="Supplier Name">
                                         @if ($user->role == 4)
-                                            Operation
+                                            Coordinator
                                         @endif
                                         @if ($user->role == 2)
                                             Traffic
