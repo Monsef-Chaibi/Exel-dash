@@ -33,18 +33,18 @@
                     @endif
                     @if(Auth::user()->addata == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('AddData')" :active="request()->routeIs('AddData')">
+                        <x-nav-link :href="route('AddData')" :active="request()->is('AddData', 'ViewData', 'ShowUpdateData')">
                             {{ __('ADD DATA') }}
                         </x-nav-link>
                     </div>
                     @endif
-                    @if(Auth::user()->addata == '1')
+                    {{-- @if(Auth::user()->addata == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('ViewData')" :active="request()->routeIs('ViewData')">
                             {{ __('VIEW DATA') }}
                         </x-nav-link>
                     </div>
-                    @endif
+                    @endif --}}
                     @if(Auth::user()->adjuf == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('AddALJUF')" :active="request()->routeIs('AddALJUF')">
@@ -56,6 +56,13 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
                             {{ __('REMOVE GT DELIVERY') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
+                    @if(Auth::user()->rmvgt == '1')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
+                            {{ __('ARCHIVE') }}
                         </x-nav-link>
                     </div>
                     @endif
