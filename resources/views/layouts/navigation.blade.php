@@ -61,7 +61,7 @@
                     @endif
                     @if(Auth::user()->rmvgt == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('rvdelivery')" :active="request()->routeIs('rvdelivery')">
+                        <x-nav-link :href="route('archive')" :active="request()->routeIs('archive')">
                             {{ __('ARCHIVE') }}
                         </x-nav-link>
                     </div>

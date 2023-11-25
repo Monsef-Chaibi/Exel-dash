@@ -85,6 +85,9 @@ class Controller extends BaseController
     function rvdelivery(){
         return view('rvdelivery');
     }
+    function archive(){
+        return view('archive');
+    }
     function AddALJUF(){
         $latestRecord = Aljuf::whereNotNull('created_at')->latest()->first();
 
@@ -166,7 +169,7 @@ class Controller extends BaseController
                 User::create($userData);
 
                 return redirect()->back()->with('success', 'Data inserted successfully.');
-            } 
+            }
             catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Name already exists Or Password not match');
             }
