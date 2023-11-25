@@ -255,9 +255,20 @@ h3:after {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                       <h1 style="color: #1eff00; ">All Data</h1>
+                    <h1 style="color: #1eff00;">All Data</h1>
+                    {{-- <div class="row">
+                        <div class="col-sm-6">
+                            <label for="fromDate">From Date:</label>
+                            <input type="datetime-local" class="form-control" id="fromDate" placeholder="Enter From Date">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="toDate">To Date:</label>
+                            <input type="datetime-local" class="form-control" id="toDate" placeholder="Enter To Date">
+                        </div>
+                    </div>
+                    <button onclick="filterData()">Filter Data</button> --}}
 
-                       <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
+                    <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
                         <thead>
                             <tr class="aa">
                                 <th>Plant-key</th>
@@ -287,8 +298,53 @@ h3:after {
                             @endforeach
                         </tbody>
                     </table>
-                               </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+                </div>
+                </div>
+                </div>
+                </div>
+                </x-app-layout>
+
+                <!-- Include DataTables JavaScript -->
+                <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+                <!-- Include DataTables JavaScript -->
+                <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+                <!-- Include DataTables Date Range Filtering plugin -->
+                <script src="https://cdn.datatables.net/datetime/1.11.5/js/dataTables.dateTime.min.js"></script>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#dataTable').DataTable({
+                            // Customize DataTables options here
+                            "order": [[0, "asc"]], // Sort by the first column in ascending order
+                            "paging": true, // Enable paging
+                            "searching": true, // Enable searching
+                        });
+                    });
+
+                    function filterData() {
+                        const fromDate = new Date(document.getElementById('fromDate').value).toISOString().slice(0, 19).replace("T", " ");
+                        const toDate = new Date(document.getElementById('toDate').value).toISOString().slice(0, 19).replace("T", " ");
+
+                        if (!fromDate || !toDate) {
+                            alert('Please enter both From and To dates.');
+                            return;
+                        }
+
+                        const dataTable = $('#dataTable').DataTable();
+
+                        dataTable.column(7).search(function (data, type, row) {
+                            const dateString = data;
+                            const date = new Date(dateString);
+                            const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
+
+                            if (formattedDate >= fromDate && formattedDate <= toDate) {
+                                return true;
+                            }
+                            return false;
+                        }).draw();
+                    }
+                </script>
+
+
