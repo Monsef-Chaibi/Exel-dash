@@ -263,8 +263,8 @@ h3:after {
                                 <th>Product</th>
                                 <th>GT Number</th>
                                 <th>Sold-To-Party</th>
-                                <th>Billing Document</th>
                                 <th>Vin</th>
+                                <th>Billing Document</th>
                                 <th>By</th>
                                 <th>In</th>
                             </tr>
@@ -276,8 +276,8 @@ h3:after {
                                 <td>{{ $item->product }}</td>
                                 <td>{{ $item->gtnum }}</td>
                                 <td>{{ $item->soldp }}</td>
-                                <td>{{ $item->bildoc }}</td>
                                 <td>{{ $item->vin }}</td>
+                                <td>{{ $item->bildoc }}</td>
                                 <td>{{ $item->nameuser }}</td>
                                 <td>{{ $item->dateset }}</td>
                             </tr>
