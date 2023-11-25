@@ -171,6 +171,77 @@ h3:after {
     justify-content: space-between;
     align-items: center;
 }
+/* Add this CSS to your stylesheet or in a style tag in the head of your HTML */
+
+/* Target the DataTables search input */
+#dataTable_filter input[type="search"] {
+    /* Your custom styles go here */
+    color: #000000; /* Change the color to your desired value */
+    background-color: #f8f8f8; /* Change the background color to your desired value */
+    border: 1px solid #ccc; /* Adjust the border */
+    border-radius: 4px; /* Adjust the border-radius */
+    padding: 5px; /* Adjust the padding */
+    margin-bottom: 20px
+}
+
+/* Optional: Style the search placeholder text */
+#dataTable_filter input[type="search"]::placeholder {
+    color: #000000; /* Adjust the placeholder text color */
+}
+/* Add this CSS to your stylesheet or in a style tag in the head of your HTML */
+
+/* Target the DataTables search label */
+#dataTable_filter label {
+    /* Your custom styles go here */
+    color: #1eff00; ; /* Change the color to your desired value */
+    font-weight: bold; /* Adjust font-weight if needed */
+}
+
+/* Optional: Style the placeholder text */
+#dataTable_filter input[type="search"]::placeholder {
+    color: #999; /* Adjust the placeholder text color */
+}
+/* Add this CSS to your stylesheet or in a style tag in the head of your HTML */
+
+/* Target the DataTables entries dropdown */
+#dataTable_length select {
+    /* Your custom styles go here */
+    color: black; ; /* Change the color to your desired value */
+    background-color: #f8f8f8; /* Change the background color to your desired value */
+    border: 2px solid #1eff00; ; /* Adjust the border */
+    border-radius: 4px; /* Adjust the border-radius */
+    padding: 5px; /* Adjust the padding */
+}
+
+/* Optional: Style the entries dropdown arrow */
+#dataTable_length select::-ms-expand,
+#dataTable_length select::-webkit-expand {
+    display: none; /* Hide the default arrow */
+}
+
+/* Optional: Style the placeholder text */
+#dataTable_length select option[disabled] {
+    color: #000000; /* Adjust the placeholder text color */
+}
+/* Add this CSS to your stylesheet or in a style tag in the head of your HTML */
+
+/* Target the DataTables "Show" label */
+#dataTable_length label {
+    /* Your custom styles go here */
+    color: #1eff00; /* Change the color to your desired value */
+    font-weight: bold; /* Adjust font-weight if needed */
+}
+
+/* Target the DataTables entries dropdown */
+
+
+/* Optional: Style the entries dropdown arrow */
+#dataTable_length select::-ms-expand,
+#dataTable_length select::-webkit-expand {
+    display: none; /* Hide the default arrow */
+}
+
+/* Target the DataTables "entries" label */
 
     </style>
        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -184,7 +255,7 @@ h3:after {
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                       <h1>All Data</h1>
+                       <h1 style="color: #1eff00; ">All Data</h1>
                        <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
                         <thead>
                             <tr class="aa">
