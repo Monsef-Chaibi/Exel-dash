@@ -17,7 +17,7 @@
   border-collapse: collapse;
 }
 
-.rwd-table tr:first-child {
+.aa {
   border-top: none;
   background: linear-gradient(135deg,#71b7e6, #9b59b6);
   color: #fff;
@@ -29,7 +29,7 @@
   background-color: #f5f9fc;
 }
 
-.rwd-table tr:nth-child(odd):not(:first-child) {
+.rwd-table tr:nth-child(odd) {
   background-color: #ebf3f9;
 }
 
@@ -41,9 +41,6 @@
   display: block;
 }
 
-.rwd-table td:first-child {
-  margin-top: .5em;
-}
 
 .rwd-table td:last-child {
   margin-bottom: .5em;
@@ -176,6 +173,8 @@ h3:after {
 }
 
     </style>
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
       @if(Auth::user()->addata !== '1')
       <script>
           window.location.href = "/";
@@ -186,56 +185,50 @@ h3:after {
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                        <h1>All Data</h1>
-                          <table style="width: 100%; margin-bottom:5%" class="rwd-table">
-                            <tbody>
-                              <tr>
+                       <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
+                        <thead>
+                            <tr class="aa">
                                 <th>Plant-key</th>
                                 <th>Product</th>
                                 <th>GT Number</th>
                                 <th>Sold-To-Party</th>
-                                <th>Ship-To-Party</th>
                                 <th>Billing Document</th>
                                 <th>Vin</th>
                                 <th>By</th>
                                 <th>In</th>
-                              </tr>
-                              @foreach($data as $item)
-                              <tr>
-                                <td data-th="Supplier Name">
-                                    {{ $item->plantkey }}
-                                </td>
-                                <td data-th="Supplier Code">
-                                    {{ $item->product }}
-                                </td>
-                                <td data-th="Supplier Code">
-                                    {{ $item->gtnum }}
-                                </td>
-
-                                <td data-th="Supplier Name">
-                                    {{ $item->soldp }}
-                                </td>
-                                <td data-th="Supplier Name">
-                                    {{ $item->shipp }}
-                                </td>
-                                <td data-th="Supplier Name">
-                                    {{ $item->bildoc }}
-                                </td>
-                                <td data-th="Supplier Name">
-                                    {{ $item->vin }}
-                                </td>
-                                <td data-th="Invoice Date">
-                                    {{ $item->nameuser }}
-                                </td>
-                                <td data-th="Invoice Date">
-                                    {{ $item->dateset }}
-                                </td>
-                              </tr>
-                              @endforeach
-                            </tbody>
-                          </table>
-
-                </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data as $item)
+                            <tr>
+                                <td>{{ $item->plantkey }}</td>
+                                <td>{{ $item->product }}</td>
+                                <td>{{ $item->gtnum }}</td>
+                                <td>{{ $item->soldp }}</td>
+                                <td>{{ $item->bildoc }}</td>
+                                <td>{{ $item->vin }}</td>
+                                <td>{{ $item->nameuser }}</td>
+                                <td>{{ $item->dateset }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                               </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            // Customize DataTables options here
+            "order": [[0, "asc"]], // Sort by the first column in ascending order
+            "paging": true, // Enable paging
+            "searching": true, // Enable searching
+            // Add more options as needed
+        });
+    });
+</script>
