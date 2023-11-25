@@ -165,6 +165,10 @@ class Controller extends BaseController
                     $userData['adjuf'] = $request->has('adjuf') ? 1 : 0;
                     $userData['rmvgt'] = $request->has('rmvgt') ? 1 : 0;
                 }
+                if ($request->input('archive') == 1) {
+                    $userData['archive'] = $request->has('archive') ? 1 : 0;
+
+                }
 
                 User::create($userData);
 
