@@ -199,35 +199,38 @@ h3:after {
                                 <th>By</th>
                                 <th>In</th>
                               </tr>
-                              
+                              @foreach($data as $item)
                               <tr>
                                 <td data-th="Supplier Name">
-
+                                    {{ $item->plantkey }}
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{ $item->product }}
                                 </td>
                                 <td data-th="Supplier Code">
-
+                                    {{ $item->gtnum }}
                                 </td>
 
                                 <td data-th="Supplier Name">
-
+                                    {{ $item->soldp }}
                                 </td>
                                 <td data-th="Supplier Name">
-
+                                    {{ $item->shipp }}
                                 </td>
                                 <td data-th="Supplier Name">
-
+                                    {{ $item->bildoc }}
                                 </td>
                                 <td data-th="Supplier Name">
-
+                                    {{ $item->vin }}
                                 </td>
                                 <td data-th="Invoice Date">
-
+                                    {{ $item->nameuser }}
+                                </td>
+                                <td data-th="Invoice Date">
+                                    {{ $item->dateset }}
                                 </td>
                               </tr>
-
+                              @endforeach
                             </tbody>
                           </table>
 
