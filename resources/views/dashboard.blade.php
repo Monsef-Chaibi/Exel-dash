@@ -148,58 +148,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="ag-format-container">
-                        <div class="ag-courses_box">
-                          <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
-                              <div class="ag-courses-item_bg"></div>
-
-                              <div class="ag-courses-item_title">
-                                Total Facture : 0
-                              </div>
-
-                              <div class="ag-courses-item_date-box">
-                                Last Update :
-                                <span class="ag-courses-item_date">
-                                  04.11.2022
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                          <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
-                              <div class="ag-courses-item_bg"></div>
-
-                              <div class="ag-courses-item_title">
-                                Total Facture Check : 0
-                              </div>
-
-                              <div class="ag-courses-item_date-box">
-                                Last Update :
-                                <span class="ag-courses-item_date">
-                                  04.11.2022
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                          <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
-                              <div class="ag-courses-item_bg"></div>
-
-                              <div class="ag-courses-item_title">
-                                Total Facture Semi Check : 0
-                              </div>
-
-                              <div class="ag-courses-item_date-box">
-                                Last Update :
-                                <span class="ag-courses-item_date">
-                                  04.11.2022
-                                </span>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -1132,6 +1132,61 @@ class Controller extends BaseController
                 }
 
             }
+            public function archivelive()
+            {
+                if (auth()->user()->cond != null) {
+                    $cnd = auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+
+                    // Count for devices with status
+                    $ctdev = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->count();
+
+                    // Count for sent data
+                    $ctsent = Data::whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count();
+
+                    // Count for items with 'check'
+                    $istimarah = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->count();
+
+                    // Latest dates for each category
+                    $datectdev = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                    $datectsent = Data::whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateuser2')->value('dateuser2');
+                    $dateistimarah = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->latest('datecheck')->value('datecheck');
+
+                    return response()->json([
+                        'ctdev' => $ctdev,
+                        'ctsent' => $ctsent,
+                        'istimarah' => $istimarah,
+                        'datectdev' => $datectdev,
+                        'datectsent' => $datectsent,
+                        'dateistimarah' => $dateistimarah,
+                    ]);
+
+                } else {
+                   $ctdev = Data::whereNotNull('status')->count();
+
+                    // Count for sent data
+                    $ctsent = Data::whereNotNull('stuser2')->count();
+
+                    // Count for items with 'check'
+                    $istimarah = Data::whereNotNull('check')->count();
+
+                    // Latest dates for each category
+                    $datectdev = Data::whereNotNull('status')->latest('dateset')->value('dateset');
+                    $datectsent = Data::whereNotNull('stuser2')->latest('dateuser2')->value('dateuser2');
+                    $dateistimarah = Data::whereNotNull('check')->latest('datecheck')->value('datecheck');
+
+                    return response()->json([
+                        'ctdev' => $ctdev,
+                        'ctsent' => $ctsent,
+                        'istimarah' => $istimarah,
+                        'datectdev' => $datectdev,
+                        'datectsent' => $datectsent,
+                        'dateistimarah' => $dateistimarah,
+                    ]);
+                }
+
+
+            }
             public function NumRemoveAdmin()
             {
                 if(auth()->user()->cond != Null){

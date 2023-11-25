@@ -188,3 +188,5 @@ Route::get('/get-live-value', [Controller::class, 'getLiveValue'])->name('live.v
 Route::get('/NumNonCheck', [Controller::class, 'NumNonCheck'])->name('NumNonCheck');
 
 Route::get('/dateup', [Controller::class, 'dateup'])->name('dateup');
+
+Route::get('/archivelive', [Controller::class, 'archivelive'])->name('archivelive');
