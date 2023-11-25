@@ -1204,6 +1204,40 @@ class Controller extends BaseController
 
 
             }
+            public function archivestatsgtsttrafic()
+            {
+                if (auth()->user()->cond != null) {
+
+                    $cnd = auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->get();
+                    return view('archivestats')->with('data',$data);
+
+                } else {
+
+                    $data = Data::whereNotNull('stuser2')->get();
+                    return view('archivestats')->with('data',$data);
+                }
+
+
+            }
+            public function archivestatsiostimarah()
+            {
+                if (auth()->user()->cond != null) {
+
+                    $cnd = auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->get();
+                    return view('archivestats')->with('data',$data);
+
+                } else {
+
+                    $data = Data::whereNotNull('check')->get();
+                    return view('archivestats')->with('data',$data);
+                }
+
+
+            }
             public function NumRemoveAdmin()
             {
                 if(auth()->user()->cond != Null){

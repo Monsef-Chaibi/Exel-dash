@@ -192,3 +192,5 @@ Route::get('/dateup', [Controller::class, 'dateup'])->name('dateup');
 Route::get('/archivelive', [Controller::class, 'archivelive'])->name('archivelive');
 
 Route::get('/archivestatsgtdelivered', [Controller::class, 'archivestatsgtdelivered'])->name('archivestatsgtdelivered');
+Route::get('/archivestatsgtsttrafic', [Controller::class, 'archivestatsgtsttrafic'])->name('archivestatsgtsttrafic');
+Route::get('/archivestatsiostimarah', [Controller::class, 'archivestatsiostimarah'])->name('archivestatsiostimarah');

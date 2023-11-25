@@ -168,7 +168,7 @@
                             </a>
                           </div>
                           <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
+                            <a href="archivestatsgtsttrafic" class="ag-courses-item_link">
                               <div class="ag-courses-item_bg"></div>
 
                               <div class="ag-courses-item_title">
@@ -184,7 +184,7 @@
                             </a>
                           </div>
                           <div class="ag-courses_item">
-                            <a href="#" class="ag-courses-item_link">
+                            <a href="/archivestatsiostimarah" class="ag-courses-item_link">
                               <div class="ag-courses-item_bg"></div>
 
                               <div class="ag-courses-item_title">
