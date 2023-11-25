@@ -288,7 +288,12 @@ form .button input:hover {
                             </label>
 
                         </div>
-
+                        <span class="title"  style="font-size: 20px;">Access To Archive :</span>
+                        <br>
+                        <div style="margin: 20px 15px 20px;">
+                            <input style="border-radius: 10px" type="checkbox" value="1" name="archive">
+                            <label for="">Yes</label>
+                        </div>
                           <div class="input__box">
                             <span class="details">Plant-Key :</span>
                             <input style="color:black;width: 500px;border-radius:10px"  placeholder="Ex 1885,1884,1886" type="text" name="cond" >

@@ -289,11 +289,37 @@ h3:after {
                                 <td>{{ $item->gtnum }}</td>
                                 <td>{{ $item->soldp }}</td>
                                 <td>{{ $item->vin }}</td>
-                                <a href="">
-                                    <td>{{ $item->bildoc }}</td>
-                                </a>
+                                @if(Auth::user()->role == '1')
+                                    <td>
+                                        <a style="color: #0400ff" href="/ShowForAdmin/{{encrypt($item->bildoc)}}">
+                                            {{ $item->bildoc }}
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->role == '0')
+                                    <td>
+                                        <a style="color: #0400ff" href="/Show/{{encrypt($item->bildoc)}}">
+                                            {{ $item->bildoc }}
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->role == '2')
+                                    <td>
+                                        <a style="color: #0400ff" href="/ShowForB/{{encrypt($item->bildoc)}}">
+                                            {{ $item->bildoc }}
+                                        </a>
+                                    </td>
+                                @endif
+                                @if(Auth::user()->role == '4')
+                                    <td>
+                                        <a style="color: #0400ff" href="/ShowForA1/{{encrypt($item->bildoc)}}">
+                                            {{ $item->bildoc }}
+                                        </a>
+                                    </td>
+                                @endif
                                 <td>{{ $item->nameuser }}</td>
                                 <td>{{ $item->dateset }}</td>
+
                             </tr>
                             @endforeach
                         </tbody>
