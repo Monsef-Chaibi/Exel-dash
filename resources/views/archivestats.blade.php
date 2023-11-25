@@ -277,7 +277,9 @@ h3:after {
                                 <td>{{ $item->gtnum }}</td>
                                 <td>{{ $item->soldp }}</td>
                                 <td>{{ $item->vin }}</td>
-                                <td>{{ $item->bildoc }}</td>
+                                <a href="">
+                                    <td>{{ $item->bildoc }}</td>
+                                </a>
                                 <td>{{ $item->nameuser }}</td>
                                 <td>{{ $item->dateset }}</td>
                             </tr>
@@ -299,7 +301,7 @@ h3:after {
             "order": [[0, "asc"]], // Sort by the first column in ascending order
             "paging": true, // Enable paging
             "searching": true, // Enable searching
-            // Add more options as needed
+
         });
     });
 </script>

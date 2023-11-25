@@ -59,13 +59,14 @@
                         </x-nav-link>
                     </div>
                     @endif
-                    @if(Auth::user()->rmvgt == '1')
+
+                @endif
+                @if(Auth::user()->archive == '1')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('archive')"  :active="request()->is('archive', 'archivestatsgtdelivered', 'archivestatsgtsttrafic','archivestatsiostimarah')" >
                             {{ __('ARCHIVE') }}
                         </x-nav-link>
                     </div>
-                    @endif
                 @endif
             </div>
 
