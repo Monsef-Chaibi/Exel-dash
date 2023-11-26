@@ -255,10 +255,10 @@ h3:after {
                     <div>
                         <h2 style="font-size: 25px;color: #1eff00;">Searching By Time :</h2>
                         <br>
-                        <label for="minDate">From Date:</label>
+                        <label for="minDate" style="color: #0400ff">From Date:</label>
                         <input style="border-radius: 20px;color:black" type="date" id="minDate">
 
-                        <label style="margin-left: 20px" for="maxDate">To Date:</label>
+                        <label style="margin-left: 20px;color: #0400ff"  for="maxDate">To Date:</label>
                         <input  style="border-radius: 20px;color:black" type="date" id="maxDate">
                     </div>
 
