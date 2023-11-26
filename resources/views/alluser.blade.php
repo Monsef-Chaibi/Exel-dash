@@ -445,14 +445,17 @@
                 <label style='margin-left:5px'>Yes</label>
                 <br>
                 <br>
-                <label for="edit-cond" >Archive :</label>
-                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
-                <label for="edit-cond" >Archive :</label>
-                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
-                <label for="edit-cond" >Archive :</label>
-                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
-                <label for="edit-cond" >Archive :</label>
-                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
+                <label style='margin-left:5px'>Role :</label>
+                <br>
+                <br>
+                <input type="checkbox" style='border-radius:20px' value='1' name="aduser" id="archiveCheckbox" >
+                <label for="edit-cond" >Add User </label>
+                <input type="checkbox"  style='border-radius:10px ; margin-left:40px' value='1' name="addata" id="archiveCheckbox" >
+                <label for="edit-cond"  >Add Data </label>
+                <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="adjuf" id="archiveCheckbox" >
+                <label for="edit-cond">Add Aljuf </label>
+                <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="rmvgt" id="archiveCheckbox" >
+                <label for="edit-cond">Restore GT </label>
             </div>
 
             <br>
@@ -463,8 +466,9 @@
         <a href="#" class="modal__close" onclick="closeEditModal()">&times;</a>
     `;
      // Check and set the state of the Archive checkbox
-     const archiveCheckbox = document.getElementById('archiveCheckbox');
+    const archiveCheckbox = document.getElementById('archiveCheckbox');
     archiveCheckbox.checked = archive === '1';
+   
 
     modal.style.visibility = 'visible';
     modal.style.opacity = 1;
