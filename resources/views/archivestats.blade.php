@@ -252,14 +252,18 @@ h3:after {
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1 style="color: #1eff00;">All Data</h1>
+                    <div>
+                        <h2 style="font-size: 25px;color: #1eff00;">Searching By Time :</h2>
+                        <br>
+                        <label for="minDate">From Date:</label>
+                        <input style="border-radius: 20px;color:black" type="date" id="minDate">
 
-                    <label for="fromDate">From Date:</label>
-                    <input type="date" class="form-control" id="fromDate" placeholder="Enter From Date">
+                        <label style="margin-left: 20px" for="maxDate">To Date:</label>
+                        <input  style="border-radius: 20px;color:black" type="date" id="maxDate">
+                    </div>
 
-                    <label for="toDate">To Date:</label>
-                    <input type="date" class="form-control" id="toDate" placeholder="Enter To Date">
-
-                    <button id="filterData">Filter Data</button>
+                    <br>
+                    <br>
 
                     <table id="dataTable" style="width: 100%; margin-bottom:5%" class="rwd-table">
                         <thead>
@@ -322,63 +326,65 @@ h3:after {
                 </div>
                 </div>
                 </x-app-layout>
-                <script src="https://cdn.datatables.net/datetime/1.11.5/js/dataTables.dateTime.min.js"></script>
+             <!-- Include moment.js for date formatting and comparisons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-                <!-- Include DataTables JavaScript -->
-                <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-                <!-- Include DataTables JavaScript -->
-                <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<!-- Include DataTables Date Time CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.11.5/css/dataTables.dateTime.min.css">
 
-                <!-- Include DataTables Date Range Filtering plugin -->
-                <script src="https://cdn.datatables.net/datetime/1.11.5/js/dataTables.dateTime.min.js"></script>
+<!-- Include DataTables JavaScript -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-                <script>
-                $(document).ready(function() {
+<!-- Include DataTables Date Time JavaScript -->
+<script src="https://cdn.datatables.net/datetime/1.11.5/js/dataTables.dateTime.min.js"></script>
+
+<script>
+   $(document).ready(function () {
     $('#dataTable').DataTable({
-        // Customize DataTables options here
-        "order": [[0, "asc"]], // Sort by the first column in ascending order
-        "paging": true, // Enable paging
-        "searching": true, // Enable searching
-
-        // Add date range filtering
-        "datetime": true,
-        "columnDefs": [{
-            "targets": 7,
-            "type": "datetime",
-            "render": function (data, type, row) {
-                return moment(data).format('YYYY-MM-DD');
-            }
-        }]
+        "order": [[0, "asc"]],
+        "paging": true,
+        "searching": true,
+        "columnDefs": [
+            {
+                "targets": 7, // Index of the Date column (zero-based)
+                "data": "dateset",
+                "render": function (data, type, row, meta) {
+                    // Use moment.js for date formatting
+                    return moment(data).format('YYYY-MM-DD HH:mm:ss');
+                },
+                "type": "datetime",
+            },
+        ],
     });
 
-    // Apply date filter
-    $('#dataTable').column(7).search(function (data, type, row) {
-        const fromDate = document.getElementById('fromDate').value;
-        const toDate = document.getElementById('toDate').value;
+    // Add the date range filtering controls
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#minDate').val();
+            var max = $('#maxDate').val();
+            var date = new Date(data[7]); // Assuming the Date column is at index 7
 
-        if (!fromDate || !toDate) {
-            return true;
-        }
+            // Ensure that the date is inclusive up to the end of the selected day
+            var inclusiveMaxDate = moment(max).endOf('day');
 
-        const date = data ? new Date(data) : null;
-        if (date) {
-            const fromDateObj = new Date(fromDate);
-            const toDateObj = new Date(toDate);
-
-            if (date >= fromDateObj && date <= toDateObj) {
+            if (
+                (min === "" || moment(date).isSameOrAfter(min)) &&
+                (max === "" || moment(date).isSameOrBefore(inclusiveMaxDate))
+            ) {
                 return true;
             }
-        }
-        return false;
-    }).draw();
 
-    // Add event listener for 'Filter Data' button
-    $('#filterData').click(function() {
-        $('#dataTable').column(7).search().draw();
+            return false;
+        }
+    );
+
+    // Handle date range filter changes
+    $('#minDate, #maxDate').on('change', function () {
+        $('#dataTable').DataTable().draw();
     });
 });
 
-                </script>
-
-
+</script>
