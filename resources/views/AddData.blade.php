@@ -21,9 +21,9 @@
     margin-left: 43%;
 }
 .drop-container {
-  width: 60%;
-  margin-left: 20%;
-  position: relative;
+
+  margin-left: 2%;
+
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -98,17 +98,35 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
-                    <form class="form-container" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
-                        @csrf
-                        <label for="images" class="drop-container" id="dropcontainer">
-                            <span class="drop-title">Drop files here</span>
-                            or
-                            <input class="btn" type="file" name="file" id="images" required>
-                          </label>
-                        <button type="submit" class="upload-button"> Upload </button>
+
+                    <div class="flex">
+                        <!-- First Form -->
+                        <form class="form-container mr-4" style="flex: 1; width: 48%;" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
+                            <h1 style="text-align: center;color:rgb(103, 255, 103);font-size:25px">ADD DATA</h1>
+                            @csrf
+                            <label for="images1" class="drop-container" id="dropcontainer1">
+                                <span class="drop-title">Drop files here</span>
+                                or
+                                <input class="btn" type="file" name="file" id="images1" required>
+                            </label>
+                            <button type="submit" class="upload-button">Upload</button>
+                        </form>
+
+                        <!-- Second Form -->
+                        <form class="form-container" style="flex: 1; width: 48%;" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
+                            <h1 style="text-align: center;color:rgb(103, 255, 103);font-size:25px">ADD REGISTRATION && ID NUMBER</h1>
+                            @csrf
+                            <label for="images2" class="drop-container" id="dropcontainer2">
+                                <span class="drop-title">Drop files here</span>
+                                or
+                                <input class="btn" type="file" name="file" id="images2" required>
+                            </label>
+                            <button type="submit" class="upload-button">Upload</button>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

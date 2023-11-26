@@ -7,6 +7,7 @@ use PDF;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
+use App\Imports\IDImport;
 use App\Models\Brand;
 use App\Models\ContratUser;
 use App\Models\Data;
@@ -1797,5 +1798,20 @@ class Controller extends BaseController
                             $record->delete();
 
                             return redirect()->back()->with('success', 'Record deleted successfully.');
+                        }
+                        public function importId(Request $request)
+                        {
+                            // Validate the uploaded file
+                            $request->validate([
+                                'file' => 'required|mimes:xlsx,csv',
+                            ]);
+
+                            // Get the uploaded file
+                            $file = $request->file('file');
+
+                            // Import data from the Excel file using the IDImport class
+                            Excel::import(new IDImport, $file);
+
+                            return back()->with('success', 'Data imported successfully');
                         }
 }
