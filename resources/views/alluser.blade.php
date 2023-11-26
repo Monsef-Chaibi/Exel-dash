@@ -414,7 +414,7 @@
             });
         }
 
-    function openEditModal(id, name, email, role, cond, aduser, addata, adjuf, rmvgt, archive) {
+        function openEditModal(id, name, email, role, cond, aduser, addata, adjuf, rmvgt, archive) {
     const modal = document.getElementById('edit-modal');
     const modalContent = modal.querySelector('.modal__content');
 
@@ -429,9 +429,8 @@
                 <input type="text" style='border-radius:10px' id="edit-name" name="edit-name" value="${name}">
                 <label for="edit-email" style='margin-left:300px'>Email:</label>
                 <input type="text" style='border-radius:10px' id="edit-email" name="edit-email" value="${email}">
-            <br>
-            <br>
-
+                <br>
+                <br>
                 <label for="edit-role">Role:</label>
                 <input type="text" style='border-radius:10px' id="edit-role" name="edit-role" value="${role}">
                 <label for="edit-cond" style='margin-left:300px'>Condition:</label>
@@ -445,17 +444,21 @@
                 <label style='margin-left:5px'>Yes</label>
                 <br>
                 <br>
-                <label style='margin-left:5px'>Role :</label>
-                <br>
-                <br>
-                <input type="checkbox" style='border-radius:20px' value='1' name="aduser" id="archiveCheckbox" >
-                <label for="edit-cond" >Add User </label>
-                <input type="checkbox"  style='border-radius:10px ; margin-left:40px' value='1' name="addata" id="archiveCheckbox" >
-                <label for="edit-cond"  >Add Data </label>
-                <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="adjuf" id="archiveCheckbox" >
-                <label for="edit-cond">Add Aljuf </label>
-                <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="rmvgt" id="archiveCheckbox" >
-                <label for="edit-cond">Restore GT </label>
+
+                <!-- Conditionally show checkboxes based on the role -->
+                ${role === '1' ? `
+                    <label style='margin-left:5px'>Role :</label>
+                    <br>
+                    <br>
+                    <input type="checkbox" style='border-radius:20px' value='1' name="aduser" id="aduser" >
+                    <label for="edit-cond" >Add User </label>
+                    <input type="checkbox"  style='border-radius:10px ; margin-left:40px' value='1' name="addata" id="addata" >
+                    <label for="edit-cond"  >Add Data </label>
+                    <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="adjuf" id="adjuf" >
+                    <label for="edit-cond">Add Aljuf </label>
+                    <input type="checkbox" style='border-radius:10px;margin-left:40px' value='1' name="rmvgt" id="rmvgt" >
+                    <label for="edit-cond">Restore GT </label>
+                ` : ''}
             </div>
 
             <br>
@@ -465,14 +468,26 @@
 
         <a href="#" class="modal__close" onclick="closeEditModal()">&times;</a>
     `;
-     // Check and set the state of the Archive checkbox
+
+    // Check and set the state of the Archive checkbox
     const archiveCheckbox = document.getElementById('archiveCheckbox');
     archiveCheckbox.checked = archive === '1';
-   
+
+    if (role === '1') {
+        const aduser1 = document.getElementById('aduser');
+        aduser1.checked = aduser === '1';
+        const addata1 = document.getElementById('addata');
+        addata1.checked = addata === '1';
+        const adjuf1 = document.getElementById('adjuf');
+        adjuf1.checked = adjuf === '1';
+        const rmvgt1 = document.getElementById('rmvgt');
+        rmvgt1.checked = rmvgt === '1';
+    }
 
     modal.style.visibility = 'visible';
     modal.style.opacity = 1;
 }
+
 
 function closeEditModal() {
     const modal = document.getElementById('edit-modal');

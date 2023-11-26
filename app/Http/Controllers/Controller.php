@@ -76,7 +76,10 @@ class Controller extends BaseController
         }
     }
     function alluser(){
-        $users = User::where('id', '!=', 1)->get();
+        $currentUser = Auth::user();
+        $users = User::where('id', '!=', 1)
+                  ->where('id', '!=', $currentUser->id)
+                  ->get();
         return view('alluser')->with('users', $users);
     }
     function AddData(){
@@ -1609,33 +1612,46 @@ class Controller extends BaseController
 
                 // Redirect back or return a response as needed
             }
-                    public function edituser(Request $request, $id)
-                    {
-                        // Validate the form data
-                        $request->validate([
-                            'edit-name' => 'required|string|max:255'
-                        ]);
+            public function edituser(Request $request, $id)
+            {
+                // Validate the form data
+                $request->validate([
+                    'edit-name' => 'required|string|max:255',
+                ]);
 
-                        // Find the user by ID
-                        $user = User::findOrFail($id);
+                // Find the user by ID
+                $user = User::findOrFail($id);
 
-                        // Update the user with the form data
-                        $userData = [
-                            'name' => $request->input('edit-name'),
-                            'email' => $request->input('edit-email'),
-                            'cond' => $request->input('edit-cond'),
-                            'role' => $request->input('edit-role'),
-                        ];
+                // Update the user with the form data
+                $userData = [
+                    'name' => $request->input('edit-name'),
+                    'email' => $request->input('edit-email'),
+                    'cond' => $request->input('edit-cond'),
+                    'role' => $request->input('edit-role'),
+                ];
 
-                        // Check if the password is not empty before updating
-                        if (!empty($request->input('pass'))) {
-                            $userData['password'] = bcrypt($request->input('pass'));
-                        }
+                // Check if the password is not empty before updating
+                if (!empty($request->input('pass'))) {
+                    $userData['password'] = bcrypt($request->input('pass'));
+                }
+                if (!empty($request->input('archive'))) {
+                    $userData['archive'] = $request->has('archive') ? '1' : '0';
+                }
 
-                        $user->update($userData);
-                        // Redirect back with a success message
-                        return redirect()->back()->with('success', 'User updated successfully.');
-                    }
+                // Handle additional user permissions or features based on the role
+                if ($request->input('edit-role') == '1') {
+                    $userData['aduser'] = $request->has('aduser') ? '1' : '0';
+                    $userData['addata'] = $request->has('addata') ? '1' : '0';
+                    $userData['adjuf'] = $request->has('adjuf') ? '1' : '0';
+                    $userData['rmvgt'] = $request->has('rmvgt') ? '1' : '0';
+                }
+
+                $user->update($userData);
+
+                // Redirect back with a success message
+                return redirect()->back()->with('success', 'User updated successfully.');
+            }
+
                     public function editusercontrat(Request $request)
                     {
                         // Validate the form data (customize the validation rules as needed)
