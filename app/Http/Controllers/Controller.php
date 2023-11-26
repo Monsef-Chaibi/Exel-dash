@@ -27,7 +27,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
     function import(){
-        try {
+    try {
             Data::whereNull('status')->delete();
             $tableLength = Update::count();
             if ($tableLength >= 5) {
@@ -1816,17 +1816,19 @@ class Controller extends BaseController
                         }
                         public function importId(Request $request)
                         {
-                            // Validate the uploaded file
-                            $request->validate([
-                                'file' => 'required|mimes:xlsx,csv',
-                            ]);
+                            try {
 
-                            // Get the uploaded file
-                            $file = $request->file('file');
+                                // Import data from the Excel file using the IDImport class
+                                Excel::import(new IDImport, $request->file('file'));
 
-                            // Import data from the Excel file using the IDImport class
-                            Excel::import(new IDImport, $file);
+                                return back()->with('success', 'Data imported successfully');
 
-                            return back()->with('success', 'Data imported successfully');
+                            }
+                            catch (\Exception $e)
+                            {
+                                return redirect()->back()->with('error', 'Opps! A simple problem , Try Again'. $e->getMessage());
+                            }
+
+
                         }
 }

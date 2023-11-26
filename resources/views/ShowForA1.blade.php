@@ -661,6 +661,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 <th>Long Description</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
+                                <th>Registration</th>
                                 <th>Amount</th>
                             </tr>
                         </thead>
@@ -678,6 +679,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     </td>
                                     <td data-th="Supplier Code">
                                         {{ $item->gtnum }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->regist }}
                                     </td>
                                     <td data-th="Supplier Code">
                                         {{ number_format($item->amount, 2, '.', ',') }}
@@ -698,6 +702,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th>Long Description</th>
                                     <th>Vin</th>
                                     <th>GT Number</th>
+                                    <th>Registration</th>
                                     <th>Amount</th>
                                 </tr>
                             </thead>
@@ -725,6 +730,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ $item->gtnum }}
+                                                </td>
+                                                <td data-th="Supplier Code">
+                                                    {{ $item->regist }}
                                                 </td>
                                                 <td data-th="Supplier Code">
                                                     {{ number_format($item->amount, 2, '.', ',') }}
