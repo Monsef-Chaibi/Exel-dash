@@ -246,11 +246,7 @@ h3:after {
     </style>
        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-      @if(Auth::user()->addata !== '1')
-      <script>
-          window.location.href = "/";
-      </script>
-        @endif
+  
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">

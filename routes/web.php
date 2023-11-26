@@ -70,7 +70,6 @@ Route::get('/RmoveItems', [Controller::class, 'RmoveItems'])->name('RmoveItems')
 
 Route::get('/TotalRestore', [Controller::class, 'TotalRestore'])->name('Status');
 
-Route::get('/archive', [Controller::class, 'archive'])->name('archive');
 });
 
 // Route for user 1 role 0
@@ -190,6 +189,8 @@ Route::get('/NumNonCheck', [Controller::class, 'NumNonCheck'])->name('NumNonChec
 Route::get('/dateup', [Controller::class, 'dateup'])->name('dateup');
 
 Route::get('/archivelive', [Controller::class, 'archivelive'])->name('archivelive');
+
+Route::get('/archive', [Controller::class, 'archive'])->name('archive');
 
 Route::get('/archivestatsgtdelivered', [Controller::class, 'archivestatsgtdelivered'])->name('archivestatsgtdelivered');
 Route::get('/archivestatsgtsttrafic', [Controller::class, 'archivestatsgtsttrafic'])->name('archivestatsgtsttrafic');

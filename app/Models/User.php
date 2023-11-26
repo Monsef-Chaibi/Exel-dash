@@ -26,6 +26,7 @@ class User extends Authenticatable
         'aduser',
         'addata',
         'rmvgt',
+        'archive',
     ];
 
     /**
