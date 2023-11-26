@@ -275,12 +275,23 @@
             <table style="width: 1500px;margin-top:20px" class="rwd-table">
                 <tbody>
                   <tr>
+                    <th><button onclick="selectAll()">Select All</button></th>
                     <th>Product</th>
                     <th>Description</th>
                     <th>Vin</th>
                   </tr>
+                  {{$lop = 0 }}
                   @foreach($data as $item)
                   <tr>
+                    <td data-th="Supplier Name">
+
+                        <span style="margin-right: 5px">{{ $lop +=1 }}</span>
+
+                        <input class="custom-checkbox" style="border-radius:5px"
+                        type="checkbox" name="selectedItems[]"
+                        value="{{ $item->id }}">
+
+                    </td>
                     <td>
                         {{$item->product}}
                     </td>
@@ -293,6 +304,13 @@
                   </tr>
                   @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" style="text-align: center">
+                            The Number Of Selected : <span id="selectedCount">0</span>
+                        </td>
+                    </tr>
+                </tfoot>
               </table>
 
 
@@ -301,3 +319,56 @@
     </div>
 </div>
 </x-app-layout>
+<script>
+       function selectAll() {
+            var checkboxes = document.getElementsByClassName('custom-checkbox');
+            var allChecked = true;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
+            }
+        }
+        function selectAllpop() {
+            var checkboxes = document.getElementsByClassName('custom-');
+            var allChecked = true;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = !allChecked;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+        // Get all checkboxes with the name 'selectedItems[]'
+        const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
+
+        // Get the 'Select All' button
+        const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
+
+        // Add a click event listener to the 'Select All' button
+        selectAllButton.addEventListener('click', updateSelectedCount);
+
+        // Add a change event listener to each checkbox
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
+
+        // Function to update the selected count in the span
+        function updateSelectedCount() {
+            const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+            document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+        }
+    });
+</script>

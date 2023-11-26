@@ -573,7 +573,7 @@
                                             @else
                                                 <td data-th="Supplier Code">
                                                     **********
-                                                </td>
+                                                </td> 
                                                 @endif
                                                 <td data-th="Supplier Code">
                                                     {{ number_format($item->amount, 2, '.', ',') }}
