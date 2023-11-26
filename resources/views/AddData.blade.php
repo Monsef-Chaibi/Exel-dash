@@ -113,7 +113,7 @@
                         </form>
 
                         <!-- Second Form -->
-                        <form class="form-container" style="flex: 1; width: 48%;" action="{{url('/import')}}" method="POST" enctype='multipart/form-data'>
+                        <form class="form-container" style="flex: 1; width: 48%;" action="{{ route('importId') }}" method="POST" enctype='multipart/form-data'>
                             <h1 style="text-align: center;color:rgb(103, 255, 103);font-size:25px">ADD REGISTRATION && ID NUMBER</h1>
                             @csrf
                             <label for="images2" class="drop-container" id="dropcontainer2">
