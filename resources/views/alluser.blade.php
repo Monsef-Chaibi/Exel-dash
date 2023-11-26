@@ -414,19 +414,9 @@
             });
         }
 
-        function openEditModal(id, name, email, role, cond, aduser, addata, adjuf, rmvgt, archive) {
+    function openEditModal(id, name, email, role, cond, aduser, addata, adjuf, rmvgt, archive) {
     const modal = document.getElementById('edit-modal');
     const modalContent = modal.querySelector('.modal__content');
-    const archiveCheckbox = document.getElementsByName('archive')[0];
-        console.log(archive);
-
-        
-        if (archiveCheckbox) { // Check if the checkbox element exists
-        archiveCheckbox.checked = archive === '1' ? true : false; // Set the checked property
-    } else {
-        console.error('Archive checkbox element not found'); // Handle the error if the element is not found
-    }
-
 
     modalContent.innerHTML = `
         <h1 style='color:black'>Edit User</h1>
@@ -452,7 +442,7 @@
                 <input type="text" style='border-radius:10px' id="" name="pass">
 
                 <label for="edit-cond" style='margin-left:200px'>Archive :</label>
-                <input type="checkbox" checked="${archive === '1' ? 'true' : 'false'}" name="archive">
+                <input type="checkbox" value='1' name="archive" id="archiveCheckbox" >
                 <label style='margin-left:5px'>Yes</label>
             </div>
 
@@ -463,6 +453,9 @@
 
         <a href="#" class="modal__close" onclick="closeEditModal()">&times;</a>
     `;
+     // Check and set the state of the Archive checkbox
+     const archiveCheckbox = document.getElementById('archiveCheckbox');
+    archiveCheckbox.checked = archive === '1';
 
     modal.style.visibility = 'visible';
     modal.style.opacity = 1;
