@@ -378,9 +378,10 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <a href="#" onclick="openEditModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->cond }}')">
+                                        <a href="#" onclick="openEditModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}', '{{ $user->cond }}', '{{ $user->aduser }}', '{{ $user->addata }}', '{{ $user->adjuf }}', '{{ $user->rmvgt }}', '{{ $user->archive }}' )">
                                             <i class='fa fa-edit' style="font-size:25px;margin-left:10px"></i>
                                         </a>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -413,54 +414,65 @@
             });
         }
 
-        function openEditModal(id, name, email, role, cond) {
-            const modal = document.getElementById('edit-modal');
-            const modalContent = modal.querySelector('.modal__content');
+        function openEditModal(id, name, email, role, cond, aduser, addata, adjuf, rmvgt, archive) {
+    const modal = document.getElementById('edit-modal');
+    const modalContent = modal.querySelector('.modal__content');
+    const archiveCheckbox = document.getElementsByName('archive')[0];
+        console.log(archive);
 
-            modalContent.innerHTML = `
-    <h1 style='color:black'>Edit User</h1>
-    <form action="/edituser/${id}" method="post">
-        @csrf
-        @method('PUT')
+        
+        if (archiveCheckbox) { // Check if the checkbox element exists
+        archiveCheckbox.checked = archive === '1' ? true : false; // Set the checked property
+    } else {
+        console.error('Archive checkbox element not found'); // Handle the error if the element is not found
+    }
 
-        <div>
-            <label for="edit-name">Name:</label>
-                    <input type="text" style='border-radius:10px' id="edit-name" name="edit-name" value="${name}">
-                    <label for="edit-email" style='margin-left:300px'>Email:</label>
-                    <input type="text" style='border-radius:10px' id="edit-email" name="edit-email" value="${email}">
+
+    modalContent.innerHTML = `
+        <h1 style='color:black'>Edit User</h1>
+        <form action="/edituser/${id}" method="post">
+            @csrf
+            @method('PUT')
+
+            <div>
+                <label for="edit-name">Name:</label>
+                <input type="text" style='border-radius:10px' id="edit-name" name="edit-name" value="${name}">
+                <label for="edit-email" style='margin-left:300px'>Email:</label>
+                <input type="text" style='border-radius:10px' id="edit-email" name="edit-email" value="${email}">
             <br>
             <br>
 
-                    <label for="edit-role">Role:</label>
-                    <input type="text" style='border-radius:10px' id="edit-role" name="edit-role" value="${role}">
-                    <label for="edit-cond" style='margin-left:300px'>Condition:</label>
-                    <input type="text" style='border-radius:10px' id="edit-cond"  placeholder="Ex 1885,1884,1886"  name="edit-cond" value="${cond}">
-                    <p style="color: red; margin-top:7px;font-size:15px">* If you want to set it admin set 1 or Traffic set 2 or Operation set 0 <span style="color: red; margin-top:7px;font-size:15px;margin-left:250px">* If you want to set all parent keys to it, set it to 0.</span></p>
-                    <br>
-                    <label for="edit-role">Password :</label>
-                    <input type="text" style='border-radius:10px' id="" name="pass" >
-        </div>
+                <label for="edit-role">Role:</label>
+                <input type="text" style='border-radius:10px' id="edit-role" name="edit-role" value="${role}">
+                <label for="edit-cond" style='margin-left:300px'>Condition:</label>
+                <input type="text" style='border-radius:10px' id="edit-cond" placeholder="Ex 1885,1884,1886" name="edit-cond" value="${cond}">
+                <p style="color: red; margin-top:7px;font-size:15px">* If you want to set it admin set 1 or Traffic set 2 or Operation set 0 <span style="color: red; margin-top:7px;font-size:15px;margin-left:250px">* If you want to set all parent keys to it, set it to 0.</span></p>
+                <br>
+                <label for="edit-role">Password :</label>
+                <input type="text" style='border-radius:10px' id="" name="pass">
 
+                <label for="edit-cond" style='margin-left:200px'>Archive :</label>
+                <input type="checkbox" checked="${archive === '1' ? 'true' : 'false'}" name="archive">
+                <label style='margin-left:5px'>Yes</label>
+            </div>
 
+            <br>
+            <br>
+            <button style='font-size:25px' type="submit" class="modal__btn">Save &rarr;</button>
+        </form>
 
+        <a href="#" class="modal__close" onclick="closeEditModal()">&times;</a>
+    `;
 
+    modal.style.visibility = 'visible';
+    modal.style.opacity = 1;
+}
 
+function closeEditModal() {
+    const modal = document.getElementById('edit-modal');
+    modal.style.visibility = 'hidden';
+    modal.style.opacity = 0;
+}
 
-        <br>
-        <br>
-        <button style='font-size:25px' type="submit" class="modal__btn">Save &rarr;</button>
-    </form>
-
-    <a href="#" class="modal__close" onclick="closeEditModal()">&times;</a>
-`;
-
-modal.style.visibility = 'visible';
-modal.style.opacity = 1;
-        }
-        function closeEditModal() {
-            const modal = document.getElementById('edit-modal');
-            modal.style.visibility = 'hidden';
-            modal.style.opacity = 0;
-        }
     </script>
 </x-app-layout>
