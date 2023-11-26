@@ -30,8 +30,17 @@ class DataSemiExport implements FromCollection, WithHeadings
                 ->get([ 'plantkey','soldp', 'shipp', 'product', 'vin', 'bildoc','usercheck','datecheck']);
         }
         if ($this->alldata === 'GTEXPORT') {
-            return Data::whereIn('id', $this->selectedItems)
-                ->get([ 'plantkey','soldp', 'shipp', 'product', 'vin', 'bildoc','usercheck','datecheck']);
+            $exportData = Data::whereIn('id', $this->selectedItems)
+                ->get(['vin', 'gtnum', 'plantkey']);
+
+            // Add fixed values to the "GT Status" and "Current Location" columns
+            $exportData->transform(function ($item) {
+                $item->setAttribute('GT Status', 'GT DISAPPEAR');
+                $item->setAttribute('Current Location', 1500);
+                return $item;
+            });
+
+            return $exportData;
         }
 
         // Export selected data
@@ -40,6 +49,17 @@ class DataSemiExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
+        if ($this->alldata === 'GTEXPORT') {
+            return [
+                'Vin',
+                'GT Number',
+                'Plant Key',
+                'GT Status',
+                'Current Location',
+
+
+            ];
+        }
         if ($this->alldata === 'ob') {
             return [
                 'Plant Key',

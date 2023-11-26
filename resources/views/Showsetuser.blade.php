@@ -281,7 +281,7 @@ margin-top: 50px;
                     <th>Vin</th>
                   </tr>
                   {{$lop = 0 }}
-                  <form action="">
+                  <form action="/SemiExportGT">
                     @csrf
                       @foreach($data as $item)
                       <tr>
@@ -305,21 +305,21 @@ margin-top: 50px;
                     </td>
                 </tr>
                 @endforeach
-            </form>
             </tbody>
             <tfoot>
-                    <tr>
+                <tr>
                         <td colspan="6" style="text-align: center">
                             The Number Of Selected : <span id="selectedCount">0</span>
                         </td>
                     </tr>
                 </tfoot>
-              </table>
+            </table>
             <div class="btnstatus">
 
-                    <button type="submit" class="warning" onclick="return showConfirmSemi()">
-                        Export
-                    </button>
+                <button type="submit" class="warning" onclick="return showConfirmSemi()">
+                    Export
+                </button>
+            </form>
             </div>
 
 
