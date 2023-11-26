@@ -312,11 +312,11 @@ margin-top: 50px;
                             The Number Of Selected : <span id="selectedCount">0</span>
                         </td>
                     </tr>
-                </tfoot>
+            </tfoot>
             </table>
             <div class="btnstatus">
 
-                <button type="submit" class="warning" onclick="return showConfirmSemi()">
+                <button type="submit" class="warning" >
                     Export
                 </button>
             </form>

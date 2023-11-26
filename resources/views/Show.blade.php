@@ -646,6 +646,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 <th>Long Description</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
+                                <th>Registration</th>
                                 <th>Amount</th>
                             </tr>
                         </thead>
@@ -663,6 +664,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     </td>
                                     <td data-th="Supplier Code">
                                         {{ $item->gtnum }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->regist }}
                                     </td>
                                     <td data-th="Supplier Code">
                                         {{ number_format($item->amount, 2, '.', ',') }}
@@ -684,6 +688,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <th>Long Description</th>
                                     <th>Vin</th>
                                     <th>GT Number</th>
+                                    <th>Registration</th>
                                     <th>Amount</th>
                                 </tr>
                             </thead>
@@ -713,6 +718,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                     {{ $item->gtnum }}
                                                 </td>
                                                 <td data-th="Supplier Code">
+                                                    {{ $item->regist }}
+                                                </td>
+                                                <td data-th="Supplier Code">
                                                     {{ number_format($item->amount, 2, '.', ',') }}
                                                 </td>
                                             @endif
@@ -722,7 +730,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6" style="text-align: center">
+                                        <td colspan="7" style="text-align: center">
                                             The Number Of Selected : <span id="selectedCount">0</span>
                                         </td>
                                     </tr>
