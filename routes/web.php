@@ -63,7 +63,7 @@ Route::get('/actionAdmin', [Controller::class, 'actionAdmin'])->name('actionAdmi
 Route::get('/ShowForAdmin/{id}', [Controller::class, 'ShowForAdmin'])->name('ShowForAdmin');
 
 Route::get('/SemiRemove', [Controller::class, 'SemiRemove'])->name('SemiRemove');
-
+ 
 Route::get('/NumRemoveAdmin', [Controller::class, 'NumRemoveAdmin'])->name('NumRemoveAdmin');
 
 Route::get('/RmoveItems', [Controller::class, 'RmoveItems'])->name('RmoveItems');

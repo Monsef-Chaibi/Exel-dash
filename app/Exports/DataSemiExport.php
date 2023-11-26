@@ -33,7 +33,7 @@ class DataSemiExport implements FromCollection, WithHeadings
         // Export selected data
         return Data::whereIn('id', $this->selectedItems)->get(['gtnum']);
     }
-
+ 
     public function headings(): array
     {
         if ($this->alldata === 'ob') {

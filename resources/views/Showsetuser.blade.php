@@ -281,8 +281,10 @@ margin-top: 50px;
                     <th>Vin</th>
                   </tr>
                   {{$lop = 0 }}
-                  @foreach($data as $item)
-                  <tr>
+                  <form action="">
+                    @csrf
+                      @foreach($data as $item)
+                      <tr>
                     <td data-th="Supplier Name">
 
                         <span style="margin-right: 5px">{{ $lop +=1 }}</span>
@@ -301,10 +303,11 @@ margin-top: 50px;
                     <td>
                         {{$item->vin}}
                     </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-                <tfoot>
+                </tr>
+                @endforeach
+            </form>
+            </tbody>
+            <tfoot>
                     <tr>
                         <td colspan="6" style="text-align: center">
                             The Number Of Selected : <span id="selectedCount">0</span>
@@ -315,7 +318,7 @@ margin-top: 50px;
             <div class="btnstatus">
 
                     <button type="submit" class="warning" onclick="return showConfirmSemi()">
-                        Print
+                        Export
                     </button>
             </div>
 
