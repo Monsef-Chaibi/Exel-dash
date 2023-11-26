@@ -76,7 +76,7 @@ class Controller extends BaseController
         }
     }
     function alluser(){
-        $users = User::get();
+        $users = User::where('id', '!=', 1)->get();
         return view('alluser')->with('users', $users);
     }
     function AddData(){

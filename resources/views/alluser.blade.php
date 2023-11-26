@@ -339,6 +339,9 @@
                                         @if ($user->role == 4)
                                             Coordinator
                                         @endif
+                                        @if ($user->role == 1)
+                                            Admin
+                                        @endif
                                         @if ($user->role == 2)
                                             Traffic
                                         @endif
