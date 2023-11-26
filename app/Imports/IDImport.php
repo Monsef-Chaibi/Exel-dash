@@ -18,18 +18,17 @@ class IDImport implements ToModel
     {
         $this->rowCount++;
 
-        if ($this->rowCount >= 3){
+        if ($this->rowCount >= 4){
 
 
         // Update or insert data based on the condition
-        DB::table('data')->updateOrInsert(
-            ['gtnum' => $row[6]], // Condition: where gtnum equals the value in the Excel row
-            [
-                'regist' => $row[7],
-                'idnum'  => $row[12],
-                // Add other fields you want to update or insert here
-            ]
-        );
+        DB::table('data')
+        ->where('gtnum', $row[6])
+        ->update([
+            'regist' => $row[7],
+            'idnum'  => $row[12],
+            // Add other fields you want to update here
+        ]);
 
         // You can return a new instance of your Data model if needed
         // return new Data([

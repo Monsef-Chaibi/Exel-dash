@@ -744,7 +744,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6" style="text-align: center">
+                                        <td colspan="7" style="text-align: center">
                                             The Number Of Selected : <span id="selectedCount">0</span>
                                         </td>
                                     </tr>
