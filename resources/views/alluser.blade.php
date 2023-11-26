@@ -440,10 +440,19 @@
                 <br>
                 <label for="edit-role">Password :</label>
                 <input type="text" style='border-radius:10px' id="" name="pass">
-
                 <label for="edit-cond" style='margin-left:300px'>Archive :</label>
                 <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
                 <label style='margin-left:5px'>Yes</label>
+                <br>
+                <br>
+                <label for="edit-cond" >Archive :</label>
+                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
+                <label for="edit-cond" >Archive :</label>
+                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
+                <label for="edit-cond" >Archive :</label>
+                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
+                <label for="edit-cond" >Archive :</label>
+                <input type="checkbox" style='border-radius:10px' value='1' name="archive" id="archiveCheckbox" >
             </div>
 
             <br>
