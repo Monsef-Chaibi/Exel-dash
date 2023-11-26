@@ -668,7 +668,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                     type="checkbox" name="selectedItems[]"
                                                     value="{{ $item->id }}">
 
-                                                </td> 
+                                                </td>
                                                 <td data-th="Supplier Name">
                                                     {{ $item->product }}
                                                 </td>
@@ -699,7 +699,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     </tr>
                                 </tfoot>
                         </table>
-                     <div class="btnstatus">
+                    <div class="btnstatus">
                     <div>
                         <button type="submit" class="warning" onclick="return showConfirmSemi()">Partial
                             Restore

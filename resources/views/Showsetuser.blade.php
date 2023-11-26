@@ -187,11 +187,11 @@
 }
 .warning {
   border: 2px #5B84B1FF solid;
-  padding: 5%;
+  padding: 1%;
   border-radius: 10px;
   color: #5B84B1FF;
-  width: 300px
-
+  width: 300px;
+margin-top: 50px;
 }
 
 .warning:hover {
@@ -312,7 +312,12 @@
                     </tr>
                 </tfoot>
               </table>
+            <div class="btnstatus">
 
+                    <button type="submit" class="warning" onclick="return showConfirmSemi()">
+                        Print
+                    </button>
+            </div>
 
 
 
