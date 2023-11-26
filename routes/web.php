@@ -63,7 +63,7 @@ Route::get('/actionAdmin', [Controller::class, 'actionAdmin'])->name('actionAdmi
 Route::get('/ShowForAdmin/{id}', [Controller::class, 'ShowForAdmin'])->name('ShowForAdmin');
 
 Route::get('/SemiRemove', [Controller::class, 'SemiRemove'])->name('SemiRemove');
- 
+
 Route::get('/NumRemoveAdmin', [Controller::class, 'NumRemoveAdmin'])->name('NumRemoveAdmin');
 
 Route::get('/RmoveItems', [Controller::class, 'RmoveItems'])->name('RmoveItems');
@@ -99,6 +99,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/deletecolorcontrat/{id}',[Controller::class, 'deletecolorcontrat']);
     Route::get('/NumCheckA', [Controller::class, 'NumCheckA'])->name('NumCheckA');
     Route::get('/CheckItemsA', [Controller::class, 'CheckItemsA'])->name('CheckItemsA');
+    Route::get('/SemiExportGT', [Controller::class, 'SemiExportGT'])->name('SemiExportGT');
 
 });
 // Route for user 2 role 4

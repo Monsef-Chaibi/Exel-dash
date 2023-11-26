@@ -29,11 +29,15 @@ class DataSemiExport implements FromCollection, WithHeadings
             return Data::whereIn('id', $this->selectedItems)
                 ->get([ 'plantkey','soldp', 'shipp', 'product', 'vin', 'bildoc','usercheck','datecheck']);
         }
+        if ($this->alldata === 'GTEXPORT') {
+            return Data::whereIn('id', $this->selectedItems)
+                ->get([ 'plantkey','soldp', 'shipp', 'product', 'vin', 'bildoc','usercheck','datecheck']);
+        }
 
         // Export selected data
         return Data::whereIn('id', $this->selectedItems)->get(['gtnum']);
     }
- 
+
     public function headings(): array
     {
         if ($this->alldata === 'ob') {
