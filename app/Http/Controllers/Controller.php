@@ -227,7 +227,7 @@ class Controller extends BaseController
                                 </td>
                                 <td colspan="6">
                                 <a href="javascript:void(0);" onclick="return showConfirm('.$row->bildoc.')">
-                                <button class="button-32" type="button">Delivery</button>
+                                <button class="button-32"  style="background-color:blue;color:white" type="button">Delivery</button>
                                 </a>
                                 </td>
                             </tr>
@@ -287,7 +287,7 @@ class Controller extends BaseController
                                 </td>
                                 <td colspan="6">
                                 <a href="javascript:void(0);" onclick="return showConfirm('.$row->bildoc.')">
-                                    <button class="button-32" type="button">Delivery</button>
+                                    <button class="button-32" style="background-color:blue;color:white" type="button">Delivery</button>
                                 </a>
                                 </td>
                             </tr>
