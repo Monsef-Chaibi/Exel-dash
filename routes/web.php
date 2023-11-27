@@ -99,6 +99,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/deletecolorcontrat/{id}',[Controller::class, 'deletecolorcontrat']);
     Route::get('/NumCheckA', [Controller::class, 'NumCheckA'])->name('NumCheckA');
     Route::get('/CheckItemsA', [Controller::class, 'CheckItemsA'])->name('CheckItemsA');
+    Route::get('/SadadA', [Controller::class, 'SadadA'])->name('SadadA');
     Route::get('/SemiExportGT', [Controller::class, 'SemiExportGT'])->name('SemiExportGT');
 
 });

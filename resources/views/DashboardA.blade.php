@@ -305,6 +305,25 @@ body {
                                 </div>
                             </a>
                         </div>
+                        <div class="ag-courses_item">
+
+                        </div>
+                        <div class="ag-courses_item">
+                            <a href="/SadadA" class="ag-courses-item_link">
+                                <div class="ag-courses-item_bg"></div>
+
+                                <div class="ag-courses-item_title">
+                                   Sadad  : <span id="value1"></span>
+                                </div>
+
+                                <div class="ag-courses-item_date-box">
+                                    Last Update :
+                                    <span id="up1" class="ag-courses-item_date">
+
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
 
 
                     </div>
@@ -393,6 +412,8 @@ body {
                 success: function(data) {
                     $('#value').text(data.value);
                     $('#up').text(data.up);
+                    $('#value1').text(data.value1);
+                    $('#up1').text(data.up1);
                 }
             });
         }

@@ -1143,15 +1143,19 @@ class Controller extends BaseController
                 $cnd=auth()->user()->cond;
                 $cnd1 = explode(',', $cnd);
                 $liveValue = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
-                return response()->json(['value' => $liveValue, 'up' => $up]);
+                $up= Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                $liveValue1 = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up1= Data::where('paid', '1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1]);
 
                 }
                 else
                 {
                     $liveValue = Data::whereNotNull('status')->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
-                    return response()->json(['value' => $liveValue, 'up' => $up]);
+                    $liveValue1 = Data::where('paid', '1')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up1= Data::where('paid', '1')->latest('datepaid')->value('datepaid');
+                    return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1]);
                 }
 
             }
@@ -1438,6 +1442,22 @@ class Controller extends BaseController
                 {
                     $data = Data::whereNotNull('status')->get();
                     return view('CheckItemsA')->with('data',$data);
+                }
+
+            }
+            public function SadadA()
+            {
+                if(auth()->user()->cond != Null){
+                    $cnd=auth()->user()->cond;
+                    $cnd1 = explode(',', $cnd);
+                    $data = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->get();
+                    return view('SadadA')->with('data',$data);
+
+                }
+                else
+                {
+                    $data = Data::where('paid', '1')->get();
+                    return view('SadadA')->with('data',$data);
                 }
 
             }
