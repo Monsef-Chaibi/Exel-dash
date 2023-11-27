@@ -1075,7 +1075,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <tbody>
                         @csrf
                         @foreach ($data as $item)
-                            @if ($item->paid !== '1' && $item->paid !== '2' )
+                            {{-- @if ($item->paid !== '1' && $item->paid !== '2' ) --}}
                                 <tr>
                                         <td data-th="Supplier Name">
                                             <input class="custom-" style="border-radius:5px"
@@ -1098,7 +1098,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                             {{ number_format($item->amount, 2, '.', ',') }}
                                         </td>
                                 </tr>
-                        @endif
+                        {{-- @endif --}}
 
                         @endforeach
                     </tbody>

@@ -1848,7 +1848,7 @@ class Controller extends BaseController
                                 $data = Data::find($itemId);
 
                                 // Check if any amount is greater than 1
-                                if ($data->amount > 1) {
+                                if ($data->amount < 1) {
                                     $allAmountsLessThanOne = false;
                                 }
 
