@@ -1132,7 +1132,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @endforeach
                     </tbody>
             </table>
-            <table style="font-size:25px; margin-left:20px;text-align:center;margin-bottom:50px">
+            <table style="font-size:20px; margin-left:20px;text-align:center;margin-bottom:50px">
                 <tr >
                     <td style="width:400px">
                         <p>There are vehicle plate fees</p>

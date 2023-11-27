@@ -83,6 +83,12 @@ class Controller extends BaseController
                   ->get();
         return view('alluser')->with('users', $users);
     }
+    function SadadCheck(){
+
+        $data = Data::where('paid', '2')
+                  ->get();
+        return view('SadadCheck')->with('data', $data);
+    }
     function AddData(){
         return view('AddData');
     }
@@ -1517,13 +1523,17 @@ class Controller extends BaseController
                     $cnd1 = explode(',', $cnd);
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
+                    $liveValue2 = Data::where('paid','2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paid','2')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                 }else
                 {
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->latest('dateset')->value('dateset');
+                    $liveValue2 = Data::where('paid','2')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paid','2')->latest('datepaid')->value('datepaid');
                 }
 
-                return response()->json(['value' => $liveValue, 'up' => $up]);
+                return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2]);
             }
             public function getlast()
             {

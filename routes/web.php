@@ -133,6 +133,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/TotalCheckA1/{id}', [Controller::class, 'TotalCheckA1'])->name('TotalCheckA1');
     Route::get('/CheckItemsA1', [Controller::class, 'CheckItemsA1'])->name('CheckItemsA1');
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
+    Route::get('/SadadCheck', [Controller::class, 'SadadCheck'])->name('SadadCheck');
 
 
 

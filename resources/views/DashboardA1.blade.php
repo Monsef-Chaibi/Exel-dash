@@ -309,10 +309,6 @@ body {
 
                             </a>
                         </div>
-
-                        <div class="ag-courses_item">
-
-                        </div>
                         <div class="ag-courses_item">
                             <a href="/NonCheckItems" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
@@ -324,6 +320,22 @@ body {
                                 <div class="ag-courses-item_date-box">
                                     Last Update :
                                     <span id="up" class="ag-courses-item_date">
+
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="ag-courses_item">
+                            <a href="/SadadCheck" class="ag-courses-item_link">
+                                <div class="ag-courses-item_bg"></div>
+
+                                <div class="ag-courses-item_title">
+                                    Sadad Accepted : <span id="vl2"></span>
+                                </div>
+
+                                <div class="ag-courses-item_date-box">
+                                    Last Update :
+                                    <span id="dt2" class="ag-courses-item_date">
 
                                     </span>
                                 </div>
@@ -434,6 +446,8 @@ body {
                 success: function(data) {
                 $('#vl').text(data.value);
                 $('#dt').text(data.up);
+                $('#vl2').text(data.value2);
+                $('#dt2').text(data.up2);
 
                 }
             });
