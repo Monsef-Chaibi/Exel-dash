@@ -1081,7 +1081,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                     <td data-th="Supplier Code">
                                         {{ $item->gtnum }}
                                     </td>
-
+                                    <td data-th="Supplier Code">
+                                        {{ $item->regist }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ number_format($item->amount, 2, '.', ',') }}
+                                    </td>
                             </tr>
                         @endforeach
                     </tbody>
