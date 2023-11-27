@@ -1131,9 +1131,35 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @endforeach
                     </tbody>
             </table>
-            <p>There are vehicle plate fees <span id="plateFeesCheck"></span></p>
-            <p>The fee amount is correct <span id="amountCheck"></span></p>
-            <p>The request is not used <span id="requestCheck"></span></p>
+            <table>
+                <tr>
+                    <td>
+                        <p>There are vehicle plate fees</p>
+                    </td>
+                    <td>
+                        <span id="plateFeesCheck"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>The fee amount is correct </p>
+                    </td>
+                    <td>
+                        <span id="amountCheck"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>The request is not used</p>
+                    </td>
+                    <td>
+                        <span id="requestCheck"></span>
+                    </td>
+                </tr>
+            </table>
+            </p>
+
+
 
             <button type="submit" style="font-size:30px" id="submitButton" disabled>Save &rarr;</button>
 
