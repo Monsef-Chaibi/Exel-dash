@@ -249,7 +249,7 @@
 
         .warning {
             border: 2px rgb(55, 192, 117) solid;
-            padding: 5%;
+            padding: 1.5%;
             border-radius: 10px;
             color: rgb(55, 192, 117);
             width: 300px
@@ -363,8 +363,7 @@
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-
-                                <th>Plant Key</th>
+                                <th><button onclick="selectAll()">Select All</button></th>
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
@@ -376,44 +375,57 @@
                         </thead>
 
                         <tbody>
-                            <form method="GET" action="/SemiCopie" id="partialDeliveryForm">
-                                <input type="hidden" name="alldata" value='alldata'>
+                            <form action="/SemiExportGT">
+                                @csrf
+                                {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
                                     <tr>
                                         <td data-th="Supplier Name">
-                                            {{ $item->soldp }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->shipp }}
+
+                                            <span style="margin-right: 5px">{{ $lop +=1 }}</span>
+
+                                            <input class="custom-checkbox" style="border-radius:5px"
+                                            type="checkbox" name="selectedItems[]"
+                                            value="{{ $item->id }}">
+
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->plantkey }}
-                                        </td>
-                                        <td data-th="Supplier Code">
                                             {{ $item->vin }}
                                         </td>
-
                                         <td data-th="Supplier Code">
-                                            <a style="color: blue" href="/ShowForA1/{{encrypt($item->bildoc)}}">
+                                            {{ $item->gtnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            <a style="color: blue" href="/Show/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
                                             </a>
                                         </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->regist }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->paidby }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->datepaid }}
+                                        </td>
                                     </tr>
                                 @endforeach
-                            </form>
+                                <tr>
+                                    <td colspan="8" style="text-align: center">
+                                        The Number Of Selected : <span id="selectedCount">0</span>
+                                    </td>
+                                </tr>
                         </tbody>
                     </table>
-
                     <div class="btnstatus">
-                        {{-- <div>
-                            <button type="button" class="warning1" onclick="submitForm('SemiCopie')">Check</button>
-                        </div> --}}
-                        {{-- <div>
-                            <button type="button" class="warning2" onclick="submitForm('SemiExport')">Export</button>
-                        </div> --}}
+                        <button type="submit" class="warning" >
+                            Export
+                        </button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -476,3 +488,56 @@
         </script>
     </x-app-layout>
 
+    <script>
+        function selectAll() {
+             var checkboxes = document.getElementsByClassName('custom-checkbox');
+             var allChecked = true;
+
+             for (var i = 0; i < checkboxes.length; i++) {
+                 if (!checkboxes[i].checked) {
+                     allChecked = false;
+                     break;
+                 }
+             }
+
+             for (var i = 0; i < checkboxes.length; i++) {
+                 checkboxes[i].checked = !allChecked;
+             }
+         }
+         function selectAllpop() {
+             var checkboxes = document.getElementsByClassName('custom-');
+             var allChecked = true;
+
+             for (var i = 0; i < checkboxes.length; i++) {
+                 if (!checkboxes[i].checked) {
+                     allChecked = false;
+                     break;
+                 }
+             }
+
+             for (var i = 0; i < checkboxes.length; i++) {
+                 checkboxes[i].checked = !allChecked;
+             }
+         }
+         document.addEventListener('DOMContentLoaded', function () {
+         // Get all checkboxes with the name 'selectedItems[]'
+         const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
+
+         // Get the 'Select All' button
+         const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
+
+         // Add a click event listener to the 'Select All' button
+         selectAllButton.addEventListener('click', updateSelectedCount);
+
+         // Add a change event listener to each checkbox
+         checkboxes.forEach(function (checkbox) {
+             checkbox.addEventListener('change', updateSelectedCount);
+         });
+
+         // Function to update the selected count in the span
+         function updateSelectedCount() {
+             const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+             document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+         }
+     });
+ </script>
