@@ -1863,15 +1863,15 @@ class Controller extends BaseController
 
                             // Perform checks
                             if (!$allAmountsLessThanOne) {
-                                return redirect()->back()->with('error', 'One or more items have amount greater than 1.');
+                                return redirect()->back()->with('error', 'One or more items contain an amount less than 1 .');
                             }
 
                             if ($sumOfAmountsGreaterThan1000 < 1000) {
-                                return redirect()->back()->with('error', 'Sum of amounts is greater than 1000.');
+                                return redirect()->back()->with('error', 'Total amounts less than 1000 .');
                             }
 
                             if (!$allPaidTypesDifferentThan1And2) {
-                                return redirect()->back()->with('error', 'One or more items have paidtype equal to 1 or 2.');
+                                return redirect()->back()->with('error', 'One or more items were previously selected .');
                             }
 
                             // If all conditions are met, proceed with the update
