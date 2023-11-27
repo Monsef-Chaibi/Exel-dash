@@ -1831,4 +1831,20 @@ class Controller extends BaseController
 
 
                         }
+                        function Sadad(Request $request){
+                            $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
+                            if(empty($selectedItems)) {
+                                return redirect()->back()->with('error', 'No items selected for update.');
+                            }
+                            foreach($selectedItems as $itemId) {
+                                Data::where('id', $itemId)->update([
+                                    'paid' => 1,
+                                    'paidby' => Auth::user()->name,
+                                    'datepaid' =>  Carbon::now('Asia/Riyadh'),
+                                    'paidtype' =>  $request->input('paidtype'),
+                                ]);
+                            }
+
+                            return redirect()->back()->with('success', 'Selections updated successfully');
+                        }
 }

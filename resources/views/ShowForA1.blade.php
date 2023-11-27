@@ -1053,6 +1053,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m2-o" style="--m-background: transparent;">
         <div class="modal">
             <h1 class="modal__title">Sadad :</h1>
+            <form action="" method="get">
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
                 <option value="خصوصي">Private </option>
@@ -1071,7 +1072,6 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </tr>
                 </thead>
                     <tbody>
-                        <form action="" method="get">
                         @csrf
                         @foreach ($data as $item)
                             <tr>
