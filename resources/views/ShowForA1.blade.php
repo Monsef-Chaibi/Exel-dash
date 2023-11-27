@@ -504,9 +504,15 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="#m1-o">
-                <button style="color:rgb(103, 255, 103);padding:10px" type="submit" class="modal__btn">Print Moroor Documents &rarr;</button>
-            </a>
+            <div style="display: flex; justify-content: space-between;">
+                <a href="#m1-o">
+                    <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Print Moroor Documents &rarr;</button>
+                </a>
+                <a href="#m2-o">
+                    <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Sadad &rarr;</button>
+                </a>
+            </div>
+
 
             <div class="in">
                 <div class="grid-container">
@@ -1041,6 +1047,51 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         </div>
 
     </div>
+  </div>
+  // modal 2
+    <div class="modal-container" id="m2-o" style="--m-background: transparent;">
+        <div class="modal">
+            <h1 class="modal__title">Sadad :</h1>
+
+            <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                <thead>
+                    <tr class="fr">
+                        <th><button type="button" onclick="selectAllpop()">Select All</button></th>
+                        <th>Product</th>
+                        <th>VIN</th>
+                        <th>GT Number</th>
+                        <th>Registration</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                    <td data-th="Supplier Name">
+                                        <input class="custom-" style="border-radius:5px"
+                                            type="checkbox" name="selectedItems[]"
+                                            value="{{ $item->id }}">
+                                    </td>
+                                    <td data-th="Supplier Name">
+                                        {{ $item->product }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->vin }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->gtnum }}
+                                    </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+            </table>
+
+            <a  href="/generate-pdf">
+                <button type="submit" class="modal__btn">Save &rarr;</button>
+            </a>
+            <a href="#m1-c" class="link-2"></a>
+        </div>
   </div>
   <!-- /modal 1 -->
 
