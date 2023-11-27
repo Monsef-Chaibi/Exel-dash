@@ -1065,6 +1065,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     </tr>
                 </thead>
                     <tbody>
+                        <form action="" method="get">
+                        @csrf
                         @foreach ($data as $item)
                             <tr>
                                     <td data-th="Supplier Name">
@@ -1095,6 +1097,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <a  href="/generate-pdf">
                 <button type="submit" class="modal__btn">Save &rarr;</button>
             </a>
+            </form>
+
             <a href="#m1-c" class="link-2"></a>
         </div>
   </div>
