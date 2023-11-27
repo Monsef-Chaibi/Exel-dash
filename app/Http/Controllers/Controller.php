@@ -1868,12 +1868,12 @@ class Controller extends BaseController
                                 $data = Data::find($itemId);
 
                                 // Check if any amount is greater than 1
-                                if ($data->amount < 1) {
+                                if ($data->regist < 1) {
                                     $allAmountsLessThanOne = false;
                                 }
 
                                 // Sum up amounts
-                                $sumOfAmountsGreaterThan1000 += $data->amount;
+                                $sumOfAmountsGreaterThan1000 += $data->regist;
 
                                 // Check if paidtype is not 1 or 2
                                 if ($data->paid === '1' || $data->paid === '2') {

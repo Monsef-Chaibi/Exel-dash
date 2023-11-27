@@ -1104,6 +1104,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         <td data-th="Supplier Code">
                                             {{ number_format($item->amount, 2, '.', ',') }}
                                         </td>
+                                        <input type="hidden" name="">
                                         @if ( $item->paid === '1')
                                             <td style="color: blue" data-th="Supplier Code">
                                                 Sent
