@@ -1075,28 +1075,31 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <tbody>
                         @csrf
                         @foreach ($data as $item)
-                            <tr>
-                                    <td data-th="Supplier Name">
-                                        <input class="custom-" style="border-radius:5px"
-                                            type="checkbox" name="selectedItems[]"
-                                            value="{{ $item->id }}">
-                                    </td>
-                                    <td data-th="Supplier Name">
-                                        {{ $item->product }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->vin }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->gtnum }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ $item->regist }}
-                                    </td>
-                                    <td data-th="Supplier Code">
-                                        {{ number_format($item->amount, 2, '.', ',') }}
-                                    </td>
-                            </tr>
+                            @if ($item->paid !== '1' && $item->paid !== '2' )
+                                <tr>
+                                        <td data-th="Supplier Name">
+                                            <input class="custom-" style="border-radius:5px"
+                                                type="checkbox" name="selectedItems[]"
+                                                value="{{ $item->id }}">
+                                        </td>
+                                        <td data-th="Supplier Name">
+                                            {{ $item->product }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->vin }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->gtnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->regist }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ number_format($item->amount, 2, '.', ',') }}
+                                        </td>
+                                </tr>
+                        @endif
+
                         @endforeach
                     </tbody>
             </table>

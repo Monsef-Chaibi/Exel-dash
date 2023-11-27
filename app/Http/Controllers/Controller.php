@@ -1831,20 +1831,60 @@ class Controller extends BaseController
 
 
                         }
-                        function Sadad(Request $request){
-                            $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
-                            if(empty($selectedItems)) {
+                        function Sadad(Request $request)
+                        {
+                            $selectedItems = $request->input('selectedItems');
+
+                            if (empty($selectedItems)) {
                                 return redirect()->back()->with('error', 'No items selected for update.');
                             }
-                            foreach($selectedItems as $itemId)
-                            {
+
+                            // Initialize variables to track conditions
+                            $allAmountsLessThanOne = true;
+                            $sumOfAmountsGreaterThan1000 = 0;
+                            $allPaidTypesDifferentThan1And2 = true;
+
+                            foreach ($selectedItems as $itemId) {
+                                $data = Data::find($itemId);
+
+                                // Check if any amount is greater than 1
+                                if ($data->amount > 1) {
+                                    $allAmountsLessThanOne = false;
+                                }
+
+                                // Sum up amounts
+                                $sumOfAmountsGreaterThan1000 += $data->amount;
+
+                                // Check if paidtype is not 1 or 2
+                                if ($data->paidtype == 1 || $data->paidtype == 2) {
+                                    $allPaidTypesDifferentThan1And2 = false;
+                                }
+                            }
+
+                            // Perform checks
+                            if (!$allAmountsLessThanOne) {
+                                return redirect()->back()->with('error', 'One or more items have amount greater than 1.');
+                            }
+
+                            if ($sumOfAmountsGreaterThan1000 > 1000) {
+                                return redirect()->back()->with('error', 'Sum of amounts is greater than 1000.');
+                            }
+
+                            if (!$allPaidTypesDifferentThan1And2) {
+                                return redirect()->back()->with('error', 'One or more items have paidtype equal to 1 or 2.');
+                            }
+
+                            // If all conditions are met, proceed with the update
+                            foreach ($selectedItems as $itemId) {
                                 Data::where('id', $itemId)->update([
                                     'paid' => 1,
                                     'paidby' => Auth::user()->name,
-                                    'datepaid' =>  Carbon::now('Asia/Riyadh'),
-                                    'paidtype' =>  $request->input('paidtype'),
+                                    'datepaid' => Carbon::now('Asia/Riyadh'),
+                                    'paidtype' => $request->input('paidtype'),
                                 ]);
                             }
+
                             return redirect()->back()->with('success', 'Selections updated successfully');
                         }
+
 }
