@@ -1224,53 +1224,83 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
    </script>
 <script>
-    $(document).ready(function () {
-        // Event handler for checkbox changes
-        $('input[type="checkbox"]').change(function () {
-            updateChecks();
-        });
-
-        // Initial check on page load
+   $(document).ready(function () {
+    // Event handler for checkbox changes
+    $('input[type="checkbox"]').change(function () {
         updateChecks();
     });
 
-    function updateChecks() {
-        // Reset checks
-        $('#plateFeesCheck').text('');
-        $('#amountCheck').text('');
-        $('#requestCheck').text('');
+    // Initial check on page load
+    updateChecks();
+});
 
-        // Get selected items
-        var selectedItems = $('input[name="selectedItems[]"]:checked');
+function updateChecks() {
+    // Reset checks
+    $('#plateFeesCheck').text('');
+    $('#amountCheck').text('');
+    $('#requestCheck').text('');
 
-        // Check 1: Registration column > 1
-        var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
-            var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
-            return registrationValue !== '' && parseInt(registrationValue) > 1;
-        }).length === selectedItems.filter(':checked').length;
+    // Get selected items
+    var selectedItems = $('input[name="selectedItems[]"]:checked');
+    var failedRegistrationGTNumbers = [];
+    var failedPaidGTNumbers = [];
 
-        // Check 2: Sum of Registration column > 1000
-        var sumOfRegistration = 0;
-        selectedItems.each(function () {
-            sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
+    // Check 1: Registration column > 1
+    var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
+        var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
+        var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+
+        if (registrationValue !== '' && parseInt(registrationValue) > 1) {
+            return true;
+        } else {
+            failedRegistrationGTNumbers.push(gtNumber);
+            return false;
+        }
+    }).length === selectedItems.filter(':checked').length;
+
+    // Check 2: Sum of Registration column > 1000
+    var sumOfRegistration = 0;
+    selectedItems.each(function () {
+        sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
+    });
+    var sumGreaterThan1000 = sumOfRegistration >= 1000;
+
+    // Check 3: Paid column different than 1 and 2
+    var paidTypesValid = selectedItems.filter(':checked').filter(function () {
+        var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
+        var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+
+        if (paidValue === '0' || paidValue === '3') {
+            return true;
+        } else {
+            failedPaidGTNumbers.push(gtNumber);
+            return false;
+        }
+    }).length === selectedItems.filter(':checked').length;
+
+    // Update check messages
+    $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌ GT Numbers: ' + failedRegistrationGTNumbers.join(', '));
+    $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
+    $('#requestCheck').text(paidTypesValid ? '✅' : '❌ GT Numbers: ' + failedPaidGTNumbers.join(', '));
+
+    // Enable or disable submit button based on checks
+    var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid;
+    $('#submitButton').prop('disabled', !allChecksPassed);
+
+    // Change button color and set opacity based on checks
+    if (allChecksPassed) {
+        $('#submitButton').css({
+            'color': '', // Set default color
+            'opacity': 1 // Set default opacity
         });
-        var sumGreaterThan1000 = sumOfRegistration >= 1000;
-
-        // Check 3: Paid column different than 1 and 2
-        var paidTypesValid = selectedItems.filter(':checked').filter(function () {
-    var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
-    return paidValue === '0' || paidValue === '3';
-}).length === selectedItems.filter(':checked').length;
-
-    console.log(paidTypesValid);
-
-        // Update check messages
-        $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌');
-        $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
-        $('#requestCheck').text(paidTypesValid ? '✅' : '❌');
-
-        // Enable or disable submit button based on checks
-        var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid;
-        $('#submitButton').prop('disabled', !allChecksPassed);
+    } else {
+        $('#submitButton').css({
+            'color': 'gray',
+            'opacity': 0.5 // Set opacity to 50% when checks fail
+        });
     }
+
+
+}
+
 </script>
