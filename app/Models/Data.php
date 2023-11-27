@@ -20,5 +20,9 @@ class Data extends Model
         'vin',
         'color',
         'amount',
+        'paid',
+        'paidby' ,
+        'datepaid',
+        'paidtype',
     ];
 }

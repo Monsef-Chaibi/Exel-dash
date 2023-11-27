@@ -1836,7 +1836,8 @@ class Controller extends BaseController
                             if(empty($selectedItems)) {
                                 return redirect()->back()->with('error', 'No items selected for update.');
                             }
-                            foreach($selectedItems as $itemId) {
+                            foreach($selectedItems as $itemId)
+                            {
                                 Data::where('id', $itemId)->update([
                                     'paid' => 1,
                                     'paidby' => Auth::user()->name,
@@ -1844,7 +1845,6 @@ class Controller extends BaseController
                                     'paidtype' =>  $request->input('paidtype'),
                                 ]);
                             }
-
                             return redirect()->back()->with('success', 'Selections updated successfully');
                         }
 }
