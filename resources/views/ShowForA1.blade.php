@@ -1062,7 +1062,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 <option value="Private transfer">Private transfer</option>
                 <option value="Public transport">Public transport</option>
             </select>
-            <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+            <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
                 <thead>
                     <tr class="fr">
                         <th><button type="button" onclick="selectAllpop()">Select All</button></th>
@@ -1070,7 +1070,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         <th>VIN</th>
                         <th>GT Number</th>
                         <th>Registration</th>
-                        <th>Amount</th>
+                        <th>ID</th>
+
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -1103,7 +1104,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ number_format($item->amount, 2, '.', ',') }}
+                                            {{ $item->idnum }}
                                         </td>
 
                                             <input type="hidden" name="paid" value="{{ $item->paid }}">
@@ -1131,28 +1132,28 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @endforeach
                     </tbody>
             </table>
-            <table>
-                <tr>
-                    <td>
+            <table style="font-size:25px; margin-left:20px;text-align:center;margin-bottom:50px">
+                <tr >
+                    <td style="width:400px">
                         <p>There are vehicle plate fees</p>
                     </td>
-                    <td>
+                    <td style="width:700px;text-align:left">
                         <span id="plateFeesCheck"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width:400px">
                         <p>The fee amount is correct </p>
                     </td>
-                    <td>
+                    <td style="width:700px;text-align:left">
                         <span id="amountCheck"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width:400px">
                         <p>The request is not used</p>
                     </td>
-                    <td>
+                    <td style="width:700px;text-align:left">
                         <span id="requestCheck"></span>
                     </td>
                 </tr>
@@ -1161,7 +1162,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
 
-            <button type="submit" style="font-size:30px" id="submitButton" disabled>Save &rarr;</button>
+            <button type="submit" style="font-size:50px;margin-left:60px" id="submitButton" disabled>Save &rarr;</button>
 
             </form>
 
