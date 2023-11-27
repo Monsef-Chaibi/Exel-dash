@@ -220,15 +220,15 @@
         }
 
         .warning2 {
-            border: 2px rgb(224, 255, 50) solid;
-            padding: 5%;
+            border: 2px rgb(255, 64, 50) solid;
+            padding: 1.5%;
             border-radius: 10px;
-            color: rgb(224, 255, 50);
+            color: rgb(255, 50, 50);
             width: 300px
         }
 
         .warning2:hover {
-            background: rgb(224, 255, 50);
+            background: rgb(255, 50, 50);
             color: black;
             border: 2px white solid;
         }
@@ -375,7 +375,7 @@
                         </thead>
 
                         <tbody>
-                            <form action="/SemiExportGT">
+                            <form id="confirmationForm" action="{{ route('processConfirmation') }}" method="get">
                                 @csrf
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
@@ -422,8 +422,11 @@
                         </tbody>
                     </table>
                     <div class="btnstatus">
-                        <button type="submit" class="warning" >
-                            Export
+                        <button type="button" class="warning" onclick="showConfirmationDialog('accept')">
+                            Accept
+                        </button>
+                        <button type="button" class="warning2" onclick="showConfirmationDialog('refuse')">
+                            Refuse
                         </button>
                     </form>
                     </div>
@@ -541,3 +544,37 @@
          }
      });
  </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- Your JavaScript code -->
+<script>
+    function showConfirmationDialog(action) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once confirmed, the action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user clicks "Yes, proceed!", handle the form submission
+                handleFormSubmission(action);
+            }
+        });
+    }
+
+    function handleFormSubmission(action) {
+        // Set the action as a hidden input field in the form
+        const form = document.getElementById('confirmationForm');
+        const actionInput = document.createElement('input');
+        actionInput.type = 'hidden';
+        actionInput.name = 'confirmation_action';
+        actionInput.value = action;
+        form.appendChild(actionInput);
+
+        // Submit the form
+        form.submit();
+    }
+</script>

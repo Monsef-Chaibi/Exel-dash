@@ -1906,5 +1906,39 @@ class Controller extends BaseController
 
                             return redirect()->back()->with('success', 'Selections updated successfully');
                         }
+                        public function processConfirmation(Request $request) {
+                            $confirmationAction = $request->input('confirmation_action');
+
+                            if ($confirmationAction === 'accept') {
+
+                                $selectedItems = $request->input('selectedItems');
+
+                                if (empty($selectedItems)) {
+                                    return redirect()->back()->with('error', 'No items selected for update.');
+                                }
+
+                                foreach ($selectedItems as $itemId) {
+                                    Data::where('id', $itemId)->update([
+                                        'paid' => 2,
+                                    ]);
+                                }
+                                return redirect()->back()->with('success', 'Selections updated successfully');
+                            } elseif ($confirmationAction === 'refuse') {
+                                $selectedItems = $request->input('selectedItems');
+
+                                if (empty($selectedItems)) {
+                                    return redirect()->back()->with('error', 'No items selected for update.');
+                                }
+
+                                foreach ($selectedItems as $itemId) {
+                                    Data::where('id', $itemId)->update([
+                                        'paid' => 3,
+                                    ]);
+                                }
+                                return redirect()->back()->with('success', 'Selections updated successfully');
+                            }
+
+
+                        }
 
 }
