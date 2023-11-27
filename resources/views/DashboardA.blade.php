@@ -281,6 +281,10 @@ body {
   cursor: not-allowed;
 }
     </style>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     @if (session()->has('success'))
     <script>
@@ -441,24 +445,25 @@ body {
         // Update live value every 5 seconds (adjust this interval as needed)
         setInterval(updateLiveValue1, 5000);
     });
-    function showConfirm() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Once confirmed, the action cannot be undone!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, proceed!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // User clicked the confirm button, proceed with the action
-                    window.location.href = "/Status/{{ $title->bildoc }}";
-                }
-            });
-
-            return false; // Prevent the default link behavior
+    function showConfirm(bildoc) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once confirmed, the action cannot be undone!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, proceed!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // User clicked the confirm button, proceed with the action
+            window.location.href = "/Status/" + bildoc;
         }
+    });
+
+    return false; // Prevent the default link behavior
+}
+
     </script>
 
 </x-app-layout>

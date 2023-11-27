@@ -226,9 +226,9 @@ class Controller extends BaseController
                                     <a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a>
                                 </td>
                                 <td colspan="6">
-                                    <a href="/Status/'.$row->bildoc.'" onclick="return showConfirm()">
-                                    <button  class="button-32"  type="button">Delivery</button>
-                                    </a>
+                                <a href="javascript:void(0);" onclick="return showConfirm('.$row->bildoc.')">
+                                <button class="button-32" type="button">Delivery</button>
+                                </a>
                                 </td>
                             </tr>
                             ';
@@ -282,11 +282,13 @@ class Controller extends BaseController
                                 <td>'.$row->shipp.'</td>
                                 <td>'.$row->bildoc.'</td>
                                 <td colspan="2">'.\Carbon\Carbon::createFromFormat("Y-m-d", "1900-01-01")->addDays($row->bildt - 2)->format("Y-m-d") .'</td>
-                                <td>
+                                <td >
                                     <a class="button-32"  href="/Show/'.encrypt($row->bildoc).'">Show</a>
-                                    <a href="/Status/{{ $title->bildoc }}" onclick="return showConfirm()">
-                                    <button  class="button-32"  type="button">Total Delivery</button>
-                                    </a>
+                                </td>
+                                <td colspan="6">
+                                <a href="javascript:void(0);" onclick="return showConfirm('.$row->bildoc.')">
+                                    <button class="button-32" type="button">Delivery</button>
+                                </a>
                                 </td>
                             </tr>
                             ';
