@@ -1050,11 +1050,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 </form>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   // modal 2
-    <div class="modal-container" id="m2-o" style="--m-background: transparent;">
+    <div class="modal-container"id="m2-o" style="--m-background: transparent;">
         <div class="modal">
             <h1 class="modal__title">Sadad :</h1>
-            <form action="/Sadad" method="get">
+            <form action="/Sadad" id="myForm"  method="get">
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
                 <option value="Private">Private </option>
@@ -1078,17 +1079,17 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @foreach ($data as $item)
                             {{-- @if ($item->paid !== '1' && $item->paid !== '2' ) --}}
                                 <tr>
-                                    @if ($item->paid === '1' || $item->paid === '2')
+                                    {{-- @if ($item->paid === '1' || $item->paid === '2')
                                         <td>
 
                                         </td>
-                                    @else
+                                    @else --}}
                                     <td data-th="Supplier Name">
                                         <input class="custom-" style="border-radius:5px"
                                             type="checkbox" name="selectedItems[]"
                                             value="{{ $item->id }}">
                                     </td>
-                                    @endif
+                                    {{-- @endif --}}
                                         <td data-th="Supplier Name">
                                             {{ $item->product }}
                                         </td>
@@ -1104,7 +1105,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         <td data-th="Supplier Code">
                                             {{ number_format($item->amount, 2, '.', ',') }}
                                         </td>
-                                        <input type="hidden" name="">
+
+                                            <input type="hidden" name="paid" value="{{ $item->paid }}">
+
                                         @if ( $item->paid === '1')
                                             <td style="color: blue" data-th="Supplier Code">
                                                 Sent
@@ -1128,9 +1131,11 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @endforeach
                     </tbody>
             </table>
+            <p>There are vehicle plate fees <span id="plateFeesCheck"></span></p>
+            <p>The fee amount is correct <span id="amountCheck"></span></p>
+            <p>The request is not used <span id="requestCheck"></span></p>
 
-
-                <button type="submit" style="font-size:30px">Save &rarr;</button>
+            <button type="submit" style="font-size:30px" id="submitButton" disabled>Save &rarr;</button>
 
             </form>
 
@@ -1218,3 +1223,54 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
    </script>
+<script>
+    $(document).ready(function () {
+        // Event handler for checkbox changes
+        $('input[type="checkbox"]').change(function () {
+            updateChecks();
+        });
+
+        // Initial check on page load
+        updateChecks();
+    });
+
+    function updateChecks() {
+        // Reset checks
+        $('#plateFeesCheck').text('');
+        $('#amountCheck').text('');
+        $('#requestCheck').text('');
+
+        // Get selected items
+        var selectedItems = $('input[name="selectedItems[]"]:checked');
+
+        // Check 1: Registration column > 1
+        var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
+            var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
+            return registrationValue !== '' && parseInt(registrationValue) > 1;
+        }).length === selectedItems.filter(':checked').length;
+
+        // Check 2: Sum of Registration column > 1000
+        var sumOfRegistration = 0;
+        selectedItems.each(function () {
+            sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
+        });
+        var sumGreaterThan1000 = sumOfRegistration >= 1000;
+
+        // Check 3: Paid column different than 1 and 2
+        var paidTypesValid = selectedItems.filter(':checked').filter(function () {
+    var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
+    return paidValue === '0' || paidValue === '3';
+}).length === selectedItems.filter(':checked').length;
+
+    console.log(paidTypesValid);
+
+        // Update check messages
+        $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌');
+        $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
+        $('#requestCheck').text(paidTypesValid ? '✅' : '❌');
+
+        // Enable or disable submit button based on checks
+        var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid;
+        $('#submitButton').prop('disabled', !allChecksPassed);
+    }
+</script>
