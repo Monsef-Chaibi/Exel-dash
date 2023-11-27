@@ -996,6 +996,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </select>
             <label for="" style="margin-left: 20px">Signature name</label>
             <input type="text" name="sing" style="width: 30%;border-radius:5px;margin-top:10px" placeholder="Signature name">
+
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
                     <tr class="fr">
@@ -1052,7 +1053,12 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m2-o" style="--m-background: transparent;">
         <div class="modal">
             <h1 class="modal__title">Sadad :</h1>
-
+            <label for="" style="margin-top:25px">Registration Type :</label>
+            <select name="regtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
+                <option value="خصوصي">Private </option>
+                <option value="نقل خاص">Private transfer</option>
+                <option value="نقل عام">Public transport</option>
+            </select>
             <table style="width: 90%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                 <thead>
                     <tr class="fr">
