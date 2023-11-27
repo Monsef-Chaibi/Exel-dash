@@ -1856,7 +1856,7 @@ class Controller extends BaseController
                                 $sumOfAmountsGreaterThan1000 += $data->amount;
 
                                 // Check if paidtype is not 1 or 2
-                                if ($data->paidtype == 1 || $data->paidtype == 2) {
+                                if ($data->paid === '1' || $data->paid === '2') {
                                     $allPaidTypesDifferentThan1And2 = false;
                                 }
                             }
@@ -1866,7 +1866,7 @@ class Controller extends BaseController
                                 return redirect()->back()->with('error', 'One or more items have amount greater than 1.');
                             }
 
-                            if ($sumOfAmountsGreaterThan1000 > 1000) {
+                            if ($sumOfAmountsGreaterThan1000 < 1000) {
                                 return redirect()->back()->with('error', 'Sum of amounts is greater than 1000.');
                             }
 
