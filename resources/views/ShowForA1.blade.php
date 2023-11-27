@@ -1070,6 +1070,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         <th>GT Number</th>
                         <th>Registration</th>
                         <th>Amount</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -1077,11 +1078,17 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                         @foreach ($data as $item)
                             {{-- @if ($item->paid !== '1' && $item->paid !== '2' ) --}}
                                 <tr>
-                                        <td data-th="Supplier Name">
-                                            <input class="custom-" style="border-radius:5px"
-                                                type="checkbox" name="selectedItems[]"
-                                                value="{{ $item->id }}">
+                                    @if ($item->paid === '1' || $item->paid === '2')
+                                        <td>
+
                                         </td>
+                                    @else
+                                    <td data-th="Supplier Name">
+                                        <input class="custom-" style="border-radius:5px"
+                                            type="checkbox" name="selectedItems[]"
+                                            value="{{ $item->id }}">
+                                    </td>
+                                    @endif
                                         <td data-th="Supplier Name">
                                             {{ $item->product }}
                                         </td>
@@ -1097,6 +1104,23 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                         <td data-th="Supplier Code">
                                             {{ number_format($item->amount, 2, '.', ',') }}
                                         </td>
+                                        @if ( $item->paid === '1')
+                                            <td style="color: blue" data-th="Supplier Code">
+                                                Sent
+                                            </td>
+                                        @elseif ( $item->paid === '2')
+                                            <td  style="color: rgb(38, 255, 38)" data-th="Supplier Code">
+                                                Accepted
+                                            </td>
+                                        @elseif ($item->paid === '3')
+                                            <td  style="color: red" data-th="Supplier Code">
+                                                Rejected
+                                            </td>
+                                        @else
+                                            <td data-th="Supplier Code">
+
+                                            </td>
+                                        @endif
                                 </tr>
                         {{-- @endif --}}
 
