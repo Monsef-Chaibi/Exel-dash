@@ -282,6 +282,24 @@ body {
 }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    @if (session()->has('success'))
+    <script>
+        Swal.fire(
+            'Success',
+            '{{ session('success') }}',
+            'success'
+        )
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        Swal.fire(
+            'Error',
+            '{{ session('error') }}',
+            'error'
+        )
+    </script>
+@endif
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -348,8 +366,7 @@ body {
                         <th>Ship-To-Party</th>
                         <th>Billing Document</th>
                         <th>Billing Date</th>
-                        <th></th>
-                        <th>Action</th>
+                        <th style="text-align: center" colspan="6">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -424,6 +441,24 @@ body {
         // Update live value every 5 seconds (adjust this interval as needed)
         setInterval(updateLiveValue1, 5000);
     });
+    function showConfirm() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Once confirmed, the action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, proceed!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // User clicked the confirm button, proceed with the action
+                    window.location.href = "/Status/{{ $title->bildoc }}";
+                }
+            });
+
+            return false; // Prevent the default link behavior
+        }
     </script>
 
 </x-app-layout>
