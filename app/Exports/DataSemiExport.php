@@ -49,6 +49,46 @@ class DataSemiExport implements FromCollection, WithHeadings
 
             return $exportData;
         }
+        if ($this->alldata === 'GTEXPORT') {
+            $exportData = Data::whereIn('id', $this->selectedItems)
+                ->get(['vin', 'gtnum', 'plantkey']);
+
+            // Add fixed values to the "GT Status" and "Current Location" columns
+            $exportData->transform(function ($item) {
+                return [
+                    'VIN' => $item->vin,
+                    'GT Number' => $item->gtnum,
+                    'GT Status' => 'GT DISAPPEAR',
+                    'Current_Location' => 1500,
+                    'AWB_No' => '', // Set as empty
+                    'Courier_Reference_number' => '', // Set as empty
+                    'Service_Provider' => '', // Set as empty
+                    'Receiver_Plant' => $item->plantkey, // Replace 'Plant Key' with 'Receiver Plant'
+                ];
+            });
+
+            return $exportData;
+        }
+        if ($this->alldata === 'sadad') {
+            $exportData = Data::whereIn('id', $this->selectedItems)
+                ->get(['idnum', 'regist', 'plantkey']);
+
+            // Add fixed values to the "GT Status" and "Current Location" columns
+            $exportData->transform(function ($item) {
+                return [
+                    'VIN' => $item->vin,
+                    'GT Number' => $item->gtnum,
+                    'GT Status' => 'GT DISAPPEAR',
+                    'Current_Location' => 1500,
+                    'AWB_No' => '', // Set as empty
+                    'Courier_Reference_number' => '', // Set as empty
+                    'Service_Provider' => '', // Set as empty
+                    'Receiver_Plant' => $item->plantkey, // Replace 'Plant Key' with 'Receiver Plant'
+                ];
+            });
+
+            return $exportData;
+        }
 
 
 
@@ -68,7 +108,7 @@ class DataSemiExport implements FromCollection, WithHeadings
             'AWB_No',
             'Courier_Reference_number',
             'Service_Provider',
-            'Receiver_Plant', 
+            'Receiver_Plant',
         ];
     }
 

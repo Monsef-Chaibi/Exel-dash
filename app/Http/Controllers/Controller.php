@@ -1126,6 +1126,19 @@ class Controller extends BaseController
                         return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
                     }
                 }
+                if($request->input('sadad')){
+                    try {
+                        $selectedItems = $request->input('selectedItems');
+                        $alldata = $request->input('sadad');
+                        if (!$selectedItems) {
+                            throw new \Exception('No items selected for export.');
+                        }
+
+                        return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
+                    } catch (\Exception $e) {
+                        return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
+                    }
+                }
                 else{
                     try {
                         $selectedItems = $request->input('selectedItems');
