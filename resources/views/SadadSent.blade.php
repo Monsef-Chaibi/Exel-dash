@@ -465,21 +465,23 @@
         </div>
         <script>
 
-        function filterGTNumbers() {
-            const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
+function filterGTNumbers() {
+    const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
 
-            for (const row of rows) {
-                const gtNumberCell = row.querySelector('td:nth-child(4)');
-                const gtNumber = gtNumberCell.textContent.toLowerCase();
+    for (const row of rows) {
+        const gtNumberCell = row.querySelector('td:nth-child(3)');
+        const gtNumber = gtNumberCell.textContent.toLowerCase();
 
-                if (gtNumber.includes(gtNumberSearch)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            }
+        console.log("GT Number:", gtNumber);
+
+        if (gtNumber.includes(gtNumberSearch)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
         }
+    }
+}
 
 
              function selectDoneRows() {
