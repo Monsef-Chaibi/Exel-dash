@@ -382,9 +382,12 @@
                         <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
                         <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
                     </div>
-                    <div >
-                        <input style="border-radius: 10px;width: 300px" type="text" id="gtNumberSearch" placeholder="Search by GT Number">
-                        <button type="button" style="background-color:#1eff00;color:#d8e7f3;border-radius: 10px;padding:5px" onclick="filterGTNumbers()">Filter</button>
+                    <br>
+                    <div style="display: flex;justify-content:right">
+                       <!-- Add the input event listener to the search input field -->
+                       <label for="" style="color:#1eff00">Filter By GT :</label>
+                        <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
+
                     </div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%"  class="rwd-table">
                         <thead>
@@ -462,21 +465,22 @@
         </div>
         <script>
 
-             function filterGTNumbers() {
-        const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
-        const rows = document.querySelectorAll('tbody tr');
+        function filterGTNumbers() {
+            const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
 
-        for (const row of rows) {
-            const gtNumberCell = row.querySelector('td:nth-child(4)');
-            const gtNumber = gtNumberCell.textContent.toLowerCase();
+            for (const row of rows) {
+                const gtNumberCell = row.querySelector('td:nth-child(4)');
+                const gtNumber = gtNumberCell.textContent.toLowerCase();
 
-            if (gtNumber.includes(gtNumberSearch)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
+                if (gtNumber.includes(gtNumberSearch)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
             }
         }
-    }
+
 
              function selectDoneRows() {
                 var checkboxes = document.getElementsByClassName('custom-checkbox');

@@ -335,7 +335,7 @@
                                 </a>
                             </div>
                             <div class="ag-courses_item">
-                                <a href="/NonCheckItems" class="ag-courses-item_link">
+                                <a href="/SadadSent" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
