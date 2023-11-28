@@ -356,6 +356,9 @@
             </script>
         @endif
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <!-- Add these lines to include DataTables CSS and JS files -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -379,7 +382,11 @@
                         <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
                         <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
                     </div>
-                    <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
+                    <div >
+                        <input style="border-radius: 10px;width: 300px" type="text" id="gtNumberSearch" placeholder="Search by GT Number">
+                        <button type="button" style="background-color:#1eff00;color:#d8e7f3;border-radius: 10px;padding:5px" onclick="filterGTNumbers()">Filter</button>
+                    </div>
+                    <table style="width: 100%; margin-bottom:5%; margin-top:2%"  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                                 <th><button type="button" onclick="selectAll()">Select All</button></th>
@@ -398,7 +405,7 @@
                                 @csrf
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
-                                    <tr>
+                                    <tr  id="row_{{ $item->id }}">
                                         <td data-th="Supplier Name">
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
@@ -453,17 +460,24 @@
                 </div>
             </div>
         </div>
-
-        @foreach ($data as $index => $item)
-            <script>
-                document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
-                    var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
-                    navigator.clipboard.writeText(gtnumText);
-                });
-            </script>
-        @endforeach
-
         <script>
+
+             function filterGTNumbers() {
+        const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+
+        for (const row of rows) {
+            const gtNumberCell = row.querySelector('td:nth-child(4)');
+            const gtNumber = gtNumberCell.textContent.toLowerCase();
+
+            if (gtNumber.includes(gtNumberSearch)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+
              function selectDoneRows() {
                 var checkboxes = document.getElementsByClassName('custom-checkbox');
 
