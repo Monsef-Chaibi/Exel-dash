@@ -373,7 +373,7 @@
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>Registration Type</th>
-
+                                <th>Done</th>
                             </tr>
                         </thead>
 
@@ -412,7 +412,13 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
-
+                                        <td style="text-align: center">
+                                            @if ($item->printed === '1')
+                                                ✅
+                                            @else
+                                                ❌
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -423,7 +429,7 @@
                         </tbody>
                     </table>
                     <div style="display: flex;justify-content:center">
-                        <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Export &rarr;</button>
+                        <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Done &rarr;</button>
                     </div>
 
                 </form>
