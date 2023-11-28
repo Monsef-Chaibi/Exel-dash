@@ -378,7 +378,7 @@
                         </thead>
 
                         <tbody>
-                            <form id="confirmationForm" action="{{ route('processConfirmation') }}" method="get">
+                            
                                 @csrf
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
