@@ -364,11 +364,11 @@
                     <input type="hidden" name="sadad" value="1">
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
                     <br>
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with Done ≠ 1 &rarr;</button>
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button>
 
                     <div>
                     <br>
-                  
+
                     <br>
 
                     <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
