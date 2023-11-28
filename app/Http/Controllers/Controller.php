@@ -53,6 +53,9 @@ class Controller extends BaseController
     function DashboardB(){
         return view('DashboardB');
     }
+    function SadadView(){
+        return view('SadadView');
+    }
 
     function test(){
         $cnd=auth()->user()->cond;

@@ -135,6 +135,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::get('/SadadCheck', [Controller::class, 'SadadCheck'])->name('SadadCheck');
     Route::get('/SemiExportA', [Controller::class, 'SemiExport'])->name('SemiExportA');
+    Route::get('/SadadView', [Controller::class, 'SadadView'])->name('SadadView');
 
 
 
