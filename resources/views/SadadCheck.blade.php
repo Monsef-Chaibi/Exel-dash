@@ -363,7 +363,14 @@
                     @csrf
                     <input type="hidden" name="sadad" value="1">
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
-                <div>
+                    <br>
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with Done ≠ 1 &rarr;</button>
+
+                    <div>
+                    <br>
+                  
+                    <br>
+
                     <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
                         <input style="border-radius: 10px"  type="radio" value="Private" name='type'>
                         <label for="" style="margin-left:20px;margin-right:20px" >Private</label>
@@ -428,6 +435,7 @@
                                                 ❌
                                             @endif
                                         </td>
+                                        <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -456,7 +464,19 @@
         @endforeach
 
         <script>
+             function selectDoneRows() {
+                var checkboxes = document.getElementsByClassName('custom-checkbox');
 
+                for (var i = 0; i < checkboxes.length; i++) {
+                    const itemDoneValue = document.getElementsByName('doneItems[]')[i].value;
+
+                    if (itemDoneValue !== '1') {
+                        checkboxes[i].checked = true;
+                    } else {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
          function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
