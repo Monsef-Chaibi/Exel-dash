@@ -365,10 +365,11 @@
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
-                    <br>
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button>
 
+                    {{-- <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
+                    <br>
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button> --}}
+{{--
                     <div>
                     <br>
 
@@ -381,25 +382,24 @@
                         <label for=""  style="margin-left:20px;margin-right:20px">Private Transfer</label>
                         <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
                         <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
-                    </div>
+                    </div> --}}
                     <br>
                     <div style="display: flex;justify-content:right">
                        <!-- Add the input event listener to the search input field -->
-                       <label for="" style="color:#1eff00">Filter By GT :</label>
+                       <label for="" style="color:#1eff00;margin-right:10px">Filter By GT : </label>
                         <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
 
                     </div>
-                    <table style="width: 100%; margin-bottom:5%; margin-top:2%"  class="rwd-table">
+                    <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button type="button" onclick="selectAll()">Select All</button></th>
+                                {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>Registration Type</th>
-                                <th>Done</th>
                             </tr>
                         </thead>
 
@@ -409,7 +409,7 @@
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
                                     <tr  id="row_{{ $item->id }}">
-                                        <td data-th="Supplier Name">
+                                        {{-- <td data-th="Supplier Name">
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
 
@@ -417,7 +417,7 @@
                                             type="checkbox" name="selectedItems[]"
                                             value="{{ $item->id }}">
 
-                                        </td>
+                                        </td> --}}
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
@@ -438,26 +438,26 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
-                                        <td style="text-align: center">
+                                        {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
-                                <tr>
+                                {{-- <tr>
                                     <td colspan="8" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
-                                </tr>
+                                </tr> --}}
                         </tbody>
                     </table>
-                    <div style="display: flex;justify-content:center">
+                    {{-- <div style="display: flex;justify-content:center">
                         <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Done &rarr;</button>
-                    </div>
+                    </div> --}}
 
                 </form>
                 </div>

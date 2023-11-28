@@ -385,11 +385,11 @@
                     <br>
                     <div style="display: flex;justify-content:right">
                        <!-- Add the input event listener to the search input field -->
-                       <label for="" style="color:#1eff00">Filter By GT :</label>
+                       <label for="" style="color:#1eff00;margin-right:10px">Filter By GT :</label>
                         <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
 
                     </div>
-                    <table style="width: 100%; margin-bottom:5%; margin-top:2%"  class="rwd-table">
+                    <table style="width: 100%; margin-bottom:5%; "  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                                 <th><button type="button" onclick="selectAll()">Select All</button></th>

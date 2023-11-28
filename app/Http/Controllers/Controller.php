@@ -96,7 +96,7 @@ class Controller extends BaseController
 
         $data = Data::where('paid', '1')
                   ->get();
-        return view('SadadCheck')->with('data', $data);
+        return view('SadadSent')->with('data', $data);
     }
     function AddData(){
         return view('AddData');
