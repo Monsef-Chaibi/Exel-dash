@@ -360,6 +360,9 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div>
+                    <button type="button" onclick="selectAllUnprinted()">
+                        Select All Unprinted
+                    </button>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
@@ -444,6 +447,15 @@
         @endforeach
 
         <script>
+     function selectAllUnprinted() {
+    var checkboxes = document.getElementsByClassName('custom-checkbox');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        var printedValue = checkboxes[i].closest('tr').querySelector('td:last-child').textContent.trim();
+        checkboxes[i].checked = printedValue !== '1' && !checkboxes[i].disabled;
+    }
+}
+
 
          function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
