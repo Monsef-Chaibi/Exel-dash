@@ -326,11 +326,11 @@ body {
                             </a>
                         </div>
                         <div class="ag-courses_item">
-                            <a href="/SadadCheck" class="ag-courses-item_link">
+                            <a href="/SadadView" SadadCheck class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                    Sadad Accepted : <span id="vl2"></span>
+                                    Sadad  : <span id="vl2"></span>
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
