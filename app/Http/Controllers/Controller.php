@@ -1129,7 +1129,7 @@ class Controller extends BaseController
                 if($request->input('sadad')){
                     try {
                         $selectedItems = $request->input('selectedItems');
-                        $alldata = $request->input('sadad');
+                        $alldata = $request->input('type');
                         if (!$selectedItems) {
                             throw new \Exception('No items selected for export.');
                         }

@@ -361,16 +361,16 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
                     <input type="hidden" name="sadad" value="1">
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
                 <div>
-                    <div>
-                        <input type="checkbox">
-                        <label for="">Private</label>
-                        <input type="checkbox">
-                        <label for="">Private Transfer</label>
-                        <input type="checkbox">
-                        <label for="">Private Transport</label>
+                    <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
+                        <input style="border-radius: 10px"  type="radio" value="Private" name='type'>
+                        <label for="" style="margin-left:20px;margin-right:20px" >Private</label>
+                        <input style="border-radius: 10px"  type="radio" value="Private Transfer" name='type'>
+                        <label for=""  style="margin-left:20px;margin-right:20px">Private Transfer</label>
+                        <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
+                        <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
                     </div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
