@@ -413,7 +413,7 @@
                                             {{ $item->paidtype }}
                                         </td>
                                         <td style="text-align: center">
-                                            @if ($item->printed === '1')
+                                            @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
