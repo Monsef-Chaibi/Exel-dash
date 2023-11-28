@@ -355,12 +355,13 @@
                 );
             </script>
         @endif
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form>
-
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Export &rarr;</button>
+                <form id="exportForm" action="/ex" method="POST">
+                    @csrf
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
 
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
@@ -378,7 +379,7 @@
                         </thead>
 
                         <tbody>
-                            
+
                                 @csrf
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
@@ -429,7 +430,7 @@
                         </tbody>
                     </table>
                     <div style="display: flex;justify-content:center">
-                        <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Done &rarr;</button>
+                        <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Done &rarr;</button>
                     </div>
 
                 </form>
@@ -579,5 +580,41 @@
 
         // Submit the form
         form.submit();
+    }
+</script>
+<script>
+    function exportButtonClick() {
+        Swal.fire({
+            title: 'Export Confirmation',
+            text: 'Are you sure you want to export?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, export!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, submit the form
+                document.getElementById('exportForm').submit();
+            }
+        });
+    }
+
+    function doneButtonClick() {
+        Swal.fire({
+            title: 'Done Confirmation',
+            text: 'Are you sure you want to mark as done?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, mark as done!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Update the form action and submit the form
+                document.getElementById('exportForm').action = '/done';
+                document.getElementById('exportForm').submit();
+            }
+        });
     }
 </script>
