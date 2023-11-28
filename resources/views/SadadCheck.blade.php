@@ -364,6 +364,14 @@
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
                     <input type="hidden" name="sadad" value="1">
                 <div>
+                    <div>
+                        <input type="checkbox">
+                        <label for="">Private</label>
+                        <input type="checkbox">
+                        <label for="">Private Transfer</label>
+                        <input type="checkbox">
+                        <label for="">Private Transport</label>
+                    </div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
