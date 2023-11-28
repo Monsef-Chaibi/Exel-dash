@@ -1051,8 +1051,15 @@ class Controller extends BaseController
                     $selectedItems = $request->input('selectedItems');
                     $alldata = 'GTEXPORT';
 
+
                     if (!$selectedItems) {
                         throw new \Exception('No items selected for export.');
+                    }
+
+                    foreach($selectedItems as $itemId) {
+                        Data::where('id', $itemId)->update([
+                            'printed' => 1,
+                        ]);
                     }
 
                     return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');

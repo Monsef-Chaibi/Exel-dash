@@ -370,6 +370,7 @@
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>Billing Doc</th>
+                                <th>Printed</th>
                             </tr>
                         </thead>
 
@@ -408,6 +409,11 @@
                                             <a style="color: blue" href="/Show/{{encrypt($item->bildoc)}}">
                                                 {{ $item->bildoc }}
                                             </a>
+                                        </td>
+                                        <td>
+                                            @if ($item->printed === '1')
+                                                ✅
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
