@@ -1045,28 +1045,27 @@ class Controller extends BaseController
                 $data= Update::get();
                 return view('ShowUpdateData')->with('data',$data);
             }
-            function SemiExportGT(Request $request)
-            {
-                try {
-                    $selectedItems = $request->input('selectedItems');
-                    $alldata = 'GTEXPORT';
+           function SemiExportGT(Request $request)
+{
+    try {
+        $selectedItems = $request->input('selectedItems');
+        $alldata = 'GTEXPORT';
 
+        if (!$selectedItems) {
+            throw new \Exception('No items selected for export.');
+        }
 
-                    if (!$selectedItems) {
-                        throw new \Exception('No items selected for export.');
-                    }
-
-                    foreach($selectedItems as $itemId) {
-                        Data::where('id', $itemId)->update([
-                            'printed' => 1,
-                        ]);
-                    }
-
-                    return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
-                } catch (\Exception $e) {
-                    return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
-                }
-            }
+        foreach($selectedItems as $itemId) {
+            Data::where('id', $itemId)->update([
+                'printed' => 1,
+            ]);
+        }
+        
+        return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
+    } catch (\Exception $e) {
+        return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
+    }
+}
             function SemiExport(Request $request)
             {
                 if($request->input('ob')){

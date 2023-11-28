@@ -314,55 +314,44 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+    <!-- Include SweetAlert2 CSS and JS from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
+<script>
+    // Display SweetAlert2 success message
     @if (session()->has('success'))
-        <script>
-            Swal.fire(
-                'Success',
-                '{{ session('success') }}',
-                'success'
-            );
-        </script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ session('success') }}',
+            icon: 'success',
+        });
     @endif
 
-    @if (session('error'))
-        <script>
-            Swal.fire(
-                'Error',
-                '{{ session('error') }}',
-                'error'
-            );
-        </script>
+    // Display SweetAlert2 error message
+    @if (session()->has('error'))
+        Swal.fire({
+            title: 'Error',
+            text: '{{ session('error') }}',
+            icon: 'error',
+        });
     @endif
 
-        @if (session()->has('success'))
-            <script>
-                Swal.fire(
-                    'Success',
-                    '{{ session('success') }}',
-                    'success'
-                );
-            </script>
-        @endif
+    // Reload the page after 2 seconds if success
+    @if (session('success'))
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
+    @endif
+</script>
 
-        @if (session('error'))
-            <script>
-                Swal.fire(
-                    'Error',
-                    '{{ session('error') }}',
-                    'error'
-                );
-            </script>
-        @endif
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div>
-                    <button type="button" onclick="selectAllUnprinted()">
-                        Select All Unprinted
-                    </button>
+                    <button style="color: #1eff00;" type="button" class="btn btn-primary" onclick="selectUnprinted()">Select Unprinted Only</button>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
@@ -437,74 +426,24 @@
             </div>
         </div>
 
-        @foreach ($data as $index => $item)
-            <script>
-                document.getElementById('copyIcon_{{ $index }}').addEventListener('click', function() {
-                    var gtnumText = document.getElementById('gtnum_{{ $index }}').textContent.trim();
-                    navigator.clipboard.writeText(gtnumText);
-                });
-            </script>
-        @endforeach
 
-        <script>
-     function selectAllUnprinted() {
-    var checkboxes = document.getElementsByClassName('custom-checkbox');
-
-    for (var i = 0; i < checkboxes.length; i++) {
-        var printedValue = checkboxes[i].closest('tr').querySelector('td:last-child').textContent.trim();
-        checkboxes[i].checked = printedValue !== '1' && !checkboxes[i].disabled;
-    }
-}
-
-
-         function selectAll() {
-            var checkboxes = document.getElementsByClassName('custom-checkbox');
-            var allChecked = true;
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (!checkboxes[i].checked) {
-                    allChecked = false;
-                    break;
-                }
-            }
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = !allChecked;
-            }
-        }
-
-    function submitForm(action) {
-    var form = document.getElementById('partialDeliveryForm');
-    form.action = '/' + action; // Change the form action based on the button clicked
-
-    if (action === 'SemiCopie') {
-        // If the action is 'SemiCopie', show a confirmation dialog
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'Once confirmed, the action cannot be undone!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, proceed!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // User clicked the confirm button, proceed with the action
-                form.submit(); // Submit the form
-            }
-        });
-    } else {
-        // If the action is not 'SemiCopie', directly submit the form without confirmation
-        form.submit(); // Submit the form
-    }
-}
-
-
-
-        </script>
     </x-app-layout>
 
     <script>
+ var data = @json($data);
+
+function selectUnprinted() {
+    var checkboxes = document.getElementsByClassName('custom-checkbox');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        const item = data[i];
+        if (item && item.printed !== '1') {
+            checkboxes[i].checked = !checkboxes[i].checked; // Toggle the checkbox state
+        }
+    }
+}
+
+
         function selectAll() {
              var checkboxes = document.getElementsByClassName('custom-checkbox');
              var allChecked = true;
