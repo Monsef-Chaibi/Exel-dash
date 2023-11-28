@@ -359,7 +359,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form id="exportForm" action="/ex" method="get">
+                <form id="exportForm" action="/SadadExport" method="get">
                     @csrf
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
 
