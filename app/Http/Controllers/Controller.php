@@ -104,6 +104,12 @@ class Controller extends BaseController
                   ->get();
         return view('SadadRejct')->with('data', $data);
     }
+    function SadadStatus(){
+
+        $data = Data::where('paid', '!=' ,'1')
+                  ->get();
+        return view('SadadStatus')->with('data', $data);
+    }
     function AddData(){
         return view('AddData');
     }

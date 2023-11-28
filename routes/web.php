@@ -102,6 +102,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/SadadA', [Controller::class, 'SadadA'])->name('SadadA');
     Route::get('/SemiExportGT', [Controller::class, 'SemiExportGT'])->name('SemiExportGT');
     Route::get('/processConfirmation', [Controller::class, 'processConfirmation'])->name('processConfirmation');
+    Route::get('/SadadStatus', [Controller::class, 'SadadStatus'])->name('SadadStatus');
 
 });
 // Route for user 2 role 4
