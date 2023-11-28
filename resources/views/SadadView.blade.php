@@ -308,6 +308,29 @@
             cursor: not-allowed;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+
+    @if (session()->has('success'))
+        <script>
+            Swal.fire(
+                'Success',
+                '{{ session('success') }}',
+                'success'
+            )
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            Swal.fire(
+                'Error',
+                '{{ session('error') }}',
+                'error'
+            )
+        </script>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -316,8 +339,8 @@
                 <div class="text-gray-900 dark:text-gray-100">
                     <br>
                     <br>
-                    <form class="form-container" action="/importSadad" method="get" enctype='multipart/form-data'>
-
+                    <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
+                        @csrf
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
                         <input type="file" name="file" style="border-radius:10px;">
                         <button type="submit"> Dne </button>

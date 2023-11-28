@@ -29,12 +29,6 @@ class IDImport implements ToModel
             'idnum'  => $row[12],
             // Add other fields you want to update here
         ]);
-
-        // You can return a new instance of your Data model if needed
-        // return new Data([
-        //     'regist' => $row[0],
-        //     'idnum'  => $row[1],
-        // ]);
     }
         // Returning null as the import job doesn't need to return a model instance
         return null;

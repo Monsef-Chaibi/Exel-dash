@@ -1,11 +1,15 @@
 <?php
 
+namespace App\Imports;
+
 use App\Models\Data;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class Sadad implements ToModel
 {
     /**
@@ -17,7 +21,7 @@ class Sadad implements ToModel
         // Assuming $row contains the necessary data from the Excel file
 
         // Find the Data model by gtnum
-        $data = Data::where('gtnum', $row[1])->first();
+        $data = DB::table('data')->where('gtnum', $row[1])->first();
 
         // If the Data model is found, update the fields
         if ($data) {
