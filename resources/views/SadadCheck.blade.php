@@ -359,9 +359,9 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form>
-                    <a href="/AddContrat">
-                        <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Export &rarr;</button>
-                    </a>
+
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Export &rarr;</button>
+
                 <div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
@@ -422,6 +422,10 @@
                                 </tr>
                         </tbody>
                     </table>
+                    <div style="display: flex;justify-content:center">
+                        <button style="color:rgb(103, 255, 103);font-size:30px" type="submit" class="modal__btn">Export &rarr;</button>
+                    </div>
+
                 </form>
                 </div>
             </div>
