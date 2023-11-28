@@ -410,7 +410,7 @@
                                                 {{ $item->bildoc }}
                                             </a>
                                         </td>
-                                        <td>
+                                        <td style="text-align: center">
                                             @if ($item->printed === '1')
                                                 ✅
                                             @endif
@@ -418,7 +418,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="7" style="text-align: center">
+                                    <td colspan="8" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr>
@@ -460,7 +460,8 @@
                 checkboxes[i].checked = !allChecked;
             }
         }
-        function submitForm(action) {
+
+    function submitForm(action) {
     var form = document.getElementById('partialDeliveryForm');
     form.action = '/' + action; // Change the form action based on the button clicked
 
