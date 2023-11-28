@@ -366,7 +366,7 @@
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button onclick="selectAll()">Select All</button></th>
+                                <th><button type="button" onclick="selectAll()">Select All</button></th>
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
