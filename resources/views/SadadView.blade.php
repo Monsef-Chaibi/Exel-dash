@@ -351,7 +351,7 @@
                                 </a>
                             </div>
                             <div class="ag-courses_item">
-                                <a href="/SadadView" SadadCheck class="ag-courses-item_link">
+                                <a href="/SadadRejct" SadadCheck class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
