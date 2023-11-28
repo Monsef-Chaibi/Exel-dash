@@ -322,7 +322,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        GT Sent To Traffic : <span id="vl"></span>
+                                        Sadad Approved : <span id="vl"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -339,12 +339,12 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        GT Received : <span id="value"></span>
+                                       Sadad Sent : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
-                                        <span id="up" class="ag-courses-item_date">
+                                        <span id="dt1" class="ag-courses-item_date">
 
                                         </span>
                                     </div>
@@ -355,7 +355,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad : <span id="vl2"></span>
+                                        Sadad Rejected: <span id="vl2"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -374,3 +374,28 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+     $(document).ready(function() {
+        function updateLiveValue1() {
+            $.ajax({
+                url: "{{ route('Sadadlive') }}",
+                method: "GET",
+                success: function(data) {
+                $('#vl').text(data.value);
+                $('#dt').text(data.up);
+                $('#vl1').text(data.value2);
+                $('#dt1').text(data.up2);
+                $('#vl2').text(data.value3);
+                $('#dt2').text(data.up3);
+
+                }
+            });
+        }
+
+        // Update live value initially
+        updateLiveValue1();
+
+        // Update live value every 5 seconds (adjust this interval as needed)
+        setInterval(updateLiveValue1, 5000);
+    });
+</script>
