@@ -401,6 +401,7 @@
                                 <th>Registering fee</th>
                                 <th>Registration Type</th>
                                 <th>Status</th>
+                                <th>Done</th>
                             </tr>
                         </thead>
 
@@ -440,15 +441,19 @@
                                             {{ $item->paidtype }}
                                         </td>
                                         <td style="text-align:center">
+                                            @if ($item->paid === '2')
+                                            ✅
+                                            @else
                                             ❌
+                                            @endif
                                         </td>
-                                        {{-- <td style="text-align: center">
+                                        <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
                                             @endif
-                                        </td> --}}
+                                        </td>
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach

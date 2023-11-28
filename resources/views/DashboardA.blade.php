@@ -347,7 +347,7 @@ body {
                         </div>
 
                         <div class="ag-courses_item">
-                            <a href="/CheckItemsA" class="ag-courses-item_link">
+                            <a href="/SadadStatus" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
