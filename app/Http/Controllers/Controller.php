@@ -1060,7 +1060,7 @@ class Controller extends BaseController
                 'printed' => 1,
             ]);
         }
-        
+
         return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
     } catch (\Exception $e) {
         return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
@@ -1557,14 +1557,14 @@ class Controller extends BaseController
                     $cnd1 = explode(',', $cnd);
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
-                    $liveValue2 = Data::where('paid','2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::where('paid','2')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::whereNotNull('paid')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::whereNotNull('paid')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                 }else
                 {
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->latest('dateset')->value('dateset');
-                    $liveValue2 = Data::where('paid','2')->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::where('paid','2')->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::whereNotNull('paid')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::whereNotNull('paid')->latest('datepaid')->value('datepaid');
                 }
 
                 return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2]);
