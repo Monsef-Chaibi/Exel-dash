@@ -1227,7 +1227,9 @@ class Controller extends BaseController
                 $up= Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
                 $liveValue1 = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                 $up1= Data::where('paid', '1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
-                return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1]);
+                $liveValue2 = Data::where('paid','!=', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up2= Data::where('paid','!=', '1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1,'value2' => $liveValue2, 'up2' => $up2]);
 
                 }
                 else
@@ -1236,7 +1238,9 @@ class Controller extends BaseController
                     $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
                     $liveValue1 = Data::where('paid', '1')->count(); // Replace YourModel and $id with your actual model and ID
                     $up1= Data::where('paid', '1')->latest('datepaid')->value('datepaid');
-                    return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1]);
+                    $liveValue2 = Data::where('paid','!=', '1')->count(); // Replace YourModel and $id with your actual model and ID
+                $up2= Data::where('paid','!=', '1')->latest('datepaid')->value('datepaid');
+                    return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1,'value2' => $liveValue2, 'up2' => $up2]);
                 }
 
             }

@@ -327,15 +327,14 @@ body {
                                 </div>
                             </a>
                         </div>
-                        <div class="ag-courses_item">
 
-                        </div>
+
                         <div class="ag-courses_item">
                             <a href="/SadadA" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
 
                                 <div class="ag-courses-item_title">
-                                   Sadad  : <span id="value1"></span>
+                                   Sadad Sent : <span id="value1"></span>
                                 </div>
 
                                 <div class="ag-courses-item_date-box">
@@ -347,6 +346,22 @@ body {
                             </a>
                         </div>
 
+                        <div class="ag-courses_item">
+                            <a href="/CheckItemsA" class="ag-courses-item_link">
+                                <div class="ag-courses-item_bg"></div>
+
+                                <div class="ag-courses-item_title">
+                                   Sadad Status : <span id="value2"></span>
+                                </div>
+
+                                <div class="ag-courses-item_date-box">
+                                    Last Update :
+                                    <span id="up2" class="ag-courses-item_date">
+
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
 
                     </div>
                 </div>
@@ -435,6 +450,8 @@ body {
                     $('#up').text(data.up);
                     $('#value1').text(data.value1);
                     $('#up1').text(data.up1);
+                    $('#value2').text(data.value2);
+                    $('#up2').text(data.up2);
                 }
             });
         }
