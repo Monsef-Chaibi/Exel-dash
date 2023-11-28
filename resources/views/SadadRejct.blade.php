@@ -400,6 +400,7 @@
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>Registration Type</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
 
@@ -437,6 +438,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
+                                        </td>
+                                        <td style="text-align:center">
+                                            ❌
                                         </td>
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
