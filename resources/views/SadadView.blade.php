@@ -307,6 +307,40 @@
             -webkit-filter: saturate(0.2) opacity(0.5);
             cursor: not-allowed;
         }
+
+/* CSS */
+.button-37 {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
+  }
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -342,8 +376,8 @@
                     <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
                         @csrf
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
-                        <input type="file" name="file" style="border-radius:10px;">
-                        <button type="submit"> Dne </button>
+                        <input type="file" name="file" style="border-radius:10px;width:350px">
+                        <button class="button-37" type="submit"> Done </button>
                     </form>
                     <br>
                     <br>

@@ -18,21 +18,18 @@ class Sadad implements ToModel
      */
     public function model(array $row)
     {
-        // Assuming $row contains the necessary data from the Excel file
 
-        // Find the Data model by gtnum
-        $data = DB::table('data')->where('gtnum', $row[1])->first();
+            DB::table('data')
+            ->where('gtnum', $row[0])
+            ->update([
+                'paid' => 1,
+                'paidby' =>  Auth::user()->id,
+                'datepaid' => Carbon::now('Asia/Riyadh'),
+                'paidtype'  => $row[1],
 
-        // If the Data model is found, update the fields
-        if ($data) {
-            $data->paid = 1;
-            $data->paidby = Auth::user()->id;
-            $data->datepaid = Carbon::now('Asia/Riyadh');
-            $data->paidtype = $row[2];
+            ]);
 
-            $data->save();
-        }
 
-        return $data;
+        return null;
     }
 }
