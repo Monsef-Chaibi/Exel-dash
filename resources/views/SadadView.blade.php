@@ -316,11 +316,11 @@
                 <div class="text-gray-900 dark:text-gray-100">
                     <br>
                     <br>
-                    <form action="" >
+                    <form class="form-container" action="/importSadad" method="get" enctype='multipart/form-data'>
 
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
                         <input type="file" name="file" style="border-radius:10px;">
-
+                        <button type="submit"> Dne </button>
                     </form>
                     <br>
                     <br>
