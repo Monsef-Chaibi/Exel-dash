@@ -416,8 +416,7 @@
                                             <input class="custom-checkbox" style="border-radius:5px"
                                             type="checkbox" name="selectedItems[]"
                                             value="{{ $item->id }}"
-                                            data-paidtype="{{ $item->paidtype }}"
-                                            onchange="updateSelectedValue(this)">
+                                            >
 
 
                                         </td>
@@ -483,31 +482,6 @@
                 }
             }
         }
-        function updateSelectedValue(checkbox) {
-        if (checkbox.checked) {
-            const paidType = checkbox.getAttribute('data-paidtype');
-
-            // Make an AJAX request to your controller with the selected value
-            // Example using jQuery:
-            $.ajax({
-                url: '/SemiExportA',
-                type: 'get',
-                data: {
-                    selectedValue: paidType
-                    // Add other data if needed
-                },
-                success: function (response) {
-                    // Handle success if needed
-                    console.log(response);
-                },
-                error: function (error) {
-                    // Handle error if needed
-                    console.error(error);
-                }
-            });
-        }
-    }
-
              function selectDoneRows() {
                 var checkboxes = document.getElementsByClassName('custom-checkbox');
 
