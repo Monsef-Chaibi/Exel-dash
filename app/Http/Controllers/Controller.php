@@ -2014,8 +2014,8 @@ class Controller extends BaseController
                                 return redirect()->back()->with('error', 'One or more items contain an amount less than 1 .');
                             }
 
-                            if ($sumOfAmountsGreaterThan1000 < 1000) {
-                                return redirect()->back()->with('error', 'Total amounts less than 1000 .');
+                            if ($sumOfAmountsGreaterThan1000 < 1) {
+                                return redirect()->back()->with('error', 'Total amounts less than 1 .');
                             }
 
                             if (!$allPaidTypesDifferentThan1And2) {

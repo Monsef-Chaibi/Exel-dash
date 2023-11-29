@@ -428,7 +428,7 @@
 
                         </div>
                     </div>
-                    <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
+                    <form class="form-container" action="{{ route('importSadad') }}" method="post" enctype='multipart/form-data'>
 
                         @csrf
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File
@@ -439,7 +439,7 @@
 
                     @if (isset($importedData))
 
-                        <form action="/Sadad" id="myForm" method="get">
+                        <form action="{{ route('Sadad') }}"  method="post">
                             @csrf
                             <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
                                 <thead>
@@ -605,7 +605,7 @@
      selectedItems.each(function () {
          sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
      });
-     var sumGreaterThan1000 = sumOfRegistration >= 1000;
+     var sumGreaterThan1000 = sumOfRegistration >= 1;
 
      // Check 3: Paid column different than 1 and 2
      var paidTypesValid = selectedItems.filter(':checked').filter(function () {
