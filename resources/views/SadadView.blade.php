@@ -429,6 +429,7 @@
                         </div>
                     </div>
                     <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
+
                         @csrf
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File
                             :</label>
