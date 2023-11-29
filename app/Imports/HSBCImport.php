@@ -35,9 +35,9 @@ class HSBCImport implements ToModel, WithHeadingRow
 
                 // Store the custom error message in the array
                 $this->customerReferences[] = "Due amount (SAR): " . $row['due_amount_sar'] .
-                    " Request type: " . $row['request_type'] .
-                    " GT Num: " . $row['customer_reference'] .
-                    " Type of error: " . $errorType;
+                    " || Request type: " . $row['request_type'] .
+                    " || GT Num: " . $row['customer_reference'] .
+                    " || Type of error: " . $errorType;
             }
 
 
