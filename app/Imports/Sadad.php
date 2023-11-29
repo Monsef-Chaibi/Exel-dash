@@ -26,6 +26,7 @@ class Sadad implements ToModel
                 'paidby' =>  Auth::user()->name,
                 'datepaid' => Carbon::now('Asia/Riyadh'),
                 'paidtype'  => $row[1],
+               
 
             ]);
 
