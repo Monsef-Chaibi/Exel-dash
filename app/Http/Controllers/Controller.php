@@ -9,6 +9,7 @@ use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Imports\IDImport;
 use App\Imports\Sadad;
+use App\Imports\HSBCImport;
 use App\Models\Brand;
 use App\Models\ContratUser;
 use App\Models\Data;
@@ -2077,6 +2078,19 @@ class Controller extends BaseController
                                 if (session('error')) {
                                     return redirect()->back()->with('error', session('error'));
                                 }
+
+                                return back()->with('success', 'Data imported successfully');
+                            } catch (\Exception $e) {
+                                return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+                            }
+                        }
+                        public function importHSBC(Request $request)
+                        {
+                            try {
+                                // Import data from the Excel file using the Sadad class
+                                Excel::import(new HSBCImport, $request->file('file'));
+
+                                // Check if there were any validation errors during import
 
                                 return back()->with('success', 'Data imported successfully');
                             } catch (\Exception $e) {
