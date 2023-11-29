@@ -18,28 +18,30 @@ class Sadad implements ToModel
      */
     public function model(array $row)
     {
-        // Check if all columns with matching GT number have 'paid' value not equal to 1 and 2
         $gtNumber = $row[0];
+
+        // Check if there are invalid 'paid' values
         $invalidPaidValues = DB::table('data')
             ->where('gtnum', $gtNumber)
             ->whereIn('paid', [1, 2])
             ->get();
 
         if ($invalidPaidValues->count() > 0) {
-            // Validation error, return null
-            return null;
+            // Validation error, throw an exception
+            throw new \Exception("The request has been used before with a GT number $gtNumber");
         }
 
-        // Check if there are more than one row with the same GT number in the 'regist' column
-        $RegistValues = DB::table('data')
+        // Check if there are more than one row with the same GT number and 'regist' less than 1
+        $registValues = DB::table('data')
         ->where('gtnum', $gtNumber)
-        ->where('regist', '<', 1)
+        ->where(function ($query) {
+            $query->where('regist', '<', 1)
+                ->orWhereNull('regist');
+        })
         ->count();
-
-
-        if ($RegistValues > 0) {
-            // Validation error, return null
-            return null;
+        if ($registValues > 0) {
+            // Validation error, throw an exception
+            throw new \Exception("There is no vehicle plate fees  $gtNumber");
         }
 
         // Proceed with updating the database if all checks pass
@@ -52,6 +54,7 @@ class Sadad implements ToModel
                 'paidtype' => $row[1],
             ]);
 
+        // Return success model or null if no error occurred
         return null;
     }
 
