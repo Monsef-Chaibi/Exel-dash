@@ -2071,9 +2071,11 @@ class Controller extends BaseController
                         public function importSadad(Request $request)
                         {
                             try {
-                                // Import data from the Excel file using the Sadad class
-                                Excel::import(new Sadad, $request->file('file'));
+                                $import = new Sadad();
+                                Excel::import($import, $request->file('file'));
 
+                                $importedData = $import->getImportedData();
+                                dd($importedData);
                                 // Check if there were any validation errors during import
                                 if (session('error')) {
                                     return redirect()->back()->with('error', session('error'));

@@ -1,63 +1,50 @@
 <?php
-
 namespace App\Imports;
 
-use App\Models\Data;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\ToModel;
 
 class Sadad implements ToModel
 {
+    protected $importedData = [];
+
     /**
      * @param array $row
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function model(array $row)
     {
-        $gtNumber = $row[0];
+        $gtnum = $row[0];
+        $paidValue = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('paid');
 
-        // Check if there are invalid 'paid' values
-        $invalidPaidValues = DB::table('data')
-            ->where('gtnum', $gtNumber)
-            ->whereIn('paid', [1, 2])
-            ->get();
+        $registValue = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('regist');
 
-        if ($invalidPaidValues->count() > 0) {
-            // Validation error, throw an exception
-            throw new \Exception("The request has been used before with a GT number $gtNumber");
-        }
+        return [
+            'gtnum' => $gtnum,
+            'paid' => $paidValue,
+            'regist' => $registValue
+        ];
+        // Store the first and second rows in the $importedData array
+        $this->importedData[] = [
+            'GTnum' => $row[0],
+            'rgtype' => $row[1],
+        ];
 
-        // Check if there are more than one row with the same GT number and 'regist' less than 1
-        $registValues = DB::table('data')
-        ->where('gtnum', $gtNumber)
-        ->where(function ($query) {
-            $query->where('regist', '<', 1)
-                ->orWhereNull('regist');
-        })
-        ->count();
-        if ($registValues > 0) {
-            // Validation error, throw an exception
-            throw new \Exception("There is no vehicle plate fees  $gtNumber");
-        }
-
-        // Proceed with updating the database if all checks pass
-        DB::table('data')
-            ->where('gtnum', $row[0])
-            ->update([
-                'paid' => 1,
-                'paidby' => Auth::user()->name,
-                'datepaid' => Carbon::now('Asia/Riyadh'),
-                'paidtype' => $row[1],
-            ]);
-
-        // Return success model or null if no error occurred
+        // Return null to indicate that no Eloquent model should be created
         return null;
     }
 
-
-
+    /**
+     * Get the imported data.
+     *
+     * @return array
+     */
+    public function getImportedData()
+    {
+        return $this->importedData;
+    }
 }
