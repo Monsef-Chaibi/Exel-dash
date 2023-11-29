@@ -141,7 +141,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/Sadadlive', [Controller::class, 'Sadadlive'])->name('Sadadlive');
     Route::get('/done', [Controller::class, 'done'])->name('done');
     Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
-    Route::post('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
+    Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
     Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
 

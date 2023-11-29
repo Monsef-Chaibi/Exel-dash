@@ -428,8 +428,7 @@
 
                         </div>
                     </div>
-                    <form class="form-container" action="{{ route('importSadad') }}" method="post" enctype='multipart/form-data'>
-
+                    <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
                         @csrf
                         <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File
                             :</label>
@@ -439,8 +438,8 @@
 
                     @if (isset($importedData))
 
-                        <form action="{{ route('Sadad') }}"  method="post">
-                            @csrf
+                        <form action="/Sadad" id="" method="get">
+                             @csrf
                             <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
                                 <thead>
                                     <tr class="fr">
