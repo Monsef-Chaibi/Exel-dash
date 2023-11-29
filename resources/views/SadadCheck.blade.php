@@ -398,8 +398,10 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
+                                <th>ID</th>
                                 <th>Registration Type</th>
-                                <th>Done</th>
+                                <th>Upload</th>
+                                <th>Paid</th>
                             </tr>
                         </thead>
 
@@ -438,6 +440,9 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
                                         <input type="hidden" name="paidtype" value=" {{ $item->paidtype }}" id="">
@@ -447,6 +452,9 @@
                                             @else
                                                 ❌
                                             @endif
+                                        </td>
+                                        <td>
+                                            
                                         </td>
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>

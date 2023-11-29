@@ -399,8 +399,11 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
+                                <th>ID</th>
                                 <th>Registration Type</th>
                                 <th>Status</th>
+                                {{-- <th>By</th>
+                                <th>IN</th> --}}
                             </tr>
                         </thead>
 
@@ -437,11 +440,20 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
                                         <td style="text-align:center">
                                             ⌛
                                         </td>
+                                        {{-- <td data-th="Supplier Code">
+                                            {{ $item->paidby }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->datepaid }}
+                                        </td> --}}
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

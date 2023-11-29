@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Data;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -15,6 +16,43 @@ class HSBCImport implements ToModel, WithHeadingRow
     {
 
         $this->rowCount++;
+
+        $gtnum = $row['customer_reference'];
+        
+        $paidValue = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('paid');
+
+        $registValue = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('regist');
+
+        $idnum = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('idnum');
+
+        $product = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('product');
+
+        $vin = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('vin');
+
+        $id = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('id');
+
+        $data = [
+            'id' => $id,
+            'gtnum' => $gtnum,
+            'paid' => $paidValue,
+            'regist' => $registValue,
+            'rgtype' => $row[1],
+            'idnum' => $idnum,
+            'product' => $product,
+            'vin' => $vin,
+        ];
 
         if ($this->rowCount >= 1 ) {
             $dbRecord = Data::where('gtnum', $row['customer_reference'])->first();
