@@ -285,9 +285,16 @@ body {
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <a href="/AddContrat">
-                <button style="color:rgb(103, 255, 103);padding:20px;font-size:30px" type="submit" class="modal__btn">Add Items &rarr;</button>
-            </a>
+            <div style="display: flex; justify-content: space-between;">
+                <a href="/AddContrat">
+                    <button style="color:rgb(103, 255, 103); padding: 20px; font-size: 30px" type="submit" class="modal__btn">Add Items &rarr;</button>
+                </a>
+
+                <a href="/CheckHSBC">
+                    <button style="color:rgb(103, 255, 103); padding: 20px; font-size: 30px" type="submit" class="modal__btn">Check HSBC Sheet &rarr;</button>
+                </a>
+            </div>
+
             <div class="text-gray-900 dark:text-gray-100">
                 <div class="ag-format-container" >
                     <div class="ag-courses_box" >
