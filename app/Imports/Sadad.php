@@ -23,7 +23,7 @@ class Sadad implements ToModel
             ->where('gtnum', $row[0])
             ->update([
                 'paid' => 1,
-                'paidby' =>  Auth::user()->id,
+                'paidby' =>  Auth::user()->name,
                 'datepaid' => Carbon::now('Asia/Riyadh'),
                 'paidtype'  => $row[1],
 

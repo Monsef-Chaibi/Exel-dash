@@ -1209,7 +1209,7 @@ class Controller extends BaseController
             }
             public function NumNonCheck()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                 $cnd=auth()->user()->cond;
                 $cnd1 = explode(',', $cnd);
                 $liveValue = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->where('stuser2', 1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1227,7 +1227,7 @@ class Controller extends BaseController
             }
             public function NumCheckA()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                 $cnd=auth()->user()->cond;
                 $cnd1 = explode(',', $cnd);
                 $liveValue = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1253,7 +1253,7 @@ class Controller extends BaseController
             }
             public function archivelive()
             {
-                if (auth()->user()->cond != null) {
+                if (auth()->user()->cond != Null && auth()->user()->cond !== '0') {
                     $cnd = auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
 
@@ -1308,7 +1308,7 @@ class Controller extends BaseController
             }
             public function archivestatsgtdelivered()
             {
-                if (auth()->user()->cond != null) {
+                if (auth()->user()->cond != Null && auth()->user()->cond !== '0') {
 
                     $cnd = auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
@@ -1325,7 +1325,7 @@ class Controller extends BaseController
             }
             public function archivestatsgtsttrafic()
             {
-                if (auth()->user()->cond != null) {
+                if (auth()->user()->cond != Null && auth()->user()->cond !== '0') {
 
                     $cnd = auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
@@ -1342,7 +1342,7 @@ class Controller extends BaseController
             }
             public function archivestatsiostimarah()
             {
-                if (auth()->user()->cond != null) {
+                if (auth()->user()->cond != Null && auth()->user()->cond !== '0') {
 
                     $cnd = auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
@@ -1359,7 +1359,7 @@ class Controller extends BaseController
             }
             public function NumRemoveAdmin()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                 $cnd=auth()->user()->cond;
                 $cnd1 = explode(',', $cnd);
                 $liveValue = Data::whereNotNull('remove')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1388,7 +1388,7 @@ class Controller extends BaseController
             }
             public function notcheck()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::whereNull('check')->whereIn('plantkey', $cnd1)->where('status', 1)->where('stuser2', 1)->get();
@@ -1490,7 +1490,7 @@ class Controller extends BaseController
             }
             public function Setcheck()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::whereNotNull('check')->whereIn('plantkey', $cnd1)->get();
@@ -1507,7 +1507,7 @@ class Controller extends BaseController
             }
             public function NonCheckItems()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::whereNotNull('status')->whereNull('stuser2')->whereIn('plantkey', $cnd1)->get();
@@ -1523,7 +1523,7 @@ class Controller extends BaseController
             }
             public function CheckItemsA()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->get();
@@ -1539,7 +1539,7 @@ class Controller extends BaseController
             }
             public function SadadA()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->get();
@@ -1555,7 +1555,7 @@ class Controller extends BaseController
             }
             public function RmoveItems()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::where('remove',1)->whereIn('plantkey', $cnd1)->get();
@@ -1571,7 +1571,7 @@ class Controller extends BaseController
             }
             public function CheckItemsA1()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $data = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->get();
@@ -1589,7 +1589,7 @@ class Controller extends BaseController
 
             public function Noncheck()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $liveValue = Data::whereNotNull('status')->whereNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1604,7 +1604,7 @@ class Controller extends BaseController
             }
             public function CheckA1()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1623,7 +1623,7 @@ class Controller extends BaseController
             }
             public function Sadadlive()
             {
-                if(auth()->user()->cond != Null){
+                if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $paidValues = ['2', '22'];
@@ -2063,7 +2063,7 @@ class Controller extends BaseController
                         }
                         public function importSadad(Request $request)
                         {
-                           
+
                             try {
 
                                 // Import data from the Excel file using the IDImport class
