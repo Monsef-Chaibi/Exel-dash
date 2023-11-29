@@ -371,16 +371,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <h1 style="text-align:center;color:#1eff00;font-size:25px;padding:10px;  font-weight: bold;">SADAD</h1>
                 <div class="text-gray-900 dark:text-gray-100">
-                    <br>
-                    <br>
-                    <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
-                        @csrf
-                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
-                        <input type="file" name="file" style="border-radius:10px;width:350px">
-                        <button class="button-37" type="submit"> Done </button>
-                    </form>
-                    <br>
-                    <br>
+
 
                     <div class="ag-format-container">
                         <div class="ag-courses_box">
@@ -437,6 +428,12 @@
 
                         </div>
                     </div>
+                    <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
+                        @csrf
+                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
+                        <input type="file" name="file" style="border-radius:10px;width:350px">
+                        <button class="button-37" type="submit"> Done </button>
+                    </form>
                 </div>
             </div>
         </div>

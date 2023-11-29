@@ -1146,10 +1146,12 @@ class Controller extends BaseController
                     }
                 }
                 if($request->input('sadad')){
-                    dd( $request->input('selectedValue') );
+
                     try {
                         $selectedItems = $request->input('selectedItems');
-                        $alldata = $request->input('type');
+                        $firstId = $selectedItems[0];
+                        $firstRecord = Data::find($firstId);
+                        $alldata = $firstRecord->paidtype;
                         if (!$selectedItems) {
                             throw new \Exception('No items selected for export.');
                         }

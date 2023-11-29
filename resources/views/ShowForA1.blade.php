@@ -1059,7 +1059,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
                 <option value="Private">Private </option>
-                <option value="Private transfer">Private transfer</option>
+                <option value="Private transport">Private transport</option>
                 <option value="Public transport">Public transport</option>
             </select>
             <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">

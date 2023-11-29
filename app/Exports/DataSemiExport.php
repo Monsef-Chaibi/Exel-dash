@@ -89,7 +89,7 @@ class DataSemiExport implements FromCollection, WithHeadings
 
             return $exportData;
         }
-        if ($this->alldata === 'Private Transfer') {
+        if ($this->alldata === 'Private transport') {
             $exportData = Data::whereIn('id', $this->selectedItems)
                 ->get(['gtnum', 'idnum']);
 
@@ -109,7 +109,7 @@ class DataSemiExport implements FromCollection, WithHeadings
 
             return $exportData;
         }
-        if ($this->alldata === 'Public Transfer') {
+        if ($this->alldata === 'Public transport') {
             $exportData = Data::whereIn('id', $this->selectedItems)
                 ->get(['gtnum', 'idnum']);
 
@@ -151,7 +151,7 @@ class DataSemiExport implements FromCollection, WithHeadings
             'Receiver_Plant',
         ];
     }
-    if ($this->alldata === 'Private' || $this->alldata === 'Public Transfer' || $this->alldata === 'Private Transfer') {
+    if ($this->alldata === 'Private' || $this->alldata === 'Public transport' || $this->alldata === 'Private transport') {
         return [
             'MOI SERVICE' ,
             'SERVICE TYPE' ,

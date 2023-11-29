@@ -440,6 +440,7 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
+                                        <input type="hidden" name="paidtype" value=" {{ $item->paidtype }}" id="">
                                         <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
