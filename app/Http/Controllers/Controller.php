@@ -2075,13 +2075,8 @@ class Controller extends BaseController
                                 Excel::import($import, $request->file('file'));
 
                                 $importedData = $import->getImportedData();
-                                dd($importedData);
-                                // Check if there were any validation errors during import
-                                if (session('error')) {
-                                    return redirect()->back()->with('error', session('error'));
-                                }
 
-                                return back()->with('success', 'Data imported successfully');
+                                return view('SadadView')->with('importedData',   $importedData);
                             } catch (\Exception $e) {
                                 return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                             }

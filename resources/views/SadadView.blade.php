@@ -308,39 +308,39 @@
             cursor: not-allowed;
         }
 
-/* CSS */
-.button-37 {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 10px 25px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+        /* CSS */
+        .button-37 {
+            background-color: #13aa52;
+            border: 1px solid #13aa52;
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            outline: none;
+            outline: 0;
+            padding: 10px 25px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 150ms, box-shadow 150ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
 
-.button-37:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-  transform: translateY(-2px);
-}
+        .button-37:hover {
+            box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+            transform: translateY(-2px);
+        }
 
-@media (min-width: 768px) {
-  .button-37 {
-    padding: 10px 30px;
-  }
-}
+        @media (min-width: 768px) {
+            .button-37 {
+                padding: 10px 30px;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -398,7 +398,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                       Sadad Sent : <span id="vl1"></span>
+                                        Sadad Sent : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -430,28 +430,141 @@
                     </div>
                     <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
                         @csrf
-                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
+                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File
+                            :</label>
                         <input type="file" name="file" style="border-radius:10px;width:350px">
                         <button class="button-37" type="submit"> Done </button>
                     </form>
+                    @if (isset($importedData))
+
+                        <form action="/Sadad" id="myForm" method="get">
+                            <label for="" style="margin-top:25px">Registration Type :</label>
+                            <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
+                                <option value="Private">Private </option>
+                                <option value="Private transport">Private transport</option>
+                                <option value="Public transport">Public transport</option>
+                            </select>
+                            <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
+                                <thead>
+                                    <tr class="fr">
+                                        <th><button type="button" onclick="selectAllpop()">Select All</button></th>
+                                        <th>Product</th>
+                                        <th>VIN</th>
+                                        <th>GT Number</th>
+                                        <th>Registration</th>
+                                        <th>ID</th>
+
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @csrf
+                                    @foreach ($importedData as $item)
+                                        {{-- @if ($item->paid !== '1' && $item->paid !== '2') --}}
+                                        <tr>
+                                            {{-- @if ($item->paid === '1' || $item->paid === '2')
+                                                            <td>
+
+                                                            </td>
+                                                        @else --}}
+                                            <td data-th="Supplier Name">
+                                                <input class="custom-" style="border-radius:5px" type="checkbox"
+                                                    name="selectedItems[]" value="{{ $item->id }}">
+                                            </td>
+                                            {{-- @endif --}}
+                                            <td data-th="Supplier Name">
+                                                {{ $item->product }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item->vin }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item->gtnum }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item->regist }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item->idnum }}
+                                            </td>
+
+                                            <input type="hidden" name="paid" value="{{ $item->paid }}">
+
+                                            @if ($item->paid === '1')
+                                                <td style="color: blue" data-th="Supplier Code">
+                                                    Sent
+                                                </td>
+                                            @elseif ($item->paid === '2')
+                                                <td style="color: rgb(38, 255, 38)" data-th="Supplier Code">
+                                                    Accepted
+                                                </td>
+                                            @elseif ($item->paid === '3')
+                                                <td style="color: red" data-th="Supplier Code">
+                                                    Rejected
+                                                </td>
+                                            @else
+                                                <td data-th="Supplier Code">
+
+                                                </td>
+                                            @endif
+                                        </tr>
+                                        {{-- @endif --}}
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <table style="font-size:20px; margin-left:20px;text-align:center;margin-bottom:50px">
+                                <tr>
+                                    <td style="width:400px">
+                                        <p>There are vehicle plate fees</p>
+                                    </td>
+                                    <td style="width:700px;text-align:left">
+                                        <span id="plateFeesCheck"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:400px">
+                                        <p>The fee amount is correct </p>
+                                    </td>
+                                    <td style="width:700px;text-align:left">
+                                        <span id="amountCheck"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:400px">
+                                        <p>The request is not used</p>
+                                    </td>
+                                    <td style="width:700px;text-align:left">
+                                        <span id="requestCheck"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                            </p>
+
+
+
+                            <button type="submit" style="font-size:50px;margin-left:60px" id="submitButton"
+                                disabled>Save &rarr;</button>
+
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
 <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
         function updateLiveValue1() {
             $.ajax({
                 url: "{{ route('Sadadlive') }}",
                 method: "GET",
                 success: function(data) {
-                $('#vl').text(data.value);
-                $('#dt').text(data.up);
-                $('#vl1').text(data.value2);
-                $('#dt1').text(data.up2);
-                $('#vl2').text(data.value3);
-                $('#dt2').text(data.up3);
+                    $('#vl').text(data.value);
+                    $('#dt').text(data.up);
+                    $('#vl1').text(data.value2);
+                    $('#dt1').text(data.up2);
+                    $('#vl2').text(data.value3);
+                    $('#dt2').text(data.up3);
 
                 }
             });

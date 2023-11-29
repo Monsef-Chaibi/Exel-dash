@@ -27,12 +27,27 @@ class Sadad implements ToModel
             ->where('gtnum', $gtnum)
             ->value('idnum');
 
+        $product = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('product');
+
+        $vin = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('vin');
+
+        $id = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('id');
+
         $data = [
+            'id' => $id,
             'gtnum' => $gtnum,
             'paid' => $paidValue,
             'regist' => $registValue,
             'rgtype' => $row[1],
             'idnum' => $idnum,
+            'product' => $product,
+            'vin' => $vin,
         ];
 
         // Store the data in the $importedData array
