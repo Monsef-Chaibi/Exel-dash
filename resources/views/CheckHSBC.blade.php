@@ -122,6 +122,7 @@
                     </div>
                 </form>
                 @if(isset($customerReferences))
+                <h1 style="color: #ff0000;text-align:center;font-size:25">Error</h1>
                 @foreach($customerReferences as $reference)
                     <p style="color: #1eff00;text-align:center">
                         {{ $reference }}
