@@ -120,6 +120,9 @@ class Controller extends BaseController
     function archive(){
         return view('archive');
     }
+    function CheckHSBC(){
+        return view('CheckHSBC');
+    }
     function AddALJUF(){
         $latestRecord = Aljuf::whereNotNull('created_at')->latest()->first();
 
