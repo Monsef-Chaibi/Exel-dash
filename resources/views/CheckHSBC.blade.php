@@ -121,9 +121,11 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
-                @foreach($customerReferences as $reference)
-                    {{ $reference }}
-                @endforeach
+                @if ($customerReferences)
+                    @foreach($customerReferences as $reference)
+                        {{ $reference }}
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
