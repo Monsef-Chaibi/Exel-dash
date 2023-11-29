@@ -2066,19 +2066,20 @@ class Controller extends BaseController
                         }
                         public function importSadad(Request $request)
                         {
-
                             try {
-
-                                // Import data from the Excel file using the IDImport class
+                                // Import data from the Excel file using the Sadad class
                                 Excel::import(new Sadad, $request->file('file'));
 
-                                return back()->with('success', 'Data imported successfully');
+                                // Check if there were any validation errors during import
+                                if (session('error')) {
+                                    return redirect()->back()->with('error', session('error'));
+                                }
 
-                            }
-                            catch (\Exception $e)
-                            {
-                                return redirect()->back()->with('error', 'Opps! A simple problem , Try Again'. $e->getMessage());
+                                return back()->with('success', 'Data imported successfully');
+                            } catch (\Exception $e) {
+                                return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                             }
                         }
+
 
 }
