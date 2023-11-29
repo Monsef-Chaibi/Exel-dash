@@ -103,7 +103,8 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/SemiExportGT', [Controller::class, 'SemiExportGT'])->name('SemiExportGT');
     Route::get('/processConfirmation', [Controller::class, 'processConfirmation'])->name('processConfirmation');
     Route::get('/SadadStatus', [Controller::class, 'SadadStatus'])->name('SadadStatus');
-
+    Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
+    Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
 });
 // Route for user 2 role 4
 Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
@@ -140,10 +141,8 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/SadadView', [Controller::class, 'SadadView'])->name('SadadView');
     Route::get('/Sadadlive', [Controller::class, 'Sadadlive'])->name('Sadadlive');
     Route::get('/done', [Controller::class, 'done'])->name('done');
-    Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
-    Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
 
 
 

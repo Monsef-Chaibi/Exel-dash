@@ -290,9 +290,7 @@ body {
                     <button style="color:rgb(103, 255, 103); padding: 20px; font-size: 30px" type="submit" class="modal__btn">Add Items &rarr;</button>
                 </a>
 
-                <a href="/CheckHSBC">
-                    <button style="color:rgb(103, 255, 103); padding: 20px; font-size: 30px" type="submit" class="modal__btn">Check HSBC Sheet &rarr;</button>
-                </a>
+              
             </div>
 
             <div class="text-gray-900 dark:text-gray-100">
