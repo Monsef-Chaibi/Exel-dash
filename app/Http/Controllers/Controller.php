@@ -2093,8 +2093,11 @@ class Controller extends BaseController
                                 // Check if there were any validation errors during import
 
                                 return back()->with('success', 'Data imported successfully');
+
                             } catch (\Exception $e) {
+
                                 return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+
                             }
                         }
 

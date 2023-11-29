@@ -141,8 +141,9 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/SadadView', [Controller::class, 'SadadView'])->name('SadadView');
     Route::get('/Sadadlive', [Controller::class, 'Sadadlive'])->name('Sadadlive');
     Route::get('/done', [Controller::class, 'done'])->name('done');
+    Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
-    Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
+    Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
 
 
 

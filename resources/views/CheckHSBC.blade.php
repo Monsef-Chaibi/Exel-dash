@@ -111,7 +111,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1 style="text-align: center;color:#1eff00;font-size:25px;font-weight:bold">Check HSBC Sheet</h1>
                     <br>
-                    <form class="form-container" action="{{url('/importimage')}}" method="POST" enctype='multipart/form-data'>
+                    <form class="form-container" action="{{url('/importHSBC')}}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
                             <span class="drop-title">Drop files here</span>
