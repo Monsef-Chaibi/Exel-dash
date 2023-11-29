@@ -2091,7 +2091,7 @@ class Controller extends BaseController
                                 $import = new HSBCImport();
                                 Excel::import($import,  $request->file('file'));
                                 $customerReferences = $import->getCustomerReferences();
-                                dd($customerReferences);
+                                return view('/CheckHSBC', ['customerReferences' => $customerReferences]);
 
                             } catch (\Exception $e) {
 

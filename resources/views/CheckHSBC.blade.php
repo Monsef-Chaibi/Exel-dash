@@ -121,6 +121,9 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
+                @foreach($customerReferences as $reference)
+                    {{ $reference }}
+                @endforeach
             </div>
         </div>
     </div>
