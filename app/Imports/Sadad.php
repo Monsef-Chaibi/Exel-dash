@@ -23,16 +23,15 @@ class Sadad implements ToModel
             ->where('gtnum', $gtnum)
             ->value('regist');
 
-        return [
+        $data = [
             'gtnum' => $gtnum,
             'paid' => $paidValue,
-            'regist' => $registValue
-        ];
-        // Store the first and second rows in the $importedData array
-        $this->importedData[] = [
-            'GTnum' => $row[0],
+            'regist' => $registValue,
             'rgtype' => $row[1],
         ];
+
+        // Store the data in the $importedData array
+        $this->importedData[] = $data;
 
         // Return null to indicate that no Eloquent model should be created
         return null;
