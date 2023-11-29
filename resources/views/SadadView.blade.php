@@ -435,15 +435,11 @@
                         <input type="file" name="file" style="border-radius:10px;width:350px">
                         <button class="button-37" type="submit"> Done </button>
                     </form>
+
                     @if (isset($importedData))
 
                         <form action="/Sadad" id="myForm" method="get">
-                            <label for="" style="margin-top:25px">Registration Type :</label>
-                            <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
-                                <option value="Private">Private </option>
-                                <option value="Private transport">Private transport</option>
-                                <option value="Public transport">Public transport</option>
-                            </select>
+                            @csrf
                             <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
                                 <thead>
                                     <tr class="fr">
@@ -458,47 +454,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @csrf
-                                    @foreach ($importedData as $item)
-                                        {{-- @if ($item->paid !== '1' && $item->paid !== '2') --}}
-                                        <tr>
-                                            {{-- @if ($item->paid === '1' || $item->paid === '2')
-                                                            <td>
 
-                                                            </td>
-                                                        @else --}}
+                                    @foreach ($importedData as $item)
+                                        <tr>
                                             <td data-th="Supplier Name">
                                                 <input class="custom-" style="border-radius:5px" type="checkbox"
-                                                    name="selectedItems[]" value="{{ $item->id }}">
+                                                    name="selectedItems[]" value="{{ $item['id'] }}">
                                             </td>
-                                            {{-- @endif --}}
                                             <td data-th="Supplier Name">
-                                                {{ $item->product }}
+                                                {{ $item['product'] }}
                                             </td>
                                             <td data-th="Supplier Code">
-                                                {{ $item->vin }}
+                                                {{ $item['vin'] }}
                                             </td>
                                             <td data-th="Supplier Code">
-                                                {{ $item->gtnum }}
+                                                {{ $item['gtnum'] }}
                                             </td>
                                             <td data-th="Supplier Code">
-                                                {{ $item->regist }}
+                                                {{ $item['regist'] }}
                                             </td>
                                             <td data-th="Supplier Code">
-                                                {{ $item->idnum }}
+                                                {{ $item['idnum'] }}
                                             </td>
 
-                                            <input type="hidden" name="paid" value="{{ $item->paid }}">
+                                            <input type="hidden" name="paid" value="{{ $item['paid'] }}">
 
-                                            @if ($item->paid === '1')
+                                            @if ($item['paid'] === '1')
                                                 <td style="color: blue" data-th="Supplier Code">
                                                     Sent
                                                 </td>
-                                            @elseif ($item->paid === '2')
+                                            @elseif ($item['paid'] === '2')
                                                 <td style="color: rgb(38, 255, 38)" data-th="Supplier Code">
                                                     Accepted
                                                 </td>
-                                            @elseif ($item->paid === '3')
+                                            @elseif ($item['paid'] === '3')
                                                 <td style="color: red" data-th="Supplier Code">
                                                     Rejected
                                                 </td>
@@ -508,7 +497,6 @@
                                                 </td>
                                             @endif
                                         </tr>
-                                        {{-- @endif --}}
                                     @endforeach
                                 </tbody>
                             </table>
@@ -576,4 +564,114 @@
         // Update live value every 5 seconds (adjust this interval as needed)
         setInterval(updateLiveValue1, 5000);
     });
+
+    $(document).ready(function () {
+     // Event handler for checkbox changes
+     $('input[type="checkbox"]').change(function () {
+         updateChecks();
+     });
+
+     // Initial check on page load
+     updateChecks();
+ });
+
+ function updateChecks() {
+     // Reset checks
+     $('#plateFeesCheck').text('');
+     $('#amountCheck').text('');
+     $('#requestCheck').text('');
+
+     // Get selected items
+     var selectedItems = $('input[name="selectedItems[]"]:checked');
+     var failedRegistrationGTNumbers = [];
+     var failedPaidGTNumbers = [];
+
+     // Check 1: Registration column > 1
+     var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
+         var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
+         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+
+         if (registrationValue !== '' && parseInt(registrationValue) > 1) {
+             return true;
+         } else {
+             failedRegistrationGTNumbers.push(gtNumber);
+             return false;
+         }
+     }).length === selectedItems.filter(':checked').length;
+
+     // Check 2: Sum of Registration column > 1000
+     var sumOfRegistration = 0;
+     selectedItems.each(function () {
+         sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
+     });
+     var sumGreaterThan1000 = sumOfRegistration >= 1000;
+
+     // Check 3: Paid column different than 1 and 2
+     var paidTypesValid = selectedItems.filter(':checked').filter(function () {
+         var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
+         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+
+         if (paidValue !== '1' && paidValue !== '2') {
+             return true;
+         } else {
+             failedPaidGTNumbers.push(gtNumber);
+             return false;
+         }
+     }).length === selectedItems.filter(':checked').length;
+
+     // Update check messages
+     $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌ GT Numbers: ' + failedRegistrationGTNumbers.join(', '));
+     $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
+     $('#requestCheck').text(paidTypesValid ? '✅' : '❌ GT Numbers: ' + failedPaidGTNumbers.join(', '));
+
+     // Enable or disable submit button based on checks
+     var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid;
+     $('#submitButton').prop('disabled', !allChecksPassed);
+
+     // Change button color and set opacity based on checks
+     if (allChecksPassed) {
+         $('#submitButton').css({
+             'color': '', // Set default color
+             'opacity': 1 // Set default opacity
+         });
+     } else {
+         $('#submitButton').css({
+             'color': 'gray',
+             'opacity': 0.5 // Set opacity to 50% when checks fail
+         });
+     }
+
+
+ }
+
+    function selectAll() {
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+        var allChecked = true;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
+    }
+    function selectAllpop() {
+        var checkboxes = document.getElementsByClassName('custom-');
+        var allChecked = true;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
+    }
 </script>
