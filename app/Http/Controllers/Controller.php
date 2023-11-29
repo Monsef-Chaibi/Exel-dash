@@ -1146,6 +1146,7 @@ class Controller extends BaseController
                     }
                 }
                 if($request->input('sadad')){
+                    dd( $request->input('selectedValue') );
                     try {
                         $selectedItems = $request->input('selectedItems');
                         $alldata = $request->input('type');

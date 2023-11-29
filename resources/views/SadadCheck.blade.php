@@ -373,15 +373,15 @@
                     <br>
 
                     <br>
-
-                    <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
+                        <input type="hidden" value="1" name="sadad">
+                    {{-- <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
                         <input style="border-radius: 10px"  type="radio" value="Private" name='type'>
                         <label for="" style="margin-left:20px;margin-right:20px" >Private</label>
                         <input style="border-radius: 10px"  type="radio" value="Private Transfer" name='type'>
                         <label for=""  style="margin-left:20px;margin-right:20px">Private Transfer</label>
                         <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
                         <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
-                    </div>
+                    </div> --}}
                     <br>
                     <div style="display: flex;justify-content:right">
                        <!-- Add the input event listener to the search input field -->
@@ -415,7 +415,10 @@
 
                                             <input class="custom-checkbox" style="border-radius:5px"
                                             type="checkbox" name="selectedItems[]"
-                                            value="{{ $item->id }}">
+                                            value="{{ $item->id }}"
+                                            data-paidtype="{{ $item->paidtype }}"
+                                            onchange="updateSelectedValue(this)">
+
 
                                         </td>
                                         <td data-th="Supplier Code">
@@ -480,7 +483,30 @@
                 }
             }
         }
+        function updateSelectedValue(checkbox) {
+        if (checkbox.checked) {
+            const paidType = checkbox.getAttribute('data-paidtype');
 
+            // Make an AJAX request to your controller with the selected value
+            // Example using jQuery:
+            $.ajax({
+                url: '/SemiExportA',
+                type: 'get',
+                data: {
+                    selectedValue: paidType
+                    // Add other data if needed
+                },
+                success: function (response) {
+                    // Handle success if needed
+                    console.log(response);
+                },
+                error: function (error) {
+                    // Handle error if needed
+                    console.error(error);
+                }
+            });
+        }
+    }
 
              function selectDoneRows() {
                 var checkboxes = document.getElementsByClassName('custom-checkbox');
