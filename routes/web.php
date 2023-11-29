@@ -143,7 +143,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/done', [Controller::class, 'done'])->name('done');
     Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
-    Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
+    Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
 
 
 

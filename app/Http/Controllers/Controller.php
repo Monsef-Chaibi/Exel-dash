@@ -2088,11 +2088,17 @@ class Controller extends BaseController
                         {
                             try {
                                 // Import data from the Excel file using the Sadad class
-                                Excel::import(new HSBCImport, $request->file('file'));
+                                $import = new HSBCImport();
+                                Excel::import($import,  $request->file('file'));
 
-                                // Check if there were any validation errors during import
+                                $statistics = $import->getStatistics();
 
-                                return back()->with('success', 'Data imported successfully');
+                                // Access individual statistics
+                                $rowCount = $statistics['rowCount'];
+                                $amountGreaterThanOneCount = $statistics['amountGreaterThanOneCount'];
+                                $paymentRequestCount = $statistics['paymentRequestCount'];
+                                $gtPaidCount = $statistics['gtPaidCount'];
+                                dd($rowCount);
 
                             } catch (\Exception $e) {
 
