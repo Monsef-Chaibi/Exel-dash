@@ -123,6 +123,13 @@ class Controller extends BaseController
                     ->get();
         return view('SadadPaid')->with('data', $data);
     }
+    function SadadRejctA(){
+
+        $data = Data::where('paid','3')
+                    ->whereNull('paidbya')
+                    ->get();
+        return view('SadadRejctA')->with('data', $data);
+    }
     function AddData(){
         return view('AddData');
     }
