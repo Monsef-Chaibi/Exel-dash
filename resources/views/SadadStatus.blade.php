@@ -457,9 +457,9 @@
                                 </tr> --}}
                         </tbody>
                     </table>
-                    {{-- <div style="display: flex;justify-content:center">
-                        <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Done &rarr;</button>
-                    </div> --}}
+                    <div style="display: flex;justify-content:center">
+                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Paid &rarr;</button>
+                    </div>
 
                 </form>
                 </div>
