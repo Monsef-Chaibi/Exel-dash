@@ -73,6 +73,125 @@
     justify-content: space-between;
     align-items: center;
 }
+.rwd-table {
+            margin: auto;
+            width: 500px;
+            min-width: 300px;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fr {
+            border-top: none;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            color: #fff;
+        }
+
+        .rwd-table tr {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            background-color: #f5f9fc;
+        }
+
+
+
+        .rwd-table tr:nth-child(odd):not(:first-child) {
+            background-color: #ebf3f9;
+        }
+
+        .rwd-table th {
+            display: none;
+        }
+
+        .rwd-table td {
+            display: block;
+        }
+
+        .rwd-table td:first-child {
+            margin-top: .5em;
+        }
+
+        .rwd-table td:last-child {
+            margin-bottom: .5em;
+        }
+
+        .rwd-table td:before {
+            content: attr(data-th) ": ";
+            font-weight: bold;
+            width: 20px;
+            display: inline-block;
+            color: #000;
+        }
+
+        .rwd-table th,
+        .rwd-table td {
+            text-align: left;
+        }
+
+        .rwd-table {
+            color: #333;
+            border-radius: .4em;
+            overflow: hidden;
+        }
+
+        .rwd-table tr {
+            border-color: #bfbfbf;
+        }
+
+        .rwd-table th,
+        .rwd-table td {
+            padding: .5em 1em;
+        }
+
+        @media screen and (max-width: 601px) {
+            .rwd-table tr:nth-child(2) {
+                border-top: none;
+            }
+
+            .grid-item {
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.8);
+                font-size: 30px;
+                text-align: center;
+                padding: 2%;
+                width: 300px;
+                height: 80px;
+                text-align: start
+            }
+        }
+
+        @media screen and (min-width: 600px) {
+            .rwd-table tr:hover:not(:first-child) {
+                background-color: #d8e7f3;
+
+            }
+
+            .rwd-table td:before {
+                display: none;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                display: table-cell;
+                padding: .25em .5em;
+            }
+
+            .rwd-table th:first-child,
+            .rwd-table td:first-child {
+                padding-left: 0;
+            }
+
+            .rwd-table th:last-child,
+            .rwd-table td:last-child {
+                padding-right: 0;
+            }
+
+            .rwd-table th,
+            .rwd-table td {
+                padding: 1em !important;
+            }
+
+        }
     </style>\
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -122,10 +241,9 @@
                     </div>
                 </form>
                 @if(isset($importedData))
-                <h1 style="color: #ff0000;text-align:center;font-size:25">Results</h1>
-                <table style="width: 100%; margin-bottom:5%;" class="rwd-table">
+                <table style="font-size:18px" class="rwd-table">
                     <thead>
-                        <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
+                        <tr style="" class="fr">
                             {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
                             <th>Product</th>
                             <th>Vin</th>
@@ -133,11 +251,11 @@
                             <th>Registering Fee</th>
                             <th>ID</th>
                             <th>IN Database</th>
-                            <th>Same ID</th>
                             <th>Same Fee</th>
+                            <th>Same ID</th>
                             <th>Approved</th>
                             <th>Uploaded</th>
-                            <th>Not paid</th>
+                            <th>Paid</th>
                         </tr>
                     </thead>
 
@@ -162,20 +280,48 @@
                                 {{ $item['idnum'] }}
                             </td>
                             <td style="text-align:center">
-                                @if ($item['paid'] === '2')
+                                @if ($item['indb'] === 1)
                                     ✅
                                 @else
                                     ❌
                                 @endif
                             </td>
                             <td style="text-align:center">
-                                @if ($item['paidbya'] === '1')
+                                @if ($item['sameregist'] === 1)
                                     ✅
                                 @else
                                     ❌
                                 @endif
                             </td>
-                            <input type="hidden" name="doneItems[]" value="{{ $item['done'] }}">
+                            <td style="text-align:center">
+                                @if ($item['sameid'] === 1)
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+                            <td style="text-align:center">
+                                @if ($item['aproved'] === 1)
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+                            <td style="text-align:center">
+                                @if ($item['uploaded'] === 1)
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+                            <td style="text-align:center">
+                                @if ($item['paid'] === 1)
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -243,6 +389,6 @@ fileInput.addEventListener("click", () => {
 		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
 		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
 	});
-}( document, window, 0 ));
+}( document, window,  ));
     </script>
 </x-app-layout>
