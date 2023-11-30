@@ -116,6 +116,13 @@ class Controller extends BaseController
                     ->get();
         return view('SadadStatus')->with('data', $data);
     }
+    function SadadPaid(){
+
+        $data = Data::where('paid','2')
+                    ->whereNotNull('paidbya')
+                    ->get();
+        return view('SadadPaid')->with('data', $data);
+    }
     function AddData(){
         return view('AddData');
     }
