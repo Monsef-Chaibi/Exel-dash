@@ -130,11 +130,14 @@
                             <th>Product</th>
                             <th>Vin</th>
                             <th>GT Number</th>
-                            <th>Billing Doc</th>
-                            <th>Registering fee</th>
-                            <th>Registration Type</th>
-                            <th>Upload</th>
-                            <th>Paid</th>
+                            <th>Registering Fee</th>
+                            <th>ID</th>
+                            <th>IN Database</th>
+                            <th>Same ID</th>
+                            <th>Same Fee</th>
+                            <th>Approved</th>
+                            <th>Uploaded</th>
+                            <th>Not paid</th>
                         </tr>
                     </thead>
 
@@ -153,15 +156,10 @@
                                 {{ $item['gtnum'] }}
                             </td>
                             <td data-th="Supplier Code">
-                                <a style="color: blue" href="/Show/{{ encrypt($item['bildoc']) }}">
-                                    {{ $item['bildoc'] }}
-                                </a>
-                            </td>
-                            <td data-th="Supplier Code">
                                 {{ $item['regist'] }}
                             </td>
                             <td data-th="Supplier Code">
-                                {{ $item['paidtype'] }}
+                                {{ $item['idnum'] }}
                             </td>
                             <td style="text-align:center">
                                 @if ($item['paid'] === '2')
