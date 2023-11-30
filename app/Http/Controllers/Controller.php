@@ -1657,31 +1657,33 @@ class Controller extends BaseController
 
                 return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2,'value3'  => $liveValue3, 'up3' => $up3]);
             }
-            public function SadadliveA()
+
+            public function Sadadlive2()
             {
                 if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
-                    $paidValues = ['2'];
-                    $liveValue = Data::where('paid',$paidValues)->whereIn('plantkey', $cnd1)->count();
-                    $up= Data::where('paid',$paidValues)->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
-                    $liveValue2 = Data::where('paidby1','1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::where('paidby1','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $paidValues = ['2', '22'];
+                    $liveValue = Data::where('paid',$paidValues)->where('paidby','!=','1')->whereIn('plantkey', $cnd1)->count();
+                    $up= Data::where('paid',$paidValues)->where('paidby','!=','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::where('paidby','1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paidby','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue3 = Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up3= Data::where('paid','3')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                 }else
                 {
-                    $paidValues = ['2'];
-                    $liveValue = Data::where('paid',$paidValues)->count();
-                    $up= Data::where('paid',$paidValues)->latest('datepaid')->value('datepaid');
-                    $liveValue2 = Data::where('paidby1','1')->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::where('paidby1','1')->latest('datepaid')->value('datepaid');
+                    $paidValues = ['2', '22'];
+                    $liveValue = Data::where('paid',$paidValues)->where('paidby','!=','1')->count();
+                    $up= Data::where('paid',$paidValues)->where('paidby','!=','1')->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::where('paidby','1')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paidby','1')->latest('datepaid')->value('datepaid');
                     $liveValue3 = Data::where('paid','3')->count(); // Replace YourModel and $id witsh your actual model and ID
                     $up3= Data::where('paid','3')->latest('datepaid')->value('datepaid');
                 }
 
                 return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2,'value3'  => $liveValue3, 'up3' => $up3]);
             }
+
             public function getlast()
             {
                 $liveValue = Update::latest('created_at')->value('name');

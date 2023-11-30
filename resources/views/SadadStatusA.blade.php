@@ -434,9 +434,9 @@
 </x-app-layout>
 <script>
     $(document).ready(function() {
-        function updateLiveValue1() {
+        function updateLiveValue2() {
             $.ajax({
-                url: "{{ route('Sadadlive') }}",
+                url: "{{ route('Sadadlive2') }}",
                 method: "GET",
                 success: function(data) {
                     $('#vl').text(data.value);
@@ -446,15 +446,18 @@
                     $('#vl2').text(data.value3);
                     $('#dt2').text(data.up3);
 
+                },
+                error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
                 }
             });
         }
 
         // Update live value initially
-        updateLiveValue1();
+        updateLiveValue2();
 
         // Update live value every 5 seconds (adjust this interval as needed)
-        setInterval(updateLiveValue1, 5000);
+        setInterval(updateLiveValue2, 5000);
     });
 
 </script>
