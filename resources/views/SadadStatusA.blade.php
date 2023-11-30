@@ -398,7 +398,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Sent : <span id="vl1"></span>
+                                        Sadad Paid : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
