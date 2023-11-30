@@ -684,7 +684,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Update the form action and submit the form
-                document.getElementById('exportForm').action = '/done';
+                document.getElementById('exportForm').action = '/Paid';
                 document.getElementById('exportForm').submit();
             }
         });

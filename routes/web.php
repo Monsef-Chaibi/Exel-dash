@@ -106,11 +106,12 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/CheckHSBC', [Controller::class, 'CheckHSBC'])->name('CheckHSBC');
     Route::get('/SadadStatusA', [Controller::class, 'SadadStatusA'])->name('SadadStatusA');
     Route::post('/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
-
+    Route::get('/Paid', [Controller::class, 'Paid'])->name('Paid');
 
 
 
 });
+
 Route::get('/Sadadlive2', [Controller::class, 'Sadadlive2'])->name('Sadadlive2');
 
 // Route for user 2 role 4

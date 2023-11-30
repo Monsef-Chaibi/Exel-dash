@@ -111,8 +111,9 @@ class Controller extends BaseController
     }
     function SadadStatus(){
 
-        $data = Data::where('paid', '!=' ,'1')
-                  ->get();
+        $data = Data::where('paid','2')
+                    ->whereNull('paidbya')
+                    ->get();
         return view('SadadStatus')->with('data', $data);
     }
     function AddData(){
@@ -1024,6 +1025,20 @@ class Controller extends BaseController
                     Data::where('id', $itemId)->update([
                         'done' => 1,
                         'reference' =>  $request->input('reference'),
+                    ]);
+                }
+
+                return redirect()->back()->with('success', 'Selections updated successfully');
+            }
+        function Paid(Request $request){
+                $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
+                if(empty($selectedItems)) {
+                    return redirect()->back()->with('error', 'No items selected for update.');
+                }
+                foreach($selectedItems as $itemId) {
+                    Data::where('id', $itemId)->update([
+                        'paidbya' => 1,
+
                     ]);
                 }
 
