@@ -58,6 +58,9 @@ class Controller extends BaseController
     function SadadView(){
         return view('SadadView');
     }
+    function SadadStatusA(){
+        return view('SadadStatusA');
+    }
 
     function test(){
         $cnd=auth()->user()->cond;
