@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Imports;
 
 use App\Models\Data;
@@ -9,82 +8,95 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class HSBCImport implements ToModel, WithHeadingRow
 {
-    private $customerReferences = [];
     private $rowCount = 0;
+    private $importedData = [];
 
     public function model(array $row)
     {
-
         $this->rowCount++;
 
         $gtnum = $row['customer_reference'];
-        
-        $paidValue = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('paid');
 
-        $registValue = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('regist');
+        if ($this->rowCount >= 1) {
 
-        $idnum = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('idnum');
+            if ($row['status_description'] === 'New Payment') {
 
-        $product = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('product');
+                $existsInDb = DB::table('data')
+                ->where('gtnum', $gtnum)
+                ->exists();
 
-        $vin = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('vin');
+                $indb = $existsInDb ? 1 : 0;
 
-        $id = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('id');
+                $registValue = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('regist');
 
-        $data = [
-            'id' => $id,
-            'gtnum' => $gtnum,
-            'paid' => $paidValue,
-            'regist' => $registValue,
-            'rgtype' => $row[1],
-            'idnum' => $idnum,
-            'product' => $product,
-            'vin' => $vin,
-        ];
+                $idnum = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('idnum');
 
-        if ($this->rowCount >= 1 ) {
-            $dbRecord = Data::where('gtnum', $row['customer_reference'])->first();
+                $product = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('product');
 
-            // Check if the 'Request type' is not equal to 'Payment Request'
-            // and the 'Due amount (SAR)' is less than 1
-            if ($row['request_type'] !== 'Payment Request' || $row['due_amount_sar'] < 1 || $dbRecord && ($dbRecord->done === null)) {
-                $errorType = '';
-                if ($row['request_type'] !== 'Payment Request') {
-                    $errorType .= 'Request type is not Payment Request. ';
-                }
-                if ($row['due_amount_sar'] < 1) {
-                    $errorType .= 'Due amount (SAR) is less than 1. ';
-                }
-                if ($dbRecord && $dbRecord->done === null) {
-                    $errorType .= 'Not Done ';
-                }
+                $vin = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('vin');
 
-                // Store the custom error message in the array
-                $this->customerReferences[] = "Due amount (SAR): " . $row['due_amount_sar'] .
-                    " || Request type: " . $row['request_type'] .
-                    " || GT Num: " . $row['customer_reference'] .
-                    " || Type of error: " . $errorType;
+                $paidValue = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('paid');
+                $uploadValue = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('done');
+                $notpaid = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('paidbya');
+
+                $id = DB::table('data')
+                    ->where('gtnum', $gtnum)
+                    ->value('id');
+
+                $sameregist = $registValue === $row['due_amount_sar'] ? 1 : 0;
+                $sameid = (int)$idnum === $row['moi_reference_number'] ? 1 : 0;
+                $aproved = ($paidValue === '2') ? 1 : 0;
+                $uploaded = ($uploadValue === '1') ? 1 : 0;
+                $paid = ($notpaid === '1') ? 1 : 0;
+
+                $data = [
+                    'id' => $id,
+                    'regist' => $row['due_amount_sar'],
+                    'idnum' => $row['moi_reference_number'],
+                    'gtnum' => $row['customer_reference'],
+                    'vin' => $vin,
+                    'product' => $product,
+                    'indb' => $indb,
+                    'sameregist' => $sameregist,
+                    'sameid' => $sameid,
+                    'aproved' =>  $aproved,
+                    'uploaded' =>  $uploaded,
+                    'paid' =>  $paid,
+                ];
+
+                // Store the data in the $importedData array
+                $this->importedData[] = $data;
+
+                // Return null to indicate that no Eloquent model should be created
+                return null;
             }
-
-
-            // No data is added to the database, so return null
-            return null;
         }
+
+        // No data is added to the database, so return null
+        return null;
     }
-    public function getCustomerReferences()
+
+    /**
+     * Get the imported data.
+     *
+     * @return array
+     */
+    public function getImportedData()
     {
-        return $this->customerReferences;
+        return $this->importedData;
     }
 }

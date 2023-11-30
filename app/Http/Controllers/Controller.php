@@ -2147,7 +2147,9 @@ class Controller extends BaseController
                                 // Import data from the Excel file using the Sadad class
                                 $import = new HSBCImport();
                                 Excel::import($import,  $request->file('file'));
-                                $customerReferences = $import->getCustomerReferences();
+                                $importedData = $import->getImportedData();
+                                dd($importedData);
+
                                 return view('/CheckHSBC', ['customerReferences' => $customerReferences]);
 
                             } catch (\Exception $e) {
