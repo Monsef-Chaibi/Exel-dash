@@ -153,6 +153,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/done', [Controller::class, 'done'])->name('done');
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
+    Route::post('/Sadadupload', [Controller::class, 'Sadad'])->name('Sadadupload');
 
 
 

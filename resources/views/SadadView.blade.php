@@ -430,19 +430,18 @@
                     </div>
                     <form class="form-container" action="/importSadad" method="post" enctype='multipart/form-data'>
                         @csrf
-                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File
-                            :</label>
+                        <label for="" style="margin-left: 10px; color:#1eff00;padding:20px">Import Sadad File :</label>
                         <input type="file" name="file" style="border-radius:10px;width:350px">
                         <button class="button-37" type="submit"> Done </button>
                     </form>
 
                     @if (isset($importedData))
 
-                        <form action="/Sadad" id="" method="get">
+                        <form action="/Sadadupload" method="post">
                              @csrf
-                            <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
+                            <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
                                 <thead>
-                                    <tr class="fr">
+                                    <tr  class="fr">
                                         <th><button type="button" onclick="selectAllpop()">Select All</button></th>
                                         <th>Product</th>
                                         <th>VIN</th>
@@ -532,6 +531,7 @@
 
                             <button type="submit" style="font-size:50px;margin-left:60px" id="submitButton"
                                 disabled>Save &rarr;</button>
+                                <input type="hidden" name="paramName" value="paramValue">
 
                         </form>
                     @endif

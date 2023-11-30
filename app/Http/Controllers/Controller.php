@@ -2092,7 +2092,8 @@ class Controller extends BaseController
                                 ]);
                             }
 
-                            return redirect()->back()->with('success', 'Selections updated successfully');
+                            return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
+
                         }
                         public function processConfirmation(Request $request) {
                             $confirmationAction = $request->input('confirmation_action');
@@ -2149,7 +2150,7 @@ class Controller extends BaseController
                                 Excel::import($import,  $request->file('file'));
                                 $importedData = $import->getImportedData();
 
-                                
+
                                 return view('/CheckHSBC', ['importedData' => $importedData]);
 
                             } catch (\Exception $e) {
