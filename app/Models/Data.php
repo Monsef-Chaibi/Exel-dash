@@ -24,5 +24,8 @@ class Data extends Model
         'paidby' ,
         'datepaid',
         'paidtype',
+        'paidbya',
+        'reference',
+        'done',
     ];
 }

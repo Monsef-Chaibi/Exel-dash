@@ -656,20 +656,35 @@
     }
 
     function doneButtonClick() {
-        Swal.fire({
-            title: 'Done Confirmation',
-            text: 'Are you sure you want to mark as done?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, mark as done!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Update the form action and submit the form
-                document.getElementById('exportForm').action = '/done';
-                document.getElementById('exportForm').submit();
-            }
-        });
-    }
+    // Show input prompt
+    Swal.fire({
+        title: 'Done Confirmation',
+        html: '<input type="text" id="inputValue" class="swal2-input" placeholder="Enter Reference">',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, mark as done!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Retrieve the input value
+            var inputValue = document.getElementById('inputValue').value;
+
+            // Update the form action and add the input value to the form data
+            var form = document.getElementById('exportForm');
+            form.action = '/done';
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'reference';
+            input.value = inputValue;
+
+            form.appendChild(input);
+
+            // Submit the form
+            form.submit();
+        }
+    });
+}
+
 </script>

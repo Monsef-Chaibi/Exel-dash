@@ -1020,6 +1020,7 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'done' => 1,
+                        'reference' =>  $request->input('reference'),
                     ]);
                 }
 
