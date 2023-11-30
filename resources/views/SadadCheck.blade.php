@@ -659,7 +659,7 @@
     // Show input prompt
     Swal.fire({
         title: 'Done Confirmation',
-        html: '<input type="text" id="inputValue" class="swal2-input" placeholder="Enter Reference">',
+        html: '<input type="text" id="inputValue" class="swal2-input" placeholder="Enter Reference" required>',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -669,6 +669,12 @@
         if (result.isConfirmed) {
             // Retrieve the input value
             var inputValue = document.getElementById('inputValue').value;
+
+            // Check if the input value is empty
+            if (!inputValue.trim()) {
+                Swal.fire('Input Required', 'Please enter a reference.', 'error');
+                return;
+            }
 
             // Update the form action and add the input value to the form data
             var form = document.getElementById('exportForm');
@@ -686,5 +692,6 @@
         }
     });
 }
+
 
 </script>

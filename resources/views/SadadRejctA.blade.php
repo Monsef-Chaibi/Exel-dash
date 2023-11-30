@@ -336,69 +336,71 @@
         </script>
     @endif
 
-        @if (session()->has('success'))
-            <script>
-                Swal.fire(
-                    'Success',
-                    '{{ session('success') }}',
-                    'success'
-                );
-            </script>
-        @endif
+    @if (session()->has('success'))
+        <script>
+            Swal.fire(
+                'Success',
+                '{{ session('success') }}',
+                'success'
+            );
+        </script>
+    @endif
 
-        @if (session('error'))
-            <script>
-                Swal.fire(
-                    'Error',
-                    '{{ session('error') }}',
-                    'error'
-                );
-            </script>
-        @endif
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <!-- Add these lines to include DataTables CSS and JS files -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    @if (session('error'))
+        <script>
+            Swal.fire(
+                'Error',
+                '{{ session('error') }}',
+                'error'
+            );
+        </script>
+    @endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Add these lines to include DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form id="exportForm" action="/Paid" method="get">
-                    @csrf
-                    <input type="hidden" name="sadad" value="1">
-                    <br>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
-                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
-                        </div>
-                        <div>
-                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By Reference :</label>
-                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
-                        </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <form id="exportForm" action="/Paid" method="get">
+                @csrf
+                <input type="hidden" name="sadad" value="1">
+                <br>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
+                        <input style="border-radius: 10px; width: 300px; height: 40px;" type="text"
+                            id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                     </div>
+                    {{-- <div>
+                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By Reference :</label>
+                        <input style="border-radius: 10px; width: 300px; height: 40px;" type="text"
+                            id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
+                    </div> --}}
+                </div>
 
-                    <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
-                        <thead>
-                            <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button type="button" onclick="selectAll()">Select All</button></th>
-                                <th>Product</th>
-                                <th>Vin</th>
-                                <th>GT Number</th>
-                                <th>Billing Doc</th>
-                                <th>Registering fee</th>
-                                <th>Registration Type</th>
-                                <th>Reference</th>
-                                <th>Upload</th>
-                            </tr>
-                        </thead>
+                <table style="width: 100%; margin-bottom:5%;" class="rwd-table">
+                    <thead>
+                        <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
+                            {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
+                            <th>Product</th>
+                            <th>Vin</th>
+                            <th>GT Number</th>
+                            <th>Billing Doc</th>
+                            <th>Registering fee</th>
+                            <th>Registration Type</th>
+                            <th>Upload</th>
+                            <th>Paid</th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
-                                @csrf
-                                {{$lop = 0 }}
-                                @foreach ($data as $index => $item)
-                                    <tr  id="row_{{ $item->id }}">
-                                        <td data-th="Supplier Name">
+                        @csrf
+                        {{ $lop = 0 }}
+                        @foreach ($data as $index => $item)
+                            <tr id="row_{{ $item->id }}">
+                                {{-- <td data-th="Supplier Name">
                                             @if ($item->paid === '2')
 
 
@@ -409,119 +411,124 @@
                                             value="{{ $item->id }}">
 
                                             @endif
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->product }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->vin }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->gtnum }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            <a style="color: blue" href="/Show/{{encrypt($item->bildoc)}}">
-                                                {{ $item->bildoc }}
-                                            </a>
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->regist }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->paidtype }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->reference }}
-                                        </td>
-                                        <td style="text-align:center">
-                                            @if ($item->done === '1')
-                                            ✅
-                                            @else
-                                            ❌
-                                            @endif
-                                        </td>
-                                        {{-- <td style="text-align: center">
+                                        </td> --}}
+                                <td data-th="Supplier Code">
+                                    {{ $item->product }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->vin }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->gtnum }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    <a style="color: blue" href="/Show/{{ encrypt($item->bildoc) }}">
+                                        {{ $item->bildoc }}
+                                    </a>
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->regist }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->paidtype }}
+                                </td>
+
+                                <td style="text-align:center">
+                                    @if ($item->paid === '2')
+                                        ✅
+                                    @else
+                                        ❌
+                                    @endif
+                                </td>
+                                <td style="text-align:center">
+                                    @if ($item->paidbya === '1')
+                                        ✅
+                                    @else
+                                        ❌
+                                    @endif
+                                </td>
+                                {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
                                             @endif
                                         </td> --}}
-                                        <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
-                                    </tr>
-                                @endforeach
-                                <tr>
+                                <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
+                            </tr>
+                        @endforeach
+                        {{-- <tr>
                                     <td colspan="9" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                    <div style="display: flex;justify-content:center">
+                                </tr> --}}
+                    </tbody>
+                </table>
+                {{-- <div style="display: flex;justify-content:center">
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Paid &rarr;</button>
-                    </div>
+                    </div> --}}
 
-                </form>
-                </div>
-            </div>
+            </form>
         </div>
-        <script>
+    </div>
+    </div>
+    <script>
+        function filterReference() {
+            const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
 
-function filterReference() {
-    const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
-    const rows = document.querySelectorAll('tbody tr');
+            for (const row of rows) {
+                const referenceCell = row.querySelector('td:nth-child(8)'); // Adjusted index to match the column
+                const reference = referenceCell.textContent.toLowerCase();
 
-    for (const row of rows) {
-        const referenceCell = row.querySelector('td:nth-child(8)'); // Adjusted index to match the column
-        const reference = referenceCell.textContent.toLowerCase();
-
-        if (reference.includes(referenceSearch)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    }
-}
-
-function filterGTNumbers() {
-    const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
-    const rows = document.querySelectorAll('tbody tr');
-
-    for (const row of rows) {
-        const gtNumberCell = row.querySelector('td:nth-child(4)'); // Adjusted index to match the column
-        const gtNumber = gtNumberCell.textContent.toLowerCase();
-
-        if (gtNumber.includes(gtNumberSearch)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    }
-}
-
-$(document).ready(function () {
-    // Other existing code...
-
-    // Add the input event listener to the search input fields
-    $('#gtNumberSearch').on('input', filterGTNumbers);
-    $('#filterReference').on('input', filterReference);
-});
-
-
-             function selectDoneRows() {
-                var checkboxes = document.getElementsByClassName('custom-checkbox');
-
-                for (var i = 0; i < checkboxes.length; i++) {
-                    const itemDoneValue = document.getElementsByName('doneItems[]')[i].value;
-
-                    if (itemDoneValue !== '1') {
-                        checkboxes[i].checked = true;
-                    } else {
-                        checkboxes[i].checked = false;
-                    }
+                if (reference.includes(referenceSearch)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
             }
-         function selectAll() {
+        }
+
+        function filterGTNumbers() {
+            const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+
+            for (const row of rows) {
+                const gtNumberCell = row.querySelector('td:nth-child(4)'); // Adjusted index to match the column
+                const gtNumber = gtNumberCell.textContent.toLowerCase();
+
+                if (gtNumber.includes(gtNumberSearch)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+        $(document).ready(function() {
+            // Other existing code...
+
+            // Add the input event listener to the search input fields
+            $('#gtNumberSearch').on('input', filterGTNumbers);
+            $('#filterReference').on('input', filterReference);
+        });
+
+
+        function selectDoneRows() {
+            var checkboxes = document.getElementsByClassName('custom-checkbox');
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                const itemDoneValue = document.getElementsByName('doneItems[]')[i].value;
+
+                if (itemDoneValue !== '1') {
+                    checkboxes[i].checked = true;
+                } else {
+                    checkboxes[i].checked = false;
+                }
+            }
+        }
+
+        function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
 
@@ -536,90 +543,89 @@ $(document).ready(function () {
                 checkboxes[i].checked = !allChecked;
             }
         }
-        function submitForm(action) {
-    var form = document.getElementById('partialDeliveryForm');
-    form.action = '/' + action; // Change the form action based on the button clicked
 
-    if (action === 'SemiCopie') {
-        // If the action is 'SemiCopie', show a confirmation dialog
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'Once confirmed, the action cannot be undone!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, proceed!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // User clicked the confirm button, proceed with the action
+        function submitForm(action) {
+            var form = document.getElementById('partialDeliveryForm');
+            form.action = '/' + action; // Change the form action based on the button clicked
+
+            if (action === 'SemiCopie') {
+                // If the action is 'SemiCopie', show a confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Once confirmed, the action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, proceed!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // User clicked the confirm button, proceed with the action
+                        form.submit(); // Submit the form
+                    }
+                });
+            } else {
+                // If the action is not 'SemiCopie', directly submit the form without confirmation
                 form.submit(); // Submit the form
             }
-        });
-    } else {
-        // If the action is not 'SemiCopie', directly submit the form without confirmation
-        form.submit(); // Submit the form
+        }
+    </script>
+</x-app-layout>
+
+<script>
+    function selectAll() {
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+        var allChecked = true;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
     }
-}
 
+    function selectAllpop() {
+        var checkboxes = document.getElementsByClassName('custom-');
+        var allChecked = true;
 
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
 
-        </script>
-    </x-app-layout>
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all checkboxes with the name 'selectedItems[]'
+        const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
 
-    <script>
-        function selectAll() {
-             var checkboxes = document.getElementsByClassName('custom-checkbox');
-             var allChecked = true;
+        // Get the 'Select All' button
+        const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 if (!checkboxes[i].checked) {
-                     allChecked = false;
-                     break;
-                 }
-             }
+        // Add a click event listener to the 'Select All' button
+        selectAllButton.addEventListener('click', updateSelectedCount);
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 checkboxes[i].checked = !allChecked;
-             }
-         }
-         function selectAllpop() {
-             var checkboxes = document.getElementsByClassName('custom-');
-             var allChecked = true;
+        // Add a change event listener to each checkbox
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 if (!checkboxes[i].checked) {
-                     allChecked = false;
-                     break;
-                 }
-             }
-
-             for (var i = 0; i < checkboxes.length; i++) {
-                 checkboxes[i].checked = !allChecked;
-             }
-         }
-         document.addEventListener('DOMContentLoaded', function () {
-         // Get all checkboxes with the name 'selectedItems[]'
-         const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
-
-         // Get the 'Select All' button
-         const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
-
-         // Add a click event listener to the 'Select All' button
-         selectAllButton.addEventListener('click', updateSelectedCount);
-
-         // Add a change event listener to each checkbox
-         checkboxes.forEach(function (checkbox) {
-             checkbox.addEventListener('change', updateSelectedCount);
-         });
-
-         // Function to update the selected count in the span
-         function updateSelectedCount() {
-             const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
-             document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
-         }
-     });
- </script>
+        // Function to update the selected count in the span
+        function updateSelectedCount() {
+            const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+            document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+        }
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Your JavaScript code -->
