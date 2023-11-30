@@ -362,7 +362,7 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form id="exportForm" action="/SemiExportA" method="get">
+                <form id="exportForm" action="/Paid" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
                     <br>
@@ -450,11 +450,11 @@
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
-                                {{-- <tr>
-                                    <td colspan="8" style="text-align: center">
+                                <tr>
+                                    <td colspan="9" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
-                                </tr> --}}
+                                </tr>
                         </tbody>
                     </table>
                     <div style="display: flex;justify-content:center">
