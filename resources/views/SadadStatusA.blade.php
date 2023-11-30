@@ -369,6 +369,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <a href="/CheckHSBC">
+                    <button style="color:rgb(103, 255, 103); padding: 20px; font-size: 30px" type="submit" class="modal__btn">Check HSBC Sheet &rarr;</button>
+                </a>
                 <h1 style="text-align:center;color:#1eff00;font-size:25px;padding:10px;  font-weight: bold;">SADAD</h1>
                 <div class="text-gray-900 dark:text-gray-100">
 
@@ -381,7 +384,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Approved : <span id="vl"></span>
+                                         Approved : <span id="vl"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -398,7 +401,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Paid : <span id="vl1"></span>
+                                     Passed : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -414,7 +417,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Rejected: <span id="vl2"></span>
+                                         Rejected: <span id="vl2"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
