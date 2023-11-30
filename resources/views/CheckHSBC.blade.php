@@ -121,14 +121,67 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
-                @if(isset($customerReferences))
-                <h1 style="color: #ff0000;text-align:center;font-size:25">Error</h1>
-                @foreach($customerReferences as $reference)
-                    <p style="color: #1eff00;text-align:center">
-                        {{ $reference }}
-                    </p>
-                    <br>
-                @endforeach
+                @if(isset($importedData))
+                <h1 style="color: #ff0000;text-align:center;font-size:25">Results</h1>
+                <table style="width: 100%; margin-bottom:5%;" class="rwd-table">
+                    <thead>
+                        <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
+                            {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
+                            <th>Product</th>
+                            <th>Vin</th>
+                            <th>GT Number</th>
+                            <th>Billing Doc</th>
+                            <th>Registering fee</th>
+                            <th>Registration Type</th>
+                            <th>Upload</th>
+                            <th>Paid</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @csrf
+                        {{ $lop = 0 }}
+                        @foreach($importedData as $item)
+                        <tr id="row_{{ $item['id'] }}">
+                            <td data-th="Supplier Code">
+                                {{ $item['product'] }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item['vin'] }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item['gtnum'] }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                <a style="color: blue" href="/Show/{{ encrypt($item['bildoc']) }}">
+                                    {{ $item['bildoc'] }}
+                                </a>
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item['regist'] }}
+                            </td>
+                            <td data-th="Supplier Code">
+                                {{ $item['paidtype'] }}
+                            </td>
+                            <td style="text-align:center">
+                                @if ($item['paid'] === '2')
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+                            <td style="text-align:center">
+                                @if ($item['paidbya'] === '1')
+                                    ✅
+                                @else
+                                    ❌
+                                @endif
+                            </td>
+                            <input type="hidden" name="doneItems[]" value="{{ $item['done'] }}">
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
                 @endif
 
             </div>
