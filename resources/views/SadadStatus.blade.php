@@ -365,43 +365,30 @@
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
-
-                    {{-- <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
                     <br>
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button> --}}
-{{--
-                    <div>
-                    <br>
-
-                    <br>
-
-                    <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
-                        <input style="border-radius: 10px"  type="radio" value="Private" name='type'>
-                        <label for="" style="margin-left:20px;margin-right:20px" >Private</label>
-                        <input style="border-radius: 10px"  type="radio" value="Private Transfer" name='type'>
-                        <label for=""  style="margin-left:20px;margin-right:20px">Private Transfer</label>
-                        <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
-                        <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
-                    </div> --}}
-                    <br>
-                    <div style="display: flex;justify-content:right">
-                       <!-- Add the input event listener to the search input field -->
-                       <label for="" style="color:#1eff00;margin-right:10px">Filter By GT : </label>
-                        <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
-
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
+                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
+                        </div>
+                        <div>
+                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By Reference :</label>
+                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
+                        </div>
                     </div>
+
                     <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
+                                <th><button type="button" onclick="selectAll()">Select All</button></th>
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>Registration Type</th>
-                                <th>Status</th>
-                                <th>Done</th>
+                                <th>Reference</th>
+                                <th>Upload</th>
                             </tr>
                         </thead>
 
@@ -411,7 +398,9 @@
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
                                     <tr  id="row_{{ $item->id }}">
-                                        {{-- <td data-th="Supplier Name">
+                                        <td data-th="Supplier Name">
+                                            @if ($item->paid === '2')
+
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
 
@@ -419,7 +408,8 @@
                                             type="checkbox" name="selectedItems[]"
                                             value="{{ $item->id }}">
 
-                                        </td> --}}
+                                            @endif
+                                        </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
@@ -440,6 +430,9 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->reference }}
+                                        </td>
                                         <td style="text-align:center">
                                             @if ($item->paid === '2')
                                             ✅
@@ -447,13 +440,13 @@
                                             ❌
                                             @endif
                                         </td>
-                                        <td style="text-align: center">
+                                        {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
@@ -474,15 +467,29 @@
         </div>
         <script>
 
+function filterReference() {
+    const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+
+    for (const row of rows) {
+        const referenceCell = row.querySelector('td:nth-child(8)'); // Adjusted index to match the column
+        const reference = referenceCell.textContent.toLowerCase();
+
+        if (reference.includes(referenceSearch)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
 function filterGTNumbers() {
     const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
     const rows = document.querySelectorAll('tbody tr');
 
     for (const row of rows) {
-        const gtNumberCell = row.querySelector('td:nth-child(3)');
+        const gtNumberCell = row.querySelector('td:nth-child(4)'); // Adjusted index to match the column
         const gtNumber = gtNumberCell.textContent.toLowerCase();
-
-        console.log("GT Number:", gtNumber);
 
         if (gtNumber.includes(gtNumberSearch)) {
             row.style.display = '';
@@ -491,6 +498,14 @@ function filterGTNumbers() {
         }
     }
 }
+
+$(document).ready(function () {
+    // Other existing code...
+
+    // Add the input event listener to the search input fields
+    $('#gtNumberSearch').on('input', filterGTNumbers);
+    $('#filterReference').on('input', filterReference);
+});
 
 
              function selectDoneRows() {
