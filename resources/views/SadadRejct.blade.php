@@ -399,6 +399,7 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
+                                <th>ID</th>
                                 <th>Registration Type</th>
                                 <th>Status</th>
                             </tr>
@@ -435,6 +436,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->regist }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}

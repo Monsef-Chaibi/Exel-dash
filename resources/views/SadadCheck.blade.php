@@ -454,13 +454,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            
+
                                         </td>
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="8" style="text-align: center">
+                                    <td colspan="10" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr>
