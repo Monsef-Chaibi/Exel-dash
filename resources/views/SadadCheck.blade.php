@@ -399,7 +399,7 @@
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>ID</th>
-                                <th>Registration Type</th>
+                                <th>Reference</th>
                                 <th>Upload</th>
                                 <th>Paid</th>
                             </tr>
@@ -439,11 +439,11 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->regist }}
                                         </td>
-                                        <td data-th="Supplier Code">
+                                        <td style="font-size: 18px" data-th="Supplier Code">
                                             {{ $item->idnum }}
                                         </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->paidtype }}
+                                        <td data-th="Supplier Code" style="font-size: 15px">
+                                            {{ $item->reference }}
                                         </td>
                                         <input type="hidden" name="paidtype" value=" {{ $item->paidtype }}" id="">
                                         <td style="text-align: center">
