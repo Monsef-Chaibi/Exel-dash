@@ -380,7 +380,7 @@
                     <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button type="button" onclick="selectAll()">Select All</button></th>
+                                {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
@@ -398,7 +398,7 @@
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
                                     <tr  id="row_{{ $item->id }}">
-                                        <td data-th="Supplier Name">
+                                        {{-- <td data-th="Supplier Name">
                                             @if ($item->paid === '2')
 
 
@@ -409,7 +409,7 @@
                                             value="{{ $item->id }}">
 
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
@@ -450,11 +450,11 @@
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach
-                                <tr>
+                                {{-- <tr>
                                     <td colspan="9" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
-                                </tr>
+                                </tr> --}}
                         </tbody>
                     </table>
                     <div style="display: flex;justify-content:center">
