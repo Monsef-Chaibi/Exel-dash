@@ -2158,8 +2158,10 @@ class Controller extends BaseController
                                 $import = new HSBCImport();
                                 Excel::import($import, $request->file('file'));
                                 $importedData = $import->getImportedData();
-
-                                return view('/CheckHSBC', ['importedData' => $importedData]);
+                                $isButtonActive = collect($importedData)->every(function ($item) {
+                                    return $item['status'] === 1 || $item['status'] === 2;
+                                });
+                                return view('/CheckHSBC', ['importedData' => $importedData, 'isButtonActive' => $isButtonActive]);
 
                             } catch (\Exception $e) {
                                 // Handle exceptions, including execution timeout
