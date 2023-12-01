@@ -251,7 +251,7 @@
                 </form>
                 @if (isset($importedData))
                     <div style="text-align: center;">
-                        <table style="width: 85%; font-size: 20px; text-align: center; margin: 0 auto;">
+                        <table style="width: 90%; font-size: 20px; text-align: center; margin: 0 auto;">
                             <thead>
                                 <tr style="height:60px" class="fr">
                                     {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
@@ -266,10 +266,18 @@
                             </thead>
 
                             <tbody style="background-color: gray">
-                                @csrf
-                                {{ $lop = 0 }}
-                                @foreach ($importedData as $item)
-                                    <tr style="border: 2px solid #d8e7f3; height:60px" id="row_{{ $item['id'] }}">
+                                        @csrf
+                                        {{ $lop = 0 }}
+                                        @foreach ($importedData as $item)
+                                            <tr style="border: 2px solid #d8e7f3; height:60px; background-color:
+                                            @if($item['status'] === 1)
+                                                #288b00;
+                                            @elseif($item['status'] === 2)
+                                                #f4ff37;
+                                            @else
+                                                #cc2500;
+                                            @endif"
+                                            id="row_{{ $item['id'] }}">
                                         <td colspan="4" data-th="Supplier Code">
                                             {{ $item['product'] }}
                                         </td>
@@ -307,7 +315,8 @@
                                             ❌
                                             @endif
                                         </td>
-                                        <td>
+                                        <td style="font-size: 15px;width:250px">
+                                            {{ $item['reason'] }}
                                         </td>
                                     </tr>
                                 @endforeach
