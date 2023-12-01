@@ -19,7 +19,7 @@ class HSBCImport implements ToModel, WithHeadingRow
 
         if ($this->rowCount >= 1) {
 
-            if ($row['status_description'] === 'New Payment'  || $row['status'] === 'Rejected' ||$row['status'] === 'Rejected by Bank') {
+            if ( $row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank' || ($row['status_description'] === 'New Payment' && $row['status'] === 'Pending Authorization')) {
 
                 $existsInDb = DB::table('data')
                 ->where('gtnum', $gtnum)

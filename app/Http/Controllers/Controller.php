@@ -2150,7 +2150,8 @@ class Controller extends BaseController
                         public function importHSBC(Request $request)
                         {
                             // Set a time limit of 40 seconds to prevent execution timeout
-                            ini_set('max_execution_time', 40);
+                            ini_set('max_execution_time', 300);
+
 
                             try {
                                 // Import data from the Excel file using the HSBCImport class
@@ -2165,7 +2166,8 @@ class Controller extends BaseController
                                 if ($e instanceof \RuntimeException && $e->getCode() == 28) {
                                     // Execution timeout error
                                     return back()->with('error', 'Execution time exceeded. Please reduce the size of your Excel file or increase the memory limit.');
-                                } else {
+                                }
+                                 else {
                                     // Other exceptions
                                     return back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
