@@ -2177,6 +2177,11 @@ class Controller extends BaseController
                         }
 
 
+                        public function HSBCPassed(Request $request)
+                        {
+                            dd($request);
+                        }
+
 
 
 
