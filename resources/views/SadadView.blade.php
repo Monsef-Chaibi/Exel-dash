@@ -381,7 +381,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Approved : <span id="vl"></span>
+                                         Approved : <span id="vl"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -398,7 +398,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Sent : <span id="vl1"></span>
+                                         Sent To Review : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
@@ -414,7 +414,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Sadad Rejected: <span id="vl2"></span>
+                                         Rejected: <span id="vl2"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">

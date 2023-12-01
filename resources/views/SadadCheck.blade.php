@@ -401,7 +401,7 @@
                                 <th>ID</th>
                                 <th>Reference</th>
                                 <th>Upload</th>
-                                <th>Paid</th>
+                                <th>Passed</th>
                             </tr>
                         </thead>
 
