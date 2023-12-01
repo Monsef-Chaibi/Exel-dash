@@ -19,7 +19,7 @@ class HSBCImport implements ToModel, WithHeadingRow
 
         if ($this->rowCount >= 1) {
 
-            if ($row['status_description'] === 'New Payment') {
+            if ($row['status_description'] === 'New Payment'  || $row['status'] === 'Rejected' ||$row['status'] === 'Rejected by Bank') {
 
                 $existsInDb = DB::table('data')
                 ->where('gtnum', $gtnum)
@@ -61,7 +61,7 @@ class HSBCImport implements ToModel, WithHeadingRow
                 $sameid = (int)$idnum === $row['moi_reference_number'] ? 1 : 0;
                 $aproved = ($paidValue === '2') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
-                $paid = ($notpaid === '1') ? 1 : 0;
+                $paid = ($notpaid !== '1') ? 1 : 0;
 
                 $data = [
                     'id' => $id,
@@ -76,6 +76,7 @@ class HSBCImport implements ToModel, WithHeadingRow
                     'aproved' =>  $aproved,
                     'uploaded' =>  $uploaded,
                     'paid' =>  $paid,
+                    'reason' =>  $row['status_description'] != 'New Payment' ? $row['status_description'] : null,
                 ];
 
                 // Store the data in the $importedData array

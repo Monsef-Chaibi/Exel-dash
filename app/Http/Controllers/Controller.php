@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Aljuf;
 use App\Models\ColorCode;
 use PDF;
+
+use Maatwebsite\Excel\Validators\ValidationException;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Symfony\Component\Debug\Exception\OutOfMemoryException;
 use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
@@ -2142,23 +2146,34 @@ class Controller extends BaseController
                                 return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                             }
                         }
+
                         public function importHSBC(Request $request)
                         {
-                            try {
-                                // Import data from the Excel file using the Sadad class
-                                $import = new HSBCImport();
-                                Excel::import($import,  $request->file('file'));
-                                $importedData = $import->getImportedData();
+                            // Set a time limit of 40 seconds to prevent execution timeout
+                            ini_set('max_execution_time', 40);
 
+                            try {
+                                // Import data from the Excel file using the HSBCImport class
+                                $import = new HSBCImport();
+                                Excel::import($import, $request->file('file'));
+                                $importedData = $import->getImportedData();
 
                                 return view('/CheckHSBC', ['importedData' => $importedData]);
 
                             } catch (\Exception $e) {
-
-                                return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
-
+                                // Handle exceptions, including execution timeout
+                                if ($e instanceof \RuntimeException && $e->getCode() == 28) {
+                                    // Execution timeout error
+                                    return back()->with('error', 'Execution time exceeded. Please reduce the size of your Excel file or increase the memory limit.');
+                                } else {
+                                    // Other exceptions
+                                    return back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+                                }
                             }
                         }
+
+
+
 
 
 }
