@@ -282,7 +282,7 @@
 
                                             <td data-th="Supplier Code">
                                                 {{ $item['gtnum'] }}
-                                                <input type="hidden" value="{{$item['gtnum']}}" name='gtnum'>
+                                                <input type="hidden" value="{{ $item['gtnum'] }}" name="gtnum[]">
                                             </td>
                                             <td data-th="Supplier Code">
                                                 {{ $item['regist'] }}
@@ -316,10 +316,10 @@
                                             </td>
                                             <td style="font-size: 15px;width:250px">
                                                 {{ $item['reason'] }}
-                                                <input type="hidden" value="{{$item['reason']}}" name='reason'>
+                                                <input type="hidden" value="{{ $item['reason'] }}" name="reason[]">
                                             </td>
 
-                                            <input type="hidden" value="{{$item['status']}}" name='status'>
+                                            <input type="hidden" value="{{ $item['status'] }}" name="status[]">
                                         </tr>
                                     @endforeach
                                 </tbody>

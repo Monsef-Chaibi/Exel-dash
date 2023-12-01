@@ -2179,8 +2179,30 @@ class Controller extends BaseController
 
                         public function HSBCPassed(Request $request)
                         {
-                            dd($request);
+                            try {
+                                $gtnumArray = $request->input('gtnum');
+                                $statusArray = $request->input('status');
+
+                                foreach ($gtnumArray as $key => $gtnum) {
+                                    $status = $statusArray[$key];
+
+                                    // Assuming you have a model named 'YourModel' representing your database table
+                                    $record = Data::where('gtnum', $gtnum)->first();
+
+                                    if ($record) {
+                                        // Update the 'paid' column based on the 'status' value
+                                        $record->paid = ($status == 1) ? 1 : 2;
+                                        $record->save();
+                                    }
+                                }
+
+                                return redirect()->back()->with('success', 'Selections updated successfully');
+                            } catch (\Exception $e) {
+                                // Handle exceptions here
+                                return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+                            }
                         }
+
 
 
 
