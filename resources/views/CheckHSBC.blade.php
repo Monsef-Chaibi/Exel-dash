@@ -264,7 +264,7 @@
                                     <td>Reject Reason</td>
                                 </tr>
                             </thead>
-                            <form action="">
+                            <form action="HSBCPassed" method="get">
                                 <tbody style="background-color: gray">
                                     @csrf
                                     {{ $lop = 0 }}
@@ -316,7 +316,7 @@
                                             <td style="font-size: 15px;width:250px">
                                                 {{ $item['reason'] }}
                                             </td>
-                                            
+
                                             <input type="hidden" value="$item['status']" name='status'>
                                         </tr>
                                     @endforeach
