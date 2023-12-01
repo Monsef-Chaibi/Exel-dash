@@ -264,7 +264,7 @@
                                     <td>Reject Reason</td>
                                 </tr>
                             </thead>
-                            <form action="HSBCPassed" method="get">
+                            <form action="/HSBCPassed" method="get">
                                 <tbody style="background-color: gray">
                                     @csrf
                                     {{ $lop = 0 }}

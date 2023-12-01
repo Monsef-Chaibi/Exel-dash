@@ -109,6 +109,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/Paid', [Controller::class, 'Paid'])->name('Paid');
     Route::get('/SadadPaid', [Controller::class, 'SadadPaid'])->name('SadadPaid');
     Route::get('/SadadRejctA', [Controller::class, 'SadadRejctA'])->name('SadadRejctA');
+    Route::get('/HSBCPassed', [Controller::class, 'HSBCPassed'])->name('HSBCPassed');
 
 
 
