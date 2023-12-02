@@ -317,7 +317,8 @@
                                             <td style="font-size: 15px;width:250px">
                                                 {{ $item['reason'] }}
                                                 <input type="hidden" value="{{ $item['reason'] }}" name="reason[]">
-                                            </td>
+                                            </td
+                                            
 
                                             <input type="hidden" value="{{ $item['status'] }}" name="status[]">
                                         </tr>

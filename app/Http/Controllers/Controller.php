@@ -2189,9 +2189,12 @@ class Controller extends BaseController
                                     // Assuming you have a model named 'YourModel' representing your database table
                                     $record = Data::where('gtnum', $gtnum)->first();
 
-                                    if ($record) {
-                                        // Update the 'paid' column based on the 'status' value
-                                        $record->paid = ($status == 1) ? 1 : 2;
+                                    if ($status === '1') {
+
+                                        $record->paid =  2 ;
+                                        $record->paidby =  2 ;
+                                        $record->paidtype =  2 ;
+                                        $record->paid =  2 ;
                                         $record->save();
                                     }
                                 }
