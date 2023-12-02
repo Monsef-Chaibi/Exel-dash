@@ -127,6 +127,12 @@ class Controller extends BaseController
                     ->get();
         return view('SadadPaid')->with('data', $data);
     }
+    function Rejectedbybank(){
+
+        $data = Data::where('paid','4')
+                    ->get();
+        return view('Rejectedbybank')->with('data', $data);
+    }
     function SadadRejctA(){
 
         $data = Data::where('paid','3')
