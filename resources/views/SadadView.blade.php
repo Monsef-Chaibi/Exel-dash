@@ -425,6 +425,38 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="ag-courses_item">
+                                <a href="/SadadPaid" SadadCheck class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                         Passed : <span id="value"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="date" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="/Rejectedbybank" SadadCheck class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                         Rejected By Bank : <span id="value1"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="date1" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
 
                         </div>
                     </div>
@@ -553,6 +585,10 @@
                     $('#dt1').text(data.up2);
                     $('#vl2').text(data.value3);
                     $('#dt2').text(data.up3);
+                    $('#value').text(data.value4);
+                    $('#date').text(data.up4);
+                    $('#value1').text(data.value5);
+                    $('#date1').text(data.up5);
 
                 }
             });

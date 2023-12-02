@@ -401,7 +401,7 @@
                                 <th>ID</th>
                                 <th>Reference</th>
                                 <th>Upload</th>
-                                <th>Passed</th>
+
                             </tr>
                         </thead>
 
@@ -453,9 +453,7 @@
                                                 ❌
                                             @endif
                                         </td>
-                                        <td>
-
-                                        </td>
+                                       
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach

@@ -390,8 +390,7 @@
                             <th>Registering fee</th>
                             <th>Registration Type</th>
                             <th>Reference</th>
-                            <th>Upload</th>
-                            <th>Paid</th>
+                           
                         </tr>
                     </thead>
 
@@ -436,20 +435,7 @@
                                 <td data-th="Supplier Code">
                                     {{ $item->reference }}
                                 </td>
-                                <td style="text-align:center">
-                                    @if ($item->paid === '2')
-                                        ✅
-                                    @else
-                                        ❌
-                                    @endif
-                                </td>
-                                <td style="text-align:center">
-                                    @if ($item->paidbya === '1')
-                                        ✅
-                                    @else
-                                        ❌
-                                    @endif
-                                </td>
+
                                 {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

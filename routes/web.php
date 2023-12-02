@@ -107,8 +107,6 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/SadadStatusA', [Controller::class, 'SadadStatusA'])->name('SadadStatusA');
     Route::match(['get', 'post'], '/importHSBC', [Controller::class, 'importHSBC'])->name('importHSBC');
     Route::get('/Paid', [Controller::class, 'Paid'])->name('Paid');
-    Route::get('/SadadPaid', [Controller::class, 'SadadPaid'])->name('SadadPaid');
-    Route::get('/Rejectedbybank', [Controller::class, 'Rejectedbybank'])->name('Rejectedbybank');
     Route::get('/SadadRejctA', [Controller::class, 'SadadRejctA'])->name('SadadRejctA');
     Route::get('/HSBCPassed', [Controller::class, 'HSBCPassed'])->name('HSBCPassed');
 
@@ -116,6 +114,8 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
 
 });
 
+Route::get('/Rejectedbybank', [Controller::class, 'Rejectedbybank'])->name('Rejectedbybank');
+Route::get('/SadadPaid', [Controller::class, 'SadadPaid'])->name('SadadPaid');
 Route::get('/Sadadlive2', [Controller::class, 'Sadadlive2'])->name('Sadadlive2');
 
 // Route for user 2 role 4
