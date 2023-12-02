@@ -360,6 +360,13 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
+                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
+                        </div>
+                      
+                    </div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
@@ -444,6 +451,22 @@
         @endforeach
 
         <script>
+
+        function filterGTNumbers() {
+            const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+
+            for (const row of rows) {
+                const gtNumberCell = row.querySelector('td:nth-child(4)'); // Adjusted index to match the column
+                const gtNumber = gtNumberCell.textContent.toLowerCase();
+
+                if (gtNumber.includes(gtNumberSearch)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
 
          function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');

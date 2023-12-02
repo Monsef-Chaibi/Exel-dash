@@ -399,7 +399,7 @@
                                 @foreach ($data as $index => $item)
                                     <tr  id="row_{{ $item->id }}">
                                         <td data-th="Supplier Name">
-                                            @if ($item->paid === '2')
+                                            @if ($item->done === '1')
 
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
