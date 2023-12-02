@@ -709,5 +709,7 @@
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = !allChecked;
         }
+        
+        updateChecks();
     }
 </script>

@@ -882,6 +882,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             for (var i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].checked = !allChecked;
             }
+            updateChecks();
         }
     </script>
 </x-app-layout>
