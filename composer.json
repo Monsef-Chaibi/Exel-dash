@@ -17,6 +17,7 @@
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "3.1.48",
         "nesbot/carbon": "^2.71",
+        "phpexcel/phpexcel": "*",
         "phpoffice/phpspreadsheet": "^1.29"
     },
     "require-dev": {

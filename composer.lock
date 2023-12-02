@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df2c990a2ec52845441df7321387c5f3",
+    "content-hash": "45d1990ffc636e8fc175416bbe80d507",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -3143,6 +3143,45 @@
                 "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.0"
             },
             "time": "2022-09-06T12:16:56+00:00"
+        },
+        {
+            "name": "phpexcel/phpexcel",
+            "version": "v1.7.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddeboer/phpexcel.git",
+                "reference": "de9c8871a87ce9be354d35f5e966dd65a0c7c6d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ddeboer/phpexcel/zipball/de9c8871a87ce9be354d35f5e966dd65a0c7c6d2",
+                "reference": "de9c8871a87ce9be354d35f5e966dd65a0c7c6d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU"
+            ],
+            "description": "PHPExcel - OpenXML - Create Excel2007 documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "excel",
+                "xls"
+            ],
+            "support": {
+                "source": "https://github.com/ddeboer/phpexcel/tree/v1.7.7"
+            },
+            "abandoned": "phpoffice/phpexcel",
+            "time": "2012-09-04T18:29:37+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
