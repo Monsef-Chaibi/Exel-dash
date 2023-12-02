@@ -16,7 +16,7 @@ class HSBCImport implements ToModel, WithHeadingRow
         $this->rowCount++;
 
         $gtnum = $row['customer_reference'];
-        
+
         if ($this->rowCount >= 1) {
 
             if ( $row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank' || ($row['status_description'] === 'New Payment' && $row['status'] === 'Pending Authorization')) {
@@ -59,7 +59,7 @@ class HSBCImport implements ToModel, WithHeadingRow
 
                 $sameregist = $registValue === $row['due_amount_sar'] ? 1 : 0;
                 $sameid = (int)$idnum === $row['moi_reference_number'] ? 1 : 0;
-                $aproved = ($paidValue === '2') ? 1 : 0;
+                $aproved = ($paidValue === '2' or $paidValue === '4') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
                 $paid = ($notpaid !== '1') ? 1 : 0;
 

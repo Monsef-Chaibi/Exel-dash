@@ -2161,7 +2161,7 @@ class Controller extends BaseController
                                 $isButtonActive = collect($importedData)->every(function ($item) {
                                     return $item['status'] === 1 || $item['status'] === 2;
                                 });
-                                return view('/CheckHSBC', ['importedData' => $importedData, 'isButtonActive' => $isButtonActive]);
+                                return view('CheckHSBC', ['importedData' => $importedData, 'isButtonActive' => $isButtonActive]);
 
                             } catch (\Exception $e) {
                                 // Handle exceptions, including execution timeout
@@ -2182,27 +2182,36 @@ class Controller extends BaseController
                             try {
                                 $gtnumArray = $request->input('gtnum');
                                 $statusArray = $request->input('status');
+                                $rejectdreason = $request->input('reason');
 
                                 foreach ($gtnumArray as $key => $gtnum) {
-                                    $status = $statusArray[$key];
+                                    // Check if the key exists in the statusArray
+                                    $status = isset($statusArray[$key]) ? $statusArray[$key] : null;
 
                                     // Assuming you have a model named 'YourModel' representing your database table
                                     $record = Data::where('gtnum', $gtnum)->first();
 
-                                    if ($status === '1') {
+                                    if ($record && $status === '1') {
+                                        $record->paid =  2 ;
+                                        $record->done =  1 ;
+                                        $record->paidbya = 1 ;
+                                        $record->save();
+                                    }
+                                    if ($record && $status === '2') {
+                                        $record->paid =  4 ;
+                                        $record->repload =  1 ;
+                                        $record->rejectdreason =  $rejectdreason[$key] ;
 
-                                        $record->paid =  2 ;
-                                        $record->paidby =  2 ;
-                                        $record->paidtype =  2 ;
-                                        $record->paid =  2 ;
                                         $record->save();
                                     }
                                 }
 
-                                return redirect()->back()->with('success', 'Selections updated successfully');
+                                return redirect()->route('CheckHSBC')->with('success', 'Selections updated successfully');
+
                             } catch (\Exception $e) {
+
                                 // Handle exceptions here
-                                return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+                                return redirect()->route('CheckHSBC')->with('error', 'An error occurred: ' . $e->getMessage());
                             }
                         }
 

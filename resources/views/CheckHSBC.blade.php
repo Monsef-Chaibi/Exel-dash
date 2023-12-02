@@ -203,15 +203,7 @@
     </style>\
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-    @if (session()->has('error'))
-        <script>
-            Swal.fire(
-                'Error',
-                '{{ session('error') }}',
-                'error'
-            )
-        </script>
-    @endif
+
 
     @if (session()->has('success'))
         <script>
@@ -238,7 +230,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1 style="text-align: center;color:#1eff00;font-size:25px;font-weight:bold">Check HSBC Sheet</h1>
                     <br>
-                    <form class="form-container" action="{{ url('/importHSBC') }}" method="POST"
+                    <form class="form-container" action="{{ url('/importHSBC') }}" method="post"
                         enctype='multipart/form-data'>
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
@@ -317,18 +309,17 @@
                                             <td style="font-size: 15px;width:250px">
                                                 {{ $item['reason'] }}
                                                 <input type="hidden" value="{{ $item['reason'] }}" name="reason[]">
-                                            </td
-                                            
-
-                                            <input type="hidden" value="{{ $item['status'] }}" name="status[]">
+                                                <input type="hidden" value="{{ $item['status'] }}" name="status[]">
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
-                            <button style="font-size: 30px; margin-top: 10px; color: @if(!$isButtonActive) gray @else rgb(103, 255, 103) @endif"
-                                    type="submit" class="modal__btn" @if(!$isButtonActive) disabled @endif>
-                                Save &rarr;
-                            </button>
+                        </table>
+                        <button
+                            style="font-size: 30px; margin-top: 10px; color: @if (!$isButtonActive) gray @else rgb(103, 255, 103) @endif"
+                            type="submit" class="modal__btn" @if (!$isButtonActive) disabled @endif>
+                            Save &rarr;
+                        </button>
 
                         </form>
                     </div>
