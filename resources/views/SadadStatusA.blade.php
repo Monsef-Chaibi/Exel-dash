@@ -428,6 +428,22 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="ag-courses_item">
+                                <a href="/SadadRejctA" SadadCheck class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Rejected by bank : <span id="vl3"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="dt3" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -448,6 +464,8 @@
                     $('#dt1').text(data.up2);
                     $('#vl2').text(data.value3);
                     $('#dt2').text(data.up3);
+                    $('#vl3').text(data.value4);
+                    $('#dt3').text(data.up3);
 
                 },
                 error: function(xhr, status, error) {

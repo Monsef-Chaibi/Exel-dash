@@ -1703,6 +1703,8 @@ class Controller extends BaseController
                     $up2= Data::where('paidbya','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue3 = Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up3= Data::where('paid','3')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue4 = Data::where('paid','4')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+
                 }else
                 {
                     $paidValues = ['2', '22'];
@@ -1712,9 +1714,10 @@ class Controller extends BaseController
                     $up2= Data::where('paidbya','1')->latest('datepaid')->value('datepaid');
                     $liveValue3 = Data::where('paid','3')->count(); // Replace YourModel and $id witsh your actual model and ID
                     $up3= Data::where('paid','3')->latest('datepaid')->value('datepaid');
+                    $liveValue4 = Data::where('paid','4')->count(); // Replace YourModel and $id witsh your actual model and ID
                 }
 
-                return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2,'value3'  => $liveValue3, 'up3' => $up3]);
+                return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2,'value3'  => $liveValue3, 'up3' => $up3, 'value4'  => $liveValue4]);
             }
 
             public function getlast()
