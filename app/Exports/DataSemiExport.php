@@ -11,7 +11,7 @@ class DataSemiExport implements FromCollection, WithHeadings
 {
     protected $selectedItems;
     protected $alldata;
-
+ 
     public function __construct($selectedItems, $alldata)
     {
         $this->selectedItems = $selectedItems;

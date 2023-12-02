@@ -9,10 +9,12 @@ use Maatwebsite\Excel\Validators\ValidationException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Debug\Exception\OutOfMemoryException;
 use App\Exports\DataExport;
+use App\Exports\BankExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Imports\IDImport;
 use App\Imports\Sadad;
+use Illuminate\Support\Facades\Storage;
 use App\Imports\HSBCImport;
 use App\Models\Brand;
 use App\Models\ContratUser;
@@ -1199,14 +1201,22 @@ class Controller extends BaseController
                         $firstId = $selectedItems[0];
                         $firstRecord = Data::find($firstId);
                         $alldata = $firstRecord->paidtype;
+
                         if (!$selectedItems) {
                             throw new \Exception('No items selected for export.');
                         }
 
-                        return Excel::download(new DataSemiExport($selectedItems, $alldata), 'Gt-Number.xlsx');
+                        $export = new BankExport($selectedItems, $alldata);
+
+                        // Use the store method to store the file and get the path
+                        $filePath = $export->store('exports', 'public'); // Change 'exports' to your desired directory
+
+                        // You can now provide a link to the stored file using the $filePath
+                        return redirect()->away(Storage::url($filePath));
                     } catch (\Exception $e) {
                         return back()->with('error', 'An error occurred while exporting the data: ' . $e->getMessage());
                     }
+
                 }
                 else{
                     try {
