@@ -380,6 +380,23 @@
                         <div class="ag-courses_box">
 
                             <div class="ag-courses_item">
+                                <a href="/SadadA" class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                       For Review : <span id="value1"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="up1" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="ag-courses_item">
                                 <a href="/SadadStatus" class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
@@ -466,7 +483,8 @@
                     $('#dt2').text(data.up3);
                     $('#vl3').text(data.value4);
                     $('#dt3').text(data.up3);
-
+                    $('#value1').text(data.vl1);
+                    $('#up1').text(data.up11);
                 },
                 error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
