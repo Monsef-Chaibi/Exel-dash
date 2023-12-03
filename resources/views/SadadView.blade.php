@@ -441,22 +441,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="ag-courses_item">
-                                <a href="/Rejectedbybank" SadadCheck class="ag-courses-item_link">
-                                    <div class="ag-courses-item_bg"></div>
-
-                                    <div class="ag-courses-item_title">
-                                         Rejected By Bank : <span id="value1"></span>
-                                    </div>
-
-                                    <div class="ag-courses-item_date-box">
-                                        Last Update :
-                                        <span id="date1" class="ag-courses-item_date">
-
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
+                            
 
                         </div>
                     </div>
@@ -709,7 +694,7 @@
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = !allChecked;
         }
-        
+
         updateChecks();
     }
 </script>
