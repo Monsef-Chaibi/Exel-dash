@@ -57,6 +57,7 @@
             border-top: none;
             background: linear-gradient(135deg, #71b7e6, #9b59b6);
             color: #fff;
+            height: 60px;
         }
 
         .rwd-table tr {
@@ -390,9 +391,9 @@
                         <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
 
                     </div>
-                    <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
+                    <table style="width: 100%; margin-bottom:5%;" >
                         <thead>
-                            <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
+                            <tr  class="fr">
                                 {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
                                 <th>Product</th>
                                 <th>Vin</th>
@@ -400,8 +401,8 @@
                                 <th>Billing Doc</th>
                                 <th>Registering fee</th>
                                 <th>ID</th>
-                                <th>Registration Type</th>
-                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Reason</th>
                             </tr>
                         </thead>
 
@@ -410,7 +411,7 @@
                                 @csrf
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
-                                    <tr  id="row_{{ $item->id }}">
+                                    <tr style="background-color:white; height: 60px;border:2px solid rgb(216, 216, 216)"  id="row_{{ $item->id }}">
                                         {{-- <td data-th="Supplier Name">
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
@@ -420,7 +421,7 @@
                                             value="{{ $item->id }}">
 
                                         </td> --}}
-                                        <td data-th="Supplier Code">
+                                        <td style=" padding:10px" data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
                                         <td data-th="Supplier Code">
@@ -443,8 +444,8 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
-                                        <td style="text-align:center">
-                                            ❌
+                                        <td style="text-al  ign:center">
+                                            {{ $item->rejectdreason }}
                                         </td>
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')

@@ -441,7 +441,22 @@
                                     </div>
                                 </a>
                             </div>
-                            
+                            <div class="ag-courses_item">
+                                <a href="/Rejectedbybank" SadadCheck class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Repayment : <span id="value1"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="date1" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
 
                         </div>
                     </div>
