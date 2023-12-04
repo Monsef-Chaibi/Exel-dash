@@ -361,7 +361,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div style="padding: 10px">
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
@@ -389,7 +389,7 @@
                         <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
 
                     </div>
-                    <table style="width: 100%; margin-bottom:5%; "  class="rwd-table">
+                    <table  style="width: 100%; font-size:18px "  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                                 <th><button type="button" onclick="selectAll()">Select All</button></th>
@@ -397,7 +397,8 @@
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
-                                <th>Registering fee</th>
+                                <th>Fee</th>
+                                <th>Type</th>
                                 <th>ID</th>
                                 <th>Reference</th>
                                 <th>Upload</th>
@@ -439,6 +440,9 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->regist }}
                                         </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->paidtype }}
+                                        </td>
                                         <td style="font-size: 18px" data-th="Supplier Code">
                                             {{ $item->idnum }}
                                         </td>
@@ -453,7 +457,7 @@
                                                 ❌
                                             @endif
                                         </td>
-                                       
+
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
                                     </tr>
                                 @endforeach

@@ -361,7 +361,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div style="padding: 20px">
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
@@ -398,10 +398,10 @@
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
-                                <th>Registering fee</th>
+                                <th> fee</th>
+                                <th>Type</th>
                                 <th>ID</th>
-                                <th>Registration Type</th>
-                                <th>Status</th>
+                                <th>Owner</th>
                                 {{-- <th>By</th>
                                 <th>IN</th> --}}
                             </tr>
@@ -440,13 +440,13 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->idnum }}
-                                        </td>
-                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
-                                        <td style="text-align:center">
-                                            ⌛
+                                        <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td style="text-align:center;font-size:15px">
+                                            {{ $item->soldp }}
                                         </td>
                                         {{-- <td data-th="Supplier Code">
                                             {{ $item->paidby }}
