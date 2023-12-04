@@ -1667,19 +1667,23 @@ class Controller extends BaseController
             }
             public function CheckA1()
             {
+                $paidValues = ['2', '22'];
+
                 if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
-                    $liveValue2 = Data::whereNotNull('paid')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::whereNotNull('paid')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::where('paid',$paidValues)->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $liveValue2 += Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paid',$paidValues)->where('paid','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                 }else
                 {
                     $liveValue = Data::whereNotNull('status')->whereNotNull('stuser2')->count(); // Replace YourModel and $id with your actual model and ID
                     $up= Data::whereNotNull('status')->whereNotNull('stuser2')->latest('dateset')->value('dateset');
-                    $liveValue2 = Data::whereNotNull('paid')->count(); // Replace YourModel and $id with your actual model and ID
-                    $up2= Data::whereNotNull('paid')->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::where('paid',$paidValues)->count(); // Replace YourModel and $id with your actual model and ID
+                    $liveValue2 += Data::where('paid','3')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paid',$paidValues)->latest('datepaid')->value('datepaid');
                 }
 
                 return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2]);
@@ -2257,6 +2261,30 @@ class Controller extends BaseController
                             $result = Data::where('gtnum', $gtNumber)->value('paidbya');
 
                             return response()->json(['paidbya' => $result]);
+                        }
+                        public function importreupload(Request $request)
+                        {
+                            $gtNumbers = $request->input('gtNumbers');
+                            $newReferences = $request->input('newReferences');
+
+                            // Loop through the GT numbers and update the records
+                            foreach ($gtNumbers as $index => $gtNum) {
+                                // Find the record by GT number
+                                $record = Data::where('gtnum', $gtNum)->first();
+
+                                // Check if the record exists
+                                if ($record) {
+                                    // Update the 'paid' and 'reference' fields
+                                    $record->update([
+                                        'paid' => 11,
+                                        'reference' => $newReferences[$index],
+                                    ]);
+                                }
+                            }
+
+                            // Additional logic or redirection after updating records
+
+                            return redirect()->route('SadadRejct')->with('success', 'Records updated successfully');
                         }
                         public function reuploadimport(Request $request)
                         {

@@ -449,71 +449,96 @@
             <br>
             <br>
             @if (isset($Data))
-            <form action="/Sadadupload" method="post">
+            <form action="/importreupload" method="post">
                 @csrf
                 <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
                     <thead>
                         <tr class="fr">
-                            <th><button type="button" onclick="selectAllpop()">Select All</button></th>
                             <th>GT Number</th>
-                            <th>Old reference </th>
-                            <th>New reference </th>
+                            <th>Old reference</th>
+                            <th>New reference</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($Data as $item)
                             <tr>
-                                <td data-th="Supplier Name">
+                                <td data-th="GT Number">
                                     {{ $item['gtnum'] }}
+                                    <input type="hidden" name="gtNumbers[]" value="{{ $item['gtnum'] }}">
                                 </td>
-                                <td data-th="Supplier Code">
+                                <td data-th="Old Reference">
                                     {{ $item['old'] }}
+                                    <input type="hidden" name="oldReferences[]" value="{{ $item['old'] }}">
                                 </td>
-                                <td data-th="Supplier Code">
+                                <td data-th="New Reference">
                                     {{ $item['new'] }}
+                                    <input type="hidden" name="newReferences[]" value="{{ $item['new'] }}">
                                 </td>
-                                <td data-th="Paid">
+
                                     <input type="hidden" name="paid[]" value="{{ $item['paidbya'] }}">
-                                </td>
+
+
+
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                <p>Error in :</p>
+                <p style="color: #1eff00; " id="errorMessage"></p>
+                <br>
 
-                <button type="submit" style="font-size:50px; margin-left:60px" id="submitButton" disabled>
+                <button type="submit" style="font-size:50px; margin-left:60px ; color:#1eff00" id="submitButton" disabled>
                     Save &rarr;
                 </button>
-                <input type="hidden" name="paramName" value="paramValue">
+
             </form>
 
+
             <script>
-                // jQuery document ready function
-                $(document).ready(function() {
-                    // Enable or disable the submit button based on paid values
-                    function updateSubmitButton() {
-                        var allPaid = true;
-                        $('input[name="paid[]"]').each(function() {
-                            if ($(this).val() !== 'paid') {
-                                allPaid = false;
-                                return false;  // exit the loop if any value is not 'paid'
-                            }
-                        });
+              $(document).ready(function () {
+    function updateSubmitButton() {
+        var allPaid = true;
+        var errorItems = [];
 
-                        // Enable or disable the submit button based on the result
-                        $('#submitButton').prop('disabled', !allPaid);
-                    }
+        $('input[name="paid[]"]').each(function () {
+            if ($(this).val() !== '1') {
+                allPaid = false;
 
-                    // Call the function on page load
-                    updateSubmitButton();
+                // Get the GT number of the item with an error
+                var gtNumber = $(this).closest('tr').find('[data-th="GT Number"]').text().trim();
 
-                    // Bind the function to the change event of paid inputs
-                    $('input[name="paid[]"]').change(function() {
-                        updateSubmitButton();
-                    });
-                });
+                errorItems.push(gtNumber);
+            }
+        });
+
+        // Enable or disable the submit button based on the result
+        $('#submitButton').prop('disabled', !allPaid);
+
+        // Change the color of the submit button to gray if disabled
+        if (!allPaid) {
+            $('#submitButton').css('color', 'gray');
+        } else {
+            $('#submitButton').css('color', '#1eff00'); // Set the original color
+        }
+
+        // Display error message if there is an error
+        var errorMessage = allPaid ? '' : 'Error in GT numbers: ' + errorItems.join(' && ');
+        $('#errorMessage').text(errorMessage);
+    }
+
+    // Call the function on page load
+    updateSubmitButton();
+
+    // Bind the function to the change event of paid inputs
+    $('input[name="paid[]"]').change(function () {
+        updateSubmitButton();
+    });
+});
+
             </script>
+
+
         @endif
             <form id="exportForm" action="/SemiExportA" method="get">
                 @csrf

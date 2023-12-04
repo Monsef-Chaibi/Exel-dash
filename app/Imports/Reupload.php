@@ -20,11 +20,15 @@ class Reupload implements ToModel
         $paidValue = DB::table('data')
             ->where('gtnum', $gtnum)
             ->value('paidbya');
+        $paid = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('paid');
         $data = [
             'gtnum' => $row[0],
             'old' => $row[1],
             'new' => $row[2],
             'paidbya' => $paidValue,
+            'paid' => $paid,
         ];
 
         // Store the data in the $importedData array

@@ -159,6 +159,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::post('/Sadadupload', [Controller::class, 'Sadad'])->name('Sadadupload');
     Route::post('/check-database', [Controller::class, 'check']);
     Route::post('/reuploadimport', [Controller::class, 'reuploadimport'])->name('reuploadimport');
+    Route::post('/importreupload', [Controller::class, 'importreupload'])->name('importreupload');
 
 
 
