@@ -1054,6 +1054,18 @@ class Controller extends BaseController
 
                 return redirect()->back()->with('success', 'Selections updated successfully');
             }
+        function reupload(Request $request){
+
+                    $itemId=$request->gtnum;
+   
+                    Data::where('gtnum', $itemId)->update([
+                        'paid' => '11',
+                        'reference' =>  $request->input('new'),
+                    ]);
+
+
+                return redirect()->back()->with('success', 'Selections updated successfully');
+            }
         function Paid(Request $request){
                 $selectedItems = $request->input('selectedItems'); // Assuming you add a name attribute to the checkboxes
                 if(empty($selectedItems)) {
@@ -2236,8 +2248,15 @@ class Controller extends BaseController
                             }
                         }
 
+                        public function check(Request $request)
+                        {
+                            $gtNumber = $request->input('gtNumber');
 
+                            // Simulate a database check, replace this with your actual logic
+                            $result = Data::where('gtnum', $gtNumber)->value('paidbya');
 
+                            return response()->json(['paidbya' => $result]);
+                        }
 
 
 }

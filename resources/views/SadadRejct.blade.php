@@ -310,6 +310,17 @@
             box-shadow: none;
             transform: translateY(0);
         }
+
+        .upload {
+            color: #1eff00;
+            border: 2px solid #1eff00;
+        }
+
+        .upload:hover {
+            background-color: #1eff00;
+            color: white;
+            border: 2px solid white;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -337,82 +348,133 @@
         </script>
     @endif
 
-        @if (session()->has('success'))
+    @if (session()->has('success'))
+        <script>
+            Swal.fire(
+                'Success',
+                '{{ session('success') }}',
+                'success'
+            );
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire(
+                'Error',
+                '{{ session('error') }}',
+                'error'
+            );
+        </script>
+    @endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Add these lines to include DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <form id="uploadForm" action="/reupload" method="get">
+                <h2 style="color:#1eff00;">Re-upload a rejected payment</h2>
+                <br>
+                <label style="color:#1eff00;" for="gtNumber">GT Number :</label>
+                <input name="gtnum" type="text" id="gtNumber" style="border-radius: 10px; margin-left:15px">
+
+                <label style="color:#1eff00;" for="oldReference">Old Reference :</label>
+                <input name="old" required type="text" id="oldReference" style="border-radius: 10px; margin-left:15px">
+
+                <label style="color:#1eff00;" for="newReference">New Reference :</label>
+                <input name="new" required type="text" id="newReference" style="border-radius: 10px; margin-left:15px">
+
+                <button id="submitBtn" class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:30px; display: none;">
+                    Upload
+                </button>
+            </form>
+
             <script>
-                Swal.fire(
-                    'Success',
-                    '{{ session('success') }}',
-                    'success'
-                );
+                document.addEventListener('DOMContentLoaded', function () {
+                    const gtNumberInput = document.getElementById('gtNumber');
+                    const submitBtn = document.getElementById('submitBtn');
+
+                    gtNumberInput.addEventListener('input', function () {
+                        const gtNumberValue = this.value;
+
+                        // Make an AJAX request to check the database
+                        fetch('/check-database', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            },
+                            body: JSON.stringify({ gtNumber: gtNumberValue }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            const paidbya = data.paidbya;
+                            console.log(`Database check result for GT Number ${gtNumberValue}: ${paidbya ? 'Paid' : 'Not Paid'}`);
+
+                            // Show or hide the submit button based on the result
+                            if (paidbya === '1') {
+                                console.log('Setting display to inline-block');
+                                submitBtn.style.display = 'inline-block';
+                            } else {
+                                console.log('Setting display to none');
+                                submitBtn.style.display = 'none';
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    });
+
+                    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+                        // Check if the button is hidden (condition is false)
+                        if (submitBtn.style.display === 'none') {
+                            // Prevent form submission
+                            event.preventDefault();
+
+                            // Optionally, you can display a message to the user or perform other actions
+                            console.log('Form submission prevented because the condition is false.');
+                        }
+                    });
+                });
             </script>
-        @endif
 
-        @if (session('error'))
-            <script>
-                Swal.fire(
-                    'Error',
-                    '{{ session('error') }}',
-                    'error'
-                );
-            </script>
-        @endif
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <!-- Add these lines to include DataTables CSS and JS files -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <form id="exportForm" action="/SemiExportA" method="get">
-                    @csrf
-                    <input type="hidden" name="sadad" value="1">
+            <br>
+            <br>
+            <form id="exportForm" action="/SemiExportA" method="get">
+                @csrf
+                <input type="hidden" name="sadad" value="1">
+                <br>
+                <div style="display: flex;justify-content:right">
+                    <!-- Add the input event listener to the search input field -->
+                    <label for="" style="color:#1eff00;margin-right:10px">Filter By GT : </label>
+                    <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch"
+                        placeholder="Search by GT Number" oninput="filterGTNumbers()">
 
-                    {{-- <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
-                    <br>
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button> --}}
-{{--
-                    <div>
-                    <br>
+                </div>
+                <table style="width: 100%; margin-bottom:5%;">
+                    <thead>
+                        <tr class="fr">
+                            {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
+                            <th>Product</th>
+                            <th>Vin</th>
+                            <th>GT Number</th>
+                            <th>Billing Doc</th>
+                            <th>Registering fee</th>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
 
-                    <br>
+                    <tbody>
 
-                    <div style="text-align: center;color:#1eff00;display:flex;justify-content:center">
-                        <input style="border-radius: 10px"  type="radio" value="Private" name='type'>
-                        <label for="" style="margin-left:20px;margin-right:20px" >Private</label>
-                        <input style="border-radius: 10px"  type="radio" value="Private Transfer" name='type'>
-                        <label for=""  style="margin-left:20px;margin-right:20px">Private Transfer</label>
-                        <input style="border-radius: 10px" type="radio" value="Public Transfer" name='type'>
-                        <label for=""  style="margin-left:20px;margin-right:20px" >Public Transfer</label>
-                    </div> --}}
-                    <br>
-                    <div style="display: flex;justify-content:right">
-                       <!-- Add the input event listener to the search input field -->
-                       <label for="" style="color:#1eff00;margin-right:10px">Filter By GT : </label>
-                        <input style="border-radius: 10px; width: 300px;height:40px" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
-
-                    </div>
-                    <table style="width: 100%; margin-bottom:5%;" >
-                        <thead>
-                            <tr  class="fr">
-                                {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
-                                <th>Product</th>
-                                <th>Vin</th>
-                                <th>GT Number</th>
-                                <th>Billing Doc</th>
-                                <th>Registering fee</th>
-                                <th>ID</th>
-                                <th>Type</th>
-                                <th>Reason</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                                @csrf
-                                {{$lop = 0 }}
-                                @foreach ($data as $index => $item)
-                                    <tr style="background-color:white; height: 60px;border:2px solid rgb(216, 216, 216)"  id="row_{{ $item->id }}">
-                                        {{-- <td data-th="Supplier Name">
+                        @csrf
+                        {{ $lop = 0 }}
+                        @foreach ($data as $index => $item)
+                            <tr style="background-color:white; height: 60px;border:2px solid rgb(216, 216, 216)"
+                                id="row_{{ $item->id }}">
+                                {{-- <td data-th="Supplier Name">
 
                                             <span style="margin-right: 5px">{{ $lop +=1 }}</span>
 
@@ -421,92 +483,92 @@
                                             value="{{ $item->id }}">
 
                                         </td> --}}
-                                        <td style=" padding:10px" data-th="Supplier Code">
-                                            {{ $item->product }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->vin }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->gtnum }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            <a style="color: blue" href="/ShowForA1/{{encrypt($item->bildoc)}}">
-                                                {{ $item->bildoc }}
-                                            </a>
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->regist }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->idnum }}
-                                        </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->paidtype }}
-                                        </td>
-                                        <td style="text-al  ign:center">
-                                            {{ $item->rejectdreason }}
-                                        </td>
-                                        {{-- <td style="text-align: center">
+                                <td style=" padding:10px" data-th="Supplier Code">
+                                    {{ $item->product }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->vin }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->gtnum }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    <a style="color: blue" href="/ShowForA1/{{ encrypt($item->bildoc) }}">
+                                        {{ $item->bildoc }}
+                                    </a>
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->regist }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->idnum }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->paidtype }}
+                                </td>
+                                <td style="text-al  ign:center">
+                                    {{ $item->rejectdreason }}
+                                </td>
+                                {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
                                             @else
                                                 ❌
                                             @endif
                                         </td> --}}
-                                        <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
-                                    </tr>
-                                @endforeach
-                                {{-- <tr>
+                                <input type="hidden" name="doneItems[]" value="{{ $item->done }}">
+                            </tr>
+                        @endforeach
+                        {{-- <tr>
                                     <td colspan="8" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr> --}}
-                        </tbody>
-                    </table>
-                    {{-- <div style="display: flex;justify-content:center">
+                    </tbody>
+                </table>
+                {{-- <div style="display: flex;justify-content:center">
                         <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Done &rarr;</button>
                     </div> --}}
 
-                </form>
-                </div>
-            </div>
+            </form>
         </div>
-        <script>
+    </div>
+    </div>
+    <script>
+        function filterGTNumbers() {
+            const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
 
-function filterGTNumbers() {
-    const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
-    const rows = document.querySelectorAll('tbody tr');
+            for (const row of rows) {
+                const gtNumberCell = row.querySelector('td:nth-child(3)');
+                const gtNumber = gtNumberCell.textContent.toLowerCase();
 
-    for (const row of rows) {
-        const gtNumberCell = row.querySelector('td:nth-child(3)');
-        const gtNumber = gtNumberCell.textContent.toLowerCase();
+                console.log("GT Number:", gtNumber);
 
-        console.log("GT Number:", gtNumber);
-
-        if (gtNumber.includes(gtNumberSearch)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    }
-}
-
-
-             function selectDoneRows() {
-                var checkboxes = document.getElementsByClassName('custom-checkbox');
-
-                for (var i = 0; i < checkboxes.length; i++) {
-                    const itemDoneValue = document.getElementsByName('doneItems[]')[i].value;
-
-                    if (itemDoneValue !== '1') {
-                        checkboxes[i].checked = true;
-                    } else {
-                        checkboxes[i].checked = false;
-                    }
+                if (gtNumber.includes(gtNumberSearch)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
             }
-         function selectAll() {
+        }
+
+
+        function selectDoneRows() {
+            var checkboxes = document.getElementsByClassName('custom-checkbox');
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                const itemDoneValue = document.getElementsByName('doneItems[]')[i].value;
+
+                if (itemDoneValue !== '1') {
+                    checkboxes[i].checked = true;
+                } else {
+                    checkboxes[i].checked = false;
+                }
+            }
+        }
+
+        function selectAll() {
             var checkboxes = document.getElementsByClassName('custom-checkbox');
             var allChecked = true;
 
@@ -521,90 +583,89 @@ function filterGTNumbers() {
                 checkboxes[i].checked = !allChecked;
             }
         }
-        function submitForm(action) {
-    var form = document.getElementById('partialDeliveryForm');
-    form.action = '/' + action; // Change the form action based on the button clicked
 
-    if (action === 'SemiCopie') {
-        // If the action is 'SemiCopie', show a confirmation dialog
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'Once confirmed, the action cannot be undone!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, proceed!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // User clicked the confirm button, proceed with the action
+        function submitForm(action) {
+            var form = document.getElementById('partialDeliveryForm');
+            form.action = '/' + action; // Change the form action based on the button clicked
+
+            if (action === 'SemiCopie') {
+                // If the action is 'SemiCopie', show a confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Once confirmed, the action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, proceed!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // User clicked the confirm button, proceed with the action
+                        form.submit(); // Submit the form
+                    }
+                });
+            } else {
+                // If the action is not 'SemiCopie', directly submit the form without confirmation
                 form.submit(); // Submit the form
             }
-        });
-    } else {
-        // If the action is not 'SemiCopie', directly submit the form without confirmation
-        form.submit(); // Submit the form
+        }
+    </script>
+</x-app-layout>
+
+<script>
+    function selectAll() {
+        var checkboxes = document.getElementsByClassName('custom-checkbox');
+        var allChecked = true;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
     }
-}
 
+    function selectAllpop() {
+        var checkboxes = document.getElementsByClassName('custom-');
+        var allChecked = true;
 
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (!checkboxes[i].checked) {
+                allChecked = false;
+                break;
+            }
+        }
 
-        </script>
-    </x-app-layout>
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !allChecked;
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all checkboxes with the name 'selectedItems[]'
+        const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
 
-    <script>
-        function selectAll() {
-             var checkboxes = document.getElementsByClassName('custom-checkbox');
-             var allChecked = true;
+        // Get the 'Select All' button
+        const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 if (!checkboxes[i].checked) {
-                     allChecked = false;
-                     break;
-                 }
-             }
+        // Add a click event listener to the 'Select All' button
+        selectAllButton.addEventListener('click', updateSelectedCount);
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 checkboxes[i].checked = !allChecked;
-             }
-         }
-         function selectAllpop() {
-             var checkboxes = document.getElementsByClassName('custom-');
-             var allChecked = true;
+        // Add a change event listener to each checkbox
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
 
-             for (var i = 0; i < checkboxes.length; i++) {
-                 if (!checkboxes[i].checked) {
-                     allChecked = false;
-                     break;
-                 }
-             }
-
-             for (var i = 0; i < checkboxes.length; i++) {
-                 checkboxes[i].checked = !allChecked;
-             }
-         }
-         document.addEventListener('DOMContentLoaded', function () {
-         // Get all checkboxes with the name 'selectedItems[]'
-         const checkboxes = document.querySelectorAll('input[name="selectedItems[]"]');
-
-         // Get the 'Select All' button
-         const selectAllButton = document.querySelector('button[onclick="selectAll()"]');
-
-         // Add a click event listener to the 'Select All' button
-         selectAllButton.addEventListener('click', updateSelectedCount);
-
-         // Add a change event listener to each checkbox
-         checkboxes.forEach(function (checkbox) {
-             checkbox.addEventListener('change', updateSelectedCount);
-         });
-
-         // Function to update the selected count in the span
-         function updateSelectedCount() {
-             const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
-             document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
-         }
-     });
- </script>
+        // Function to update the selected count in the span
+        function updateSelectedCount() {
+            const selectedCheckboxes = document.querySelectorAll('input[name="selectedItems[]"]:checked');
+            document.getElementById('selectedCount').innerText = selectedCheckboxes.length;
+        }
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Your JavaScript code -->
