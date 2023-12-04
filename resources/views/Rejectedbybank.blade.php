@@ -390,7 +390,7 @@
                             <th>Registering fee</th>
                             <th>Registration Type</th>
                             <th>Reference</th>
-                            <th>Reason</th>
+                        
 
                         </tr>
                     </thead>
@@ -436,9 +436,7 @@
                                 <td data-th="Supplier Code">
                                     {{ $item->reference }}
                                 </td>
-                                <td>
-                                    {{ $item->rejectdreason }}
-                                </td>
+
                                 {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
