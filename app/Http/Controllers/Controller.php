@@ -12,6 +12,7 @@ use App\Exports\DataExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Imports\IDImport;
+use App\Imports\Reupload;
 use App\Imports\Sadad;
 use App\Imports\HSBCImport;
 use App\Models\Brand;
@@ -2257,6 +2258,20 @@ class Controller extends BaseController
 
                             return response()->json(['paidbya' => $result]);
                         }
+                        public function reuploadimport(Request $request)
+                        {
+                            try {
+                                $import = new Reupload();
+                                Excel::import($import, $request->file('file'));
+
+                                $importedData = $import->getImportedData();
+                                dd($importedData);
+                                return view('SadadView')->with('importedData',   $importedData);
+                            } catch (\Exception $e) {
+                                return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+                            }
+                        }
+
 
 
 }

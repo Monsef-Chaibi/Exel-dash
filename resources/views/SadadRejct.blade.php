@@ -375,7 +375,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form id="uploadForm" action="/reupload" method="get">
-                <h2 style="color:#1eff00;">Re-upload a rejected payment</h2>
+                <h2 style="color:#1eff00;">Re-upload A Rejected Payment Manual </h2>
                 <br>
                 <label style="color:#1eff00;" for="gtNumber">GT Number :</label>
                 <input name="gtnum" type="text" id="gtNumber" style="border-radius: 10px; margin-left:15px">
@@ -437,7 +437,15 @@
                     });
                 });
             </script>
-
+            <br>
+                <h2 style="color:#1eff00;">Re-upload A Rejected Payment By Exel</h2>
+                <form action="/reuploadimport" method="post"  enctype='multipart/form-data'>
+                    @csrf
+                    <input style="margin-top: 20px" type="file" name="file" id="">
+                    <button  class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:5px; ">
+                        Upload
+                    </button>
+                </form>
 
             <br>
             <br>
