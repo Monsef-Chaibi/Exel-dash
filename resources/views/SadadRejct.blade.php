@@ -446,9 +446,75 @@
                         Upload
                     </button>
                 </form>
+            <br>
+            <br>
+            @if (isset($Data))
+            <form action="/Sadadupload" method="post">
+                @csrf
+                <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
+                    <thead>
+                        <tr class="fr">
+                            <th><button type="button" onclick="selectAllpop()">Select All</button></th>
+                            <th>GT Number</th>
+                            <th>Old reference </th>
+                            <th>New reference </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($Data as $item)
+                            <tr>
+                                <td data-th="Supplier Name">
+                                    {{ $item['gtnum'] }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item['old'] }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item['new'] }}
+                                </td>
+                                <td data-th="Paid">
+                                    <input type="hidden" name="paid[]" value="{{ $item['paidbya'] }}">
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-            <br>
-            <br>
+                <p>Error in :</p>
+
+                <button type="submit" style="font-size:50px; margin-left:60px" id="submitButton" disabled>
+                    Save &rarr;
+                </button>
+                <input type="hidden" name="paramName" value="paramValue">
+            </form>
+
+            <script>
+                // jQuery document ready function
+                $(document).ready(function() {
+                    // Enable or disable the submit button based on paid values
+                    function updateSubmitButton() {
+                        var allPaid = true;
+                        $('input[name="paid[]"]').each(function() {
+                            if ($(this).val() !== 'paid') {
+                                allPaid = false;
+                                return false;  // exit the loop if any value is not 'paid'
+                            }
+                        });
+
+                        // Enable or disable the submit button based on the result
+                        $('#submitButton').prop('disabled', !allPaid);
+                    }
+
+                    // Call the function on page load
+                    updateSubmitButton();
+
+                    // Bind the function to the change event of paid inputs
+                    $('input[name="paid[]"]').change(function() {
+                        updateSubmitButton();
+                    });
+                });
+            </script>
+        @endif
             <form id="exportForm" action="/SemiExportA" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">

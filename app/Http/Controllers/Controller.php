@@ -2264,9 +2264,10 @@ class Controller extends BaseController
                                 $import = new Reupload();
                                 Excel::import($import, $request->file('file'));
 
-                                $importedData = $import->getImportedData();
-                                dd($importedData);
-                                return view('SadadView')->with('importedData',   $importedData);
+                                $Data = $import->Data();
+                                $data = Data::where('paid', '3')
+                                        ->get();
+                                return view('SadadRejct')->with('Data',   $Data)->with('data',$data);
                             } catch (\Exception $e) {
                                 return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                             }
