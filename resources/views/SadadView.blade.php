@@ -679,7 +679,7 @@ function updateChecks() {
         var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-        if (paidValue !== '1' && paidValue !== '2') {
+        if (paidValue !== '1' && paidValue !== '2' && paidValue !== '11') 
             return true;
         } else {
             failedPaidGTNumbers.push(gtNumber);

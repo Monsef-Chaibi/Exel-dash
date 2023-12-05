@@ -965,7 +965,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <br style="display: none" id='documents'>
             <br style="display: none" id='documents'>
             <input type="hidden" name="port" value="جدة">
-           
+
             <label for="" style="margin-left: 20px">Entry Date :</label>
             <input type="text" name="entrydate" style="width: 38%;border-radius:5px">
             <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>
@@ -1110,6 +1110,10 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                                 Sent
                                             </td>
                                         @elseif ( $item->paid === '2')
+                                            <td  style="color: rgb(38, 255, 38)" data-th="Supplier Code">
+                                                Accepted
+                                            </td>
+                                        @elseif ( $item->paid === '11')
                                             <td  style="color: rgb(38, 255, 38)" data-th="Supplier Code">
                                                 Accepted
                                             </td>
@@ -1293,7 +1297,7 @@ function updateChecks() {
         var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-        if (paidValue !== '1' && paidValue !== '2') {
+        if (paidValue !== '1' && paidValue !== '2' && paidValue !== '11') {
             return true;
         } else {
             failedPaidGTNumbers.push(gtNumber);

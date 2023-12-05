@@ -371,7 +371,7 @@
                             <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
                             <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                         </div>
-                       
+
                     </div>
 
                     <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
@@ -434,9 +434,7 @@
                                 </tr>
                         </tbody>
                     </table>
-                    <div style="display: flex;justify-content:center">
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="doneButtonClick()">Paid &rarr;</button>
-                    </div>
+
 
                 </form>
                 </div>

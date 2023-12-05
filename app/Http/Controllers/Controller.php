@@ -2217,7 +2217,7 @@ class Controller extends BaseController
                                     $record = Data::where('gtnum', $gtnum)->first();
 
                                     if ($record && $status === '1') {
-                                        $record->paid =  2 ;
+                                        $record->paid =  3 ;
                                         $record->done =  1 ;
                                         $record->paidbya = 1 ;
                                         $record->save();
