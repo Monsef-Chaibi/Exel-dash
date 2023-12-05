@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 class Reupload implements ToModel
 {
     protected $Data = [];
+    protected $rowCount = 0;
 
     /**
      * @param array $row
@@ -16,26 +17,25 @@ class Reupload implements ToModel
      */
     public function model(array $row)
     {
+        $this->rowCount++;
+
+        // Skip the first row (header)
+        if ($this->rowCount === 1) {
+            return null;
+        }
+
         $gtnum = $row[0];
-        $paidValue = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('paidbya');
-        $product = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('product');
-        $fee = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('regist');
-        $type = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('idnum');
-        $paid = DB::table('data')
-            ->where('gtnum', $gtnum)
-            ->value('paid');
+        $paidValue = DB::table('data')->where('gtnum', $gtnum)->value('paidbya');
+        $product = DB::table('data')->where('gtnum', $gtnum)->value('product');
+        $fee = DB::table('data')->where('gtnum', $gtnum)->value('regist');
+        $type = DB::table('data')->where('gtnum', $gtnum)->value('idnum');
+        $paid = DB::table('data')->where('gtnum', $gtnum)->value('paid');
+        $old = DB::table('data')->where('gtnum', $gtnum)->value('reference');
+
         $data = [
             'gtnum' => $row[0],
-            'old' => $row[1],
-            'new' => $row[2],
+            'old' => $old,
+            'new' => $row[1],
             'paidbya' => $paidValue,
             'paid' => $paid,
             'product' => $product,
