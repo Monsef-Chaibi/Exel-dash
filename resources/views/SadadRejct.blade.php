@@ -343,6 +343,146 @@
     display: block;
 }
 
+/* modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--m-background);
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* using :target */
+/*
+when users will click/enter button(link) browser will add a #id in a url and when that happens we'll show our users the modal that contains that id.
+*/
+.modal-container:target {
+  display: flex;
+}
+
+.modal {
+  width: 80rem;
+  padding: 1rem 1rem;
+  border-radius: .8rem;
+  border: 2px black solid;
+  color: var(--light);
+  background-color: rgb(255, 255, 255);
+  box-shadow: var(--m-shadow, .4rem .4rem 10.2rem .2rem) var(--shadow-1);
+  position: relative;
+  max-height: 80vh; /* Set a maximum height for the modal */
+  overflow-y: auto; /* Enable modal content scrolling if it exceeds the height */
+}
+
+.modal__title {
+  font-size: 3.2rem;
+}
+
+.modal__text {
+
+  font-size: 1.6rem;
+  line-height: 2;
+}
+
+.modal__btn {
+  margin-top: -1rem;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  background: transparent;
+  font-size: 1.4rem;
+  font-family: inherit;
+  letter-spacing: .2rem;
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+.modal__btn:nth-of-type(1) {
+  margin-right: 1rem;
+}
+
+.modal__btn:hover,
+.modal__btn:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+
+/* link-... */
+.link-1 {
+  font-size: 1.8rem;
+
+  color: var(--light);
+  background: var(--background);
+  box-shadow: .4rem .4rem 2.4rem .2rem var(--shadow-1);
+  border-radius: 100rem;
+  padding: 1.4rem 3.2rem;
+
+  transition: .2s;
+}
+
+.link-1:hover,
+.link-1:focus {
+  transform: translateY(-.2rem);
+  box-shadow: 0 0 4.4rem .2rem var(--shadow-2);
+}
+
+.link-1:focus {
+  box-shadow:
+    0 0 4.4rem .2rem var(--shadow-2),
+    0 0 0 .4rem var(--global-background),
+    0 0 0 .5rem var(--focus);
+}
+
+.link-2 {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 100rem;
+
+  color: inherit;
+  font-size: 2.2rem;
+
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: .2s;
+}
+
+.link-2::before {
+  content: '×';
+
+  transform: translateY(-.1rem);
+}
+
+.link-2:hover,
+.link-2:focus {
+  background: var(--focus);
+  border-color: var(--focus);
+  transform: translateY(-.2rem);
+}
+
+.abs-site-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: hsla(0, 0%, 1000%, .6);
+  font-size: 1.6rem;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -396,214 +536,10 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form id="uploadForm" action="/reupload" method="get">
-                <h2 style="color:#1eff00;">Re-upload A Rejected Payment Manual </h2>
-                <br>
-                <label style="color:#1eff00;" for="gtNumber">GT Number :</label>
-                <input name="gtnum" type="text" id="gtNumber" style="border-radius: 10px; margin-left:15px">
+            <a href="#m1-o">
+                <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Print Moroor Documents &rarr;</button>
+            </a>
 
-                <label style="color:#1eff00;" for="oldReference">Old Reference :</label>
-                <input readonly name="old"  type="text" id="old" style="border-radius: 10px; margin-left:15px">
-
-                <label style="color:#1eff00;" for="newReference">New Reference :</label>
-                <input name="new" required type="text" id="newReference" style="border-radius: 10px; margin-left:15px">
-
-                <button id="submitBtn" class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:30px; display: none;">
-                    Upload
-                </button>
-            </form>
-
-            <script>
-               document.addEventListener('DOMContentLoaded', function () {
-    const gtNumberInput = document.getElementById('gtNumber');
-    const oldInput = document.getElementById('old'); // Assuming you have an input field with ID 'old'
-    const submitBtn = document.getElementById('submitBtn');
-
-    gtNumberInput.addEventListener('input', function () {
-        const gtNumberValue = this.value;
-
-        // Make an AJAX request to check the database
-        fetch('/check-database', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-            },
-            body: JSON.stringify({ gtNumber: gtNumberValue }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            const paidbya = data.paidbya;
-            const reference = data.reference;
-
-            console.log(`Database check result for GT Number ${gtNumberValue}: ${paidbya ? 'Paid' : 'Not Paid'}`);
-
-            // Set the value of the 'old' input field to the 'reference' value
-            oldInput.value = reference;
-
-            // Show or hide the submit button based on the result
-            if (paidbya === '1') {
-                console.log('Setting display to inline-block');
-                submitBtn.style.display = 'inline-block';
-            } else {
-                console.log('Setting display to none');
-                submitBtn.style.display = 'none';
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-
-    document.getElementById('uploadForm').addEventListener('submit', function (event) {
-        // Check if the button is hidden (condition is false)
-        if (submitBtn.style.display === 'none') {
-            // Prevent form submission
-            event.preventDefault();
-
-            // Optionally, you can display a message to the user or perform other actions
-            console.log('Form submission prevented because the condition is false.');
-        }
-    });
-});
-
-            </script>
-            <br>
-                <h2 style="color:#1eff00;">Re-upload A Rejected Payment By Exel</h2>
-                <form action="/reuploadimport" method="post"  enctype='multipart/form-data'>
-                    @csrf
-                    <input style="margin-top: 20px" type="file" name="file" id="">
-                    <button  class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:5px; ">
-                        Upload
-                    </button>
-                </form>
-            <br>
-            <br>
-            @if (isset($Data))
-            <form action="/importreupload" method="post">
-                @csrf
-                <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
-                    <thead>
-                        <tr class="fr">
-                            <th colspan="4">Product</th>
-                            <th>GT Number</th>
-                            <th>Fee</th>
-                            <th>Type</th>
-                            <th>Old reference</th>
-                            <th>New reference</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($Data as $item)
-                            <tr>
-                                <td colspan="4" >
-                                    {{ $item['product'] }}
-
-                                </td>
-                                <td data-th="GT Number">
-                                    {{ $item['gtnum'] }}
-                                    <input type="hidden" name="gtNumbers[]" value="{{ $item['gtnum'] }}">
-                                </td>
-                                <td >
-                                    {{ $item['fee'] }}
-
-                                </td>
-                                <td >
-                                    {{ $item['type'] }}
-
-                                </td>
-                                <td data-th="Old Reference">
-                                    {{ $item['old'] }}
-                                    <input type="hidden" name="oldReferences[]" value="{{ $item['old'] }}">
-                                </td>
-                                <td data-th="New Reference">
-                                    {{ $item['new'] }}
-                                    <input type="hidden" name="newReferences[]" value="{{ $item['new'] }}">
-                                </td>
-
-
-
-                                    <input type="hidden" name="paid[]" value="{{ $item['paidbya'] }}">
-
-
-
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                <p style="color: red; " id="errorMessage"></p>
-                <br>
-
-                <button type="submit" style="font-size:50px; margin-left:60px ; color:#1eff00" id="submitButton" disabled>
-                    Save &rarr;
-                </button>
-
-            </form>
-
-
-            <script>
-              $(document).ready(function () {
-    function updateSubmitButton() {
-        var allPaid = true;
-        var errorItems = [];
-
-        $('input[name="paid[]"]').each(function () {
-            if ($(this).val() !== '1') {
-                allPaid = false;
-
-                // Get the GT number of the item with an error
-                var gtNumber = $(this).closest('tr').find('[data-th="GT Number"]').text().trim();
-
-                errorItems.push(gtNumber);
-            }
-        });
-
-        // Enable or disable the submit button based on the result
-        $('#submitButton').prop('disabled', !allPaid);
-
-        // Change the color of the submit button to gray if disabled
-        if (!allPaid) {
-            $('#submitButton').css('color', 'gray');
-        } else {
-            $('#submitButton').css('color', '#1eff00'); // Set the original color
-        }
-
-        // Display error message if there is an error
-        var errorMessage = allPaid ? '' : 'GT numbers: ' + errorItems.join(' && ')+' is Not Passed';
-        $('#errorMessage').text(errorMessage);
-    }
-
-    // Call the function on page load
-    updateSubmitButton();
-
-    // Bind the function to the change event of paid inputs
-    $('input[name="paid[]"]').change(function () {
-        updateSubmitButton();
-    });
-});
-function submitForm() {
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('reuploadimport') }}",
-            data: new FormData($('#reuploadForm')[0]),
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                // Handle success if needed
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error by showing an alert
-                alert('Oops! Something went wrong. Please try again.');
-                console.error(xhr.responseText);
-            }
-        });
-    }
-            </script>
-
-
-        @endif
             <form id="exportForm" action="/SemiExportA" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">
@@ -911,3 +847,223 @@ function submitForm() {
         });
     }
 </script>
+<div  class="box">
+
+    <div class="modal-container" id="m1-o" style="--m-background: transparent;">
+        <div class="modal">
+            <h1 class="modal__title">Re-upload :</h1>
+            <form id="uploadForm" action="/reupload" method="get">
+                <h2 style="color:#1eff00;">Re-upload A Rejected Payment Manual </h2>
+                <br>
+                <label style="color:#1eff00;" for="gtNumber">GT Number :</label>
+                <input name="gtnum" type="text" id="gtNumber" style="border-radius: 10px; margin-left:15px">
+
+                <label style="color:#1eff00;" for="oldReference">Old Reference :</label>
+                <input readonly name="old"  type="text" id="old" style="border-radius: 10px; margin-left:15px">
+
+                <label style="color:#1eff00;" for="newReference">New Reference :</label>
+                <input name="new" required type="text" id="newReference" style="border-radius: 10px; margin-left:15px">
+
+                <button id="submitBtn" class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:30px; display: none;">
+                    Upload
+                </button>
+            </form>
+
+            <script>
+               document.addEventListener('DOMContentLoaded', function () {
+    const gtNumberInput = document.getElementById('gtNumber');
+    const oldInput = document.getElementById('old'); // Assuming you have an input field with ID 'old'
+    const submitBtn = document.getElementById('submitBtn');
+
+    gtNumberInput.addEventListener('input', function () {
+        const gtNumberValue = this.value;
+
+        // Make an AJAX request to check the database
+        fetch('/check-database', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({ gtNumber: gtNumberValue }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const paidbya = data.paidbya;
+            const reference = data.reference;
+
+            console.log(`Database check result for GT Number ${gtNumberValue}: ${paidbya ? 'Paid' : 'Not Paid'}`);
+
+            // Set the value of the 'old' input field to the 'reference' value
+            oldInput.value = reference;
+
+            // Show or hide the submit button based on the result
+            if (paidbya === '1') {
+                console.log('Setting display to inline-block');
+                submitBtn.style.display = 'inline-block';
+            } else {
+                console.log('Setting display to none');
+                submitBtn.style.display = 'none';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        // Check if the button is hidden (condition is false)
+        if (submitBtn.style.display === 'none') {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Optionally, you can display a message to the user or perform other actions
+            console.log('Form submission prevented because the condition is false.');
+        }
+    });
+});
+
+            </script>
+            <br>
+                <h2 style="color:#1eff00;">Re-upload A Rejected Payment By Exel</h2>
+                <form action="/reuploadimport" method="post"  enctype='multipart/form-data'>
+                    @csrf
+                    <input style="margin-top: 20px" type="file" name="file" id="">
+                    <button  class="upload" type="submit" style="width: 100px; border-radius:10px; margin-left:5px; ">
+                        Upload
+                    </button>
+                </form>
+            <br>
+            <br>
+            @if (isset($Data))
+            <form action="/importreupload" method="post">
+                @csrf
+                <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
+                    <thead>
+                        <tr class="fr">
+                            <th colspan="4">Product</th>
+                            <th>GT Number</th>
+                            <th>Fee</th>
+                            <th>Type</th>
+                            <th>Old reference</th>
+                            <th>New reference</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($Data as $item)
+                            <tr>
+                                <td colspan="4" >
+                                    {{ $item['product'] }}
+
+                                </td>
+                                <td data-th="GT Number">
+                                    {{ $item['gtnum'] }}
+                                    <input type="hidden" name="gtNumbers[]" value="{{ $item['gtnum'] }}">
+                                </td>
+                                <td >
+                                    {{ $item['fee'] }}
+
+                                </td>
+                                <td >
+                                    {{ $item['type'] }}
+
+                                </td>
+                                <td data-th="Old Reference">
+                                    {{ $item['old'] }}
+                                    <input type="hidden" name="oldReferences[]" value="{{ $item['old'] }}">
+                                </td>
+                                <td data-th="New Reference">
+                                    {{ $item['new'] }}
+                                    <input type="hidden" name="newReferences[]" value="{{ $item['new'] }}">
+                                </td>
+
+
+
+                                    <input type="hidden" name="paid[]" value="{{ $item['paidbya'] }}">
+
+
+
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <p style="color: red; " id="errorMessage"></p>
+                <br>
+
+                <button type="submit" style="font-size:50px; margin-left:60px ; color:#1eff00" id="submitButton" disabled>
+                    Save &rarr;
+                </button>
+
+            </form>
+
+
+            <script>
+              $(document).ready(function () {
+    function updateSubmitButton() {
+        var allPaid = true;
+        var errorItems = [];
+
+        $('input[name="paid[]"]').each(function () {
+            if ($(this).val() !== '1') {
+                allPaid = false;
+
+                // Get the GT number of the item with an error
+                var gtNumber = $(this).closest('tr').find('[data-th="GT Number"]').text().trim();
+
+                errorItems.push(gtNumber);
+            }
+        });
+
+        // Enable or disable the submit button based on the result
+        $('#submitButton').prop('disabled', !allPaid);
+
+        // Change the color of the submit button to gray if disabled
+        if (!allPaid) {
+            $('#submitButton').css('color', 'gray');
+        } else {
+            $('#submitButton').css('color', '#1eff00'); // Set the original color
+        }
+
+        // Display error message if there is an error
+        var errorMessage = allPaid ? '' : 'GT numbers: ' + errorItems.join(' && ')+' is Not Passed';
+        $('#errorMessage').text(errorMessage);
+    }
+
+    // Call the function on page load
+    updateSubmitButton();
+
+    // Bind the function to the change event of paid inputs
+    $('input[name="paid[]"]').change(function () {
+        updateSubmitButton();
+    });
+});
+function submitForm() {
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('reuploadimport') }}",
+            data: new FormData($('#reuploadForm')[0]),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Handle success if needed
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error by showing an alert
+                alert('Oops! Something went wrong. Please try again.');
+                console.error(xhr.responseText);
+            }
+        });
+    }
+            </script>
+
+
+        @endif
+            <br>
+            <a  href="/generate-pdf">
+                <button type="submit" class="modal__btn">Print &rarr;</button>
+            </a>
+            <a href="#m1-c" class="link-2"></a>
+    </div>
+  </div>
