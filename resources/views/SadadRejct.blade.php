@@ -321,6 +321,25 @@
             color: white;
             border: 2px solid white;
         }
+        .hover-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    right: 0; /* Adjust this value for the desired distance from the right */
+    width: 300px;
+}
+
+.hover-container:hover .hover-content {
+    display: block;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -467,6 +486,7 @@
                             <th>Type</th>
                             <th>Old reference</th>
                             <th>New reference</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -496,6 +516,8 @@
                                     {{ $item['new'] }}
                                     <input type="hidden" name="newReferences[]" value="{{ $item['new'] }}">
                                 </td>
+
+
 
                                     <input type="hidden" name="paid[]" value="{{ $item['paidbya'] }}">
 
@@ -602,6 +624,7 @@ function submitForm() {
                             <th>ID</th>
                             <th>Type</th>
                             <th>Reason</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -647,6 +670,17 @@ function submitForm() {
                                 <td style="text-al  ign:center">
                                     {{ $item->rejectdreason }}
                                 </td>
+                                <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
+                                    <div class="hover-container">
+                                        <i class="fa fa-eye"></i>
+                                        <div class="hover-content">
+                                             By : {{ $item->rejectedby }}
+                                            <br>
+                                            IN : {{ $item->rejecteddate }}
+                                        </div>
+                                    </div>
+                                </td>
+
                                 {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

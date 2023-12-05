@@ -290,7 +290,7 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-            width: 100%;
+            width: 50px;
             will-change: transform;
         }
 
@@ -309,6 +309,27 @@
             box-shadow: none;
             transform: translateY(0);
         }
+        /* Styles for the hover effect */
+        .hover-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    right: 0; /* Adjust this value for the desired distance from the right */
+    width: 300px;
+}
+
+.hover-container:hover .hover-content {
+    display: block;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -400,6 +421,7 @@
                                 <th>Fee</th>
                                 <th>Type</th>
                                 <th>ID</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -442,6 +464,16 @@
                                         </td>
                                         <td style="font-size: 18px" data-th="Supplier Code">
                                             {{ $item->idnum }}
+                                        </td>
+                                        <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
+                                            <div class="hover-container">
+                                                <i class="fa fa-eye"></i>
+                                                <div class="hover-content">
+                                                     By : {{ $item->approvedby }}
+                                                    <br>
+                                                    IN : {{ $item->approveddate }}
+                                                </div>
+                                            </div>
                                         </td>
 
                                         <input type="hidden" name="doneItems[]" value="{{ $item->done }}">

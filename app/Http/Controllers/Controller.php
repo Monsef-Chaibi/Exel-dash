@@ -1060,6 +1060,8 @@ class Controller extends BaseController
                     Data::where('id', $itemId)->update([
                         'done' => 1,
                         'reference' =>  $request->input('reference'),
+                        'uploadedby' => Auth::user()->name,
+                        'uploadeddate' => Carbon::now('Asia/Riyadh'),
                     ]);
                 }
 
@@ -1072,6 +1074,8 @@ class Controller extends BaseController
                     Data::where('gtnum', $itemId)->update([
                         'paid' => '11',
                         'newreference' =>  $request->input('new'),
+                        'repaymentby' => Auth::user()->name,
+                        'repaymentdate' => Carbon::now('Asia/Riyadh'),
                     ]);
 
 
@@ -1085,7 +1089,8 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'paidbya' => 1,
-
+                        'passedby' => Auth::user()->name,
+                        'passeddate' => Carbon::now('Asia/Riyadh'),
                     ]);
                 }
 
@@ -2138,6 +2143,8 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 2,
+                                        'approvedby' => Auth::user()->name,
+                                        'approveddate' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                 }
                                 return redirect()->back()->with('success', 'Selections updated successfully');
@@ -2151,6 +2158,8 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 3,
+                                        'rejectedby' => Auth::user()->name,
+                                        'rejecteddate' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                 }
                                 return redirect()->back()->with('success', 'Selections updated successfully');
@@ -2267,6 +2276,8 @@ class Controller extends BaseController
                                     $record->update([
                                         'paid' => 11,
                                         'newreference' => $newReferences[$index],
+                                        'repaymentby' => Auth::user()->name,
+                                        'repaymentdate' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                 }
                             }
@@ -2276,28 +2287,28 @@ class Controller extends BaseController
                             return redirect()->route('SadadRejct')->with('success', 'Records updated successfully');
                         }
                         public function reuploadimport(Request $request)
-{
-    try {
-        // Create a new instance of the Reupload class
-        $import = new Reupload();
+                            {
+                                try {
+                                    // Create a new instance of the Reupload class
+                                    $import = new Reupload();
 
-        // Use the Excel facade to import data from the uploaded file
-        Excel::import($import, $request->file('file'));
+                                    // Use the Excel facade to import data from the uploaded file
+                                    Excel::import($import, $request->file('file'));
 
-        // Get data from the import instance
-        $Data = $import->Data();
+                                    // Get data from the import instance
+                                    $Data = $import->Data();
 
-        // Retrieve additional data from the database where 'paid' is '3'
-        $data = Data::where('paid', '3')->get();
+                                    // Retrieve additional data from the database where 'paid' is '3'
+                                    $data = Data::where('paid', '3')->get();
 
-        // Return the view 'SadadRejct' with the imported data and additional data
-        return view('SadadRejct')->with('Data', $Data)->with('data', $data);
-    } catch (\Exception $e) {
-        // Handle exceptions - if an exception occurs, return the view with an error message
-        $data = Data::where('paid', '3')->get();
-        return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
-    }
-}
+                                    // Return the view 'SadadRejct' with the imported data and additional data
+                                    return view('SadadRejct')->with('Data', $Data)->with('data', $data);
+                                } catch (\Exception $e) {
+                                    // Handle exceptions - if an exception occurs, return the view with an error message
+                                    $data = Data::where('paid', '3')->get();
+                                    return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+                                }
+                            }
 
 
 

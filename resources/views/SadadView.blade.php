@@ -674,18 +674,19 @@ function updateChecks() {
     });
     var sumGreaterThan1000 = sumOfRegistration >= 1;
 
-    // Check 3: Paid column different than 1 and 2
+  // Check 3: Paid column different than 1, 2, and 11
     var paidTypesValid = selectedItems.filter(':checked').filter(function () {
         var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-        if (paidValue !== '1' && paidValue !== '2' && paidValue !== '11') 
+        if (paidValue !== '1' && paidValue !== '2' && paidValue !== '11') {
             return true;
         } else {
             failedPaidGTNumbers.push(gtNumber);
             return false;
         }
     }).length === selectedItems.filter(':checked').length;
+
 
     // Check 4: Type column is "Private," "Private transport," or "Public transport"
     var typeValid = selectedItems.filter(':checked').filter(function () {
