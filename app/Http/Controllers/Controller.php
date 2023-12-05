@@ -139,6 +139,11 @@ class Controller extends BaseController
                     ->get();
         return view('Rejectedbybank')->with('data', $data);
     }
+    function uploadedA(){
+
+        $data = Data::where('paid','2')->wherenotnull('done')->get();
+        return view('uploadedA')->with('data', $data);
+    }
     function SadadRejctA(){
 
         $data = Data::where('paid','3')
@@ -1738,8 +1743,8 @@ class Controller extends BaseController
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $paidValues = ['2', '22'];
-                    $liveValue = Data::where('paid',$paidValues)->where('paidby','!=','1')->whereIn('plantkey', $cnd1)->count();
-                    $up= Data::where('paid',$paidValues)->where('paidby','!=','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue = Data::where('paid',$paidValues)->wherenull('done')->whereIn('plantkey', $cnd1)->count();
+                    $up= Data::where('paid',$paidValues)->wherenull('done')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue2 = Data::where('paidbya','1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up2= Data::where('paidbya','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue1 = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
@@ -1747,14 +1752,14 @@ class Controller extends BaseController
                     $liveValue3 = Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up3= Data::where('paid','3')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue4 = Data::where('paid','11')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                    $upl = Data::where('done','1')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                    $upd= Data::where('done','1')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $upl = Data::where('done','1')->where('paid','2')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $upd= Data::where('done','1')->where('paid','2')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
 
                 }else
                 {
                     $paidValues = ['2', '22'];
-                    $liveValue = Data::where('paid',$paidValues)->where('paidby','!=','1')->count();
-                    $up= Data::where('paid',$paidValues)->where('paidby','!=','1')->latest('datepaid')->value('datepaid');
+                    $liveValue = Data::where('paid',$paidValues)->wherenull('done')->count();
+                    $up= Data::where('paid',$paidValues)->wherenull('done')->latest('datepaid')->value('datepaid');
                     $liveValue2 = Data::where('paidbya','1')->count(); // Replace YourModel and $id with your actual model and ID
                     $up2= Data::where('paidbya','1')->latest('datepaid')->value('datepaid');
                     $liveValue1 = Data::where('paid', '1')->count(); // Replace YourModel and $id with your actual model and ID
