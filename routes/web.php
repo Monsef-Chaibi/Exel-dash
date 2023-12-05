@@ -155,6 +155,7 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/done', [Controller::class, 'done'])->name('done');
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::get('/reupload', [Controller::class, 'reupload'])->name('reupload');
+    Route::get('/uploaded', [Controller::class, 'uploaded'])->name('uploaded');
     Route::post('/importSadad', [Controller::class, 'importSadad'])->name('importSadad');
     Route::post('/Sadadupload', [Controller::class, 'Sadad'])->name('Sadadupload');
     Route::post('/check-database', [Controller::class, 'check']);

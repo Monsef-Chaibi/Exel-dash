@@ -442,6 +442,22 @@
                                 </a>
                             </div>
                             <div class="ag-courses_item">
+                                <a href="/uploaded"  class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
+                                        Uploaded : <span id="upl"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="upd" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="ag-courses_item">
                                 <a href="/Rejectedbybank"  class="ag-courses-item_link">
                                     <div class="ag-courses-item_bg"></div>
 
@@ -589,6 +605,8 @@
                     $('#date').text(data.up4);
                     $('#value1').text(data.value5);
                     $('#date1').text(data.up5);
+                    $('#upl').text(data.upl);
+                    $('#upd').text(data.upd);
 
                 }
             });
