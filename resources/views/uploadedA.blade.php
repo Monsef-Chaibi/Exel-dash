@@ -309,6 +309,27 @@
             box-shadow: none;
             transform: translateY(0);
         }
+        .hover-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    top: -30px; /* Adjust this value to increase the distance from the top */
+    right: 100%; /* Adjust this value for the desired distance from the right */
+    width: 300px;
+}
+
+.hover-container:hover .hover-content {
+    display: block;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -389,6 +410,7 @@
                                 <th> ID</th>
                                 <th> Type</th>
                                 <th>Reference</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -437,7 +459,16 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->reference }}
                                         </td>
-
+                                        <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
+                                            <div class="hover-container">
+                                                <i class="fa fa-eye"></i>
+                                                <div class="hover-content">
+                                                     By : {{ $item->uploadedby }}
+                                                    <br>
+                                                    IN : {{ $item->uploadeddate }}
+                                                </div>
+                                            </div>
+                                        </td>
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅
@@ -449,7 +480,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="9" style="text-align: center">
+                                    <td colspan="10" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr>

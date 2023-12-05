@@ -310,7 +310,7 @@
             transform: translateY(0);
         }
         /* Styles for the hover effect */
-        .hover-container {
+.hover-container {
     position: relative;
     display: inline-block;
 }
@@ -322,7 +322,8 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
-    right: 0; /* Adjust this value for the desired distance from the right */
+    top: -30px; /* Adjust this value to increase the distance from the top */
+    right: 100%; /* Adjust this value for the desired distance from the right */
     width: 300px;
 }
 

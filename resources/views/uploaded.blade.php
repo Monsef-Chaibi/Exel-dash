@@ -309,7 +309,8 @@
             box-shadow: none;
             transform: translateY(0);
         }
-        .hover-container {
+/* Styles for the hover effect */
+.hover-container {
     position: relative;
     display: inline-block;
 }
@@ -321,13 +322,15 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
-    right: 0; /* Adjust this value for the desired distance from the right */
+    top: -30px; /* Adjust this value to increase the distance from the top */
+    right: 100%; /* Adjust this value for the desired distance from the right */
     width: 300px;
 }
 
 .hover-container:hover .hover-content {
     display: block;
 }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
