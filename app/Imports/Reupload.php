@@ -24,18 +24,23 @@ class Reupload implements ToModel
             return null;
         }
 
+        // Check if any cell in the row is empty
+        if (empty(array_filter($row))) {
+            return null;
+        }
+
         $gtnum = $row[0];
+        $old = $row[1];
         $paidValue = DB::table('data')->where('gtnum', $gtnum)->value('paidbya');
         $product = DB::table('data')->where('gtnum', $gtnum)->value('product');
         $fee = DB::table('data')->where('gtnum', $gtnum)->value('regist');
         $type = DB::table('data')->where('gtnum', $gtnum)->value('idnum');
         $paid = DB::table('data')->where('gtnum', $gtnum)->value('paid');
-        $old = DB::table('data')->where('gtnum', $gtnum)->value('reference');
 
         $data = [
-            'gtnum' => $row[0],
+            'gtnum' => $gtnum,
             'old' => $old,
-            'new' => $row[1],
+            'new' => $row[2],
             'paidbya' => $paidValue,
             'paid' => $paid,
             'product' => $product,

@@ -386,9 +386,10 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th> Fee</th>
+                                <th> ID</th>
                                 <th> Type</th>
                                 <th>Reference</th>
-                                <th>Upload</th>
+
                             </tr>
                         </thead>
 
@@ -428,18 +429,15 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->reference }}
                                         </td>
-                                        <td style="text-align:center">
-                                            @if ($item->done === '1')
-                                            ✅
-                                            @else
-                                            ❌
-                                            @endif
-                                        </td>
+
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

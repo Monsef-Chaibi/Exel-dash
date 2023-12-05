@@ -361,7 +361,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
-            <div class="" style="padding: 10px">
+            <div class="" style="padding: 80px">
                 <form id="exportForm" action="/Paid" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
@@ -371,24 +371,20 @@
                             <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
                             <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                         </div>
-                        <div>
-                            <label for="" style="color: #1eff00; margin-right: 10px;">Filter By Reference :</label>
-                            <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
-                        </div>
+                       
                     </div>
 
                     <table style="width: 100%; margin-bottom:5%;"  class="rwd-table">
                         <thead>
                             <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
-                                <th><button type="button" onclick="selectAll()">Select All</button></th>
+
                                 <th>Product</th>
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th> Fee</th>
                                 <th> Type</th>
-                                <th>Reference</th>
-                                <th>Upload</th>
+
                             </tr>
                         </thead>
 
@@ -398,18 +394,7 @@
                                 {{$lop = 0 }}
                                 @foreach ($data as $index => $item)
                                     <tr  id="row_{{ $item->id }}">
-                                        <td data-th="Supplier Name">
-                                            @if ($item->done === '1')
 
-
-                                            <span style="margin-right: 5px">{{ $lop +=1 }}</span>
-
-                                            <input class="custom-checkbox" style="border-radius:5px"
-                                            type="checkbox" name="selectedItems[]"
-                                            value="{{ $item->id }}">
-
-                                            @endif
-                                        </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->product }}
                                         </td>
@@ -430,16 +415,8 @@
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
-                                        <td data-th="Supplier Code">
-                                            {{ $item->reference }}
-                                        </td>
-                                        <td style="text-align:center">
-                                            @if ($item->done === '1')
-                                            ✅
-                                            @else
-                                            ❌
-                                            @endif
-                                        </td>
+
+
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

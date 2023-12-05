@@ -468,7 +468,6 @@
                                     <div class="ag-courses-item_date-box">
                                         Last Update :
                                         <span id="date1" class="ag-courses-item_date">
-
                                         </span>
                                     </div>
                                 </a>
@@ -494,9 +493,9 @@
                                         <th>Product</th>
                                         <th>VIN</th>
                                         <th>GT Number</th>
-                                        <th>Registration</th>
+                                        <th>Fee</th>
+                                        <th>Type</th>
                                         <th>ID</th>
-
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -519,6 +518,11 @@
                                             </td>
                                             <td data-th="Supplier Code">
                                                 {{ $item['regist'] }}
+                                            </td>
+                                            <td data-th="Supplier Code">
+                                                {{ $item['paidtype'] }}
+                                                <input type="hidden" name="paramName" value="paramValue">
+                                                <input type="hidden" name="paidtype[]" value="{{ $item['paid'] }}">
                                             </td>
                                             <td data-th="Supplier Code">
                                                 {{ $item['idnum'] }}
@@ -572,6 +576,14 @@
                                         <span id="requestCheck"></span>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td style="width:400px">
+                                        <p>Type  </p>
+                                    </td>
+                                    <td style="width:700px;text-align:left">
+                                        <span id="typeCheck"></span>
+                                    </td>
+                                </tr>
                             </table>
                             </p>
 
@@ -620,83 +632,114 @@
     });
 
     $(document).ready(function () {
-     // Event handler for checkbox changes
-     $('input[type="checkbox"]').change(function () {
-         updateChecks();
-     });
+    // Event handler for checkbox changes
+    $('input[type="checkbox"]').change(function () {
+        updateChecks();
+    });
 
-     // Initial check on page load
-     updateChecks();
- });
+    // Initial check on page load
+    updateChecks();
+});
 
- function updateChecks() {
-     // Reset checks
-     $('#plateFeesCheck').text('');
-     $('#amountCheck').text('');
-     $('#requestCheck').text('');
+function updateChecks() {
+    // Reset checks
+    $('#plateFeesCheck').text('');
+    $('#amountCheck').text('');
+    $('#requestCheck').text('');
+    $('#typeCheck').text('');
 
-     // Get selected items
-     var selectedItems = $('input[name="selectedItems[]"]:checked');
-     var failedRegistrationGTNumbers = [];
-     var failedPaidGTNumbers = [];
+    // Get selected items
+    var selectedItems = $('input[name="selectedItems[]"]:checked');
+    var failedRegistrationGTNumbers = [];
+    var failedPaidGTNumbers = [];
+    var failedTypeGTNumbers = [];
 
-     // Check 1: Registration column > 1
-     var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
-         var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
-         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+    // Check 1: Registration column > 1
+    var registrationGreaterThanOne = selectedItems.filter(':checked').filter(function () {
+        var registrationValue = $(this).closest('tr').find('td:eq(4)').text();
+        var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-         if (registrationValue !== '' && parseInt(registrationValue) > 1) {
-             return true;
-         } else {
-             failedRegistrationGTNumbers.push(gtNumber);
-             return false;
-         }
-     }).length === selectedItems.filter(':checked').length;
+        if (registrationValue !== '' && parseInt(registrationValue) > 1) {
+            return true;
+        } else {
+            failedRegistrationGTNumbers.push(gtNumber);
+            return false;
+        }
+    }).length === selectedItems.filter(':checked').length;
 
-     // Check 2: Sum of Registration column > 1000
-     var sumOfRegistration = 0;
-     selectedItems.each(function () {
-         sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
-     });
-     var sumGreaterThan1000 = sumOfRegistration >= 1;
+    // Check 2: Sum of Registration column > 1000
+    var sumOfRegistration = 0;
+    selectedItems.each(function () {
+        sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
+    });
+    var sumGreaterThan1000 = sumOfRegistration >= 1;
 
-     // Check 3: Paid column different than 1 and 2
-     var paidTypesValid = selectedItems.filter(':checked').filter(function () {
-         var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
-         var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
+    // Check 3: Paid column different than 1 and 2
+    var paidTypesValid = selectedItems.filter(':checked').filter(function () {
+        var paidValue = $(this).closest('tr').find('input[name="paid"]').val();
+        var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-         if (paidValue !== '1' && paidValue !== '2') {
-             return true;
-         } else {
-             failedPaidGTNumbers.push(gtNumber);
-             return false;
-         }
-     }).length === selectedItems.filter(':checked').length;
+        if (paidValue !== '1' && paidValue !== '2') {
+            return true;
+        } else {
+            failedPaidGTNumbers.push(gtNumber);
+            return false;
+        }
+    }).length === selectedItems.filter(':checked').length;
 
-     // Update check messages
-     $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌ GT Numbers: ' + failedRegistrationGTNumbers.join(', '));
-     $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
-     $('#requestCheck').text(paidTypesValid ? '✅' : '❌ GT Numbers: ' + failedPaidGTNumbers.join(', '));
+    // Check 4: Type column is "Private," "Private transport," or "Public transport"
+    var typeValid = selectedItems.filter(':checked').filter(function () {
+        var typeValue = $(this).closest('tr').find('td:eq(5)').text().trim();
+        var gtNumber = $(this).closest('tr').find('td:eq(3)').text();
 
-     // Enable or disable submit button based on checks
-     var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid;
-     $('#submitButton').prop('disabled', !allChecksPassed);
+        // Check if the first letter is uppercase
+        var firstLetterIsUppercase = /^[A-Z]/.test(typeValue.charAt(0));
 
-     // Change button color and set opacity based on checks
-     if (allChecksPassed) {
-         $('#submitButton').css({
-             'color': '', // Set default color
-             'opacity': 1 // Set default opacity
-         });
-     } else {
-         $('#submitButton').css({
-             'color': 'gray',
-             'opacity': 0.5 // Set opacity to 50% when checks fail
-         });
-     }
+        if (firstLetterIsUppercase && (typeValue === 'Private' || typeValue === 'Private transport' || typeValue === 'Public transport')) {
+            return true;
+        } else {
+            failedTypeGTNumbers.push(gtNumber);
+            return false;
+        }
+    }).length === selectedItems.filter(':checked').length;
 
+      // Get an array of paidtype values
+      var paidtypeValues = [];
+    selectedItems.each(function () {
+        var paidtypeValue = $(this).closest('tr').find('input[name="paidtype"]').val();
+        paidtypeValues.push(paidtypeValue);
+    });
 
- }
+    // Update the value of the hidden input field with the array of paidtype values
+    $('#paidtypeInput').val(JSON.stringify(paidtypeValues));
+
+    // Update check messages
+    $('#plateFeesCheck').text(registrationGreaterThanOne ? '✅' : '❌ GT Numbers: ' + failedRegistrationGTNumbers.join(', '));
+    $('#amountCheck').text(sumGreaterThan1000 ? '✅' : '❌');
+    $('#requestCheck').text(paidTypesValid ? '✅' : '❌ GT Numbers: ' + failedPaidGTNumbers.join(', '));
+    $('#typeCheck').text(typeValid ? '✅' : '❌ GT Numbers: ' + failedTypeGTNumbers.join(', '));
+
+    // Enable or disable submit button based on checks
+    var allChecksPassed = registrationGreaterThanOne && sumGreaterThan1000 && paidTypesValid && typeValid;
+    $('#submitButton').prop('disabled', !allChecksPassed);
+
+    // Change button color and set opacity based on checks
+    if (allChecksPassed) {
+        $('#submitButton').css({
+            'color': '', // Set default color
+            'opacity': 1 // Set default opacity
+        });
+    } else {
+        $('#submitButton').css({
+            'color': 'gray',
+            'opacity': 0.5 // Set opacity to 50% when checks fail
+        });
+    }
+
+    // Set the value of the hidden input field with the array of paidtype values
+    $('#paidtypeInput').val(JSON.stringify(paidtypeValues));
+}
+
 
     function selectAll() {
         var checkboxes = document.getElementsByClassName('custom-checkbox');

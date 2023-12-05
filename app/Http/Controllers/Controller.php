@@ -116,7 +116,7 @@ class Controller extends BaseController
     }
     function uploaded(){
 
-        $data = Data::where('paid','2')->wherenotnull('done')->get();
+        $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
         return view('uploaded')->with('data', $data);
     }
     function SadadStatus(){
@@ -141,7 +141,7 @@ class Controller extends BaseController
     }
     function uploadedA(){
 
-        $data = Data::where('paid','2')->wherenotnull('done')->get();
+        $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
         return view('uploadedA')->with('data', $data);
     }
     function SadadRejctA(){
@@ -1307,8 +1307,8 @@ class Controller extends BaseController
                 $up= Data::whereNotNull('status')->whereIn('plantkey', $cnd1)->latest('dateset')->value('dateset');
                 $liveValue1 = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                 $up1= Data::where('paid', '1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
-                $liveValue2 = Data::where('paid','!=', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
-                $up2= Data::where('paid','!=', '1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                $liveValue2 = Data::where('paid', '1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                $up2= Data::where('paid','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                 return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1,'value2' => $liveValue2, 'up2' => $up2]);
 
                 }
@@ -1318,8 +1318,10 @@ class Controller extends BaseController
                     $up= Data::whereNotNull('status')->latest('dateset')->value('dateset');
                     $liveValue1 = Data::where('paid', '1')->count(); // Replace YourModel and $id with your actual model and ID
                     $up1= Data::where('paid', '1')->latest('datepaid')->value('datepaid');
-                    $liveValue2 = Data::where('paid','!=', '1')->count(); // Replace YourModel and $id with your actual model and ID
-                $up2= Data::where('paid','!=', '1')->latest('datepaid')->value('datepaid');
+                    $liveValue2 = Data::where('paid','1')->count(); // Replace YourModel and $id with your actual model and ID
+                    $liveValue2 += Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->count(); // Replace YourModel and $id with your actual model and ID
+                    $liveValue2 += Data::wherenotnull('newreference')->count(); // Replace YourModel and $id with your actual model and ID
+                    $up2= Data::where('paid','1')->latest('datepaid')->value('datepaid');
                     return response()->json(['value' => $liveValue, 'up' => $up,'value1' => $liveValue1, 'up1' => $up1,'value2' => $liveValue2, 'up2' => $up2]);
                 }
 
@@ -1729,8 +1731,8 @@ class Controller extends BaseController
                     $up4= Data::where('paidbya','1')->where('paid','!=','11')->latest('datepaid')->value('datepaid');
                     $liveValue5 = Data::where('paid','11')->count(); // Replace YourModel and $id with your actual model and ID
                     $up5= Data::where('paid','11')->latest('datepaid')->value('datepaid');
-                    $upl = Data::where('paid','2')->wherenotnull('done')->count(); // Replace YourModel and $id with your actual model and ID
-                    $upd= Data::where('paid','2')->wherenotnull('done')->latest('datepaid')->value('datepaid');
+                    $upl = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->count(); // Replace YourModel and $id with your actual model and ID
+                    $upd= Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->latest('datepaid')->value('datepaid');
 
                 }
 
@@ -2103,45 +2105,11 @@ class Controller extends BaseController
                         function Sadad(Request $request)
                         {
                             $selectedItems = $request->input('selectedItems');
-
+                            dd($request);
                             if (empty($selectedItems)) {
                                 return redirect()->back()->with('error', 'No items selected for update.');
                             }
 
-                            // Initialize variables to track conditions
-                            $allAmountsLessThanOne = true;
-                            $sumOfAmountsGreaterThan1000 = 0;
-                            $allPaidTypesDifferentThan1And2 = true;
-
-                            foreach ($selectedItems as $itemId) {
-                                $data = Data::find($itemId);
-
-                                // Check if any amount is greater than 1
-                                if ($data->regist < 1) {
-                                    $allAmountsLessThanOne = false;
-                                }
-
-                                // Sum up amounts
-                                $sumOfAmountsGreaterThan1000 += $data->regist;
-
-                                // Check if paidtype is not 1 or 2
-                                if ($data->paid === '1' || $data->paid === '2') {
-                                    $allPaidTypesDifferentThan1And2 = false;
-                                }
-                            }
-
-                            // Perform checks
-                            if (!$allAmountsLessThanOne) {
-                                return redirect()->back()->with('error', 'One or more items contain an amount less than 1 .');
-                            }
-
-                            if ($sumOfAmountsGreaterThan1000 < 1) {
-                                return redirect()->back()->with('error', 'Total amounts less than 1 .');
-                            }
-
-                            if (!$allPaidTypesDifferentThan1And2) {
-                                return redirect()->back()->with('error', 'One or more items were previously selected .');
-                            }
 
                             // If all conditions are met, proceed with the update
                             foreach ($selectedItems as $itemId) {

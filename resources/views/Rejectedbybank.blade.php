@@ -387,6 +387,7 @@
                             <th>GT Number</th>
                             <th>Billing Doc</th>
                             <th> Fee</th>
+                            <th> ID</th>
                             <th> Type</th>
                             <th>Old Reference</th>
                             <th>New Reference</th>
@@ -427,6 +428,9 @@
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->regist }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->idnum }}
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
