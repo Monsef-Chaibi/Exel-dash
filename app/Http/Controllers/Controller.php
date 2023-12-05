@@ -1061,7 +1061,7 @@ class Controller extends BaseController
 
                     Data::where('gtnum', $itemId)->update([
                         'paid' => '11',
-                        'reference' =>  $request->input('new'),
+                        'newreference' =>  $request->input('new'),
                     ]);
 
 
@@ -2263,9 +2263,11 @@ class Controller extends BaseController
 
                             // Simulate a database check, replace this with your actual logic
                             $result = Data::where('gtnum', $gtNumber)->value('paidbya');
+                            $ref = Data::where('gtnum', $gtNumber)->value('reference');
 
-                            return response()->json(['paidbya' => $result]);
+                            return response()->json(['paidbya' => $result, 'reference' => $ref]);
                         }
+
                         public function importreupload(Request $request)
                         {
                             $gtNumbers = $request->input('gtNumbers');
@@ -2281,7 +2283,7 @@ class Controller extends BaseController
                                     // Update the 'paid' and 'reference' fields
                                     $record->update([
                                         'paid' => 11,
-                                        'reference' => $newReferences[$index],
+                                        'newreference' => $newReferences[$index],
                                     ]);
                                 }
                             }

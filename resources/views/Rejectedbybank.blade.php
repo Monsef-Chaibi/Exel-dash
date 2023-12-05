@@ -373,7 +373,7 @@
                             id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                     </div>
                     <div>
-                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By Reference :</label>
+                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By New Reference :</label>
                         <input style="border-radius: 10px; width: 300px; height: 40px;" type="text"
                             id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
                     </div>
@@ -384,13 +384,13 @@
                         <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
                             {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
                             <th>Product</th>
-                            <th>Vin</th>
                             <th>GT Number</th>
                             <th>Billing Doc</th>
-                            <th>Registering fee</th>
-                            <th>Registration Type</th>
-                            <th>Reference</th>
-                        
+                            <th> Fee</th>
+                            <th> Type</th>
+                            <th>Old Reference</th>
+                            <th>New Reference</th>
+
 
                         </tr>
                     </thead>
@@ -416,9 +416,7 @@
                                 <td data-th="Supplier Code">
                                     {{ $item->product }}
                                 </td>
-                                <td data-th="Supplier Code">
-                                    {{ $item->vin }}
-                                </td>
+
                                 <td data-th="Supplier Code">
                                     {{ $item->gtnum }}
                                 </td>
@@ -433,8 +431,11 @@
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
                                 </td>
-                                <td data-th="Supplier Code">
+                                <td style="color: red" data-th="Supplier Code">
                                     {{ $item->reference }}
+                                </td>
+                                <td style="color: #18cb00" data-th="Supplier Code">
+                                    {{ $item->newreference }}
                                 </td>
 
                                 {{-- <td style="text-align: center">
@@ -484,7 +485,7 @@
             const rows = document.querySelectorAll('tbody tr');
 
             for (const row of rows) {
-                const gtNumberCell = row.querySelector('td:nth-child(3)'); // Adjusted index to match the column
+                const gtNumberCell = row.querySelector('td:nth-child(2)'); // Adjusted index to match the column
                 const gtNumber = gtNumberCell.textContent.toLowerCase();
                 console.log(gtNumber);
                 if (gtNumber.includes(gtNumberSearch)) {

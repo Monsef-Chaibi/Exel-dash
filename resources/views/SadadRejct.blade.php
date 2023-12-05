@@ -381,7 +381,7 @@
                 <input name="gtnum" type="text" id="gtNumber" style="border-radius: 10px; margin-left:15px">
 
                 <label style="color:#1eff00;" for="oldReference">Old Reference :</label>
-                <input name="old" required type="text" id="oldReference" style="border-radius: 10px; margin-left:15px">
+                <input readonly name="old"  type="text" id="old" style="border-radius: 10px; margin-left:15px">
 
                 <label style="color:#1eff00;" for="newReference">New Reference :</label>
                 <input name="new" required type="text" id="newReference" style="border-radius: 10px; margin-left:15px">
@@ -392,50 +392,57 @@
             </form>
 
             <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const gtNumberInput = document.getElementById('gtNumber');
-                    const submitBtn = document.getElementById('submitBtn');
+               document.addEventListener('DOMContentLoaded', function () {
+    const gtNumberInput = document.getElementById('gtNumber');
+    const oldInput = document.getElementById('old'); // Assuming you have an input field with ID 'old'
+    const submitBtn = document.getElementById('submitBtn');
 
-                    gtNumberInput.addEventListener('input', function () {
-                        const gtNumberValue = this.value;
+    gtNumberInput.addEventListener('input', function () {
+        const gtNumberValue = this.value;
 
-                        // Make an AJAX request to check the database
-                        fetch('/check-database', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                            },
-                            body: JSON.stringify({ gtNumber: gtNumberValue }),
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            const paidbya = data.paidbya;
-                            console.log(`Database check result for GT Number ${gtNumberValue}: ${paidbya ? 'Paid' : 'Not Paid'}`);
+        // Make an AJAX request to check the database
+        fetch('/check-database', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({ gtNumber: gtNumberValue }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const paidbya = data.paidbya;
+            const reference = data.reference;
 
-                            // Show or hide the submit button based on the result
-                            if (paidbya === '1') {
-                                console.log('Setting display to inline-block');
-                                submitBtn.style.display = 'inline-block';
-                            } else {
-                                console.log('Setting display to none');
-                                submitBtn.style.display = 'none';
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-                    });
+            console.log(`Database check result for GT Number ${gtNumberValue}: ${paidbya ? 'Paid' : 'Not Paid'}`);
 
-                    document.getElementById('uploadForm').addEventListener('submit', function (event) {
-                        // Check if the button is hidden (condition is false)
-                        if (submitBtn.style.display === 'none') {
-                            // Prevent form submission
-                            event.preventDefault();
+            // Set the value of the 'old' input field to the 'reference' value
+            oldInput.value = reference;
 
-                            // Optionally, you can display a message to the user or perform other actions
-                            console.log('Form submission prevented because the condition is false.');
-                        }
-                    });
-                });
+            // Show or hide the submit button based on the result
+            if (paidbya === '1') {
+                console.log('Setting display to inline-block');
+                submitBtn.style.display = 'inline-block';
+            } else {
+                console.log('Setting display to none');
+                submitBtn.style.display = 'none';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        // Check if the button is hidden (condition is false)
+        if (submitBtn.style.display === 'none') {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Optionally, you can display a message to the user or perform other actions
+            console.log('Form submission prevented because the condition is false.');
+        }
+    });
+});
+
             </script>
             <br>
                 <h2 style="color:#1eff00;">Re-upload A Rejected Payment By Exel</h2>

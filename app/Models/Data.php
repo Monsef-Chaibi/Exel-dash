@@ -28,5 +28,6 @@ class Data extends Model
         'reference',
         'done',
         'paidbya',
+        'newreference',
     ];
 }
