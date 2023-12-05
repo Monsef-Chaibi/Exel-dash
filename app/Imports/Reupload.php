@@ -20,6 +20,15 @@ class Reupload implements ToModel
         $paidValue = DB::table('data')
             ->where('gtnum', $gtnum)
             ->value('paidbya');
+        $product = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('product');
+        $fee = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('regist');
+        $type = DB::table('data')
+            ->where('gtnum', $gtnum)
+            ->value('idnum');
         $paid = DB::table('data')
             ->where('gtnum', $gtnum)
             ->value('paid');
@@ -29,6 +38,9 @@ class Reupload implements ToModel
             'new' => $row[2],
             'paidbya' => $paidValue,
             'paid' => $paid,
+            'product' => $product,
+            'fee' => $fee,
+            'type' => $type,
         ];
 
         // Store the data in the $importedData array

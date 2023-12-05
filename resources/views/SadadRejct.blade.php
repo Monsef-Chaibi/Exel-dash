@@ -454,7 +454,10 @@
                 <table style="width: 600px; margin-bottom:5%; margin-top:2%; text-align:" class="rwd-table">
                     <thead>
                         <tr class="fr">
+                            <th colspan="4">Product</th>
                             <th>GT Number</th>
+                            <th>Fee</th>
+                            <th>Type</th>
                             <th>Old reference</th>
                             <th>New reference</th>
                         </tr>
@@ -462,9 +465,21 @@
                     <tbody>
                         @foreach ($Data as $item)
                             <tr>
+                                <td colspan="4" >
+                                    {{ $item['product'] }}
+
+                                </td>
                                 <td data-th="GT Number">
                                     {{ $item['gtnum'] }}
                                     <input type="hidden" name="gtNumbers[]" value="{{ $item['gtnum'] }}">
+                                </td>
+                                <td >
+                                    {{ $item['fee'] }}
+
+                                </td>
+                                <td >
+                                    {{ $item['type'] }}
+
                                 </td>
                                 <td data-th="Old Reference">
                                     {{ $item['old'] }}
@@ -485,7 +500,7 @@
                     </tbody>
                 </table>
 
-                <p style="color: #1eff00; " id="errorMessage"></p>
+                <p style="color: red; " id="errorMessage"></p>
                 <br>
 
                 <button type="submit" style="font-size:50px; margin-left:60px ; color:#1eff00" id="submitButton" disabled>
@@ -523,7 +538,7 @@
         }
 
         // Display error message if there is an error
-        var errorMessage = allPaid ? '' : 'Error in GT numbers: ' + errorItems.join(' && ');
+        var errorMessage = allPaid ? '' : 'GT numbers: ' + errorItems.join(' && ')+' is Not Passed';
         $('#errorMessage').text(errorMessage);
     }
 
@@ -535,7 +550,24 @@
         updateSubmitButton();
     });
 });
-
+function submitForm() {
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('reuploadimport') }}",
+            data: new FormData($('#reuploadForm')[0]),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Handle success if needed
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error by showing an alert
+                alert('Oops! Something went wrong. Please try again.');
+                console.error(xhr.responseText);
+            }
+        });
+    }
             </script>
 
 

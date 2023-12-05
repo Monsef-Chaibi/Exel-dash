@@ -160,7 +160,10 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::post('/check-database', [Controller::class, 'check']);
     Route::post('/reuploadimport', [Controller::class, 'reuploadimport'])->name('reuploadimport');
     Route::post('/importreupload', [Controller::class, 'importreupload'])->name('importreupload');
+    Route::get('/reuploadimport', function () {
 
+        return  redirect()->route('SadadRejct')->with('error', 'Oops! A simple problem. Try Again '); // You can create a specific Blade view for this purpose
+    });
 
 
 

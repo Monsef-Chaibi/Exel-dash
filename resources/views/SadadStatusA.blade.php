@@ -450,6 +450,22 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
+                                        Uploaded : <span id="upl"></span>
+                                    </div>
+
+                                    <div class="ag-courses-item_date-box">
+                                        Last Update :
+                                        <span id="upd" class="ag-courses-item_date">
+
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="ag-courses_item">
+                                <a href="/Rejectedbybank" SadadCheck class="ag-courses-item_link">
+                                    <div class="ag-courses-item_bg"></div>
+
+                                    <div class="ag-courses-item_title">
                                         Repayment : <span id="vl3"></span>
                                     </div>
 
@@ -485,6 +501,8 @@
                     $('#dt3').text(data.up3);
                     $('#value1').text(data.vl1);
                     $('#up1').text(data.up11);
+                    $('#upl').text(data.upl);
+                    $('#upd').text(data.upd);
                 },
                 error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);

@@ -1737,6 +1737,8 @@ class Controller extends BaseController
                     $liveValue3 = Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up3= Data::where('paid','3')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue4 = Data::where('paid','11')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $upl = Data::where('done','1')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
+                    $upd= Data::where('done','1')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
 
                 }else
                 {
@@ -1750,9 +1752,11 @@ class Controller extends BaseController
                     $liveValue3 = Data::where('paid','3')->count(); // Replace YourModel and $id witsh your actual model and ID
                     $up3= Data::where('paid','3')->latest('datepaid')->value('datepaid');
                     $liveValue4 = Data::where('paid','11')->count(); // Replace YourModel and $id witsh your actual model and ID
+                    $upl = Data::where('done','1')->where('paid','2')->wherenull('paidbya')->count(); // Replace YourModel and $id witsh your actual model and ID
+                    $upd= Data::where('done','1')->where('paid','2')->wherenull('paidbya')->latest('datepaid')->value('datepaid');
                 }
 
-                return response()->json(['value' => $liveValue, 'up' => $up,'value2' => $liveValue2, 'up2' => $up2,'vl1' => $liveValue1, 'up11' => $up1 ,'value3'  => $liveValue3, 'up3' => $up3, 'value4'  => $liveValue4]);
+                return response()->json(['value' => $liveValue, 'up' => $up,'upl' => $upl, 'upd' => $upd,'value2' => $liveValue2, 'up2' => $up2,'vl1' => $liveValue1, 'up11' => $up1 ,'value3'  => $liveValue3, 'up3' => $up3, 'value4'  => $liveValue4]);
             }
 
             public function getlast()
@@ -2287,19 +2291,28 @@ class Controller extends BaseController
                             return redirect()->route('SadadRejct')->with('success', 'Records updated successfully');
                         }
                         public function reuploadimport(Request $request)
-                        {
-                            try {
-                                $import = new Reupload();
-                                Excel::import($import, $request->file('file'));
+{
+    try {
+        // Create a new instance of the Reupload class
+        $import = new Reupload();
 
-                                $Data = $import->Data();
-                                $data = Data::where('paid', '3')
-                                        ->get();
-                                return view('SadadRejct')->with('Data',   $Data)->with('data',$data);
-                            } catch (\Exception $e) {
-                                return redirect()->back()->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
-                            }
-                        }
+        // Use the Excel facade to import data from the uploaded file
+        Excel::import($import, $request->file('file'));
+
+        // Get data from the import instance
+        $Data = $import->Data();
+
+        // Retrieve additional data from the database where 'paid' is '3'
+        $data = Data::where('paid', '3')->get();
+
+        // Return the view 'SadadRejct' with the imported data and additional data
+        return view('SadadRejct')->with('Data', $Data)->with('data', $data);
+    } catch (\Exception $e) {
+        // Handle exceptions - if an exception occurs, return the view with an error message
+        $data = Data::where('paid', '3')->get();
+        return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
+    }
+}
 
 
 

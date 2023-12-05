@@ -84,7 +84,7 @@ class HSBCImport implements ToModel, WithHeadingRow
                     'idnum' => $row['moi_reference_number'],
                     'gtnum' => $row['customer_reference'],
                     'vin' => $vin,
-                    'product' => $row['service'],
+                    'product' =>$product,
                     'indb' => $indb,
                     'sameregist' => $sameregist,
                     'sameid' => $sameid,
