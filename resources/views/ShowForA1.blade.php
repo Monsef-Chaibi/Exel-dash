@@ -964,13 +964,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             <label style="margin-left: 5px;display: none" for="" id='documents'>Yes</label>
             <br style="display: none" id='documents'>
             <br style="display: none" id='documents'>
-            <label for="" style="color: rgb(0, 0, 0)">Port of Entry :</label>
-            <select style="border-radius:5px;width:37%" name="port" id="selected_id" >
-                <option style="display: none;">Select Port</option>
-                @foreach ($port as $item)
-                    <option value="{{$item->nameofport}}">{{$item->nameofport}}</option>
-                @endforeach
-            </select>
+            <input type="hidden" name="port" value="جدة">
+           
             <label for="" style="margin-left: 20px">Entry Date :</label>
             <input type="text" name="entrydate" style="width: 38%;border-radius:5px">
             <label for="" style="color: rgb(0, 0, 0);">Vehicle Brand :</label>

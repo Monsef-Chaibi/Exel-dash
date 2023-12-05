@@ -361,7 +361,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="" style="padding: 10px">
                 <form id="exportForm" action="/Paid" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
@@ -385,8 +385,8 @@
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
-                                <th>Registering fee</th>
-                                <th>Registration Type</th>
+                                <th> Fee</th>
+                                <th> Type</th>
                                 <th>Reference</th>
                                 <th>Upload</th>
                             </tr>

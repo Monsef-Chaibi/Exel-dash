@@ -357,7 +357,7 @@
         @endif
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div style="padding: 10px">
 
                 <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -365,7 +365,7 @@
                             <label for="" style="color: #1eff00; margin-right: 10px;">Filter By GT :</label>
                             <input style="border-radius: 10px; width: 300px; height: 40px;" type="text" id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                         </div>
-                      
+
                     </div>
                     <table style="width: 100%; margin-bottom:5%; margin-top:2%" class="rwd-table">
                         <thead>
@@ -375,9 +375,9 @@
                                 <th>Vin</th>
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
-                                <th>Registering fee</th>
-                                <th>By</th>
-                                <th>In</th>
+                                <th>Fee</th>
+                                <th>Type</th>
+                                <th>Owner</th>
                             </tr>
                         </thead>
 
@@ -414,10 +414,10 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->paidby }}
+                                            {{ $item->paidtype }}
                                         </td>
                                         <td data-th="Supplier Code">
-                                            {{ $item->datepaid }}
+                                            {{ $item->soldp }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -433,7 +433,7 @@
                             Accept
                         </button>
                         <button type="button" class="warning2" onclick="showConfirmationDialog('refuse')">
-                            Refuse
+                            Reject
                         </button>
                     </form>
                     </div>

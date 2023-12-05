@@ -389,8 +389,8 @@
                             <th>Billing Doc</th>
                             <th>Registering fee</th>
                             <th>Registration Type</th>
-                            <th>Upload</th>
-                            <th>Paid</th>
+                            <th>Reason</th>
+
                         </tr>
                     </thead>
 
@@ -432,21 +432,11 @@
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
                                 </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->rejectdreason }}
+                                </td>
 
-                                <td style="text-align:center">
-                                    @if ($item->paid === '2')
-                                        ✅
-                                    @else
-                                        ❌
-                                    @endif
-                                </td>
-                                <td style="text-align:center">
-                                    @if ($item->paidbya === '1')
-                                        ✅
-                                    @else
-                                        ❌
-                                    @endif
-                                </td>
+
                                 {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
                                                 ✅

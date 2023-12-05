@@ -450,7 +450,7 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                        Rejected by bank : <span id="vl3"></span>
+                                        Repayment : <span id="vl3"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
