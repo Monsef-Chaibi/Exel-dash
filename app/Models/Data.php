@@ -23,6 +23,7 @@ class Data extends Model
         'paid',
         'paidby' ,
         'datepaid',
+        'ordernum',
         'paidtype',
         'paidbya',
         'reference',

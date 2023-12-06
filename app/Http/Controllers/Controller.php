@@ -35,7 +35,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     function import(){
     try {
-            Data::whereNull('status')->delete();
+            Data::whereNull('status')->wherenull('paid')->delete();
             $tableLength = Update::count();
             if ($tableLength >= 5) {
                 // Get the oldest record
@@ -47,7 +47,7 @@ class Controller extends BaseController
             $data = [
                 'name' => Auth::user()->name,
             ];
-            Update::create($data);
+        Update::create($data);
         Excel::Import(new DataImport, request()->file('file'));
         return redirect()->back()->with('success', 'Data inserted successfully.');
         } catch (\Exception $e) {
@@ -2107,28 +2107,41 @@ class Controller extends BaseController
 
 
                         }
-                        function Sadad(Request $request)
-                        {
-                            $selectedItems = $request->input('selectedItems');
-                            dd($request);
-                            if (empty($selectedItems)) {
-                                return redirect()->back()->with('error', 'No items selected for update.');
-                            }
 
 
-                            // If all conditions are met, proceed with the update
-                            foreach ($selectedItems as $itemId) {
-                                Data::where('id', $itemId)->update([
-                                    'paid' => 1,
-                                    'paidby' => Auth::user()->name,
-                                    'datepaid' => Carbon::now('Asia/Riyadh'),
-                                    'paidtype' => $request->input('paidtype'),
-                                ]);
-                            }
+                                    function Sadad(Request $request)
+                                    {
+                                        try {
+                                            $selectedItems = $request->input('selectedItems');
 
-                            return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
+                                            if (empty($selectedItems)) {
+                                                return redirect()->back()->with('error', 'No items selected for update.');
+                                            }
 
-                        }
+                                            $paidtype = $request->input('paidtype'); // Get the paidtype value
+
+                                            // If all conditions are met, proceed with the update
+                                            foreach ($selectedItems as $item) {
+                                                // Split the combined value to get id and paidtype separately
+                                                list($id, $itemPaidtype) = explode('_', $item);
+
+                                                // You can use $id and $itemPaidtype as needed
+                                                Data::where('id', $id)->update([
+                                                    'paid' => 1,
+                                                    'paidby' => Auth::user()->name,
+                                                    'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
+                                                    'paidtype' => $itemPaidtype,
+                                                ]);
+                                            }
+
+                                            return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
+                                        } catch (QueryException $e) {
+                                            // Log the error or handle it as needed
+                                            return redirect()->route('SadadView')->with('error', 'Error updating selections. Please try again.');
+                                        }
+                                    }
+
+
                         public function processConfirmation(Request $request) {
                             $confirmationAction = $request->input('confirmation_action');
 
@@ -2255,7 +2268,7 @@ class Controller extends BaseController
 
                             // Simulate a database check, replace this with your actual logic
                             $result = Data::where('gtnum', $gtNumber)->value('paidbya');
-                            $ref = Data::where('gtnum', $gtNumber)->value('reference');
+                            $ref =  Data::where('gtnum', $gtNumber)->value('newreference') ?? Data::where('gtnum', $gtNumber)->value('reference');
 
                             return response()->json(['paidbya' => $result, 'reference' => $ref]);
                         }

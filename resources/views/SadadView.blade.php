@@ -504,8 +504,7 @@
                                     @foreach ($importedData as $item)
                                         <tr>
                                             <td data-th="Supplier Name">
-                                                <input class="custom-" style="border-radius:5px" type="checkbox"
-                                                    name="selectedItems[]" value="{{ $item['id'] }}">
+                                                <input class="custom-" style="border-radius:5px" type="checkbox" name="selectedItems[]" value="{{ $item['id'] }}_{{ $item['paidtype'] }}" >
                                             </td>
                                             <td data-th="Supplier Name">
                                                 {{ $item['product'] }}
