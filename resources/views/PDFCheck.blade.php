@@ -76,15 +76,6 @@
     </style>\
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-      @if (session()->has('error'))
-      <script>
-         Swal.fire(
-             'Error',
-             '{{ session('error') }}',
-             'error'
-         )
-      </script>
-  @endif
 
   @if (session()->has('success'))
       <script>
@@ -104,25 +95,20 @@
          )
       </script>
   @endif
-    @if(Auth::user()->adjuf !== '1')
-        <script>
-            window.location.href = "/";
-        </script>
-    @endif
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="button-container" style="margin-bottom: 50px">
-                        <p class="last-update">Last update : {{$latestDate}}</p>
-                    </div>
-                    <form class="form-container" action="{{url('/importimage')}}" method="POST" enctype='multipart/form-data'>
+                    <h3 style="color: #1eff00; text-align:center; margin:15px;padding:10px">
+                        Check PDF FILE
+                    </h3>
+                    <form action="{{ route('GetPDF') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <label for="images" class="drop-container" id="dropcontainer">
                             <span class="drop-title">Drop files here</span>
                             or
-                            <input class="btn" type="file" name="file" id="images" required>
+                            <input class="btn" type="file" name="pdfFile" id="" required>
                           </label>
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>

@@ -492,7 +492,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div style="display: flex; justify-content: space-between;">
-                <a href="#m1-o">
+                <a href="/PDFCheck">
                     <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Check &rarr;</button>
                 </a>
 

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Aljuf;
 use App\Models\ColorCode;
-use PDF;
+
+use Spatie\PdfToText\Pdf;
 
 use Maatwebsite\Excel\Validators\ValidationException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
@@ -56,6 +57,9 @@ class Controller extends BaseController
     }
     function adduser(){
         return view('adduser');
+    }
+    function PDFCheck(){
+        return view('PDFCheck');
     }
     function DashboardB(){
         return view('DashboardB');
@@ -2323,6 +2327,34 @@ class Controller extends BaseController
                                 }
                             }
 
+                            private function extractTextFromPdf($pdfFilePath)
+                            {
+                                try {
+                                    $pdf = new Pdf();
+                                    $pdf->setPdf($pdfFilePath);
 
+                                  $pdf->text();
+                                } catch (\Exception $e) {
+                                    // Log or handle the exception as needed
+                                    return back()->with('error', 'An error occurred: ' . $e->getMessage());
+                                }
+                            }
+
+                            public function GetPDF(Request $request)
+                            {
+                                $request->validate([
+                                    'pdfFile' => 'required|mimes:pdf|max:10240', // Ensure it's a PDF file and not larger than 10 MB
+                                ]);
+
+                                $pdfFilePath = $request->file('pdfFile')->storeAs('pdfs', 'uploaded.pdf', 'public');
+
+                                // Extract text from the uploaded PDF
+                                $text = $this->extractTextFromPdf(storage_path("app/public/{$pdfFilePath}"));
+
+                                // Now you can use the extracted text as needed
+                                dd($text);
+
+                                // Add your logic to store or process the extracted text
+                            }
 
 }
