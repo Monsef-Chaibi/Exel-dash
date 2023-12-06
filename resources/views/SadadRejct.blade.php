@@ -534,10 +534,13 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-JjSm2nW9S72i+o2T2R4qO8hX55IK/6+uZq+24D57t4bZ4846q+i6Q+J1g82" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="#m1-o">
-                <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Print Moroor Documents &rarr;</button>
+            <a href="#m1-o" id="autoLink">
+                <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Reupload &rarr;</button>
             </a>
 
             <form id="exportForm" action="/SemiExportA" method="get">
@@ -645,6 +648,20 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         </div>
     </div>
     </div>
+   <!-- Your existing content -->
+
+<!-- Add the script at the end of your view -->
+<script>
+    // Check if $Data is set
+    @if(isset($Data))
+    console.log('yes');
+    $(document).ready(function() {
+            // Trigger click on the anchor link when the page loads
+            $('#autoLink').trigger('click');
+        });
+    @endif
+</script>
+
     <script>
         function filterGTNumbers() {
             const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();
@@ -852,6 +869,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
     <div class="modal-container" id="m1-o" style="--m-background: transparent;">
         <div class="modal">
             <h1 class="modal__title">Re-upload :</h1>
+            <br>
+            <br>
             <form id="uploadForm" action="/reupload" method="get">
                 <h2 style="color:#1eff00;">Re-upload A Rejected Payment Manual </h2>
                 <br>
@@ -922,6 +941,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 });
 
             </script>
+            <br>
+            <br>
             <br>
                 <h2 style="color:#1eff00;">Re-upload A Rejected Payment By Exel</h2>
                 <form action="/reuploadimport" method="post"  enctype='multipart/form-data'>
