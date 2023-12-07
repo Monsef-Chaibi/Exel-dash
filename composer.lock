@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6a1ab6ee2678f3a95799079359426e0",
+    "content-hash": "d13a4ce2bb3e7bf6302a291f6f897258",
     "packages": [
+        {
+            "name": "asika/pdf2text",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asika32764/php-pdf-2-text.git",
+                "reference": "7e328221418ee237b60aee291f416633469162f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asika32764/php-pdf-2-text/zipball/7e328221418ee237b60aee291f416633469162f7",
+                "reference": "7e328221418ee237b60aee291f416633469162f7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "php": ">=8.0",
+                "phpunit/phpunit": "^10.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asika\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Asika",
+                    "email": "asika32764@gmail.com"
+                }
+            ],
+            "description": "Simple PHP PDF to text class.",
+            "support": {
+                "issues": "https://github.com/asika32764/php-pdf-2-text/issues",
+                "source": "https://github.com/asika32764/php-pdf-2-text/tree/1.0.6"
+            },
+            "time": "2023-11-19T21:28:40+00:00"
+        },
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v2.0.1",

@@ -17,11 +17,13 @@ use App\Imports\Reupload;
 use App\Imports\Sadad;
 use App\Imports\HSBCImport;
 use App\Models\Brand;
+use Illuminate\Support\Facades\Storage;
 use App\Models\ContratUser;
 use App\Models\Data;
 use App\Models\Port;
 use App\Models\Update;
 use App\Models\User;
+use Asika\Pdf2text;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -2327,34 +2329,50 @@ class Controller extends BaseController
                                 }
                             }
 
-                            private function extractTextFromPdf($pdfFilePath)
-                            {
-                                try {
-                                    $pdf = new Pdf();
-                                    $pdf->setPdf($pdfFilePath);
 
-                                  $pdf->text();
-                                } catch (\Exception $e) {
-                                    // Log or handle the exception as needed
-                                    return back()->with('error', 'An error occurred: ' . $e->getMessage());
-                                }
-                            }
-
-                            public function GetPDF(Request $request)
+                            public function getPDF(Request $request)
                             {
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240', // Ensure it's a PDF file and not larger than 10 MB
                                 ]);
 
-                                $pdfFilePath = $request->file('pdfFile')->storeAs('pdfs', 'uploaded.pdf', 'public');
+                                $reader = new Pdf2text();
+                                $text = $reader->decode($request->file('pdfFile'));
 
-                                // Extract text from the uploaded PDF
-                                $text = $this->extractTextFromPdf(storage_path("app/public/{$pdfFilePath}"));
+                                // Split the text into lines
+                                $lines = explode("\n", $text);
 
-                                // Now you can use the extracted text as needed
-                                dd($text);
+                                // Initialize arrays to store extracted values
+                                $valuesToExtract = [];
 
-                                // Add your logic to store or process the extracted text
+                                // Define regular expressions to match the patterns you're looking for
+                                $titlePattern = '/(\d{5}-\d{7})/'; // Pattern for the title
+                                $value1Pattern = '/([A-Z0-9]{17})/'; // Pattern for the first value
+                                $value2Pattern = '/(\d{1,3}(?:,\d{3})*(?:\.\d+)?)/'; // Pattern for the second value
+
+                                // Loop through each line to extract values at specific positions
+                                foreach ($lines as $line) {
+                                    // Use preg_match to find matches based on the patterns for values
+                                    preg_match($titlePattern, $line, $titleMatches);
+                                    preg_match_all($value1Pattern, $line, $matches1);
+                                    preg_match_all($value2Pattern, $line, $matches2);
+
+                                    // Extract values from the matches
+                                    $title = isset($titleMatches[1]) ? $titleMatches[1] : null;
+                                    $value1 = isset($matches1[0][0]) ? $matches1[0][0] : null;
+                                    $value2 = isset($matches2[0][0]) ? $matches2[0][0] : null;
+
+
+                                    // Add the values to the array
+                                    $valuesToExtract[] = ['title' => $title, 'value1' => $value1, 'value2' => $value2];
+
+                                }
+                                dd($valuesToExtract);
+                                // Pass the extracted values to the view
+                                return view('PDFCheck', compact('valuesToExtract'));
                             }
+
+
+
 
 }

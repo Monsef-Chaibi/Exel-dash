@@ -111,7 +111,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
     Route::get('/HSBCPassed', [Controller::class, 'HSBCPassed'])->name('HSBCPassed');
     Route::get('/uploadedA', [Controller::class, 'uploadedA'])->name('uploadedA');
     Route::get('/PDFCheck', [Controller::class, 'PDFCheck'])->name('PDFCheck');
-    Route::post('/GetPDF', [Controller::class, 'GetPDF'])->name('GetPDF');
+    Route::post('/GetPDF', [Controller::class, 'getPDF'])->name('GetPDF');
 
 
 

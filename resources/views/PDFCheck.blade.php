@@ -113,6 +113,28 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
+                @if(isset($valuesToExtract))
+                <h1>Values Extracted from PDF</h1>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Value 1</th>
+                            <th>Value 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($valuesToExtract as $values)
+                            <tr>
+                                <td>{{ $values['title'] }}</td>
+                                <td>{{ $values['value1'] }}</td>
+                                <td>{{ $values['value2'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
             </div>
         </div>
     </div>
