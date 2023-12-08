@@ -113,10 +113,24 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
-                @if(isset($text))
-                <h1>Values Extracted from PDF</h1>
-                <p>{{$text}}</p>
-                @endif
+              @if (!empty($valuesToExtract))
+              {{dd($valuesToExtract)}}
+    <h3>Title: {{ $valuesToExtract[0]['title'] }}</h3>
+    <table border="1">
+        <tr>
+            <th>Value 1</th>
+            <th>Value 2</th>
+        </tr>
+        @for ($i = 1; $i < count($valuesToExtract); $i++)
+            <tr>
+                <td style="width:300px">{{ $valuesToExtract[$i]['value1'] }}</td>
+                <td>{{ $valuesToExtract[$i]['value2'] }}</td>
+            </tr>
+        @endfor
+    </table>
+@else
+    <p>No data to display.</p>
+@endif
             </div>
         </div>
     </div>
