@@ -2345,35 +2345,37 @@ class Controller extends BaseController
                                 $valuesToExtract = [];
 
                                 $value1Pattern = '/([A-Z0-9]{17})/'; // Pattern for the first value
-
-                                // Adjust the pattern for the second value based on your table structure
-                                $value2Pattern = '/\b(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b/';
+                                $targetValuePattern = '/\b(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b/'; // Pattern for numeric values
 
                                 $currentValue1 = null;
 
                                 foreach ($lines as $line) {
                                     preg_match_all($value1Pattern, $line, $matches1);
-                                    preg_match_all($value2Pattern, $line, $matches2);
+                                    preg_match_all($targetValuePattern, $line, $matchesTarget);
 
                                     if (!empty($matches1[0])) {
                                         $currentValue1 = $matches1[0][0];
                                     }
 
-                                    if (!empty($matches2[0]) && $currentValue1 !== null) {
-                                        $numericValue2 = str_replace(',', '', $matches2[0][0]);
-                                        $valuesToExtract[] = [
-                                            'title' => $title,
-                                            'value1' => $currentValue1,
-                                            'value2' => $numericValue2,
-                                        ];
+                                    if (!empty($matchesTarget[0]) && $currentValue1 !== null) {
+                                        $targetValues = $matchesTarget[0];
 
-                                        // Reset currentValue1 to null after capturing the pair
+                                        foreach ($targetValues as $targetValue) {
+                                            $valuesToExtract[] = [
+                                                'title' => $title,
+                                                'value1' => $currentValue1,
+                                                'targetValue' => $targetValue,
+                                            ];
+                                        }
+
+                                        // Reset $currentValue1 to null after capturing the pairs
                                         $currentValue1 = null;
                                     }
                                 }
 
                                 return view('PDFCheck', compact('valuesToExtract'));
                             }
+
 
 
 

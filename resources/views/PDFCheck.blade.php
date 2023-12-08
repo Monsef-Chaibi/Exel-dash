@@ -114,17 +114,17 @@
                     </div>
                 </form>
               @if (!empty($valuesToExtract))
-              {{dd($valuesToExtract)}}
+
     <h3>Title: {{ $valuesToExtract[0]['title'] }}</h3>
     <table border="1">
         <tr>
             <th>Value 1</th>
             <th>Value 2</th>
         </tr>
-        @for ($i = 1; $i < count($valuesToExtract); $i++)
+        @for ($i = 0; $i < count($valuesToExtract); $i++)
             <tr>
                 <td style="width:300px">{{ $valuesToExtract[$i]['value1'] }}</td>
-                <td>{{ $valuesToExtract[$i]['value2'] }}</td>
+                <td>{{ $valuesToExtract[$i]['targetValue'] }}</td>
             </tr>
         @endfor
     </table>
