@@ -60,8 +60,9 @@ class Controller extends BaseController
     function adduser(){
         return view('adduser');
     }
-    function PDFCheck(){
-        return view('PDFCheck');
+    function PDFCheck($id){
+        $bildoc = decrypt($id);
+        return view('PDFCheck')->with('bildoc',$bildoc);
     }
     function DashboardB(){
         return view('DashboardB');
@@ -2330,6 +2331,10 @@ class Controller extends BaseController
                             }
                             public function getPDF(Request $request)
                             {
+                                $bildoc = $request->bildoc;
+                                $data = Data::where('bildoc',$bildoc)->get();
+                                $order = Data::where('bildoc',$bildoc)->value('ordernum');
+                              
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
                                 ]);
@@ -2373,7 +2378,7 @@ class Controller extends BaseController
                                     }
                                 }
 
-                                return view('PDFCheck', compact('valuesToExtract'));
+                                return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
                             }
 
 
