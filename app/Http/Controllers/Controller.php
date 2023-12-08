@@ -2328,49 +2328,52 @@ class Controller extends BaseController
                                     return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
                             }
-
-
                             public function getPDF(Request $request)
                             {
                                 $request->validate([
-                                    'pdfFile' => 'required|mimes:pdf|max:10240', // Ensure it's a PDF file and not larger than 10 MB
+                                    'pdfFile' => 'required|mimes:pdf|max:10240',
                                 ]);
 
                                 $reader = new Pdf2text();
                                 $text = $reader->decode($request->file('pdfFile'));
 
-                                // Extract title using regular expression
                                 preg_match('/\d{5}-\d{7}/', $text, $titleMatches);
                                 $title = $titleMatches[0] ?? null;
 
-                                // Split the text into lines
                                 $lines = explode("\n", $text);
 
-                                // Initialize arrays to store extracted values
                                 $valuesToExtract = [];
 
-                                // Define regular expressions to match the patterns you're looking for
                                 $value1Pattern = '/([A-Z0-9]{17})/'; // Pattern for the first value
-                                $value2Pattern = '/(\d{1,3}(?:,\d{3})*(?:\.\d+)?)/'; // Pattern for the second value
 
-                                // Loop through each line to extract values at specific positions
+                                // Adjust the pattern for the second value based on your table structure
+                                $value2Pattern = '/\b(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b/';
+
+                                $currentValue1 = null;
+
                                 foreach ($lines as $line) {
-                                    // Use preg_match to find matches based on the patterns for values
                                     preg_match_all($value1Pattern, $line, $matches1);
                                     preg_match_all($value2Pattern, $line, $matches2);
 
-                                    // Extract values from the matches
-                                    $value1 = isset($matches1[0][0]) ? $matches1[0][0] : null;
-                                    $value2 = isset($matches2[0][0]) ? $matches2[0][0] : null;
+                                    if (!empty($matches1[0])) {
+                                        $currentValue1 = $matches1[0][0];
+                                    }
 
-                                    // Add the values to the array
-                                    $valuesToExtract[] = ['title' => $title, 'value1' => $value1, 'value2' => $value2];
+                                    if (!empty($matches2[0]) && $currentValue1 !== null) {
+                                        $numericValue2 = str_replace(',', '', $matches2[0][0]);
+                                        $valuesToExtract[] = [
+                                            'title' => $title,
+                                            'value1' => $currentValue1,
+                                            'value2' => $numericValue2,
+                                        ];
+
+                                        // Reset currentValue1 to null after capturing the pair
+                                        $currentValue1 = null;
+                                    }
                                 }
 
-                                // Pass the extracted values to the view
                                 return view('PDFCheck', compact('valuesToExtract'));
                             }
-
 
 
 
