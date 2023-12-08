@@ -73,7 +73,14 @@
     justify-content: space-between;
     align-items: center;
 }
-    </style>\
+.fr {
+  border-top: none;
+  background:#71b7e6;
+  color: #fff;
+  border-radius: 20px;
+  height: 40px;
+}
+ </style>\
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
@@ -114,6 +121,45 @@
                     </div>
                 </form>
               @if (!empty($valuesToExtract))
+              <div style="display: flex;justify-content:center">
+
+              <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                <thead>
+                  <tr class="fr">
+                    <th colspan="2">
+                        From PDF
+                    </th>
+                  </tr>
+                </thead>
+                <tbody style="text-align: center">
+                    <td colspan="2"> Order Number : {{ $valuesToExtract[0]['title'] }}</td>
+                    @for ($i = 0; $i < count($valuesToExtract); $i++)
+                    <tr>
+                        <td style="width:300px">VIN : {{ $valuesToExtract[$i]['value1'] }}</td>
+                        <td>Fee :{{ $valuesToExtract[$i]['targetValue'] }}</td>
+                    </tr>
+                    @endfor
+                </tbody>
+            </table>
+              <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                <thead>
+                  <tr class="fr">
+
+                    <th colspan="2">From DataBase</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody style="text-align: center">
+                    <td colspan="2"> Order Number : {{ $valuesToExtract[0]['title'] }}</td>
+                    @for ($i = 0; $i < count($valuesToExtract); $i++)
+                    <tr>
+                        <td style="width:300px">VIN : {{ $valuesToExtract[$i]['value1'] }}</td>
+                        <td>Fee :{{ $valuesToExtract[$i]['targetValue'] }}</td>
+                    </tr>
+                    @endfor
+                </tbody>
+            </table>
+        </div>
 
     <h3>Title: {{ $valuesToExtract[0]['title'] }}</h3>
     <table border="1">
@@ -121,12 +167,7 @@
             <th>Value 1</th>
             <th>Value 2</th>
         </tr>
-        @for ($i = 0; $i < count($valuesToExtract); $i++)
-            <tr>
-                <td style="width:300px">{{ $valuesToExtract[$i]['value1'] }}</td>
-                <td>{{ $valuesToExtract[$i]['targetValue'] }}</td>
-            </tr>
-        @endfor
+
     </table>
 @else
     <p>No data to display.</p>
