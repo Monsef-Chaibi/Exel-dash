@@ -124,7 +124,6 @@
 
                 @if (!empty($valuesToExtract) || !empty($data))
 
-            {{dd($valuesToExtract)}}
 
                 <h1 style="text-align: center; font-size:30px">Result</h1>
                 <div style="display: flex;justify-content:center">
@@ -132,12 +131,14 @@
                         <tr class="fr">
                             <td style="width: 200px"> P.O Number </td>
                             <td style="width: 200px">Vin</td>
+                            <td style="width: 200px">Color</td>
                             <td style="width: 200px">Amount</td>
                             <td style="width: 200px">Total</td>
                         </tr>
                         <tr >
                             <td  id='resultOrder' style="width: 200px;height:100px"></td>
                             <td  id='resultVin' style="width: 200px;height:100px"></td>
+                            <td  id='resultColor' style="width: 200px;height:100px"></td>
                             <td style="width: 200px">❌</td>
                             <td style="width: 200px">❌</td>
                         </tr>
@@ -160,17 +161,21 @@
                                     $pdfDataMap[$extractedValue['value1']] = $extractedValue;
                                 }
                             @endphp
+
                             <input type="hidden" value="{{$count1 = 0 }}">
-                            @foreach ($pdfDataMap as $vin => $extractedValue)
+                            @foreach ($valuesToExtract as $item)
+                                @if (floatval($item['targetValue']) > 77)
                                 <tr>
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
-                                        <span style="color:#15b700">{{$count1 += 1 }}</span>  VIN : {{ $vin }}
+                                        <span style="color:#15b700">{{$count1 += 1 }}</span>  VIN : {{ $item['value1'] }}
                                     </td>
                                     <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Amount :
+                                        Amount : {{ $item['targetValue'] }}
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
+
                         </tbody>
                     </table>
 
@@ -214,9 +219,11 @@
                     <script>
                         var resultVinCell = document.getElementById('resultVin');
                         var resultOrderCell = document.getElementById('resultOrder');
+                        var resultColorCell = document.getElementById('resultColor');
 
                         resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
                         resultOrderCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
+                        resultColorCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
                     </script>
             @endif
 

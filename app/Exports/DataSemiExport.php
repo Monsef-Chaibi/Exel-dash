@@ -11,7 +11,7 @@ class DataSemiExport implements FromCollection, WithHeadings
 {
     protected $selectedItems;
     protected $alldata;
- 
+
     public function __construct($selectedItems, $alldata)
     {
         $this->selectedItems = $selectedItems;
@@ -69,65 +69,38 @@ class DataSemiExport implements FromCollection, WithHeadings
 
             return $exportData;
         }
-        if ($this->alldata === 'Private') {
+        if ($this->alldata === 'Private' || $this->alldata === 'Public transport' || $this->alldata === 'Private transport') {
             $exportData = Data::whereIn('id', $this->selectedItems)
-                ->get(['gtnum', 'idnum']);
+            ->get(['gtnum', 'idnum' , 'paidtype']);
 
-            // Add fixed values to the "GT Status" and "Current Location" columns
-            $exportData->transform(function ($item) {
-                return [
-                    'MOI SERVICE' => '094',
-                    'SERVICE TYPE' => '042',
-                    'GUSTOMER REFERENCE' =>  $item->gtnum ,
-                    'FIELD 1' => $item->idnum ,
-                    'FIELD 2' =>  $item->gtnum ,
-                    'FIELD 3' => '01',
-                    'FIELD 4' => '05',
-                    'FIELD 5' => 'N',
-                ];
-            });
+        // Add fixed values to the "GT Status" and "Current Location" columns
+        $exportData->transform(function ($item) {
 
-            return $exportData;
-        }
-        if ($this->alldata === 'Private transport') {
-            $exportData = Data::whereIn('id', $this->selectedItems)
-                ->get(['gtnum', 'idnum']);
+            // Add conditions based on $this->alldata
+            if ($item->paidtype === 'Private transport') {
+                $field3 = '03';
+                $field4 = '12';
+            } elseif ($item->paidtype === 'Private') {
+                $field3 = '01';
+                $field4 = '05';
+            } elseif ($item->paidtype === 'Public transport') {
+                $field3 = '02';
+                $field4 = '12';
+            }
 
-            // Add fixed values to the "GT Status" and "Current Location" columns
-            $exportData->transform(function ($item) {
-                return [
-                    'MOI SERVICE' => '094',
-                    'SERVICE TYPE' => '042',
-                    'GUSTOMER REFERENCE' =>  $item->gtnum ,
-                    'FIELD 1' => $item->idnum ,
-                    'FIELD 2' =>  $item->gtnum ,
-                    'FIELD 3' => '03',
-                    'FIELD 4' => '12',
-                    'FIELD 5' => 'N',
-                ];
-            });
+            return [
+                'MOI SERVICE' => '094',
+                'SERVICE TYPE' => '042',
+                'GUSTOMER REFERENCE' =>  $item->gtnum,
+                'FIELD 1' => $item->idnum,
+                'FIELD 2' =>  $item->gtnum,
+                'FIELD 3' => $field3,
+                'FIELD 4' => $field4,
+                'FIELD 5' => 'N',
+            ];
+        });
 
-            return $exportData;
-        }
-        if ($this->alldata === 'Public transport') {
-            $exportData = Data::whereIn('id', $this->selectedItems)
-                ->get(['gtnum', 'idnum']);
-
-            // Add fixed values to the "GT Status" and "Current Location" columns
-            $exportData->transform(function ($item) {
-                return [
-                    'MOI SERVICE' => '094',
-                    'SERVICE TYPE' => '042',
-                    'GUSTOMER REFERENCE' =>  $item->gtnum ,
-                    'FIELD 1' => $item->idnum ,
-                    'FIELD 2' =>  $item->gtnum ,
-                    'FIELD 3' => '02',
-                    'FIELD 4' => '12',
-                    'FIELD 5' => 'N',
-                ];
-            });
-
-            return $exportData;
+        return $exportData;
         }
 
 

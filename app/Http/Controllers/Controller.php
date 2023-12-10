@@ -2369,10 +2369,8 @@ class Controller extends BaseController
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
                                 ]);
 
-                                $reader = new PdfParser();
-                                $pdf = $reader->parseFile($request->file('pdfFile'));
-
-                                $text = $pdf->getText();
+                                $reader = new Pdf2text();
+                                $text = $reader->decode($request->file('pdfFile'));
 
                                 preg_match('/\d{5}-\d{7}/', $text, $titleMatches);
                                 $title = $titleMatches[0] ?? null;
@@ -2398,6 +2396,9 @@ class Controller extends BaseController
                                         $targetValues = $matchesTarget[0];
 
                                         foreach ($targetValues as $targetValue) {
+                                            // Debugging output
+                                            dd("Title: $title, Value1: $currentValue1, TargetValue: $targetValue");
+
                                             $valuesToExtract[] = [
                                                 'title' => $title,
                                                 'value1' => $currentValue1,
@@ -2407,12 +2408,10 @@ class Controller extends BaseController
                                     }
                                 }
 
-                                $uniqueArray = $this->uniqueElementsByPosition($valuesToExtract);
+                                // Debugging output
+                                dd($valuesToExtract);
 
-                                return view('PDFCheck')->with('valuesToExtract', $uniqueArray)
-                                                        ->with('data', $data)
-                                                        ->with('order', $order)
-                                                        ->with('bildoc', $bildoc);
+                                return view('PDFCheck')->with('valuesToExtract', $valuesToExtract)->with('data', $data)->with('order', $order)->with('bildoc', $bildoc);
                             }
 
                             function uniqueElementsByPosition($array)
