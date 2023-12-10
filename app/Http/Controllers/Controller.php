@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Validators\ValidationException;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Debug\Exception\OutOfMemoryException;
 use App\Exports\DataExport;
+use App\Exports\ExistExport;
 use App\Exports\DataSemiExport;
 use App\Imports\DataImport;
 use App\Imports\IDImport;
@@ -2381,7 +2382,25 @@ class Controller extends BaseController
                                 return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
                             }
 
+                            public function exportAndUpdateExcel()
+                                {
+                                    // Load the existing CSV file
+                                    Excel::filter('chunk')->load('file.csv')->chunk(250, function ($results) {
+                                        // Modify the data here as needed
+                                        $results->each(function ($row) {
+                                            // Modify each row
+                                            // For example, update the first column with a success message
+                                            $row->put('Column 1', 'Success Message');
+                                        });
 
+                                        // Export the modified data
+                                        $export = new ExistExport();
+                                        $export->store('your-updated-export-file.xlsx', 'public');
+                                    });
+
+                                    // Return a response or redirect as needed
+                                    return response()->download(public_path('your-updated-export-file.xlsx'))->deleteFileAfterSend(true);
+                                }
 
 
 
