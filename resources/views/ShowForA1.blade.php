@@ -1052,6 +1052,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <div class="modal">
             <h1 class="modal__title">Sadad :</h1>
             <form action="/Sadad" id="myForm"  method="get">
+                <input type="hidden" name="simple" value="simple" >
             <label for="" style="margin-top:25px">Registration Type :</label>
             <select name="paidtype" id="" style="width: 33%;border-radius:5px;margin-top:10px">
                 <option value="Private">Private </option>

@@ -2120,29 +2120,57 @@ class Controller extends BaseController
                                     function Sadad(Request $request)
                                     {
                                         try {
-                                            $selectedItems = $request->input('selectedItems');
+                                            if($request->input('simple'))
+                                            {
 
-                                            if (empty($selectedItems)) {
-                                                return redirect()->back()->with('error', 'No items selected for update.');
+                                                $selectedItems = $request->input('selectedItems');
+
+                                                if (empty($selectedItems)) {
+                                                    return redirect()->back()->with('error', 'No items selected for update.');
+                                                }
+
+                                                $paidtype = $request->input('paidtype'); // Get the paidtype value
+
+                                                // If all conditions are met, proceed with the update
+                                                foreach ($selectedItems as $item) {
+
+                                                    // You can use $id and $itemPaidtype as needed
+                                                    Data::where('id', $item)->update([
+                                                        'paid' => 1,
+                                                        'paidby' => Auth::user()->name,
+                                                        'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
+                                                        'paidtype' => $paidtype,
+                                                    ]);
+                                                }
+                                                return redirect()->back()->with('success', 'Selections updated successfully');
+
+                                            }
+                                            else
+                                            {
+                                                $selectedItems = $request->input('selectedItems');
+
+                                                if (empty($selectedItems)) {
+                                                    return redirect()->back()->with('error', 'No items selected for update.');
+                                                }
+
+                                                $paidtype = $request->input('paidtype'); // Get the paidtype value
+
+                                                // If all conditions are met, proceed with the update
+                                                foreach ($selectedItems as $item) {
+                                                    // Split the combined value to get id and paidtype separately
+                                                    list($id, $itemPaidtype) = explode('_', $item);
+
+                                                    // You can use $id and $itemPaidtype as needed
+                                                    Data::where('id', $id)->update([
+                                                        'paid' => 1,
+                                                        'paidby' => Auth::user()->name,
+                                                        'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
+                                                        'paidtype' => $itemPaidtype,
+                                                    ]);
+                                                }
+                                                return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
                                             }
 
-                                            $paidtype = $request->input('paidtype'); // Get the paidtype value
-
-                                            // If all conditions are met, proceed with the update
-                                            foreach ($selectedItems as $item) {
-                                                // Split the combined value to get id and paidtype separately
-                                                list($id, $itemPaidtype) = explode('_', $item);
-
-                                                // You can use $id and $itemPaidtype as needed
-                                                Data::where('id', $id)->update([
-                                                    'paid' => 1,
-                                                    'paidby' => Auth::user()->name,
-                                                    'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
-                                                    'paidtype' => $itemPaidtype,
-                                                ]);
-                                            }
-
-                                            return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
                                         } catch (QueryException $e) {
                                             // Log the error or handle it as needed
                                             return redirect()->route('SadadView')->with('error', 'Error updating selections. Please try again.');
@@ -2382,25 +2410,30 @@ class Controller extends BaseController
                                 return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
                             }
 
-                            public function exportAndUpdateExcel()
-                                {
-                                    // Load the existing CSV file
-                                    Excel::filter('chunk')->load('file.csv')->chunk(250, function ($results) {
-                                        // Modify the data here as needed
-                                        $results->each(function ($row) {
-                                            // Modify each row
-                                            // For example, update the first column with a success message
-                                            $row->put('Column 1', 'Success Message');
-                                        });
+                            public function updateExcel()
+                                    {
+                                        // Set the file path of the existing Excel file
+                                        $filePath = 'C:\Users\hp\Desktop\bank1.xlsx';
 
-                                        // Export the modified data
-                                        $export = new ExistExport();
-                                        $export->store('your-updated-export-file.xlsx', 'public');
-                                    });
+                                        // Download the existing file
+                                        $existingFile = Excel::download($filePath);
 
-                                    // Return a response or redirect as needed
-                                    return response()->download(public_path('your-updated-export-file.xlsx'))->deleteFileAfterSend(true);
-                                }
+                                        // Use PhpSpreadsheet's IOFactory to load the file
+                                        $spreadsheet = IOFactory::load($existingFile);
+
+                                        // Get the first sheet
+                                        $sheet = $spreadsheet->getActiveSheet();
+
+                                        // Update the first row with a success message
+                                        $sheet->setCellValue('A1', 'Success Message');
+
+                                        // Save the modified spreadsheet
+                                        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                                        $writer->save(storage_path("app/{$filePath}"));
+
+                                        // Return a response or redirect as needed
+                                        return response()->download(storage_path("app/{$filePath}"))->deleteFileAfterSend(true);
+                                    }
 
 
 

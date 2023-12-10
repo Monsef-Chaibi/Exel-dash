@@ -455,7 +455,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="8" style="text-align: center">
+                                    <td colspan="9" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr>

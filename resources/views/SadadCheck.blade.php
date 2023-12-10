@@ -387,7 +387,7 @@
                 <form id="exportForm" action="/SemiExportA" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
-                    <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>
+                    <a href="{{ url('/export-and-update-excel') }}" style="color:rgb(103, 255, 103);font-size:30px"  class="modal__btn" >Export &rarr;</a>
                     <br>
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="selectDoneRows()">Select Rows with  ≠ Done &rarr;</button>
 
