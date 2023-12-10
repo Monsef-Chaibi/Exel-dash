@@ -19,6 +19,7 @@
         "maatwebsite/excel": "*",
         "nesbot/carbon": "^2.71",
         "phpoffice/phpspreadsheet": "^1.29",
+        "smalot/pdfparser": "^2.7",
         "spatie/pdf-to-text": "*"
     },
     "require-dev": {

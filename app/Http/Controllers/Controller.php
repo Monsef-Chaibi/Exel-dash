@@ -34,6 +34,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Smalot\PdfParser\Parser as PdfParser;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -2358,18 +2359,20 @@ class Controller extends BaseController
                                     return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
                             }
-                            public function  getPDF(Request $request)
+                            public function getPDF(Request $request)
                             {
                                 $bildoc = $request->bildoc;
-                                $data = Data::where('bildoc',$bildoc)->get();
-                                $order = Data::where('bildoc',$bildoc)->value('ordernum');
+                                $data = Data::where('bildoc', $bildoc)->get();
+                                $order = Data::where('bildoc', $bildoc)->value('ordernum');
 
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
                                 ]);
 
-                                $reader = new Pdf2text();
-                                $text = $reader->decode($request->file('pdfFile'));
+                                $reader = new PdfParser();
+                                $pdf = $reader->parseFile($request->file('pdfFile'));
+
+                                $text = $pdf->getText();
 
                                 preg_match('/\d{5}-\d{7}/', $text, $titleMatches);
                                 $title = $titleMatches[0] ?? null;
@@ -2401,39 +2404,34 @@ class Controller extends BaseController
                                                 'targetValue' => $targetValue,
                                             ];
                                         }
-
-                                        // Reset $currentValue1 to null after capturing the pairs
-                                        $currentValue1 = null;
                                     }
                                 }
 
-                                return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
+                                $uniqueArray = $this->uniqueElementsByPosition($valuesToExtract);
+
+                                return view('PDFCheck')->with('valuesToExtract', $uniqueArray)
+                                                        ->with('data', $data)
+                                                        ->with('order', $order)
+                                                        ->with('bildoc', $bildoc);
                             }
 
-                            public function updateExcel()
-                                    {
-                                        // Set the file path of the existing Excel file
-                                        $filePath = 'C:\Users\hp\Desktop\bank1.xlsx';
+                            function uniqueElementsByPosition($array)
+                            {
+                                $uniqueArray = [];
+                                $positions = [];
 
-                                        // Download the existing file
-                                        $existingFile = Excel::download($filePath);
+                                foreach ($array as $key => $element) {
+                                    $position = implode('-', $element); // Convert the element to a string for comparison
 
-                                        // Use PhpSpreadsheet's IOFactory to load the file
-                                        $spreadsheet = IOFactory::load($existingFile);
-
-                                        // Get the first sheet
-                                        $sheet = $spreadsheet->getActiveSheet();
-
-                                        // Update the first row with a success message
-                                        $sheet->setCellValue('A1', 'Success Message');
-
-                                        // Save the modified spreadsheet
-                                        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-                                        $writer->save(storage_path("app/{$filePath}"));
-
-                                        // Return a response or redirect as needed
-                                        return response()->download(storage_path("app/{$filePath}"))->deleteFileAfterSend(true);
+                                    if (!in_array($position, $positions)) {
+                                        $positions[] = $position;
+                                        $uniqueArray[] = $element;
                                     }
+                                }
+
+                                return $uniqueArray;
+                            }
+
 
 
 

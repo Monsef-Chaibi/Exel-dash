@@ -124,7 +124,8 @@
 
                 @if (!empty($valuesToExtract) || !empty($data))
 
-                
+            {{dd($valuesToExtract)}}
+
                 <h1 style="text-align: center; font-size:30px">Result</h1>
                 <div style="display: flex;justify-content:center">
                     <table id="result" style="text-align: center;margin-top:20px" >
