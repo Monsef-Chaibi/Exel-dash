@@ -38,7 +38,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     function import(){
     try {
-            Data::whereNull('status')->delete();
+            Data::whereNull('status')->whereNull('paid')->delete();
             $tableLength = Update::count();
             if ($tableLength >= 5) {
                 // Get the oldest record

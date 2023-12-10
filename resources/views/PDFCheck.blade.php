@@ -121,7 +121,10 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
+
                 @if (!empty($valuesToExtract) || !empty($data))
+
+                
                 <h1 style="text-align: center; font-size:30px">Result</h1>
                 <div style="display: flex;justify-content:center">
                     <table id="result" style="text-align: center;margin-top:20px" >
@@ -156,12 +159,15 @@
                                     $pdfDataMap[$extractedValue['value1']] = $extractedValue;
                                 }
                             @endphp
+                            <input type="hidden" value="{{$count1 = 0 }}">
                             @foreach ($pdfDataMap as $vin => $extractedValue)
                                 <tr>
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
-                                        VIN : {{ $vin }}
+                                        <span style="color:#15b700">{{$count1 += 1 }}</span>  VIN : {{ $vin }}
                                     </td>
-                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">Amount : 000</td>
+                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">
+                                        Amount :
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -177,11 +183,11 @@
                             <td style="background-color: white;color:black;height:30px;border:1px solid gray" colspan="2">
                                 P.O Number  : {{ $order }}
                             </td>
-
+                             <input type="hidden" value="{{$count = 0 }}">
                             @foreach ($data as $item)
                                 <tr>
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
-                                        VIN : {{ $item->vin }}
+                                        <span style="color:#15b700">{{$count += 1 }}</span>   VIN : {{ $item->vin }}
                                     </td>
                                     <td style="background-color: white;color:black;height:30px;border:1px solid gray">
                                         Amount :{{ $item->regist }}
