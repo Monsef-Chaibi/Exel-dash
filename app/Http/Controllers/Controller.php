@@ -38,7 +38,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     function import(){
     try {
-            Data::whereNull('status')->wherenull('paid')->delete();
+            Data::whereNull('status')->delete();
             $tableLength = Update::count();
             if ($tableLength >= 5) {
                 // Get the oldest record
@@ -2329,12 +2329,12 @@ class Controller extends BaseController
                                     return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
                             }
-                            public function getPDF(Request $request)
+                            public function  getPDF(Request $request)
                             {
                                 $bildoc = $request->bildoc;
                                 $data = Data::where('bildoc',$bildoc)->get();
                                 $order = Data::where('bildoc',$bildoc)->value('ordernum');
-                              
+
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
                                 ]);
@@ -2380,6 +2380,7 @@ class Controller extends BaseController
 
                                 return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
                             }
+
 
 
 

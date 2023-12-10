@@ -121,55 +121,94 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
+                @if (!empty($valuesToExtract) || !empty($data))
+                <h1 style="text-align: center; font-size:30px">Result</h1>
+                <div style="display: flex;justify-content:center">
+                    <table id="result" style="text-align: center;margin-top:20px" >
+                        <tr class="fr">
+                            <td style="width: 200px">Vin</td>
+                            <td style="width: 200px">Amount</td>
+                            <td style="width: 200px">Total</td>
+                        </tr>
 
-              @if (!empty($valuesToExtract))
-              <div style="display: flex;justify-content:center">
+                        <tr >
+                            <td  id='resultVin' style="width: 200px;height:100px"></td>
+                            <td style="width: 200px">❌</td>
+                            <td style="width: 200px">❌</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="display: flex;justify-content:center">
+                    <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                        <thead>
+                            <tr class="fr">
+                                <th colspan="2">From PDF</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <td colspan="2" style="background-color: white;color:black;height:30px;border:1px solid gray">
+                                Order Number : {{ $valuesToExtract[0]['title'] }}
+                            </td>
+                            @php
+                                $pdfDataMap = [];
+                                foreach ($valuesToExtract as $extractedValue) {
+                                    $pdfDataMap[$extractedValue['value1']] = $extractedValue;
+                                }
+                            @endphp
+                            @foreach ($pdfDataMap as $vin => $extractedValue)
+                                <tr>
+                                    <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
+                                        VIN : {{ $vin }}
+                                    </td>
+                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">Fee : 000</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-              <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
-                <thead>
-                  <tr class="fr">
-                    <th colspan="2">
-                        From PDF
-                    </th>
-                  </tr>
-                </thead>
-                <tbody style="text-align: center">
-                    <td colspan="2" style="background-color: white;color:black;height:30px;border:1px solid gray"> Order Number : {{ $valuesToExtract[0]['title'] }}</td>
-                    @for ($i = 0; $i < count($valuesToExtract); $i++)
-                    <tr>
-                        <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">VIN : {{ $valuesToExtract[$i]['value1'] }}</td>
-                        <td style="background-color: white;color:black;height:30px;border:1px solid gray">Fee : 000</td>
-                    </tr>
-                    @endfor
-                </tbody>
-            </table>
-              <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
-                <thead>
-                  <tr class="fr">
+                    <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                        <thead>
+                            <tr class="fr">
+                                <th colspan="2">From DataBase</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <td style="background-color: white;color:black;height:30px;border:1px solid gray" colspan="2">
+                                Order Number : {{ $order }}
+                            </td>
 
-                    <th  colspan="2">From DataBase</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody style="text-align: center">
-                    <td style="background-color: white;color:black;height:30px;border:1px solid gray" colspan="2"> Order Number : {{ $order }}</td>
-                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                        ❌
-                    </td>
-                        @foreach ($data as $item)
-                    <tr>
-                        <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">VIN : {{ $item->vin }}</td>
-                        <td style="background-color: white;color:black;height:30px;border:1px solid gray">Fee :{{ $item->regist }}</td>
-                        <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                            ❌
-                        </td>
-                    </tr>
-                        @endforeach
-                </tbody>
-            </table>
-        </div>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
+                                        VIN : {{ $item->vin }}
+                                    </td>
+                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">
+                                        Fee :{{ $item->regist }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-@endif
+                {{-- Check if all VINs from PDF table exist in Database table --}}
+                @php
+                    $pdfVins = array_keys($pdfDataMap);
+                    $databaseVins = $data->pluck('vin')->toArray();
+                    $allVinsExist = count(array_diff($pdfVins, $databaseVins)) == 0;
+                @endphp
+
+                {{-- Set result in the Result table --}}
+                <script>
+                    var resultVinCell = document.getElementById('resultVin');
+
+                    resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
+                </script>
+            @endif
+
+
+
+
             </div>
         </div>
     </div>
