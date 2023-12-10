@@ -126,12 +126,13 @@
                 <div style="display: flex;justify-content:center">
                     <table id="result" style="text-align: center;margin-top:20px" >
                         <tr class="fr">
+                            <td style="width: 200px"> P.O Number </td>
                             <td style="width: 200px">Vin</td>
                             <td style="width: 200px">Amount</td>
                             <td style="width: 200px">Total</td>
                         </tr>
-
                         <tr >
+                            <td  id='resultOrder' style="width: 200px;height:100px"></td>
                             <td  id='resultVin' style="width: 200px;height:100px"></td>
                             <td style="width: 200px">❌</td>
                             <td style="width: 200px">❌</td>
@@ -147,7 +148,7 @@
                         </thead>
                         <tbody style="text-align: center">
                             <td colspan="2" style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                Order Number : {{ $valuesToExtract[0]['title'] }}
+                                P.O Number : {{ $valuesToExtract[0]['title'] }}
                             </td>
                             @php
                                 $pdfDataMap = [];
@@ -160,7 +161,7 @@
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
                                         VIN : {{ $vin }}
                                     </td>
-                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">Fee : 000</td>
+                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">Amount : 000</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -174,7 +175,7 @@
                         </thead>
                         <tbody style="text-align: center">
                             <td style="background-color: white;color:black;height:30px;border:1px solid gray" colspan="2">
-                                Order Number : {{ $order }}
+                                P.O Number  : {{ $order }}
                             </td>
 
                             @foreach ($data as $item)
@@ -183,27 +184,33 @@
                                         VIN : {{ $item->vin }}
                                     </td>
                                     <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Fee :{{ $item->regist }}
+                                        Amount :{{ $item->regist }}
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                    {{-- Check if all VINs from PDF table exist in Database table --}}
+                    @php
+                        $pdfVins = array_keys($pdfDataMap);
+                        $databaseVins = $data->pluck('vin')->toArray();
+                        $allVinsExist = count($pdfVins) == count($databaseVins) && count(array_diff($pdfVins, $databaseVins)) == 0;
+                    @endphp
 
-                {{-- Check if all VINs from PDF table exist in Database table --}}
-                @php
-                    $pdfVins = array_keys($pdfDataMap);
-                    $databaseVins = $data->pluck('vin')->toArray();
-                    $allVinsExist = count(array_diff($pdfVins, $databaseVins)) == 0;
-                @endphp
+                    {{-- Check if {{ $valuesToExtract[0]['title'] }} equals {{ $order }} --}}
+                    @php
+                        $isTitleEqualOrder = $valuesToExtract[0]['title'] == $order;
+                    @endphp
 
-                {{-- Set result in the Result table --}}
-                <script>
-                    var resultVinCell = document.getElementById('resultVin');
+                    {{-- Set result in the Result table --}}
+                    <script>
+                        var resultVinCell = document.getElementById('resultVin');
+                        var resultOrderCell = document.getElementById('resultOrder');
 
-                    resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
-                </script>
+                        resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
+                        resultOrderCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
+                    </script>
             @endif
 
 
