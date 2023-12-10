@@ -139,8 +139,9 @@
                             <td  id='resultOrder' style="width: 200px;height:100px"></td>
                             <td  id='resultVin' style="width: 200px;height:100px"></td>
                             <td  id='resultColor' style="width: 200px;height:100px"></td>
-                            <td style="width: 200px">❌</td>
-                            <td style="width: 200px">❌</td>
+                            <td  id='resultAmount' style="width: 200px;height:100px"></td>
+                            <td  id='resultTotal' style="width: 200px;height:100px"></td>
+
                         </tr>
                     </table>
                 </div>
@@ -164,16 +165,16 @@
 
                             <input type="hidden" value="{{$count1 = 0 }}">
                             @foreach ($valuesToExtract as $item)
-                                @if (floatval($item['targetValue']) > 77)
+
                                 <tr>
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
                                         <span style="color:#15b700">{{$count1 += 1 }}</span>  VIN : {{ $item['value1'] }}
                                     </td>
                                     <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Amount : {{ $item['targetValue'] }}
+                                        Amount : <span id="amount-{{ $item['value1'] }}"></span>
                                     </td>
                                 </tr>
-                                @endif
+
                             @endforeach
 
                         </tbody>
@@ -190,16 +191,20 @@
                                 P.O Number  : {{ $order }}
                             </td>
                              <input type="hidden" value="{{$count = 0 }}">
+                             <input type="hidden" value="{{$total = 0 }}">
                             @foreach ($data as $item)
                                 <tr>
                                     <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
                                         <span style="color:#15b700">{{$count += 1 }}</span>   VIN : {{ $item->vin }}
                                     </td>
                                     <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Amount :{{ $item->regist }}
+                                        Amount : {{ number_format($item->amount, 2, '.', ',') }}
+                             <input type="hidden" value="{{$total +=  $item->amount }}">
+
                                     </td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -215,16 +220,61 @@
                         $isTitleEqualOrder = $valuesToExtract[0]['title'] == $order;
                     @endphp
 
+
                     {{-- Set result in the Result table --}}
                     <script>
                         var resultVinCell = document.getElementById('resultVin');
                         var resultOrderCell = document.getElementById('resultOrder');
                         var resultColorCell = document.getElementById('resultColor');
+                        var resultAmountCell = document.getElementById('resultAmount');
+                        var resultTotalCell = document.getElementById('resultTotal');
 
                         resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
                         resultOrderCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
-                        resultColorCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
+                        resultColorCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
+
+                        // Check if allVinsExist is true
+                        if ('{{ $allVinsExist }}' == '1') {
+                            // Get the first Amount value from the $data collection
+                            var firstAmount = '{{ $data->first()->amount }}';
+
+                            // Format the amount with commas and decimals
+                            var formattedAmount = parseFloat(firstAmount).toLocaleString('en-US', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            });
+
+                            // Loop through each row in the "From PDF" table
+                            @foreach($valuesToExtract as $item)
+                                // Get the VIN value from the current row
+                                var currentVin = '{{ $item['value1'] }}';
+
+                                // Set the amount value for the current row in the "From PDF" table
+                                var amountSpan = document.getElementById('amount-' + currentVin);
+                                if (amountSpan) {
+                                    amountSpan.textContent = formattedAmount;
+                                }
+                            @endforeach
+
+                            // Set the amount value in the Result table
+                            resultAmountCell.textContent = '✅';
+
+                            // Get the total value and format it
+                            var totalValue = '{{ $total }}';
+                            var formattedTotal = parseFloat(totalValue).toLocaleString('en-US', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            });
+
+                            // Set the total value in the Result table
+                            resultTotalCell.textContent = formattedTotal;
+                        } else {
+                            // Set the default values if allVinsExist is false
+                            resultAmountCell.textContent = '❌';
+                            resultTotalCell.textContent = '❌';
+                        }
                     </script>
+
             @endif
 
 

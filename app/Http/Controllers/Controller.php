@@ -2359,11 +2359,11 @@ class Controller extends BaseController
                                     return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
                             }
-                            public function getPDF(Request $request)
+                            public function  getPDF(Request $request)
                             {
                                 $bildoc = $request->bildoc;
-                                $data = Data::where('bildoc', $bildoc)->get();
-                                $order = Data::where('bildoc', $bildoc)->value('ordernum');
+                                $data = Data::where('bildoc',$bildoc)->get();
+                                $order = Data::where('bildoc',$bildoc)->value('ordernum');
 
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
@@ -2396,39 +2396,19 @@ class Controller extends BaseController
                                         $targetValues = $matchesTarget[0];
 
                                         foreach ($targetValues as $targetValue) {
-                                            // Debugging output
-                                            dd("Title: $title, Value1: $currentValue1, TargetValue: $targetValue");
-
                                             $valuesToExtract[] = [
                                                 'title' => $title,
                                                 'value1' => $currentValue1,
                                                 'targetValue' => $targetValue,
                                             ];
                                         }
+
+                                        // Reset $currentValue1 to null after capturing the pairs
+                                        $currentValue1 = null;
                                     }
                                 }
 
-                                // Debugging output
-                                dd($valuesToExtract);
-
-                                return view('PDFCheck')->with('valuesToExtract', $valuesToExtract)->with('data', $data)->with('order', $order)->with('bildoc', $bildoc);
-                            }
-
-                            function uniqueElementsByPosition($array)
-                            {
-                                $uniqueArray = [];
-                                $positions = [];
-
-                                foreach ($array as $key => $element) {
-                                    $position = implode('-', $element); // Convert the element to a string for comparison
-
-                                    if (!in_array($position, $positions)) {
-                                        $positions[] = $position;
-                                        $uniqueArray[] = $element;
-                                    }
-                                }
-
-                                return $uniqueArray;
+                                return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
                             }
 
 
