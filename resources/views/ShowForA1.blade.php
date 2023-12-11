@@ -1291,7 +1291,7 @@ function updateChecks() {
     selectedItems.each(function () {
         sumOfRegistration += parseInt($(this).closest('tr').find('td:eq(4)').text());
     });
-    var sumGreaterThan1000 = sumOfRegistration >= 1000;
+    var sumGreaterThan1000 = sumOfRegistration >= 1;
 
     // Check 3: Paid column different than 1 and 2
     var paidTypesValid = selectedItems.filter(':checked').filter(function () {

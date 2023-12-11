@@ -408,8 +408,9 @@
                             <th>Vin</th>
                             <th>GT Number</th>
                             <th>Billing Doc</th>
-                            <th>Registering fee</th>
-                            <th>Registration Type</th>
+                            <th> Fee</th>
+                            <th> Type</th>
+                            <th> Owner</th>
                             <th>Reason</th>
                             <th>Action</th>
 
@@ -453,6 +454,9 @@
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->soldp }}
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->rejectdreason }}

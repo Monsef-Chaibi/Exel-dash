@@ -243,7 +243,7 @@
                 </form>
                 @if (isset($importedData))
                     <div style="text-align: center;">
-                        <table style="width: 90%; font-size: 20px; text-align: center; margin: 0 auto;">
+                        <table style="width: 90%; font-size: 20px; text-align: center;">
                             <thead>
                                 <tr style="height:60px" class="fr">
                                     {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}

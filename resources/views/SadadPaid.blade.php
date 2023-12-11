@@ -383,7 +383,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-4 lg:px-6">
             <form id="exportForm" action="/Paid" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">
@@ -409,8 +409,10 @@
                             <th>Vin</th>
                             <th>GT Number</th>
                             <th>Billing Doc</th>
-                            <th>Registering fee</th>
-                            <th>Registration Type</th>
+                            <th> Fee</th>
+                            <th> ID</th>
+                            <th> Type</th>
+                            <th> Owner</th>
                             <th>Reference</th>
                             <th>Action</th>
 
@@ -453,7 +455,13 @@
                                     {{ $item->regist }}
                                 </td>
                                 <td data-th="Supplier Code">
+                                    {{ $item->idnum }}
+                                </td>
+                                <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->soldp }}
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->reference }}
@@ -501,7 +509,7 @@
             const rows = document.querySelectorAll('tbody tr');
 
             for (const row of rows) {
-                const referenceCell = row.querySelector('td:nth-child(7)'); // Adjusted index to match the column
+                const referenceCell = row.querySelector('td:nth-child(9)'); // Adjusted index to match the column
                 const reference = referenceCell.textContent.toLowerCase();
 
                 if (reference.includes(referenceSearch)) {

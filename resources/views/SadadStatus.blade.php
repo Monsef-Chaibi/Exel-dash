@@ -404,7 +404,9 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th> Fee</th>
+                                <th>ID</th>
                                 <th> Type</th>
+                                <th> Owner</th>
                                 <th>Action</th>
 
                             </tr>
@@ -435,7 +437,13 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->soldp }}
                                         </td>
                                         <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
                                             <div class="hover-container">

@@ -413,6 +413,7 @@
                             <th> Type</th>
                             <th>Old Reference</th>
                             <th>New Reference</th>
+                            <th>Owner</th>
                             <th>Action</th>
 
 
@@ -463,6 +464,9 @@
                                 </td>
                                 <td style="color: #18cb00" data-th="Supplier Code">
                                     {{ $item->newreference }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->soldp }}
                                 </td>
                                 <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
                                     <div class="hover-container">

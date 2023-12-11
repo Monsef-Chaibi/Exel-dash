@@ -156,7 +156,6 @@ class Controller extends BaseController
     function SadadRejctA(){
 
         $data = Data::where('paid','3')
-                    ->whereNull('paidbya')
                     ->get();
         return view('SadadRejctA')->with('data', $data);
     }
@@ -2276,16 +2275,19 @@ class Controller extends BaseController
                                     $record = Data::where('gtnum', $gtnum)->first();
 
                                     if ($record && $status === '1') {
-                                        $record->paid =  3 ;
+                                        $record->paid =  2 ;
                                         $record->done =  1 ;
                                         $record->paidbya = 1 ;
+                                        $record->passedby-> Auth::user()->name;
+                                        $record->passeddate -> Carbon::now('Asia/Riyadh');
                                         $record->save();
                                     }
                                     if ($record && $status === '2') {
-                                        $record->paid =  4 ;
+                                        $record->paid =  3 ;
                                         $record->repload =  1 ;
                                         $record->rejectdreason =  $rejectdreason[$key] ;
-
+                                        $record->passedby-> Auth::user()->name;
+                                        $record->passeddate -> Carbon::now('Asia/Riyadh');
                                         $record->save();
                                     }
                                 }

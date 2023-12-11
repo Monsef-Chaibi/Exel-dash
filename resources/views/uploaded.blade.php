@@ -309,28 +309,30 @@
             box-shadow: none;
             transform: translateY(0);
         }
-/* Styles for the hover effect */
-.hover-container {
-    position: relative;
-    display: inline-block;
-}
 
-.hover-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 1;
-    top: -30px; /* Adjust this value to increase the distance from the top */
-    right: 100%; /* Adjust this value for the desired distance from the right */
-    width: 300px;
-}
+        /* Styles for the hover effect */
+        .hover-container {
+            position: relative;
+            display: inline-block;
+        }
 
-.hover-container:hover .hover-content {
-    display: block;
-}
+        .hover-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1;
+            top: -30px;
+            /* Adjust this value to increase the distance from the top */
+            right: 100%;
+            /* Adjust this value for the desired distance from the right */
+            width: 300px;
+        }
 
+        .hover-container:hover .hover-content {
+            display: block;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -410,6 +412,8 @@
                             <th>GT Number</th>
                             <th>Billing Doc</th>
                             <th>Registering fee</th>
+                            <th>ID</th>
+                            <th>Owner</th>
                             <th>Registration Type</th>
                             <th>Reference</th>
                             <th>Action</th>
@@ -453,6 +457,12 @@
                                     {{ $item->regist }}
                                 </td>
                                 <td data-th="Supplier Code">
+                                    {{ $item->idnum }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->soldp }}
+                                </td>
+                                <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
                                 </td>
                                 <td data-th="Supplier Code">
@@ -462,7 +472,7 @@
                                     <div class="hover-container">
                                         <i class="fa fa-eye"></i>
                                         <div class="hover-content">
-                                             By : {{ $item->uploadedby }}
+                                            By : {{ $item->uploadedby }}
                                             <br>
                                             IN : {{ $item->uploadeddate }}
                                         </div>
@@ -500,7 +510,7 @@
             const rows = document.querySelectorAll('tbody tr');
 
             for (const row of rows) {
-                const referenceCell = row.querySelector('td:nth-child(7)'); // Adjusted index to match the column
+                const referenceCell = row.querySelector('td:nth-child(9)'); // Adjusted index to match the column
                 const reference = referenceCell.textContent.toLowerCase();
 
                 if (reference.includes(referenceSearch)) {
