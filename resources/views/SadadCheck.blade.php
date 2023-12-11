@@ -422,6 +422,7 @@
                                 <th>Fee</th>
                                 <th>Type</th>
                                 <th>ID</th>
+                                <th>Owner</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -465,6 +466,9 @@
                                         </td>
                                         <td style="font-size: 18px" data-th="Supplier Code">
                                             {{ $item->idnum }}
+                                        </td>
+                                        <td style="font-size: 18px" data-th="Supplier Code">
+                                            {{ $item->soldp }}
                                         </td>
                                         <td style="font-size: 18px;width:50px;text-align:center" data-th="Supplier Code">
                                             <div class="hover-container">

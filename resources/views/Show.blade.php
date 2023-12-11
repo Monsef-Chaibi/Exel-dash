@@ -516,10 +516,14 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                             {{ $title->shipp }}
                         </span>
                     </div>
-                </div>
-                <div class="amount-container">
-                    <div class="amount">
-                        <p>Total Amount :{{ number_format($sumAmount, 2, '.', ',') }}  </p>
+                    <div class="grid-item">
+
+                            <p>Total Amount : {{ number_format($sumAmount, 2, '.', ',') }}  </p>
+
+                    </div>
+                    <div class="grid-item">
+
+                            <p>P.O Number : {{ $title->ordernum }}  </p>
                     </div>
                 </div>
 

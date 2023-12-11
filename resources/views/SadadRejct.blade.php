@@ -538,7 +538,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div style="padding: 80px">
             <a href="#m1-o" id="autoLink">
                 <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Reupload &rarr;</button>
             </a>
@@ -565,6 +565,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                             <th>Registering fee</th>
                             <th>ID</th>
                             <th>Type</th>
+                            <th>Owner</th>
                             <th>Reason</th>
                             <th>Action</th>
                         </tr>
@@ -608,6 +609,9 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->soldp }}
                                 </td>
                                 <td style="text-al  ign:center">
                                     {{ $item->rejectdreason }}

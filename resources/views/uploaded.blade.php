@@ -385,7 +385,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div style="padding: 70px">
             <form id="exportForm" action="/Paid" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">

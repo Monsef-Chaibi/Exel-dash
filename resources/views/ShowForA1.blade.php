@@ -530,12 +530,17 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                             {{ $title->shipp }}
                         </span>
                     </div>
-                </div>
-                <div class="amount-container">
-                    <div class="amount">
-                        <p>Total Amount :{{ number_format($sumAmount, 2, '.', ',') }}</p>
+                    <div class="grid-item">
+
+                        <span>Total Amount : {{ number_format($sumAmount, 2, '.', ',') }}  </span>
+
+                    </div>
+                    <div class="grid-item">
+
+                            <span>P.O Number : {{ $title->ordernum }}  </span>
                     </div>
                 </div>
+
             </div>
             @if ($status1 != 1 ||  $status1 != 2 || $status1 != 3)
 
