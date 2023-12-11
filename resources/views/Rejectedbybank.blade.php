@@ -383,7 +383,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div style="padding: 80px">
             <form id="exportForm" action="/Paid" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">
@@ -395,7 +395,7 @@
                             id="gtNumberSearch" placeholder="Search by GT Number" oninput="filterGTNumbers()">
                     </div>
                     <div>
-                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By New Reference :</label>
+                        <label for="" style="color: #1eff00; margin-right: 10px;">Filter By  Reference :</label>
                         <input style="border-radius: 10px; width: 300px; height: 40px;" type="text"
                             id="filterReference" placeholder="Search by Reference" oninput="filterReference()">
                     </div>
@@ -507,20 +507,24 @@
     </div>
     <script>
         function filterReference() {
-            const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
+    const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
 
-            for (const row of rows) {
-                const referenceCell = row.querySelector('td:nth-child(7)'); // Adjusted index to match the column
-                const reference = referenceCell.textContent.toLowerCase();
+    for (const row of rows) {
+        const referenceCell7 = row.querySelector('td:nth-child(7)');
+        const referenceCell8 = row.querySelector('td:nth-child(8)');
 
-                if (reference.includes(referenceSearch)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            }
+        const reference7 = referenceCell7.textContent.toLowerCase();
+        const reference8 = referenceCell8.textContent.toLowerCase();
+
+        if (reference7.includes(referenceSearch) || reference8.includes(referenceSearch)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
         }
+    }
+}
+
 
         function filterGTNumbers() {
             const gtNumberSearch = document.getElementById('gtNumberSearch').value.toLowerCase();

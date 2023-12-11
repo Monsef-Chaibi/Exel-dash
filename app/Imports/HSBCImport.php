@@ -52,7 +52,7 @@ class HSBCImport implements ToModel, WithHeadingRow
                 $notpaid = DB::table('data')
                     ->where('gtnum', $gtnum)
                     ->value('paid');
-                $ref = DB::table('data')
+                $rep = DB::table('data')
                     ->where('gtnum', $gtnum)
                     ->value('newreference');
                 $paidbya = DB::table('data')
@@ -63,13 +63,11 @@ class HSBCImport implements ToModel, WithHeadingRow
                     ->where('gtnum', $gtnum)
                     ->value('id');
 
-                    $sameregist = (int)$registValue === (int)$row['due_amount_sar'] ? 1 : 0;
-                    $sameid = (int)$idnum === (int)$row['moi_reference_number'] ? 1 : 0;
-
-                $aproved = ($paidValue === '2') ? 1 : 0;
-            
+                $sameregist = (int)$registValue === (int)$row['due_amount_sar'] ? 1 : 0;
+                $sameid = (int)$idnum === (int)$row['moi_reference_number'] ? 1 : 0;
+                $aproved = ($paidValue === '2' || $paidValue === '11') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
-                $paid = (($notpaid === null  || $notpaid === '3'  || $notpaid === '2') && ($ref !== null || $ref === null) && $paidbya != '1') ? 1 : 0;
+                $paid = ((($notpaid === null  || $notpaid === '3'  || $notpaid === '2' ) && $paidbya != '1') || $notpaid === '11') ? 1 : 0;
 
 
                 if ($sameregist === 1 && $sameid === 1 && $aproved === 1 && $uploaded === 1 && $paid === 1) {

@@ -24,6 +24,12 @@ class Sadad implements ToModel
         }
 
         $gtnum = $row[0];
+
+        // Check if any of the required values is empty
+        if (empty($gtnum)) {
+            return null; // Skip the row
+        }
+
         $paidValue = DB::table('data')->where('gtnum', $gtnum)->value('paid');
         $registValue = DB::table('data')->where('gtnum', $gtnum)->value('regist');
         $idnum = DB::table('data')->where('gtnum', $gtnum)->value('idnum');

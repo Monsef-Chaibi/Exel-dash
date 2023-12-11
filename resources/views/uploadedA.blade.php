@@ -382,7 +382,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
         <div class="py-12">
-            <div class="" style="padding: 10px">
+            <div class="" style="padding: 40px">
                 <form id="exportForm" action="/Paid" method="get">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
@@ -409,6 +409,7 @@
                                 <th> Fee</th>
                                 <th> ID</th>
                                 <th> Type</th>
+                                <th> Owner</th>
                                 <th>Reference</th>
                                 <th>Action</th>
 
@@ -455,6 +456,9 @@
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
+                                        </td>
+                                        <td data-th="Supplier Code">
+                                            {{ $item->soldp }}
                                         </td>
                                         <td data-th="Supplier Code">
                                             {{ $item->reference }}
