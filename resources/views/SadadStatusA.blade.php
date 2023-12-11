@@ -418,11 +418,11 @@
                                     <div class="ag-courses-item_bg"></div>
 
                                     <div class="ag-courses-item_title">
-                                     Passed : <span id="vl1"></span>
+                                    Passed : <span id="vl1"></span>
                                     </div>
 
                                     <div class="ag-courses-item_date-box">
-                                        Last Update :
+                                    Last Update :
                                         <span id="dt1" class="ag-courses-item_date">
 
                                         </span>
