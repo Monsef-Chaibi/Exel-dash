@@ -119,6 +119,7 @@
       </script>
   @endif
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -137,7 +138,6 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
-
                 @if (!empty($seventhValues) || !empty($data))
 
                 <h1 style="text-align: center; font-size:30px">Result</h1>
@@ -146,22 +146,22 @@
                         <tr class="fr">
                             <td style="width: 200px"> P.O Number </td>
                             <td style="width: 200px">Vin</td>
-                            <td style="width: 200px">Color</td>
+
                             <td style="width: 200px">Amount</td>
                             <td style="width: 200px">Total</td>
                         </tr>
                         <tr>
                             <td id='resultOrder' style="width: 200px;height:100px"></td>
-                            <td id='resultVin' style="width: 200px;height:100px"></td>
-                            <td id='resultColor' style="width: 200px;height:100px"></td>
-                            <td id='resultAmount' style="width: 200px;height:100px"></td>
+                            <td id='VinResult' style="width: 200px;height:100px"></td>
+
+                            <td id='AmountResult' style="width: 200px;height:100px"></td>
                             <td id='resultTotal' style="width: 200px;height:100px"></td>
                         </tr>
                     </table>
                 </div>
 
-                <div style="display: flex;justify-content:center">
-                    <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                <div style="display: flex;justify-content:center;height:100%">
+                    <table id="vinFromPDF" style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px;height:90%">
                         <thead>
                             <tr class="fr">
                                 <th colspan="2">From PDF</th>
@@ -174,10 +174,10 @@
                             <input type="hidden" value="{{ $count1 = 0 }}">
                             @foreach ($seventhValues as $vinData)
                                 <tr>
-                                    <td style="width: 300px; color: black; height: 30px; border: 1px solid gray">
-                                        <span style="color: #15b700">{{ ++$count1 }}</span> VIN: {{ $vinData['value1'] }}
+                                    <td id="VinElementPDF_{{ ++$count1 }}" style="width: 300px; color: black; height: 30px; border: 1px solid gray;background-color: white;">
+                                        <span style="color: #15b700">{{ $count1 }}</span> VIN: {{ $vinData['value1'] }}
                                     </td>
-                                    <td style="color: black; height: 30px; border: 1px solid gray">
+                                    <td style="color: black; height: 30px; border: 1px solid gray;background-color: white;">
                                         Amount: {{ $vinData['targetValue'] }}
                                     </td>
                                 </tr>
@@ -185,7 +185,7 @@
                         </tbody>
                     </table>
 
-                    <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
+                    <table id="vinFromDatabase" style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px;height:90%">
                         <thead>
                             <tr class="fr">
                                 <th colspan="2">From DataBase</th>
@@ -198,22 +198,122 @@
                             <input type="hidden" value="{{$count = 0 }}">
                             <input type="hidden" value="{{$total = 0 }}">
                             @foreach ($data as $item)
-                            <tr>
-                                <td style="width:300px;color:black;height:30px;border:1px solid gray">
-                                    <span style="color:#15b700">{{$count += 1 }}</span> VIN : {{ $item->vin }}
-                                </td>
-                                <td style="color:black;height:30px;border:1px solid gray">
-                                    Amount : {{ number_format($item->amount, 2, '.', ',') }}
-                                    <input type="hidden" value="{{$total +=  $item->amount}}">
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td id='VinElementDatabase_{{ ++$count }}' style="width:300px;color:black;height:30px;border:1px solid gray;background-color: white;">
+                                        <span style="color:#15b700">{{ $count }}</span> VIN : {{ $item->vin }}
+                                    </td>
+                                    <td style="color:black;height:30px;border:1px solid gray;background-color: white;">
+                                        Amount : {{ number_format($item->amount, 2, '.', ',') }}
+                                        <input type="hidden" value="{{$total +=  $item->amount}}">
+                                    </td>
+                                </tr>
                             @endforeach
 
                         </tbody>
                     </table>
                 </div>
+                <?php
+                // Assuming $seventhValues and $data are your arrays of data
+                $vinFromPDF = array_column($seventhValues, 'value1');
+                $vinFromDatabase = array_column($data->toArray(), 'vin');
+
+                // Check if all VINs from PDF exist in the Database
+                $allExistInDatabasePDF = empty(array_diff($vinFromPDF, $vinFromDatabase));
+
+                // Check if all VINs from Database exist in the PDF
+                $allExistInPDFDatabase = empty(array_diff($vinFromDatabase, $vinFromPDF));
+
+                // Output the result
+                ?>
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var resultVinElement = document.getElementById('VinResult');
+                    if (<?= json_encode($allExistInDatabasePDF && $allExistInPDFDatabase) ?>) {
+                        resultVinElement.innerText = '✅';
+
+                        <?php
+                        // Set background color for each VIN row based on existence in both tables
+                        foreach ($vinFromDatabase as $vin) {
+                        ?>
+
+                        <?php
+                        }
+                        ?>
+                    } else {
+                        resultVinElement.innerText = '❌';
+
+                        <?php
+                        // Set background color for each VIN row based on existence in both tables
+                        foreach (array_diff($vinFromPDF, $vinFromDatabase) as $vin) {
+                        ?>
+                            var VinElementPDF = document.getElementById('VinElementPDF_<?= array_search($vin, $vinFromPDF) + 1 ?>');
+                            VinElementPDF.style.backgroundColor = 'red';
+                        <?php
+                        }
+                        foreach (array_diff($vinFromDatabase, $vinFromPDF) as $vin) {
+                        ?>
+                            var VinElementDatabase = document.getElementById('VinElementDatabase_<?= array_search($vin, $vinFromDatabase) + 1 ?>');
+                            VinElementDatabase.style.backgroundColor = 'red';
+                        <?php
+                        }
+                        ?>
+                    }
+                });
+            </script>
+
+
+
             @endif
 
+            <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var resultVinElement = document.getElementById('AmountResult');
+        var allVinsCorrect = true;
+
+        <?php
+            foreach ($data as $item) {
+                $vinPDF = $seventhValues[array_search($item->vin, $vinFromPDF)]['value1'] ?? null;
+        ?>
+            var vinPDF = <?= json_encode($vinPDF) ?>;
+            var vinDatabase = <?= json_encode($item->vin) ?>;
+
+            if (vinPDF !== null && vinPDF !== vinDatabase) {
+                allVinsCorrect = false;
+                // Exit the loop early if any VIN is incorrect
+                resultVinElement.innerText = '❌';
+
+            }
+        <?php
+            }
+        ?>
+
+        if (allVinsCorrect) {
+            // All VINs are correct, now check if all amounts are the same
+            var allAmountsSame = true;
+
+            <?php
+                foreach ($data as $item) {
+                    $amountPDF = $seventhValues[array_search($item->vin, $vinFromPDF)]['targetValue'] ?? null;
+            ?>
+                var amountPDF = <?= json_encode($amountPDF) !== null ? str_replace(',', '', json_encode($amountPDF)) : 'null' ?>;
+                var amountDatabase = <?= json_encode($item->amount) ?>;
+
+                if (amountPDF !== null && parseFloat(amountPDF) !== parseFloat(amountDatabase)) {
+                    allAmountsSame = false;
+                    // Exit the loop early if amounts are not the same
+                    resultVinElement.innerText = '❌';
+
+                }
+            <?php
+                }
+            ?>
+
+            if (allAmountsSame) {
+                resultVinElement.innerText = '✅';
+            }
+        }
+    });
+</script>
 
 
 
@@ -221,58 +321,5 @@
         </div>
     </div>
 </div>
-    <script>
-        var isAdvancedUpload = function() {
-  var div = document.createElement('div');
-  return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
-}();
 
-let draggableFileArea = document.querySelector(".drag-file-area");
-let browseFileText = document.querySelector(".browse-files");
-let uploadIcon = document.querySelector(".upload-icon");
-let dragDropText = document.querySelector(".dynamic-message");
-let fileInput = document.querySelector(".default-file-input");
-let cannotUploadMessage = document.querySelector(".cannot-upload-message");
-let cancelAlertButton = document.querySelector(".cancel-alert-button");
-let uploadedFile = document.querySelector(".file-block");
-let fileName = document.querySelector(".file-name");
-let fileSize = document.querySelector(".file-size");
-let progressBar = document.querySelector(".progress-bar");
-let removeFileButton = document.querySelector(".remove-file-icon");
-let uploadButton = document.querySelector(".upload-button");
-let fileFlag = 0;
-
-
-
-
-'use strict';
-
-;( function ( document, window, index )
-{
-	var inputs = document.querySelectorAll( '.inputfile' );
-	Array.prototype.forEach.call( inputs, function( input )
-	{
-		var label	 = input.nextElementSibling,
-			labelVal = label.innerHTML;
-
-		input.addEventListener( 'change', function( e )
-		{
-			var fileName = '';
-			if( this.files && this.files.length > 1 )
-				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-			else
-				fileName = e.target.value.split( '\\' ).pop();
-
-			if( fileName )
-				label.querySelector( 'span' ).innerHTML = fileName;
-			else
-				label.innerHTML = labelVal;
-		});
-
-		// Firefox bug fix
-		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-	});
-}( document, window, 0 ));
-    </script>
 </x-app-layout>
