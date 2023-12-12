@@ -398,6 +398,7 @@
                                 <th>GT Number</th>
                                 <th>Billing Doc</th>
                                 <th>Fee</th>
+                                <th>ID</th>
                                 <th>Type</th>
                                 <th>Owner</th>
                                 <th>Action</th>
@@ -437,6 +438,9 @@
                                             {{ $item->regist }}
                                         </td>
                                         <td data-th="Supplier Code">
+                                            {{ $item->idnum }}
+                                        </td>
+                                        <td data-th="Supplier Code">
                                             {{ $item->paidtype }}
                                         </td>
                                         <td data-th="Supplier Code">
@@ -455,7 +459,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="9" style="text-align: center">
+                                    <td colspan="10" style="text-align: center">
                                         The Number Of Selected : <span id="selectedCount">0</span>
                                     </td>
                                 </tr>

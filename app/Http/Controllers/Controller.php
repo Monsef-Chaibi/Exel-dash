@@ -2138,7 +2138,7 @@ class Controller extends BaseController
                                                     Data::where('id', $item)->update([
                                                         'paid' => 1,
                                                         'paidby' => Auth::user()->name,
-                                                        'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
+                                                        'datepaid' => Carbon::now('Asia/Riyadh'), // Use now() instead of Carbon::now('Asia/Riyadh')
                                                         'paidtype' => $paidtype,
                                                     ]);
                                                 }
@@ -2164,7 +2164,7 @@ class Controller extends BaseController
                                                     Data::where('id', $id)->update([
                                                         'paid' => 1,
                                                         'paidby' => Auth::user()->name,
-                                                        'datepaid' => now(), // Use now() instead of Carbon::now('Asia/Riyadh')
+                                                        'datepaid' => Carbon::now('Asia/Riyadh'), // Use now() instead of Carbon::now('Asia/Riyadh')
                                                         'paidtype' => $itemPaidtype,
                                                     ]);
                                                 }
@@ -2262,6 +2262,7 @@ class Controller extends BaseController
 
                         public function HSBCPassed(Request $request)
                         {
+
                             try {
                                 $gtnumArray = $request->input('gtnum');
                                 $statusArray = $request->input('status');
@@ -2271,31 +2272,30 @@ class Controller extends BaseController
                                     // Check if the key exists in the statusArray
                                     $status = isset($statusArray[$key]) ? $statusArray[$key] : null;
 
-                                    // Assuming you have a model named 'YourModel' representing your database table
+                                    // Assuming you have a model named 'Data' representing your database table
                                     $record = Data::where('gtnum', $gtnum)->first();
 
                                     if ($record && $status === '1') {
-                                        $record->paid =  2 ;
-                                        $record->done =  1 ;
-                                        $record->paidbya = 1 ;
-                                        $record->passedby-> Auth::user()->name;
-                                        $record->passeddate -> Carbon::now('Asia/Riyadh');
+                                        $record->paid = 2;
+                                        $record->done = 1;
+                                        $record->paidbya = 1;
+                                        $record->passedby = Auth::user()->name;
+                                        $record->passeddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
                                     }
+
                                     if ($record && $status === '2') {
-                                        $record->paid =  3 ;
-                                        $record->repload =  1 ;
-                                        $record->rejectdreason =  $rejectdreason[$key] ;
-                                        $record->passedby-> Auth::user()->name;
-                                        $record->passeddate -> Carbon::now('Asia/Riyadh');
+                                        $record->paid = 3;
+                                        $record->repload = 1;
+                                        $record->rejectdreason = $rejectdreason[$key];
+                                        $record->passedby = Auth::user()->name;
+                                        $record->passeddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
                                     }
                                 }
 
                                 return redirect()->route('CheckHSBC')->with('success', 'Selections updated successfully');
-
                             } catch (\Exception $e) {
-
                                 // Handle exceptions here
                                 return redirect()->route('CheckHSBC')->with('error', 'An error occurred: ' . $e->getMessage());
                             }
@@ -2361,11 +2361,11 @@ class Controller extends BaseController
                                     return view('SadadRejct')->with('data', $data)->with('error', 'Oops! A simple problem. Try Again. ' . $e->getMessage());
                                 }
                             }
-                            public function  getPDF(Request $request)
+                            public function getPDF(Request $request)
                             {
                                 $bildoc = $request->bildoc;
-                                $data = Data::where('bildoc',$bildoc)->get();
-                                $order = Data::where('bildoc',$bildoc)->value('ordernum');
+                                $data = Data::where('bildoc', $bildoc)->get();
+                                $order = Data::where('bildoc', $bildoc)->value('ordernum');
 
                                 $request->validate([
                                     'pdfFile' => 'required|mimes:pdf|max:10240',
@@ -2378,17 +2378,14 @@ class Controller extends BaseController
                                 $title = $titleMatches[0] ?? null;
 
                                 $lines = explode("\n", $text);
+                                $lines = array_reverse($lines); // Reverse the array
 
                                 $valuesToExtract = [];
-
-                                $value1Pattern = '/([A-Z0-9]{17})/'; // Pattern for the first value
-                                $targetValuePattern = '/\b(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b/'; // Pattern for numeric values
-
                                 $currentValue1 = null;
 
                                 foreach ($lines as $line) {
-                                    preg_match_all($value1Pattern, $line, $matches1);
-                                    preg_match_all($targetValuePattern, $line, $matchesTarget);
+                                    preg_match_all('/[A-Z0-9]{17}/', $line, $matches1);
+                                    preg_match_all('/\b(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b/', $line, $matchesTarget);
 
                                     if (!empty($matches1[0])) {
                                         $currentValue1 = $matches1[0][0];
@@ -2398,20 +2395,26 @@ class Controller extends BaseController
                                         $targetValues = $matchesTarget[0];
 
                                         foreach ($targetValues as $targetValue) {
-                                            $valuesToExtract[] = [
+                                            $valuesToExtract[$currentValue1][] = [
                                                 'title' => $title,
                                                 'value1' => $currentValue1,
                                                 'targetValue' => $targetValue,
                                             ];
                                         }
-
-                                        // Reset $currentValue1 to null after capturing the pairs
-                                        $currentValue1 = null;
                                     }
                                 }
 
-                                return view('PDFCheck')->with('valuesToExtract',$valuesToExtract)->with('data',$data)->with('order',$order)->with('bildoc',$bildoc);
+                                // Extract the 7th element from each VIN
+                                $seventhValues = [];
+                                foreach ($valuesToExtract as $vinData) {
+                                    if (isset($vinData[7])) { // Check if the 7th element exists
+                                        $seventhValues[] = $vinData[7];
+                                    }
+                                }
+
+                                return view('PDFCheck')->with('seventhValues', $seventhValues)->with('data', $data)->with('order', $order)->with('bildoc', $bildoc);
                             }
+
 
 
 
