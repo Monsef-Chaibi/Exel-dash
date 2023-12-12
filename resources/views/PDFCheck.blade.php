@@ -80,6 +80,22 @@
   border-radius: 20px;
   height: 40px;
 }
+.vin-exists-in-pdf-and-database {
+        background-color: white; /* Red */
+    }
+
+    .vin-exists-in-pdf {
+        background-color: #ff1500; /* Green */
+    }
+    .vin-not-found {
+        background-color: #ff1500; /* Green */
+    }
+
+    .notfound {
+        background-color: #0000ff; /* Blue */
+    }
+
+
  </style>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
       <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -124,10 +140,9 @@
 
                 @if (!empty($valuesToExtract) || !empty($data))
 
-
                 <h1 style="text-align: center; font-size:30px">Result</h1>
                 <div style="display: flex;justify-content:center">
-                    <table id="result" style="text-align: center;margin-top:20px" >
+                    <table id="result" style="text-align: center;margin-top:20px">
                         <tr class="fr">
                             <td style="width: 200px"> P.O Number </td>
                             <td style="width: 200px">Vin</td>
@@ -135,16 +150,16 @@
                             <td style="width: 200px">Amount</td>
                             <td style="width: 200px">Total</td>
                         </tr>
-                        <tr >
-                            <td  id='resultOrder' style="width: 200px;height:100px"></td>
-                            <td  id='resultVin' style="width: 200px;height:100px"></td>
-                            <td  id='resultColor' style="width: 200px;height:100px"></td>
-                            <td  id='resultAmount' style="width: 200px;height:100px"></td>
-                            <td  id='resultTotal' style="width: 200px;height:100px"></td>
-
+                        <tr>
+                            <td id='resultOrder' style="width: 200px;height:100px"></td>
+                            <td id='resultVin' style="width: 200px;height:100px"></td>
+                            <td id='resultColor' style="width: 200px;height:100px"></td>
+                            <td id='resultAmount' style="width: 200px;height:100px"></td>
+                            <td id='resultTotal' style="width: 200px;height:100px"></td>
                         </tr>
                     </table>
                 </div>
+
                 <div style="display: flex;justify-content:center">
                     <table style="width: 40%; margin-bottom:5%; margin-top:2%;border-radius:10px" class="rwd-table">
                         <thead>
@@ -156,27 +171,27 @@
                             <td colspan="2" style="background-color: white;color:black;height:30px;border:1px solid gray">
                                 P.O Number : {{ $valuesToExtract[0]['title'] }}
                             </td>
+                            <input type="hidden" value="{{$count1 = 0 }}">
                             @php
                                 $pdfDataMap = [];
+                                $pdfVins = [];
                                 foreach ($valuesToExtract as $extractedValue) {
                                     $pdfDataMap[$extractedValue['value1']] = $extractedValue;
+                                    $pdfVins[] = $extractedValue['value1'];
                                 }
+                                $databaseVins = $data->pluck('vin')->toArray();
                             @endphp
 
-                            <input type="hidden" value="{{$count1 = 0 }}">
-                            @foreach ($valuesToExtract as $item)
-
-                                <tr>
-                                    <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
-                                        <span style="color:#15b700">{{$count1 += 1 }}</span>  VIN : {{ $item['value1'] }}
-                                    </td>
-                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Amount : <span id="amount-{{ $item['value1'] }}"></span>
-                                    </td>
-                                </tr>
-
-                            @endforeach
-
+@foreach ($valuesToExtract as $item)
+<tr class="vin-row {{ in_array($item['value1'], $pdfVins) && in_array($item['value1'], $databaseVins) ? 'vin-exists-in-pdf-and-database' : (in_array($item['value1'], $pdfVins) ? 'vin-exists-in-pdf' : 'notfound') }}">
+    <td style="width:300px;color:black;height:30px;border:1px solid gray">
+        <span style="color:#15b700">{{$count1 += 1 }}</span> VIN: {{ $item['value1'] }}
+    </td>
+    <td style="color:black;height:30px;border:1px solid gray">
+        Amount : <span id="amount-{{ $item['value1'] }}"></span>
+    </td>
+</tr>
+@endforeach
                         </tbody>
                     </table>
 
@@ -188,92 +203,107 @@
                         </thead>
                         <tbody style="text-align: center">
                             <td style="background-color: white;color:black;height:30px;border:1px solid gray" colspan="2">
-                                P.O Number  : {{ $order }}
+                                P.O Number : {{ $order }}
                             </td>
-                             <input type="hidden" value="{{$count = 0 }}">
-                             <input type="hidden" value="{{$total = 0 }}">
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td style="width:300px;background-color: white;color:black;height:30px;border:1px solid gray">
-                                        <span style="color:#15b700">{{$count += 1 }}</span>   VIN : {{ $item->vin }}
-                                    </td>
-                                    <td style="background-color: white;color:black;height:30px;border:1px solid gray">
-                                        Amount : {{ number_format($item->amount, 2, '.', ',') }}
-                             <input type="hidden" value="{{$total +=  $item->amount }}">
+                            <input type="hidden" value="{{$count = 0 }}">
+                            <input type="hidden" value="{{$total = 0 }}">
+                            @php
+                                $pdfDataMap = [];
+                                foreach ($valuesToExtract as $extractedValue) {
+                                    $pdfDataMap[$extractedValue['value1']] = $extractedValue;
+                                }
+                                $pdfVins = array_keys($pdfDataMap);
+                            @endphp
 
-                                    </td>
-                                </tr>
+                            @foreach ($data as $item)
+                            <tr class="vin-row {{ in_array($item->vin, $pdfVins) ? (in_array($item->vin, $databaseVins) ? 'vin-exists-in-pdf-and-database' : 'vin-exists-in-pdf') : 'vin-not-found' }}">
+                                <td style="width:300px;color:black;height:30px;border:1px solid gray">
+                                    <span style="color:#15b700">{{$count += 1 }}</span> VIN : {{ $item->vin }}
+                                </td>
+                                <td style="color:black;height:30px;border:1px solid gray">
+                                    Amount : {{ number_format($item->amount, 2, '.', ',') }}
+                                    <input type="hidden" value="{{$total +=  $item->amount}}">
+                                </td>
+                            </tr>
                             @endforeach
 
                         </tbody>
                     </table>
                 </div>
-                    {{-- Check if all VINs from PDF table exist in Database table --}}
-                    @php
-                        $pdfVins = array_keys($pdfDataMap);
-                        $databaseVins = $data->pluck('vin')->toArray();
-                        $allVinsExist = count($pdfVins) == count($databaseVins) && count(array_diff($pdfVins, $databaseVins)) == 0;
-                    @endphp
 
-                    {{-- Check if {{ $valuesToExtract[0]['title'] }} equals {{ $order }} --}}
-                    @php
-                        $isTitleEqualOrder = $valuesToExtract[0]['title'] == $order;
-                    @endphp
+                {{-- Check if all VINs from PDF table exist in Database table --}}
+                @php
+                    $allVinsExist = count($pdfVins) == count($databaseVins) && count(array_diff($pdfVins, $databaseVins)) == 0;
+                @endphp
+
+                {{-- Check if {{ $valuesToExtract[0]['title'] }} equals {{ $order }} --}}
+                @php
+                    $isTitleEqualOrder = $valuesToExtract[0]['title'] == $order;
+                @endphp
+
+<script>
 
 
-                    {{-- Set result in the Result table --}}
-                    <script>
-                        var resultVinCell = document.getElementById('resultVin');
-                        var resultOrderCell = document.getElementById('resultOrder');
-                        var resultColorCell = document.getElementById('resultColor');
-                        var resultAmountCell = document.getElementById('resultAmount');
-                        var resultTotalCell = document.getElementById('resultTotal');
+    var resultVinCell = document.getElementById('resultVin');
+    var resultOrderCell = document.getElementById('resultOrder');
+    var resultColorCell = document.getElementById('resultColor');
+    var resultAmountCell = document.getElementById('resultAmount');
+    var resultTotalCell = document.getElementById('resultTotal');
 
-                        resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
-                        resultOrderCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
-                        resultColorCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
+    resultVinCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
+    resultOrderCell.textContent = '{{ $isTitleEqualOrder ? '✅' : '❌' }}';
+    resultColorCell.textContent = '{{ $allVinsExist ? '✅' : '❌' }}';
 
-                        // Check if allVinsExist is true
-                        if ('{{ $allVinsExist }}' == '1') {
-                            // Get the first Amount value from the $data collection
-                            var firstAmount = '{{ $data->first()->amount }}';
+    // Check if allVinsExist is true
+    if ('{{ $allVinsExist }}' == '1') {
+        // Get the first Amount value from the $data collection
+        var firstAmount = '{{ $data->first()->amount }}';
 
-                            // Format the amount with commas and decimals
-                            var formattedAmount = parseFloat(firstAmount).toLocaleString('en-US', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            });
+        // Format the amount with commas and decimals
+        var formattedAmount = parseFloat(firstAmount).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
-                            // Loop through each row in the "From PDF" table
-                            @foreach($valuesToExtract as $item)
-                                // Get the VIN value from the current row
-                                var currentVin = '{{ $item['value1'] }}';
+        // Loop through each row in the "From PDF" table
+        @foreach($valuesToExtract as $item)
+            // Get the VIN value from the current row
+            var currentVin = '{{ $item['value1'] }}';
 
-                                // Set the amount value for the current row in the "From PDF" table
-                                var amountSpan = document.getElementById('amount-' + currentVin);
-                                if (amountSpan) {
-                                    amountSpan.textContent = formattedAmount;
-                                }
-                            @endforeach
+            // Set the amount value for the current row in the "From PDF" table
+            var amountSpan = document.getElementById('amount-' + currentVin);
+            if (amountSpan) {
+                amountSpan.textContent = formattedAmount;
+            }
 
-                            // Set the amount value in the Result table
-                            resultAmountCell.textContent = '✅';
+            // Add console.log statements to check the values
+            console.log('Current VIN:', currentVin);
+            console.log('VIN Exists in PDF:', {{ in_array($item['value1'], $pdfVins) ? 'true' : 'false' }});
+            console.log('VIN Exists in Database:', {{ in_array($item['value1'], $databaseVins) ? 'true' : 'false' }});
+            console.log('Conditions Met:', {{ in_array($item['value1'], $pdfVins) && in_array($item['value1'], $databaseVins) ? 'true' : 'false' }});
+        @endforeach
 
-                            // Get the total value and format it
-                            var totalValue = '{{ $total }}';
-                            var formattedTotal = parseFloat(totalValue).toLocaleString('en-US', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            });
+        // Set the amount value in the Result table
+        resultAmountCell.textContent = '✅';
 
-                            // Set the total value in the Result table
-                            resultTotalCell.textContent = formattedTotal;
-                        } else {
-                            // Set the default values if allVinsExist is false
-                            resultAmountCell.textContent = '❌';
-                            resultTotalCell.textContent = '❌';
-                        }
-                    </script>
+        // Get the total value and format it
+        var totalValue = '{{ $total }}';
+        var formattedTotal = parseFloat(totalValue).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        // Set the total value in the Result table
+        resultTotalCell.textContent = `${formattedTotal} ✅`;
+
+    } else {
+        // Set the default values if allVinsExist is false
+        resultAmountCell.textContent = '❌ ';
+        resultTotalCell.textContent = '❌';
+    }
+</script>
+
+
 
             @endif
 
@@ -305,13 +335,8 @@ let removeFileButton = document.querySelector(".remove-file-icon");
 let uploadButton = document.querySelector(".upload-button");
 let fileFlag = 0;
 
-fileInput.addEventListener("click", () => {
-	fileInput.value = '';
-	console.log(fileInput.value);
-});
-/*
-	By Mushfiq Shishir, hello@mrshishir.me, www.mrshishir.me
-*/
+
+
 
 'use strict';
 

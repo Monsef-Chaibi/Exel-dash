@@ -382,7 +382,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div style="padding: 80px">
             <form id="exportForm" action="/Paid" method="get">
                 @csrf
                 <input type="hidden" name="sadad" value="1">
@@ -409,6 +409,7 @@
                             <th>GT Number</th>
                             <th>Billing Doc</th>
                             <th> Fee</th>
+                            <th> ID</th>
                             <th> Type</th>
                             <th> Owner</th>
                             <th>Reason</th>
@@ -451,6 +452,9 @@
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->regist }}
+                                </td>
+                                <td data-th="Supplier Code">
+                                    {{ $item->idnum }}
                                 </td>
                                 <td data-th="Supplier Code">
                                     {{ $item->paidtype }}
