@@ -496,8 +496,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                     <a href="/PDFCheck/{{ encrypt($title->bildoc) }}">
                         <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Check &rarr;</button>
                     </a>
+                @else
+                    <a href="">
+
+                    </a>
                 @endif
 
+
+                <a href="#m2-o">
+                    <button style="color: rgb(103, 255, 103); padding: 10px;" type="submit" class="modal__btn">Sadad &rarr;</button>
+                </a>
             </div>
 
             <div class="in">
@@ -951,3 +959,93 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 
    </script>
+<div class="modal-container"id="m2-o" style="--m-background: transparent;">
+    <div class="modal">
+        <h1 class="modal__title">Sadad :</h1>
+        <form action="/Sad" id="myForm"  method="get">
+
+        <table style="width: 600px; margin-bottom:5%; margin-top:2%;" class="rwd-table">
+            <thead>
+                <tr class="fr">
+
+                    <th>Product</th>
+                    <th>VIN</th>
+                    <th>GT Number</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>ID</th>
+
+                    <th>Status</th>
+                </tr>
+            </thead>
+                <tbody>
+                    @csrf
+                    @foreach ($data as $item)
+                        {{-- @if ($item->paid !== '1' && $item->paid !== '2' ) --}}
+                            <tr>
+                                {{-- @if ($item->paid === '1' || $item->paid === '2')
+                                    <td>
+
+                                    </td>
+                                @else --}}
+
+                                {{-- @endif --}}
+                                    <td data-th="Supplier Name">
+                                        {{ $item->product }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->vin }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->gtnum }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->regist }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->paidtype }}
+                                    </td>
+                                    <td data-th="Supplier Code">
+                                        {{ $item->idnum }}
+                                    </td>
+
+                                        <input type="hidden" name="paid" value="{{ $item->paid }}">
+
+                                    @if ( $item->paid === '1')
+                                        <td style="color: blue" data-th="Supplier Code">
+                                            Sent
+                                        </td>
+                                    @elseif ( $item->paid === '2')
+                                        <td  style="color: rgb(38, 255, 38)" data-th="Supplier Code">
+                                            Accepted
+                                        </td>
+                                    @elseif ( $item->paid === '11')
+                                        <td  style="color: rgb(38, 255, 38)" data-th="Supplier Code">
+                                            Accepted
+                                        </td>
+                                    @elseif ($item->paid === '3')
+                                        <td  style="color: red" data-th="Supplier Code">
+                                            Rejected
+                                        </td>
+                                    @else
+                                        <td data-th="Supplier Code">
+
+                                        </td>
+                                    @endif
+                            </tr>
+                    {{-- @endif --}}
+
+                    @endforeach
+                </tbody>
+        </table>
+
+
+
+
+
+
+        </form>
+
+        <a href="#m1-c" class="link-2"></a>
+    </div>
+</div>

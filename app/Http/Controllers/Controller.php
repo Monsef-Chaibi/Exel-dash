@@ -106,57 +106,152 @@ class Controller extends BaseController
         return view('alluser')->with('users', $users);
     }
     function SadadCheck(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid', '2')->wherenull('done')
+                    ->whereIn('plantkey', $cnd1)->get();
+            return view('SadadA')->with('data',$data);
 
-        $data = Data::where('paid', '2')->wherenull('done')
-                  ->get();
+        }
+        else
+        {
+            $data = Data::where('paid', '2')->wherenull('done')
+            ->get();
+        }
+
         return view('SadadCheck')->with('data', $data);
     }
     function SadadSent(){
 
-        $data = Data::where('paid', '1')
-                  ->get();
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid', '1')
+                    ->whereIn('plantkey', $cnd1)->get();
+        }
+        else
+        {
+            $data = Data::where('paid', '1')
+            ->get();
+        }
+
         return view('SadadSent')->with('data', $data);
     }
     function SadadRejct(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid', '3')
+                    ->whereIn('plantkey', $cnd1)->get();
 
-        $data = Data::where('paid', '3')
-                  ->get();
+        }
+        else
+        {
+            $data = Data::where('paid', '3')
+            ->get();
+        }
+
         return view('SadadRejct')->with('data', $data);
     }
     function uploaded(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->get();
 
-        $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
+
+        }
+        else
+        {
+            $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
+        }
+
         return view('uploaded')->with('data', $data);
     }
     function SadadStatus(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
 
-        $data = Data::where('paid','2')
-                    ->whereNull('paidbya')
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','2')
+            ->whereNull('done')
+            ->whereIn('plantkey', $cnd1)->get();
+
+        }
+        else
+        {
+            $data = Data::where('paid','2')
+                    ->whereNull('done')
                     ->get();
+        }
+
+
         return view('SadadStatus')->with('data', $data);
     }
     function SadadPaid(){
 
-        $data = Data::where('paid','2')
-                    ->whereNotNull('paidbya')
-                    ->get();
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','2')
+            ->whereNotNull('paidbya')
+            ->whereIn('plantkey', $cnd1)->get();
+
+        }
+        else
+        {
+            $data = Data::where('paid','2')
+            ->whereNotNull('paidbya')
+            ->get();
+        }
+
+
         return view('SadadPaid')->with('data', $data);
     }
     function Rejectedbybank(){
 
-        $data = Data::where('paid','11')
-                    ->get();
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','11')
+                    ->whereIn('plantkey', $cnd1)->get();
+        }
+        else
+        {
+            $data = Data::where('paid','11')
+            ->get();
+        }
+
         return view('Rejectedbybank')->with('data', $data);
     }
     function uploadedA(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->whereIn('plantkey', $cnd1)->get();
+        }
+        else
+        {
+            $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
+        }
 
-        $data = Data::where('paid','2')->wherenotnull('done')->wherenull('paidbya')->get();
         return view('uploadedA')->with('data', $data);
     }
     function SadadRejctA(){
+        if(auth()->user()->cond != Null && auth()->user()->cond !== '0'){
+            $cnd=auth()->user()->cond;
+            $cnd1 = explode(',', $cnd);
+            $data = Data::where('paid','3')
+                    ->whereIn('plantkey', $cnd1)->get();
+        }
+        else
+        {
+            $data = Data::where('paid','3')
+            ->get();
+        }
 
-        $data = Data::where('paid','3')
-                    ->get();
+
         return view('SadadRejctA')->with('data', $data);
     }
     function AddData(){
@@ -1719,8 +1814,8 @@ class Controller extends BaseController
                     $cnd=auth()->user()->cond;
                     $cnd1 = explode(',', $cnd);
                     $paidValues = ['2', '22'];
-                    $liveValue = Data::where('paidbya','1')->where('paid','2')->whereIn('plantkey', $cnd1)->count();
-                    $up= Data::where('paid',$paidValues)->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
+                    $liveValue = Data::where('paid',$paidValues)->wherenull('done')->whereIn('plantkey', $cnd1)->count();
+                    $up= Data::where('paid',$paidValues)->wherenull('done')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue2 = Data::where('paid','1')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
                     $up2= Data::where('paid','1')->whereIn('plantkey', $cnd1)->latest('datepaid')->value('datepaid');
                     $liveValue3 = Data::where('paid','3')->whereIn('plantkey', $cnd1)->count(); // Replace YourModel and $id with your actual model and ID
