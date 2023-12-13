@@ -10,20 +10,33 @@ class HSBCImport implements ToModel, WithHeadingRow
 {
     private $rowCount = 0;
     private $importedData = [];
+    private $seenGtnum = [];
 
     public function model(array $row)
     {
         $this->rowCount++;
-
+        $repeat = 0 ;
         $gtnum = $row['customer_reference'];
 
-        if ($this->rowCount >= 1) {
 
-            if ( $row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank' || ($row['status_description'] === 'New Payment' && $row['status'] === 'Pending Authorization')) {
+
+         // Check if $gtnum is repeated
+         if (in_array($gtnum, $this->seenGtnum)) {
+            $repeat = 1;
+        } else {
+            // If not repeated, add it to the array
+            $this->seenGtnum[] = $gtnum;
+        }
+
+
+        if ($row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank' || ($row['status_description'] === 'New Payment' && $row['status'] === 'Pending Authorization')) {
+                if ($this->rowCount >= 1) {
+
+
 
                 $existsInDb = DB::table('data')
-                ->where('gtnum', $gtnum)
-                ->exists();
+                    ->where('gtnum', $gtnum)
+                    ->exists();
 
                 $indb = $existsInDb ? 1 : 0;
 
@@ -66,11 +79,9 @@ class HSBCImport implements ToModel, WithHeadingRow
                 // Assuming the existing condition is something like this:
                 if ($row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank') {
                     // Add the new conditions
-                    if ((int)$row['due_amount_sar'] === 0 || (int)$registValue === (int)str_replace(',', '', $row['due_amount_sar'])) {
-
+                    if ($row['due_amount_sar'] == 0 || (int)$registValue === (int)str_replace(',', '', $row['due_amount_sar'])) {
                         $sameregist = 1;
                     } else {
-
                         $sameregist = 0;
                     }
                 } else {
@@ -78,14 +89,20 @@ class HSBCImport implements ToModel, WithHeadingRow
                     $sameregist = (int)$registValue === (int)str_replace(',', '', $row['due_amount_sar']) ? 1 : 0;
                 }
 
+
                 $sameid = (int)$idnum === (int)$row['moi_reference_number'] ? 1 : 0;
-
-
-
                 $aproved = ($paidValue === '2' || $paidValue === '11') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
                 $paid = ((($notpaid === null  || $notpaid === '3'  || $notpaid === '2' ) && $paidbya != '1') || $notpaid === '11') ? 1 : 0;
 
+                if($repeat === 1 )
+                {
+                    $sameid = 0;
+                    $sameregist= 0 ;
+                    $aproved= 0;
+                    $uploaded= 0;
+                    $paid=0;
+                }
 
                 if ($sameregist === 1 && $sameid === 1 && $aproved === 1 && $uploaded === 1 && $paid === 1) {
                     // All conditions are true
@@ -100,7 +117,6 @@ class HSBCImport implements ToModel, WithHeadingRow
                     // Not all conditions are true
                     $status = 3;
                 }
-
                 $data = [
                     'id' => $id,
                     'regist' => $row['due_amount_sar'],
@@ -116,6 +132,7 @@ class HSBCImport implements ToModel, WithHeadingRow
                     'paid' =>  $paid,
                     'reason' => $row['status_description'] !== 'New Payment' ? $row['status_description'] : null,
                     'status'=> $status,
+                    'repeat'=> $repeat,
                 ];
 
                 // Store the data in the $importedData array
@@ -129,6 +146,7 @@ class HSBCImport implements ToModel, WithHeadingRow
         // No data is added to the database, so return null
         return null;
     }
+
 
     /**
      * Get the imported data.

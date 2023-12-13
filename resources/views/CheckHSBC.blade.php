@@ -247,6 +247,7 @@
                             <thead>
                                 <tr style="height:60px" class="fr">
                                     {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
+                                    <td>Duplicated</td>
                                     <td colspan="4">Product</td>
                                     <td>GT Number</td>
                                     <td>Fee</td>
@@ -268,6 +269,13 @@
                                             @else
                                                 #cc2500; @endif"
                                             id="row_{{ $item['id'] }}">
+                                            <td style="text-align:center">
+                                                @if ($item['repeat'] === 1)
+                                                ❌
+                                                @else
+                                                ✅
+                                                @endif
+                                            </td>
                                             <td colspan="4" data-th="Supplier Code">
                                                 {{ $item['product'] }}
                                             </td>
