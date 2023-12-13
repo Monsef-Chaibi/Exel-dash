@@ -63,10 +63,24 @@ class HSBCImport implements ToModel, WithHeadingRow
                     ->where('gtnum', $gtnum)
                     ->value('id');
 
-                $sameregist = (int)$registValue === (int) str_replace(',', '', $row['due_amount_sar']) ? 1 : 0;
+                // Assuming the existing condition is something like this:
+                if ($row['status'] === 'Rejected' || $row['status'] === 'Rejected by Bank') {
+                    // Add the new conditions
+                    if ((int)$row['due_amount_sar'] === 0 || (int)$registValue === (int)str_replace(',', '', $row['due_amount_sar'])) {
+
+                        $sameregist = 1;
+                    } else {
+
+                        $sameregist = 0;
+                    }
+                } else {
+                    // Your original condition
+                    $sameregist = (int)$registValue === (int)str_replace(',', '', $row['due_amount_sar']) ? 1 : 0;
+                }
+
                 $sameid = (int)$idnum === (int)$row['moi_reference_number'] ? 1 : 0;
 
-             
+
 
                 $aproved = ($paidValue === '2' || $paidValue === '11') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
