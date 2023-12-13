@@ -138,6 +138,7 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
+
                 @if (!empty($seventhValues) || !empty($data))
 
                 <h1 style="text-align: center; font-size:30px">Result</h1>
@@ -151,11 +152,11 @@
                             <td style="width: 200px">Total</td>
                         </tr>
                         <tr>
-                            <td id='resultOrder' style="width: 200px;height:100px"></td>
+                            <td id='POResult' style="width: 200px;height:100px"></td>
                             <td id='VinResult' style="width: 200px;height:100px"></td>
 
                             <td id='AmountResult' style="width: 200px;height:100px"></td>
-                            <td id='resultTotal' style="width: 200px;height:100px"></td>
+                            <td id='TotalResult' style="width: 200px;height:100px"></td>
                         </tr>
                     </table>
                 </div>
@@ -177,7 +178,7 @@
                                     <td id="VinElementPDF_{{ ++$count1 }}" style="width: 300px; color: black; height: 30px; border: 1px solid gray;background-color: white;">
                                         <span style="color: #15b700">{{ $count1 }}</span> VIN: {{ $vinData['value1'] }}
                                     </td>
-                                    <td style="color: black; height: 30px; border: 1px solid gray;background-color: white;">
+                                    <td id="amountcheck"  style="color: black; height: 30px; border: 1px solid gray;background-color: white;">
                                         Amount: {{ $vinData['targetValue'] }}
                                     </td>
                                 </tr>
@@ -202,7 +203,7 @@
                                     <td id='VinElementDatabase_{{ ++$count }}' style="width:300px;color:black;height:30px;border:1px solid gray;background-color: white;">
                                         <span style="color:#15b700">{{ $count }}</span> VIN : {{ $item->vin }}
                                     </td>
-                                    <td style="color:black;height:30px;border:1px solid gray;background-color: white;">
+                                    <td id="amountcheck" style="color:black;height:30px;border:1px solid gray;background-color: white;">
                                         Amount : {{ number_format($item->amount, 2, '.', ',') }}
                                         <input type="hidden" value="{{$total +=  $item->amount}}">
                                     </td>
@@ -263,11 +264,10 @@
 
 
 
-            @endif
-
             <script>
     document.addEventListener('DOMContentLoaded', function () {
         var resultVinElement = document.getElementById('AmountResult');
+        var amountCheckElement = document.getElementById('amountcheck');
         var allVinsCorrect = true;
 
         <?php
@@ -276,11 +276,13 @@
         ?>
             var vinPDF = <?= json_encode($vinPDF) ?>;
             var vinDatabase = <?= json_encode($item->vin) ?>;
+            var VinElementDatabase = document.getElementById('VinElementDatabase_<?= array_search($item->vin, $vinFromDatabase) + 1 ?>');
 
             if (vinPDF !== null && vinPDF !== vinDatabase) {
                 allVinsCorrect = false;
                 // Exit the loop early if any VIN is incorrect
                 resultVinElement.innerText = '❌';
+                document.getElementById('TotalResult').innerText = '❌';
 
             }
         <?php
@@ -294,14 +296,20 @@
             <?php
                 foreach ($data as $item) {
                     $amountPDF = $seventhValues[array_search($item->vin, $vinFromPDF)]['targetValue'] ?? null;
+                    $VinElementPDF = 'VinElementPDF_' . (array_search($item->vin, $vinFromPDF) + 1);
+                    $VinElementDatabase = 'VinElementDatabase_' . (array_search($item->vin, $vinFromDatabase) + 1);
             ?>
                 var amountPDF = <?= json_encode($amountPDF) !== null ? str_replace(',', '', json_encode($amountPDF)) : 'null' ?>;
                 var amountDatabase = <?= json_encode($item->amount) ?>;
 
-                if (amountPDF !== null && parseFloat(amountPDF) !== parseFloat(amountDatabase)) {
+                // Allow a margin of error for decimal points
+                var marginOfError = 0.01; // You can adjust this value as needed
+
+                if (amountPDF !== null && (Math.abs(parseFloat(amountPDF) - parseFloat(amountDatabase)) > marginOfError)) {
                     allAmountsSame = false;
                     // Exit the loop early if amounts are not the same
                     resultVinElement.innerText = '❌';
+                    document.getElementById('TotalResult').innerText = '❌';
 
                 }
             <?php
@@ -310,10 +318,39 @@
 
             if (allAmountsSame) {
                 resultVinElement.innerText = '✅';
+                var total = <?= $total ?>;
+                var formattedTotal = total.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+                document.getElementById('TotalResult').innerText =  formattedTotal + ' ✅ ';
+
+
+            } else {
+                document.getElementById('TotalResult').innerText = '❌';
+
             }
         }
     });
+
+var poNumberPDF = '{{ $seventhValues[0]['title'] }}';
+var poNumberDatabase = '{{ $order }}';
+
+if (poNumberPDF === poNumberDatabase) {
+     document.getElementById('POResult').innerText = '✅';
+} else {
+    document.getElementById('POResult').innerText = '❌';
+}
+
 </script>
+            @endif
+
+
+
+
+
+
 
 
 

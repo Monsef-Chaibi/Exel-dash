@@ -63,8 +63,11 @@ class HSBCImport implements ToModel, WithHeadingRow
                     ->where('gtnum', $gtnum)
                     ->value('id');
 
-                $sameregist = (int)$registValue === (int)$row['due_amount_sar'] ? 1 : 0;
+                $sameregist = (int)$registValue === (int) str_replace(',', '', $row['due_amount_sar']) ? 1 : 0;
                 $sameid = (int)$idnum === (int)$row['moi_reference_number'] ? 1 : 0;
+
+             
+
                 $aproved = ($paidValue === '2' || $paidValue === '11') ? 1 : 0;
                 $uploaded = ($uploadValue === '1') ? 1 : 0;
                 $paid = ((($notpaid === null  || $notpaid === '3'  || $notpaid === '2' ) && $paidbya != '1') || $notpaid === '11') ? 1 : 0;
