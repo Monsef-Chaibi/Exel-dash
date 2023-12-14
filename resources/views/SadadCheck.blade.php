@@ -384,7 +384,7 @@
 
         <div class="py-12">
             <div style="padding: 50px">
-                <form id="exportForm" action="/SemiExportA" method="get">
+                <form id="exportForm" action="/SemiExportA" method="post">
                     @csrf
                     <input type="hidden" name="sadad" value="1">
                     <button style="color:rgb(103, 255, 103);font-size:30px" type="button" class="modal__btn" onclick="exportButtonClick()">Export &rarr;</button>

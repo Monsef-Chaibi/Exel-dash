@@ -2273,14 +2273,30 @@ class Controller extends BaseController
                                                     // Split the combined value to get id and paidtype separately
                                                     list($id, $itemPaidtype) = explode('_', $item);
 
-                                                    // You can use $id and $itemPaidtype as needed
-                                                    Data::where('id', $id)->update([
-                                                        'paid' => 1,
-                                                        'paidby' => Auth::user()->name,
-                                                        'datepaid' => Carbon::now('Asia/Riyadh'), // Use now() instead of Carbon::now('Asia/Riyadh')
-                                                        'paidtype' => $itemPaidtype,
-                                                    ]);
+                                                    // Check if the item ID has a column repload set to '1'
+                                                    $reploadStatus = Data::where('id', $id)->value('repload');
+
+                                                    if ($reploadStatus === '1') {
+                                                        // If repload is '1', update the record accordingly
+                                                        Data::where('id', $id)->update([
+                                                            'paid' => 2,
+                                                            'done' => null,
+                                                            'paidby' => Auth::user()->name,
+                                                            'datepaid' => now(),
+                                                            'paidtype' => $itemPaidtype,
+                                                        ]);
+                                                    } else {
+                                                        // If repload is not '1', update the record with default values
+                                                        Data::where('id', $id)->update([
+                                                            'paid' => 1,
+                                                            'done' => null,
+                                                            'paidby' => Auth::user()->name,
+                                                            'datepaid' => now(),
+                                                            'paidtype' => $itemPaidtype,
+                                                        ]);
+                                                    }
                                                 }
+
                                                 return redirect()->route('SadadView')->with('success', 'Selections updated successfully');
                                             }
 
