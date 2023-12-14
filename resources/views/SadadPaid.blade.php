@@ -447,7 +447,7 @@
                                     {{ $item->gtnum }}
                                 </td>
                                 <td data-th="Supplier Code">
-                                    <a style="color: blue" href="{{ auth()->user()->cond == 4 ? '/Show/' . encrypt($item->bildoc) : '/ShowForA1/' . encrypt($item->bildoc) }}">
+                                    <a style="color: blue" href="{{ auth()->user()->cond === '0' ? '/Show/' . encrypt($item->bildoc) : '/ShowForA1/' . encrypt($item->bildoc) }}">
                                         {{ $item->bildoc }}
                                     </a>
 

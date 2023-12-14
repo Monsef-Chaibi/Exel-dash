@@ -2230,12 +2230,30 @@ class Controller extends BaseController
                                                 foreach ($selectedItems as $item) {
 
                                                     // You can use $id and $itemPaidtype as needed
-                                                    Data::where('id', $item)->update([
-                                                        'paid' => 1,
-                                                        'paidby' => Auth::user()->name,
-                                                        'datepaid' => Carbon::now('Asia/Riyadh'), // Use now() instead of Carbon::now('Asia/Riyadh')
-                                                        'paidtype' => $paidtype,
-                                                    ]);
+                                                    $reploadStatus = Data::where('id', $item)->value('repload');
+
+                                                    if ($reploadStatus === '1') {
+
+                                                        Data::where('id', $item)->update([
+                                                            'paid' => 2,
+                                                            'done' => null,
+                                                            'paidby' => Auth::user()->name,
+                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
+                                                            'paidtype' => $paidtype,
+
+                                                        ]);
+
+                                                    }
+                                                    else {
+                                                        // If repload is not '1', update the record with default values
+                                                        Data::where('id', $item)->update([
+                                                            'paid' => 1,
+                                                            'done' => null,
+                                                            'paidby' => Auth::user()->name,
+                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
+                                                            'paidtype' => $paidtype,
+                                                        ]);
+                                                    }
                                                 }
                                                 return redirect()->back()->with('success', 'Selections updated successfully');
 

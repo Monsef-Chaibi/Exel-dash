@@ -502,7 +502,7 @@ function filterGTNumbers() {
     const rows = document.querySelectorAll('tbody tr');
 
     for (const row of rows) {
-        const gtNumberCell = row.querySelector('td:nth-child(4)'); // Adjusted index to match the column
+        const gtNumberCell = row.querySelector('td:nth-child(3)'); // Adjusted index to match the column
         const gtNumber = gtNumberCell.textContent.toLowerCase();
 
         if (gtNumber.includes(gtNumberSearch)) {
