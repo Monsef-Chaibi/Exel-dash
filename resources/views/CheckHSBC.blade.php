@@ -247,7 +247,7 @@
                             <thead>
                                 <tr style="height:60px" class="fr">
                                     {{-- <th><button type="button" onclick="selectAll()">Select All</button></th> --}}
-                                    <td>Duplicated</td>
+                                    <td>Once</td>
                                     <td colspan="4">Product</td>
                                     <td>GT Number</td>
                                     <td>Fee</td>
