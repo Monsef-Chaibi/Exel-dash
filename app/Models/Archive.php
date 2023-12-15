@@ -10,9 +10,9 @@ class Archive extends Model
     use HasFactory;
     protected $fillable = [
         'iditem',
-        'paidby',
+        'by',
         'status',
-        'datepaid',
+        'in',
         'approvedby',
         'approveddate',
         'passedby',
