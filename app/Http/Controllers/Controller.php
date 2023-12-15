@@ -18,6 +18,7 @@ use App\Imports\Reupload;
 use App\Imports\Sadad;
 use App\Imports\HSBCImport;
 use App\Models\Brand;
+use App\Models\Archive;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ContratUser;
 use App\Models\Data;
@@ -2338,6 +2339,11 @@ class Controller extends BaseController
                                         'paid' => 3,
                                         'rejectedby' => Auth::user()->name,
                                         'rejecteddate' => Carbon::now('Asia/Riyadh'),
+                                    ]);
+                                    Archive::create([
+                                        'iditem' => $itemId,
+                                        'action' => 'rejected', // You can customize this based on your actions
+                                        'user_id' => Auth::id(),
                                     ]);
                                 }
                                 return redirect()->back()->with('success', 'Selections updated successfully');

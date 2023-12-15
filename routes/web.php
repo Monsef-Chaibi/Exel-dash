@@ -153,13 +153,13 @@ Route::group(['middleware' => ['checkUserRole:4', 'auth' ]], function () {
     Route::get('/NonCheckItems', [Controller::class, 'NonCheckItems'])->name('NonCheckItems');
     Route::get('/TotalCheckA1/{id}', [Controller::class, 'TotalCheckA1'])->name('TotalCheckA1');
     Route::get('/CheckItemsA1', [Controller::class, 'CheckItemsA1'])->name('CheckItemsA1');
-    Route::get('/SadadCheck', [Controller::class, 'SadadCheck'])->name('SadadCheck');
+    Route::match(['get', 'post'], '/SadadCheck', [Controller::class, 'SadadCheck'])->name('SadadCheck');
     Route::get('/SadadSent', [Controller::class, 'SadadSent'])->name('SadadSent');
     Route::get('/SadadRejct', [Controller::class, 'SadadRejct'])->name('SadadRejct');
-    Route::post('/SemiExportA', [Controller::class, 'SemiExport'])->name('SemiExportA');
+    Route::match(['get', 'post'], '/SemiExportA', [Controller::class, 'SemiExport'])->name('SemiExportA');
     Route::get('/SadadView', [Controller::class, 'SadadView'])->name('SadadView');
     Route::get('/Sadadlive', [Controller::class, 'Sadadlive'])->name('Sadadlive');
-    Route::get('/done', [Controller::class, 'done'])->name('done');
+    Route::match(['get', 'post'],'/done', [Controller::class, 'done'])->name('done');
     Route::get('/Sadad', [Controller::class, 'Sadad'])->name('Sadad');
     Route::get('/reupload', [Controller::class, 'reupload'])->name('reupload');
     Route::get('/uploaded', [Controller::class, 'uploaded'])->name('uploaded');
