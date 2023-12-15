@@ -2337,13 +2337,13 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 3,
-                                        'rejectedby' => Auth::user()->name,
-                                        'rejecteddate' => Carbon::now('Asia/Riyadh'),
+
                                     ]);
                                     Archive::create([
                                         'iditem' => $itemId,
-                                        'action' => 'rejected', // You can customize this based on your actions
-                                        'user_id' => Auth::id(),
+                                        'status' => 'Rejected',
+                                        'by' => Auth::user()->name,
+                                        'in' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                 }
                                 return redirect()->back()->with('success', 'Selections updated successfully');
@@ -2409,24 +2409,34 @@ class Controller extends BaseController
 
                                     // Assuming you have a model named 'Data' representing your database table
                                     $record = Data::where('gtnum', $gtnum)->first();
+                                    $itemId = Data::where('gtnum', $gtnum)->value('id');
 
                                     if ($record && $status === '1') {
                                         $record->paid = 2;
                                         $record->done = 1;
                                         $record->paidbya = 1;
-                                        $record->passedby = Auth::user()->name;
-                                        $record->passeddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
+                                        Archive::create([
+                                            'iditem' => $itemId,
+                                            'status' => 'Passed IN HSBC',
+                                            'by' => Auth::user()->name,
+                                            'in' => Carbon::now('Asia/Riyadh'),
+                                        ]);
                                     }
 
                                     if ($record && $status === '2') {
                                         $record->paid = 3;
                                         $record->repload = 1;
                                         $record->rejectdreason = $rejectdreason[$key];
-                                        $record->passedby = Auth::user()->name;
-                                        $record->passeddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
+                                        Archive::create([
+                                            'iditem' => $itemId,
+                                            'status' => 'Rejected IN HSBC',
+                                            'by' => Auth::user()->name,
+                                            'in' => Carbon::now('Asia/Riyadh'),
+                                        ]);
                                     }
+
                                 }
 
                                 return redirect()->route('CheckHSBC')->with('success', 'Selections updated successfully');
@@ -2456,6 +2466,7 @@ class Controller extends BaseController
                             foreach ($gtNumbers as $index => $gtNum) {
                                 // Find the record by GT number
                                 $record = Data::where('gtnum', $gtNum)->first();
+                                $itemId = Data::where('gtnum', $gtNum)->value('id');
 
                                 // Check if the record exists
                                 if ($record) {
@@ -2463,8 +2474,13 @@ class Controller extends BaseController
                                     $record->update([
                                         'paid' => 11,
                                         'newreference' => $newReferences[$index],
-                                        'repaymentby' => Auth::user()->name,
-                                        'repaymentdate' => Carbon::now('Asia/Riyadh'),
+                                       
+                                    ]);
+                                    Archive::create([
+                                        'iditem' => $itemId,
+                                        'status' => 'Repayment',
+                                        'by' => Auth::user()->name,
+                                        'in' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                 }
                             }
