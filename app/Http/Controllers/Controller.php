@@ -1173,13 +1173,20 @@ class Controller extends BaseController
             }
         function reupload(Request $request){
 
-                    $itemId=$request->gtnum;
+                    $item = $request->gtnum;
+                    $itemId = Data::where('gtnum',$request->gtnum)->value('id');
 
-                    Data::where('gtnum', $itemId)->update([
+
+                    Data::where('gtnum', $item)->update([
                         'paid' => '11',
                         'newreference' =>  $request->input('new'),
-                        'repaymentby' => Auth::user()->name,
-                        'repaymentdate' => Carbon::now('Asia/Riyadh'),
+
+                    ]);
+                    Archive::create([
+                        'iditem' => $itemId,
+                        'status' => 'Re-upload',
+                        'by' => Auth::user()->name,
+                        'in' => Carbon::now('Asia/Riyadh'),
                     ]);
 
 
@@ -2322,9 +2329,14 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 2,
-                                        'approvedby' => Auth::user()->name,
-                                        'approveddate' => Carbon::now('Asia/Riyadh'),
                                     ]);
+                                    Archive::create([
+                                        'iditem' => $itemId,
+                                        'status' => 'Aproved',
+                                        'by' => Auth::user()->name,
+                                        'in' => Carbon::now('Asia/Riyadh'),
+                                    ]);
+
                                 }
                                 return redirect()->back()->with('success', 'Selections updated successfully');
                             } elseif ($confirmationAction === 'refuse') {
@@ -2474,11 +2486,11 @@ class Controller extends BaseController
                                     $record->update([
                                         'paid' => 11,
                                         'newreference' => $newReferences[$index],
-                                       
+
                                     ]);
                                     Archive::create([
                                         'iditem' => $itemId,
-                                        'status' => 'Repayment',
+                                        'status' => 'Re-upload',
                                         'by' => Auth::user()->name,
                                         'in' => Carbon::now('Asia/Riyadh'),
                                     ]);

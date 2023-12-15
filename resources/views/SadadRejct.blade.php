@@ -1087,7 +1087,7 @@ function submitForm() {
         @endif
             <br>
             <a  href="/generate-pdf">
-                <button type="submit" class="modal__btn">Print &rarr;</button>
+                <button type="submit" class="modal__btn">Save &rarr;</button>
             </a>
             <a href="#m1-c" class="link-2"></a>
     </div>
