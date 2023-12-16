@@ -2257,6 +2257,8 @@ class Controller extends BaseController
                                                             'paid' => 2,
                                                             'done' => null,
                                                             'paidtype' => $paidtype,
+                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
+                                                            'paidtype' => $paidtype,
                                                         ]);
                                                         Archive::create([
                                                             'iditem' => $itemId,
@@ -2271,6 +2273,8 @@ class Controller extends BaseController
                                                         Data::where('id', $item)->update([
                                                             'paid' => 1,
                                                             'done' => null,
+                                                            'paidtype' => $paidtype,
+                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
                                                             'paidtype' => $paidtype,
                                                         ]);
                                                         Archive::create([
@@ -2309,6 +2313,8 @@ class Controller extends BaseController
                                                             'paid' => 2,
                                                             'done' => null,
                                                             'paidtype' => $itemPaidtype,
+                                                            'approvedby' => Auth::user()->name,
+                                                            'approveddate' => Carbon::now('Asia/Riyadh'),
                                                         ]);
                                                         Archive::create([
                                                             'iditem' => $itemId,
@@ -2323,6 +2329,8 @@ class Controller extends BaseController
                                                             'paid' => 1,
                                                             'done' => null,
                                                             'paidtype' => $itemPaidtype,
+                                                            'paidby' => Auth::user()->name,
+                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
                                                         ]);
                                                         Archive::create([
                                                             'iditem' => $itemId,
@@ -2357,6 +2365,8 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 2,
+                                        'approvedby' => Auth::user()->name,
+                                        'approveddate' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                     Archive::create([
                                         'iditem' => $itemId,
@@ -2377,6 +2387,8 @@ class Controller extends BaseController
                                 foreach ($selectedItems as $itemId) {
                                     Data::where('id', $itemId)->update([
                                         'paid' => 3,
+                                        'rejectedby' => Auth::user()->name,
+                                        'rejecteddate' => Carbon::now('Asia/Riyadh'),
 
                                     ]);
                                     Archive::create([
@@ -2455,6 +2467,8 @@ class Controller extends BaseController
                                         $record->paid = 2;
                                         $record->done = 1;
                                         $record->paidbya = 1;
+                                        $record->passedby = Auth::user()->name;
+                                        $record->passeddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
                                         Archive::create([
                                             'iditem' => $itemId,
@@ -2468,6 +2482,8 @@ class Controller extends BaseController
                                         $record->paid = 3;
                                         $record->repload = 1;
                                         $record->rejectdreason = $rejectdreason[$key];
+                                        $record->rejectedby = Auth::user()->name;
+                                        $record->rejecteddate = Carbon::now('Asia/Riyadh');
                                         $record->save();
                                         Archive::create([
                                             'iditem' => $itemId,
@@ -2511,10 +2527,12 @@ class Controller extends BaseController
                                 // Check if the record exists
                                 if ($record) {
                                     // Update the 'paid' and 'reference' fields
-                                    $record->update([
+                                     // Update the 'paid' and 'reference' fields
+                                     $record->update([
                                         'paid' => 11,
                                         'newreference' => $newReferences[$index],
-
+                                        'repaymentby' => Auth::user()->name,
+                                        'repaymentdate' => Carbon::now('Asia/Riyadh'),
                                     ]);
                                     Archive::create([
                                         'iditem' => $itemId,
@@ -2606,7 +2624,20 @@ class Controller extends BaseController
                                 return view('PDFCheck')->with('seventhValues', $seventhValues)->with('data', $data)->with('order', $order)->with('bildoc', $bildoc);
                             }
 
-                        
+                            public function GetArchive(Request $request)
+                            {
+                                $itemId = $request->input('itemId');
+                                $data = Archive::where('iditem',$itemId)->get();
+
+                                // Check if data is found
+                                if ($data) {
+                                    // If you want to return the data as JSON
+                                    return response()->json(['message' => 'Item ID received successfully', 'data' => $data]);
+                                } else {
+                                    return response()->json(['message' => 'Item not found']);
+                                }
+                            }
+
 
 
 

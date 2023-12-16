@@ -120,6 +120,7 @@ Route::group(['middleware' => ['checkUserRole:0', 'auth' ]], function () {
 
 Route::get('/export-and-update-excel', [Controller::class, 'updateExcel']);
 
+Route::post('/GetArchive', [Controller::class, 'GetArchive'])->name('GetArchive');
 
 Route::get('/Rejectedbybank', [Controller::class, 'Rejectedbybank'])->name('Rejectedbybank');
 Route::get('/SadadPaid', [Controller::class, 'SadadPaid'])->name('SadadPaid');

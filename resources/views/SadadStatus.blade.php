@@ -463,13 +463,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
   transform: translateY(-.2rem);
 }
 
-.abs-site-link {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  color: hsla(0, 0%, 1000%, .6);
-  font-size: 1.6rem;
-}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -520,6 +514,7 @@ when users will click/enter button(link) browser will add a #id in a url and whe
         <!-- Add these lines to include DataTables CSS and JS files -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
         <div class="py-12">
             <div class="" style="padding: 80px">
@@ -586,10 +581,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                             {{ $item->soldp }}
                                         </td>
                                         <td style="" data-th="Supplier Code">
-                                            <a href="#m2-o" data-item-id="{{ $item->id }}">
-                                                <button  type="button" class="modal__btn">  <i style="font-size: 20px" class="fa fa-eye"></i></button>
+
+                                            <a href="#m2-o" class="modal-trigger" data-item-id="{{ $item->id }}">
+                                                <button type="button" class="modal__btn">
+                                                    <i style="font-size: 20px" class="fa fa-eye"></i>
+                                                </button>
                                             </a>
+
+
                                         </td>
+
 
                                         {{-- <td style="text-align: center">
                                             @if ($item->done === '1')
@@ -615,14 +616,96 @@ when users will click/enter button(link) browser will add a #id in a url and whe
             </div>
         </div>
 
-<div class="modal-container"id="m2-o" style="--m-background: transparent;">
-    <div class="modal">
-        <h1 class="modal__title">Sadad :</h1>
+        <div class="modal-container" id="m2-o" style="--m-background: transparent;">
+            <div class="modal">
+                <h1 class="modal__title">Archive :</h1>
+                <br>
+                <br>
+
+                <table id="archive-table" style="width: 80%;padding:100px" class="rwd-table">
+                    <thead>
+                        <tr style="background-color: #1eff00; color:#d8e7f3" class="fr">
+                            <th>Status</th>
+                            <th>By</th>
+                            <th>In</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be dynamically added here -->
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <a href="#m2-c" class="link-2"></a>
+            </div>
+        </div>
 
 
-        <a href="#m1-c" class="link-2"></a>
-    </div>
-</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.modal-trigger').click(function (e) {
+            e.preventDefault();
+
+            // Get the data-item-id attribute value
+            var itemId = $(this).data('item-id');
+
+            // Send an AJAX request to your controller
+            $.ajax({
+                url: '/GetArchive', // Replace with the actual route to your controller
+                method: 'POST', // You can use GET or POST depending on your needs
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    itemId: itemId
+                },
+                success: function (response) {
+    // Handle the response from the controller
+    console.log(response);
+
+    if (response.message === 'Item ID received successfully') {
+        var dataArray = response.data;
+
+        // Assuming you have a table with an id "archive-table"
+        var table = $('#archive-table tbody');
+
+        // Clear existing rows in the table
+        table.empty();
+
+        // Loop through the array and append rows to the table
+        dataArray.forEach(function (data) {
+            var newRow = '<tr><td>' + data.status + '</td><td>' + data.by + '</td><td>' + data.in + '</td></tr>';
+            table.append(newRow);
+        });
+
+        // Show the modal manually
+        $('#m2-o').css('display', 'flex');
+    } else {
+        // Handle the case where the item is not found
+        alert('Item not found');
+    }
+},
+
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+    $('.link-2').click(function () {
+    // Hide the modal container
+    $('#m2-o').css('display', 'none');
+});
+
+</script>
+
+
+
+
+
+
+
 <script>
 function filterReference() {
     const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
