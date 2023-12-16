@@ -586,8 +586,8 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                                             {{ $item->soldp }}
                                         </td>
                                         <td style="" data-th="Supplier Code">
-                                            <a href="#m2-o">
-                                                <button style="color: rgb(103, 255, 103); padding: 10px;" type="button" class="modal__btn">Sadad &rarr;</button>
+                                            <a href="#m2-o" data-item-id="{{ $item->id }}">
+                                                <button  type="button" class="modal__btn">  <i style="font-size: 20px" class="fa fa-eye"></i></button>
                                             </a>
                                         </td>
 
@@ -614,8 +614,16 @@ when users will click/enter button(link) browser will add a #id in a url and whe
                 </div>
             </div>
         </div>
-        <script>
 
+<div class="modal-container"id="m2-o" style="--m-background: transparent;">
+    <div class="modal">
+        <h1 class="modal__title">Sadad :</h1>
+
+
+        <a href="#m1-c" class="link-2"></a>
+    </div>
+</div>
+<script>
 function filterReference() {
     const referenceSearch = document.getElementById('filterReference').value.toLowerCase();
     const rows = document.querySelectorAll('tbody tr');
@@ -839,11 +847,3 @@ $(document).ready(function () {
         });
     }
 </script>
-<div class="modal-container"id="m2-o" style="--m-background: transparent;">
-    <div class="modal">
-        <h1 class="modal__title">Sadad :</h1>
-
-
-        <a href="#m1-c" class="link-2"></a>
-    </div>
-</div>
