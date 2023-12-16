@@ -1164,8 +1164,13 @@ class Controller extends BaseController
                     Data::where('id', $itemId)->update([
                         'done' => 1,
                         'reference' =>  $request->input('reference'),
-                        'uploadedby' => Auth::user()->name,
-                        'uploadeddate' => Carbon::now('Asia/Riyadh'),
+
+                    ]);
+                    Archive::create([
+                        'iditem' => $itemId,
+                        'status' => 'Uploaded',
+                        'by' => Auth::user()->name,
+                        'in' => Carbon::now('Asia/Riyadh'),
                     ]);
                 }
 
@@ -1200,8 +1205,13 @@ class Controller extends BaseController
                 foreach($selectedItems as $itemId) {
                     Data::where('id', $itemId)->update([
                         'paidbya' => 1,
-                        'passedby' => Auth::user()->name,
-                        'passeddate' => Carbon::now('Asia/Riyadh'),
+
+                    ]);
+                    Archive::create([
+                        'iditem' => $itemId,
+                        'status' => 'Passed',
+                        'by' => Auth::user()->name,
+                        'in' => Carbon::now('Asia/Riyadh'),
                     ]);
                 }
 
@@ -2239,16 +2249,20 @@ class Controller extends BaseController
 
                                                     // You can use $id and $itemPaidtype as needed
                                                     $reploadStatus = Data::where('id', $item)->value('repload');
+                                                    $itemId = Data::where('id', $item)->value('id');
 
                                                     if ($reploadStatus === '1') {
 
                                                         Data::where('id', $item)->update([
                                                             'paid' => 2,
                                                             'done' => null,
-                                                            'paidby' => Auth::user()->name,
-                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
                                                             'paidtype' => $paidtype,
-
+                                                        ]);
+                                                        Archive::create([
+                                                            'iditem' => $itemId,
+                                                            'status' => 'Aproved',
+                                                            'by' => Auth::user()->name,
+                                                            'in' => Carbon::now('Asia/Riyadh'),
                                                         ]);
 
                                                     }
@@ -2257,9 +2271,13 @@ class Controller extends BaseController
                                                         Data::where('id', $item)->update([
                                                             'paid' => 1,
                                                             'done' => null,
-                                                            'paidby' => Auth::user()->name,
-                                                            'datepaid' => Carbon::now('Asia/Riyadh'),
                                                             'paidtype' => $paidtype,
+                                                        ]);
+                                                        Archive::create([
+                                                            'iditem' => $itemId,
+                                                            'status' => 'Sent',
+                                                            'by' => Auth::user()->name,
+                                                            'in' => Carbon::now('Asia/Riyadh'),
                                                         ]);
                                                     }
                                                 }
@@ -2283,24 +2301,34 @@ class Controller extends BaseController
 
                                                     // Check if the item ID has a column repload set to '1'
                                                     $reploadStatus = Data::where('id', $id)->value('repload');
+                                                    $itemId = Data::where('id', $id)->value('id');
 
                                                     if ($reploadStatus === '1') {
                                                         // If repload is '1', update the record accordingly
                                                         Data::where('id', $id)->update([
                                                             'paid' => 2,
                                                             'done' => null,
-                                                            'paidby' => Auth::user()->name,
-                                                            'datepaid' => now(),
                                                             'paidtype' => $itemPaidtype,
                                                         ]);
+                                                        Archive::create([
+                                                            'iditem' => $itemId,
+                                                            'status' => 'Aproved',
+                                                            'by' => Auth::user()->name,
+                                                            'in' => Carbon::now('Asia/Riyadh'),
+                                                        ]);
+
                                                     } else {
                                                         // If repload is not '1', update the record with default values
                                                         Data::where('id', $id)->update([
                                                             'paid' => 1,
                                                             'done' => null,
-                                                            'paidby' => Auth::user()->name,
-                                                            'datepaid' => now(),
                                                             'paidtype' => $itemPaidtype,
+                                                        ]);
+                                                        Archive::create([
+                                                            'iditem' => $itemId,
+                                                            'status' => 'Sent',
+                                                            'by' => Auth::user()->name,
+                                                            'in' => Carbon::now('Asia/Riyadh'),
                                                         ]);
                                                     }
                                                 }
